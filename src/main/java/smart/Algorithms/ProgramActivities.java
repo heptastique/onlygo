@@ -187,8 +187,8 @@ public class ProgramActivities
                 }
             }
             programme.setActivites(activities);
-            programme = programmeService.saveProgram(programme);
         }
+        programme = programmeService.saveProgram(programme);
 
         // While Week Objective is not Completed
         int sportIndex = 0;
