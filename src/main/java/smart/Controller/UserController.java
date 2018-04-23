@@ -16,6 +16,9 @@ import smart.Services.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8100" )
@@ -49,9 +52,13 @@ public class UserController {
 
 
     @RequestMapping(path="/user/all", method = RequestMethod.GET)
-    public Iterable<User> getAllUsers() throws ParseException {
+    public Iterable<JwtUser> getAllUsers() throws ParseException {
         // This returns a JSON or XML with the users
-        return userRepository.findAll();
+        List<JwtUser> jwtUsers = new ArrayList<JwtUser>();
+        for(User user: userService.getAllUsers()){
+            jwtUsers.add(JwtUserFactory.create(user));
+        }
+        return jwtUsers;
     }
 
     @RequestMapping(path="/user/add", method = RequestMethod.POST)
