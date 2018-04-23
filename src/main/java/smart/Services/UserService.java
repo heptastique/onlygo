@@ -12,7 +12,6 @@ import smart.Repositories.UserRepository;
 import java.util.Arrays;
 import java.util.Date;
 
-import static smart.Entities.AuthorityName.ROLE_USER;
 
 @Service
 public class UserService {
@@ -44,6 +43,10 @@ public class UserService {
         user.setEnabled(true);
         user.setAuthorities(Arrays.asList(authoRepository.findById(1)));
         return userRepository.save(user);
+    }
+
+    public Iterable<User> getAllUsers(){
+        return userRepository.findAll();
     }
 
     private boolean emailExist(String email) {
