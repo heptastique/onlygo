@@ -29,13 +29,12 @@ public class UserService {
     public User addUser(UserDto userDto) throws EmailExistsException, UsernameExistsException {
         if (emailExist(userDto.getEmail())) {
             throw new EmailExistsException(
-                    "Il y a déjà un compte avec cette adresse : "
-                            +  userDto.getEmail());
+                    "Cette adresse email est déjà utilisée par un autre compte";
         }
         if (userlExist(userDto.getUsername())) {
             throw new UsernameExistsException(
-                    "Il y a déjà un compte avec ce pseudo : "
-                        +  userDto.getUsername());
+                    "Ce nom d'utilisateur est indisponible car pris par un autre compte ";
+                      
         }
         User user = new User();
         user.setFirstname(userDto.getFirstname());
