@@ -29,11 +29,11 @@ public class UserService {
     public User addUser(UserDto userDto) throws EmailExistsException, UsernameExistsException {
         if (emailExist(userDto.getEmail())) {
             throw new EmailExistsException(
-                    "Cette adresse email est déjà utilisée par un autre compte";
+                    "Cette adresse email est déjà utilisée par un autre compte");
         }
         if (userlExist(userDto.getUsername())) {
             throw new UsernameExistsException(
-                    "Ce nom d'utilisateur est indisponible car pris par un autre compte ";
+                    "Ce nom d'utilisateur est indisponible car pris par un autre compte ");
                       
         }
         User user = new User();
