@@ -1,0 +1,8 @@
+ignore:
+  - "src/main/java/smart/Entities"
+  - "src/main/java/smart/Jwt"
+
+coverage:
+  status:
+    project: no
+    patch: no
