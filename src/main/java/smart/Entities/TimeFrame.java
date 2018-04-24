@@ -25,8 +25,6 @@ public class TimeFrame {
     @Enumerated(EnumType.STRING)
     private Jour jour;
 
-    @Column(name = "NOTE", length = 50)
-    private int note;
 
 
     /*@OneToOne(fetch = FetchType.EAGER)
@@ -71,12 +69,5 @@ public class TimeFrame {
         this.jour = jour;
     }
 
-    public int getNote() {
-        return note;
-    }
-
-    public void setNote(int note) {
-        this.note = note;
-    }
 }
 
