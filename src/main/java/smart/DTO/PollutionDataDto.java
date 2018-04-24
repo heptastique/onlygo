@@ -1,10 +1,15 @@
 package smart.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.List;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PollutionDataDto {
 
-    private Long id;
+    private String commune;
 
-    private Long code_insee;
+    private String code_insee;
 
     private String licence;
 
@@ -12,19 +17,19 @@ public class PollutionDataDto {
 
     private Indices indices;
 
-    public Long getId() {
-        return id;
+    public String getCommune() {
+        return commune;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCommune(String commune) {
+        this.commune = commune;
     }
 
-    public Long getCode_insee() {
+    public String getCode_insee() {
         return code_insee;
     }
 
-    public void setCode_insee(Long code_insee) {
+    public void setCode_insee(String code_insee) {
         this.code_insee = code_insee;
     }
 
@@ -53,6 +58,7 @@ public class PollutionDataDto {
     }
 }
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 class Indices {
     private int total;
 
@@ -70,7 +76,7 @@ class Indices {
 
     private int to;
 
-    private Elem data;
+    private List<Elem> data;
 
     public int getTotal() {
         return total;
@@ -136,15 +142,16 @@ class Indices {
         this.to = to;
     }
 
-    public Elem getData() {
+    public List<Elem> getData() {
         return data;
     }
 
-    public void setData(Elem data) {
+    public void setData(List<Elem> data) {
         this.data = data;
     }
 }
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 class Elem {
     private String date;
 
