@@ -25,11 +25,10 @@ public class Programme {
         @Fetch(value = FetchMode.SUBSELECT)
         private List<Activity> activites;
 
-    @OneToMany(cascade = CascadeType.ALL,
-        fetch = FetchType.EAGER,
-        mappedBy = "programme")
-        @Fetch(value = FetchMode.SUBSELECT)
-        private List<Realisation> realisations;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="PROGRAMME_ID", referencedColumnName="PROGRAMME_ID")
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Realisation> realisations;
 
     public Programme() {
     }

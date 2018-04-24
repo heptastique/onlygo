@@ -1,7 +1,6 @@
 package smart.Entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -21,7 +20,7 @@ public class Activity {
     private float distance;
 
     @ManyToOne
-    @JoinColumn(name="PROGRAMME_ID", nullable=false)
+    @JoinColumn(name="PROGRAMME_ID")
     Programme programme;
 
     @Column(name = "DATE")

@@ -12,12 +12,9 @@ public class Realisation {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name="Activity_ID", nullable=true)
+    @JoinColumn(name="ACTIVITY_ID")
     private Activity activite;
 
-    @ManyToOne
-    @JoinColumn(name="PROGRAMME_ID", nullable=true)
-    Programme programme;
 
     public Realisation() {
         this.activite = null;

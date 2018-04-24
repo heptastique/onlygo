@@ -8,4 +8,5 @@ import smart.Entities.Sport;
 
 public interface SportRepository extends CrudRepository<Sport, Long> {
     Iterable<Sport> findAll();
+    Sport findByid(Long id);
 }
