@@ -1,4 +1,4 @@
-# onlygo [![Build Status](https://travis-ci.org/heptastique/onlygo.svg?branch=master)](https://travis-ci.org/heptastique/onlygo)
+# onlygo [![Build Status](https://travis-ci.org/heptastique/onlygo.svg?branch=master)](https://travis-ci.org/heptastique/onlygo)[![codecov](https://codecov.io/gh/heptastique/onlygo/branch/master/graph/badge.svg)](https://codecov.io/gh/heptastique/onlygo)
 
 ## Setup
 
