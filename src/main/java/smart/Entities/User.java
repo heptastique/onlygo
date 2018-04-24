@@ -56,6 +56,11 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
 
+    @OneToMany(cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY,
+        mappedBy = "user")
+        private List<Programme> programmes;
+
     public Long getId() {
         return id;
     }
