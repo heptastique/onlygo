@@ -25,7 +25,7 @@ public class Programme {
         @Fetch(value = FetchMode.SUBSELECT)
         private List<Activity> activites;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="PROGRAMME_ID", referencedColumnName="PROGRAMME_ID")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Realisation> realisations;

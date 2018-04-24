@@ -15,7 +15,6 @@ public class Realisation {
     @JoinColumn(name="ACTIVITY_ID")
     private Activity activite;
 
-
     public Realisation() {
         this.activite = null;
     }
