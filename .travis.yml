@@ -12,6 +12,12 @@ before_install:
   - mysql -e "grant all on db_example.* to 'spring'@'localhost' identified by 'password'"
   - echo "${ATMOKEY}" >> src/main/resources/application.properties
 
+script:
+  - mvn clean package
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 cache:
   directories:
     - $HOME/.m2
