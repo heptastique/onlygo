@@ -7,12 +7,17 @@ import javax.persistence.*;
 public class Realisation {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "REALISATION_ID")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @OneToOne
+    @JoinColumn(name="Activity_ID", nullable=true)
     private Activity activite;
+
+    @ManyToOne
+    @JoinColumn(name="PROGRAMME_ID", nullable=true)
+    Programme programme;
 
     public Realisation() {
         this.activite = null;

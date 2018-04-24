@@ -10,12 +10,11 @@ import javax.validation.constraints.NotNull;
 public class Sport {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "SPORT_ID")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @Column(name = "NOM")
-    @NotNull
     private String nom;
 
     @Column(name = "KCALKM")
@@ -27,6 +26,8 @@ public class Sport {
     @Formula("KCALH / KCALKM")
     @Column(name = "KMH")
     private int kmH;
+
+    public Sport() {}
 
     public Sport(Long id, @NotNull String nom, int kcalKm, int kcalH) {
         this.id = id;
