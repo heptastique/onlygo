@@ -22,6 +22,7 @@ public class TimeFrame {
 
     @Column(name = "NOMJOUR", length = 50)
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Jour jour;
 
     @Column(name = "NOTE", length = 50)
