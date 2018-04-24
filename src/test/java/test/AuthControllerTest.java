@@ -14,6 +14,7 @@ import smart.Application;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -53,7 +54,8 @@ public class AuthControllerTest {
     public void shouldGetOkWithAdminRole() throws Exception{
         this.mvc
             .perform(get("/protected"))
-            .andExpect(status().is2xxSuccessful());
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(content().string("Greetings from admin protected method!"));
     }
 
 }
