@@ -4,6 +4,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,6 +20,10 @@ public class Programme {
     @ManyToOne
     @JoinColumn(name="USER_ID", referencedColumnName="ID", nullable=false)
     private User user;
+
+    @JoinColumn(name = "DATE_DEBUT")
+    @NotNull
+    private Date dateDebut;
 
     @OneToMany(cascade = CascadeType.ALL,
         fetch = FetchType.EAGER,

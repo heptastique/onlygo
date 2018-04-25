@@ -3,6 +3,7 @@ package smart.Repositories;
 import org.springframework.data.repository.CrudRepository;
 import smart.Entities.Programme;
 
+import java.util.Date;
 import java.util.Optional;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
@@ -11,4 +12,5 @@ import java.util.Optional;
 public interface ProgrammeRepository extends CrudRepository<Programme, Long> {
     Iterable<Programme> findAll();
     Optional<Programme> findById(Long id);
+    Programme findByUserAndDateDebut(Long userId, Date dateDebut);
 }
