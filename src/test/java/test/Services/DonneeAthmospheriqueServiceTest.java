@@ -30,6 +30,9 @@ public class DonneeAthmospheriqueServiceTest {
     @Autowired
     DonneeAthmospheriqueService donneeAthmospheriqueService;
 
+    @Autowired
+    DonneeAthmospheriqueRepository donneeAthmospheriqueRepository;
+
     @Before
     public void setup() {
         mvc = MockMvcBuilders
@@ -43,6 +46,7 @@ public class DonneeAthmospheriqueServiceTest {
         PollutionDataDto data = donneeAthmospheriqueService.UpdateDonneeAthmospheriqueData();
         assertEquals("Lyon", data.getCommune());
         assertNotNull(data.getIndices());
+        assertTrue(donneeAthmospheriqueRepository.existsById((long)1));
     }
 
 }
