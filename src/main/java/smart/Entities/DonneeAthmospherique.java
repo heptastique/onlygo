@@ -12,10 +12,9 @@ public class DonneeAthmospherique {
 
     private Double indice;
 
-    /*
-    * @TODO faire la jointure avec Evaluation
-    */
-    private Long idEvaluation;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Evaluation evaluation;
 
     public Long getId() {
         return id;
@@ -33,11 +32,11 @@ public class DonneeAthmospherique {
         this.indice = indice;
     }
 
-    public Long getIdEvaluation() {
-        return idEvaluation;
+    public Evaluation getEvaluation() {
+        return evaluation;
     }
 
-    public void setIdEvaluation(Long idEvaluation) {
-        this.idEvaluation = idEvaluation;
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
     }
 }
