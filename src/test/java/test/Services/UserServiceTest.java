@@ -24,7 +24,9 @@ import smart.Repositories.DonneeAthmospheriqueRepository;
 import smart.Services.DonneeAthmospheriqueService;
 import smart.Services.UserService;
 
+import javax.validation.*;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -77,6 +79,23 @@ public class UserServiceTest {
         userService.addUser(userDto);
         //test if user has been added
         assertNotNull(jwtUserDetailsService.loadUserByUsername("hmartin"));
+        assertNotNull(userDto.toString());
+    }
+
+    @Test
+    public void UserWrongEmail() throws NotFoundException {
+        //create a user object
+        UserDto userDto = new UserDto();
+        userDto.setEmail("hugo.martinpi.com");
+        userDto.setFirstname("Hugo");
+        userDto.setLastname("Martin");
+        userDto.setUsername("hmartin");
+        userDto.setPassword("password");
+        //call adduser service
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<UserDto>> constraintViolations = validator.validate(userDto);
+        assertFalse(constraintViolations.isEmpty());
     }
 
     @Test(expected = EmailExistsException.class)
