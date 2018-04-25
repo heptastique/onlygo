@@ -11,16 +11,23 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
 import smart.DTO.PollutionDataDto;
+import smart.DTO.UserDto;
 import smart.Entities.DonneeAthmospherique;
+import smart.Entities.User;
+import smart.Jwt.JwtUser;
+import smart.Jwt.JwtUserDetailsService;
 import smart.Repositories.DonneeAthmospheriqueRepository;
 import smart.Services.DonneeAthmospheriqueService;
+import smart.Services.UserService;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class DonneeAthmospheriqueServiceTest {
+public class UserServiceTest {
 
     private MockMvc mvc;
 
@@ -28,10 +35,10 @@ public class DonneeAthmospheriqueServiceTest {
     private WebApplicationContext context;
 
     @Autowired
-    DonneeAthmospheriqueService donneeAthmospheriqueService;
+    UserService userService;
 
     @Autowired
-    DonneeAthmospheriqueRepository donneeAthmospheriqueRepository;
+    JwtUserDetailsService jwtUserDetailsService;
 
     @Before
     public void setup() {
@@ -42,11 +49,15 @@ public class DonneeAthmospheriqueServiceTest {
     }
 
     @Test
-    public void DataIsCorrectlyFetched() {
-        PollutionDataDto data = donneeAthmospheriqueService.UpdateDonneeAthmospheriqueData();
-        assertEquals("Lyon", data.getCommune());
-        assertNotNull(data.getIndices());
-        assertTrue(donneeAthmospheriqueRepository.existsById((long)1));
+    public void AdminIsFound() {
+        JwtUser admin = (JwtUser) jwtUserDetailsService.loadUserByUsername("admin");
+        assertEquals("admin", admin.getUsername());
+    }
+
+    @Test
+    public void UsersFound() {
+        Iterable <User> users = userService.getAllUsers();
+        assertNotNull(users);
     }
 
 }

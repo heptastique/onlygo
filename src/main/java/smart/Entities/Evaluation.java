@@ -4,7 +4,7 @@ package smart.Entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "EVALUATION")
+@Table(name = "evaluation")
 public class Evaluation {
 
     @Id
