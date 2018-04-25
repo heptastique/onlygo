@@ -64,4 +64,15 @@ public class Sport {
     public float getKcalKm() {
         return this.kcalH / this.kmH;
     }
+
+    @Override
+    public String toString() {
+        return "Sport{" +
+            "id=" + id +
+            ", nom='" + nom + '\'' +
+            ", kmH=" + kmH +
+            ", kcalH=" + kcalH +
+            ", kcalkm=" + getKcalKm() +
+            '}';
+    }
 }
