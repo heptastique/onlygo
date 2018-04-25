@@ -11,6 +11,7 @@ before_install:
   - mysql -e "create user 'spring'@'localhost' identified by 'password'"
   - mysql -e "grant all on db_example.* to 'spring'@'localhost' identified by 'password'"
   - echo "${ATMOKEY}" >> src/main/resources/application.properties
+  - echo "${WEATHERKEY}" >> src/main/resources/application.properties
 
 script:
   - mvn clean package
