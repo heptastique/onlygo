@@ -3,6 +3,7 @@ package smart.Entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "donneeathmospherique")
 public class DonneeAthmospherique {
 
     @Id
