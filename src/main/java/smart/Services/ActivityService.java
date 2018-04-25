@@ -22,8 +22,8 @@ public class ActivityService {
         activity.setDate(activityDTO.getDate());
         activity.setDistance(activityDTO.getDistance());
         //activity.setProgramme(activityDTO.getProgramme());
-        Long sportId = activityDTO.getSportId();
-        Sport sport = sportRepository.findById((long)sportId);
+        String sportName = activityDTO.getSportName();
+        Sport sport = sportRepository.findByNom(sportName);
         activity.setSport(sport);
         return activityRepository.save(activity);
     }

@@ -10,4 +10,5 @@ import java.util.Optional;
 
 public interface SportRepository extends CrudRepository<Sport, Long> {
     Sport findById(long id);
+    Sport findByNom(String nom);
 }
