@@ -80,7 +80,7 @@ public class EvaluationService {
             System.out.println(timeFrame.getNomJour());
             System.out.println(timeFrame.getHeureDebut());
             System.out.println(timeFrame.getHeureFin());
-            return evaluationRepository.findBytimeFrame(timeFrame.getId());
+            return evaluationRepository.findBytimeFrame(timeFrame);
         }
         return null;
     }

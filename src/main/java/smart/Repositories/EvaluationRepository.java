@@ -7,8 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import smart.Entities.Evaluation;
+import smart.Entities.TimeFrame;
 
 public interface EvaluationRepository extends CrudRepository<Evaluation, Long> {
     Iterable<Evaluation> findAll();
-    Evaluation findBytimeFrame(Long id);
+    Evaluation findBytimeFrame(TimeFrame timeFrame);
 }
