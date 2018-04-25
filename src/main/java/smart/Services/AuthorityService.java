@@ -2,10 +2,11 @@ package smart.Services;
 
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import smart.Entities.Authority;
 import smart.Repositories.AuthoRepository;
 
-
+@Service
 public class AuthorityService {
 
     @Autowired

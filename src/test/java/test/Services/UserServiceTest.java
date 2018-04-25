@@ -1,5 +1,6 @@
 package test.Services;
 
+import javassist.NotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,7 +65,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void UserAdded(){
+    public void UserAdded() throws NotFoundException {
         //create a user object
         UserDto userDto = new UserDto();
         userDto.setEmail("hugo.martin@pi.com");
@@ -77,8 +78,9 @@ public class UserServiceTest {
         //test if user has been added
         assertNotNull(jwtUserDetailsService.loadUserByUsername("hmartin"));
     }
+
     @Test(expected = EmailExistsException.class)
-    public void UserEmail(){
+    public void UserEmail() throws NotFoundException {
         //create a user
         UserDto userDto = new UserDto();
         userDto.setEmail("h.martin@pi.com");
@@ -98,7 +100,7 @@ public class UserServiceTest {
     }
 
     @Test(expected = UsernameExistsException.class)
-    public void Username(){
+    public void Username()  throws NotFoundException {
         //create a user
         UserDto userDto = new UserDto();
         userDto.setEmail("hugomartin@pi.com");
