@@ -16,7 +16,7 @@ public class Cercle {
     private double rayon;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Point point;
+    private Point centre;
 
     @ManyToOne
     @JoinColumn(name="ZONE_ID")
@@ -38,11 +38,19 @@ public class Cercle {
         this.rayon = rayon;
     }
 
-    public Point getPoint() {
-        return point;
+    public Point getCentre() {
+        return centre;
     }
 
-    public void setPoint(Point point) {
-        this.point = point;
+    public void setCentre(Point centre) {
+        this.centre = centre;
+    }
+
+    public boolean IsInsindeCercle (Point p) {
+        double distanceToCentre = Math.pow(this.centre.getX()-p.getX(),2) + Math.pow(this.centre.getY()-p.getY(),2);
+        if ( this.rayon - distanceToCentre > 0 ) {
+            return true;
+        }
+        return false;
     }
 }
