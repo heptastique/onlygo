@@ -17,6 +17,9 @@ public class DonneeAthmospherique {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    public DonneeAthmospherique() {
+    }
+
     public DonneeAthmospherique(Double indice, Date date) {
         this.indice = indice;
         this.date = date;
