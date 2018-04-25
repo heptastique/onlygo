@@ -21,11 +21,11 @@ public class Activity {
 
     @ManyToOne
     @JoinColumn(name="PROGRAMME_ID")
-    Programme programme;
+    private Programme programme;
 
     @Column(name = "DATE")
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date date;
+    private Date date;
 
     //TODO
     //Parcours;
