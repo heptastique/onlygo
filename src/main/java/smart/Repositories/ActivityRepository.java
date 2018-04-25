@@ -9,6 +9,4 @@ import java.util.Optional;
 // CRUD refers Create, Read, Update, Delete
 
 public interface ActivityRepository extends CrudRepository<Activity, Long> {
-    Iterable<Activity> findAll();
-    Optional<Activity> findById(Long id);
 }
