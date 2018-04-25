@@ -55,7 +55,7 @@ public class ActivityServiceTest {
         }
         activityDTO.setSportName("Course");
         Activity addedActivity = activityService.addActivity(activityDTO);
-        assertEquals("Activity{id=1, sport=Sport{id=1, nom='Course', kmH=12.0, "
+        assertEquals("Activity{sport=Sport{id=1, nom='Course', kmH=12.0, "
             + "kcalH=880.0, kcalkm=73.333336}, distance=400.0, date=2018-04-22}", addedActivity.toString());
     }
 }

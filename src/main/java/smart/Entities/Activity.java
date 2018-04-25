@@ -94,8 +94,7 @@ public class Activity {
         String mandatoryPart;
         String optionalPart;
         mandatoryPart = "Activity{" +
-            "id=" + id +
-            ", sport=" + sport.toString() +
+            "sport=" + sport.toString() +
             ", distance=" + distance +
             ", date=" + this.getDateString();
         if(programme!=null)
