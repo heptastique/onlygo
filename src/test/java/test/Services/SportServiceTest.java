@@ -10,17 +10,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
-import smart.DTO.PollutionDataDto;
-import smart.Entities.DonneeAthmospherique;
-import smart.Repositories.DonneeAthmospheriqueRepository;
-import smart.Services.DonneeAthmospheriqueService;
+import smart.Entities.Sport;
+import smart.Services.SportService;
 
-import static org.junit.Assert.*;
+import java.util.Iterator;
+
+import static org.junit.Assert.assertEquals;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class DonneeAthmospheriqueServiceTest {
+public class SportServiceTest {
 
     private MockMvc mvc;
 
@@ -28,10 +28,7 @@ public class DonneeAthmospheriqueServiceTest {
     private WebApplicationContext context;
 
     @Autowired
-    DonneeAthmospheriqueService donneeAthmospheriqueService;
-
-    @Autowired
-    DonneeAthmospheriqueRepository donneeAthmospheriqueRepository;
+    SportService sportService;
 
     @Before
     public void setup() {
@@ -43,10 +40,10 @@ public class DonneeAthmospheriqueServiceTest {
 
     @Test
     public void DataIsCorrectlyFetched() {
-        PollutionDataDto data = donneeAthmospheriqueService.UpdateDonneeAthmospheriqueData();
-        assertEquals("Lyon", data.getCommune());
-        assertNotNull(data.getIndices());
-        assertTrue(donneeAthmospheriqueRepository.existsById((long)1));
+        Iterable<Sport> sports = sportService.getAllSports();
+        Iterator<Sport> iter = sports.iterator();
+        assertEquals("Sport{id=1, nom=\'Course\', kmH=12.0, kcalH=880.0, kcalkm=73.333336}", iter.next().toString());
+        assertEquals("Sport{id=2, nom=\'Marche\', kmH=4.0, kcalH=245.0, kcalkm=61.25}", iter.next().toString());
+        assertEquals("Sport{id=3, nom=\'Cyclisme\', kmH=20.0, kcalH=690.0, kcalkm=34.5}", iter.next().toString());
     }
-
 }
