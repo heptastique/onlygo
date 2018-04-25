@@ -25,18 +25,6 @@ public class TimeFrame {
     @Enumerated(EnumType.STRING)
     private Jour jour;
 
-
-
-    /*@OneToOne(fetch = FetchType.EAGER)
-    @JoinTable(
-    name = "ATMOSPHERICDATA",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
-    - idZone
-    - idDonneeAtmospherique
-    - idDonneeMeteo
-    */
-
     public Long getId() {
         return id;
     }
