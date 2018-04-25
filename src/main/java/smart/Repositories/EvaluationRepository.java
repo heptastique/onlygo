@@ -10,6 +10,5 @@ import smart.Entities.Evaluation;
 
 public interface EvaluationRepository extends CrudRepository<Evaluation, Long> {
     Iterable<Evaluation> findAll();
-    @Query("SELECT evaluation FROM Evaluation evaluation WHERE evaluation.id = ?1")
-    Evaluation findByTimeFrame(Long id);
+    Evaluation findBytimeFrame(Long id);
 }
