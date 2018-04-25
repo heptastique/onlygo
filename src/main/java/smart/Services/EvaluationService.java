@@ -9,8 +9,10 @@ import smart.Entities.TimeFrame;
 import smart.Repositories.EvaluationRepository;
 import smart.Repositories.TimeFrameRepository;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class EvaluationService {
@@ -33,13 +35,13 @@ public class EvaluationService {
             date = new Date();
             startHour = date.getHours();
         } else {
-            String day = time.substring(0, 9);
+            String day = time.substring(0, 10);
             try {
                 date = sdf.parse(day);
             } catch (Exception e) {
                 date = null;
             }
-            startHour = Integer.parseInt(time.substring(11, 12));
+            startHour = Integer.parseInt(time.substring(11, 13));
         }
         Jour jour;
         switch(date.getDay())
@@ -69,7 +71,17 @@ public class EvaluationService {
                 jour = Jour.LUNDI;
                 break;
         }
+        System.out.println(jour);
+        System.out.println(startHour);
         TimeFrame timeFrame = timeFrameRepository.findByJourHour(jour, startHour);
-        return evaluationRepository.findByTimeFrame(timeFrame.getId());
+        System.out.println(timeFrame);
+        if (timeFrame != null) {
+            System.out.println(timeFrame.getId());
+            System.out.println(timeFrame.getNomJour());
+            System.out.println(timeFrame.getHeureDebut());
+            System.out.println(timeFrame.getHeureFin());
+            return evaluationRepository.findByTimeFrame(timeFrame.getId());
+        }
+        return null;
     }
 }

@@ -28,11 +28,13 @@ public class EvaluationController {
 
     @RequestMapping(path="/evaluation/now", method = RequestMethod.GET)
     public ResponseEntity<?> getEvaluationNow() {
-        return ResponseEntity.ok(evaluationService.getEvaluation("now"));
+        Evaluation evaluation = evaluationService.getEvaluation("now");
+        return ResponseEntity.ok().body(evaluation);
     }
 
     @RequestMapping(path="/evaluation/time", method = RequestMethod.GET)
     public ResponseEntity<?> getEvaluationDate(@RequestParam(value = "time", defaultValue = "now") String time) {
-        return ResponseEntity.ok(evaluationService.getEvaluation(time));
+        Evaluation evaluation = evaluationService.getEvaluation(time);
+        return ResponseEntity.ok().body(evaluation);
     }
 }
