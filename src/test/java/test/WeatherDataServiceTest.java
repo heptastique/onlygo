@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
 import smart.DTO.WeatherDto;
+import smart.Entities.WeatherData;
+import smart.Repositories.WeatherDataRepository;
 import smart.Services.WeatherDataService;
 
 import static org.junit.Assert.assertEquals;
@@ -29,6 +31,9 @@ public class WeatherDataServiceTest {
     @Autowired
     WeatherDataService weatherDataService;
 
+    @Autowired
+    private WeatherDataRepository weatherDataRepository;
+
     @Before
     public void setup() {
         mvc = MockMvcBuilders
@@ -42,5 +47,7 @@ public class WeatherDataServiceTest {
         WeatherDto data = weatherDataService.UpdateWeatherData();
         assertEquals(200, data.getCod());
         assertNotNull(data.getList());
+        WeatherData readFromPersistence =  weatherDataRepository.findById(data.getList().get(0).getId()).get();
+        assertEquals(readFromPersistence.toString(),data.getList().get(0).toString());
     }
 }
