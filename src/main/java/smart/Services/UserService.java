@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import smart.DTO.UserDto;
 import smart.Entities.User;
 import smart.Exceptions.EmailExistsException;
+import smart.Exceptions.UsernameExistsException;
 import smart.Repositories.AuthoRepository;
 import smart.Repositories.UserRepository;
 
@@ -25,11 +26,15 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User addUser(UserDto userDto) throws EmailExistsException {
+    public User addUser(UserDto userDto) throws EmailExistsException, UsernameExistsException {
         if (emailExist(userDto.getEmail())) {
             throw new EmailExistsException(
-                    "There is an account with that email adress: "
-                            +  userDto.getEmail());
+                    "Cette adresse email est déjà utilisée par un autre compte");
+        }
+        if (userlExist(userDto.getUsername())) {
+            throw new UsernameExistsException(
+                    "Ce nom d'utilisateur est indisponible car pris par un autre compte ");
+                      
         }
         User user = new User();
         user.setFirstname(userDto.getFirstname());
@@ -51,6 +56,11 @@ public class UserService {
 
     private boolean emailExist(String email) {
         User user = userRepository.findByEmail(email);
+        return user != null;
+    }
+
+    private boolean userlExist(String username) {
+        User user = userRepository.findByUsername(username);
         return user != null;
     }
 }

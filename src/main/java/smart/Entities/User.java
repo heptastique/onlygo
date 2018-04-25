@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -55,6 +55,11 @@ public class User {
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
+
+    @OneToMany(cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY,
+        mappedBy = "user")
+        private List<Programme> programmes;
 
     public Long getId() {
         return id;
@@ -126,5 +131,13 @@ public class User {
 
     public void setLastPasswordResetDate(Date lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public List<Programme> getProgrammes() {
+        return programmes;
+    }
+
+    public void setProgrammes(List<Programme> programmes) {
+        this.programmes = programmes;
     }
 }

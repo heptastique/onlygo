@@ -1,3 +1,7 @@
+# Custom
+src/main/resources/application.properties
+
+# Template
 *.java.hsp
 *.sonarj
 *.sw*
