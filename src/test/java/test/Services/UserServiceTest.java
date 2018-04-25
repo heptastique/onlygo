@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -14,6 +15,8 @@ import smart.DTO.PollutionDataDto;
 import smart.DTO.UserDto;
 import smart.Entities.DonneeAthmospherique;
 import smart.Entities.User;
+import smart.Exceptions.EmailExistsException;
+import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserDetailsService;
 import smart.Repositories.DonneeAthmospheriqueRepository;
@@ -60,4 +63,57 @@ public class UserServiceTest {
         assertNotNull(users);
     }
 
+    @Test
+    public void UserAdded(){
+        //create a user object
+        UserDto userDto = new UserDto();
+        userDto.setEmail("hugo.martin@pi.com");
+        userDto.setFirstname("Hugo");
+        userDto.setLastname("Martin");
+        userDto.setUsername("hmartin");
+        userDto.setPassword("password");
+        //call adduser service
+        userService.addUser(userDto);
+        //test if user has been added
+        assertNotNull(jwtUserDetailsService.loadUserByUsername("hmartin"));
+    }
+    @Test(expected = EmailExistsException.class)
+    public void UserEmail(){
+        //create a user
+        UserDto userDto = new UserDto();
+        userDto.setEmail("h.martin@pi.com");
+        userDto.setFirstname("Hugo");
+        userDto.setLastname("Martin");
+        userDto.setUsername("martin");
+        userDto.setPassword("password");
+        userService.addUser(userDto);
+        //create a user with the same email and different username
+        UserDto copycat = new UserDto();
+        copycat.setEmail("h.martin@pi.com");
+        copycat.setFirstname("Hugo");
+        copycat.setLastname("Martin");
+        copycat.setUsername("hugomartin");
+        copycat.setPassword("password");
+        userService.addUser(copycat);
+    }
+
+    @Test(expected = UsernameExistsException.class)
+    public void Username(){
+        //create a user
+        UserDto userDto = new UserDto();
+        userDto.setEmail("hugomartin@pi.com");
+        userDto.setFirstname("Hugo");
+        userDto.setLastname("Martin");
+        userDto.setUsername("hmartin");
+        userDto.setPassword("password");
+        userService.addUser(userDto);
+        //create a user with the same username and different email
+        UserDto copycat = new UserDto();
+        copycat.setEmail("huguesmartin@pi.com");
+        copycat.setFirstname("Hugues");
+        copycat.setLastname("Martin");
+        copycat.setUsername("hmartin");
+        copycat.setPassword("password");
+        userService.addUser(copycat);
+    }
 }

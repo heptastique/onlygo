@@ -31,10 +31,10 @@ public class UserService {
             throw new EmailExistsException(
                     "Cette adresse email est déjà utilisée par un autre compte");
         }
-        if (userlExist(userDto.getUsername())) {
+        if (userExist(userDto.getUsername())) {
             throw new UsernameExistsException(
                     "Ce nom d'utilisateur est indisponible car pris par un autre compte ");
-                      
+
         }
         User user = new User();
         user.setFirstname(userDto.getFirstname());
@@ -59,7 +59,7 @@ public class UserService {
         return user != null;
     }
 
-    private boolean userlExist(String username) {
+    private boolean userExist(String username) {
         User user = userRepository.findByUsername(username);
         return user != null;
     }
