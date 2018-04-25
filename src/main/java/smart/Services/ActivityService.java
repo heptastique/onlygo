@@ -21,7 +21,7 @@ public class ActivityService {
         Activity activity = new Activity();
         activity.setDate(activityDTO.getDate());
         activity.setDistance(activityDTO.getDistance());
-        //activity.setProgramme(activityDTO.getProgramme());
+        // @TODO : support for program for activity creation
         String sportName = activityDTO.getSportName();
         Sport sport = sportRepository.findByNom(sportName);
         activity.setSport(sport);
