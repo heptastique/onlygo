@@ -71,17 +71,6 @@ public class EvaluationService {
                 jour = Jour.LUNDI;
                 break;
         }
-        System.out.println(jour);
-        System.out.println(startHour);
-        TimeFrame timeFrame = timeFrameRepository.findByJourHour(jour, startHour);
-        System.out.println(timeFrame);
-        if (timeFrame != null) {
-            System.out.println(timeFrame.getId());
-            System.out.println(timeFrame.getNomJour());
-            System.out.println(timeFrame.getHeureDebut());
-            System.out.println(timeFrame.getHeureFin());
-            return evaluationRepository.findBytimeFrame(timeFrame);
-        }
         return null;
     }
 }
