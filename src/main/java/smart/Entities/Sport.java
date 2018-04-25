@@ -57,7 +57,7 @@ public class Sport {
         return kcalH;
     }
 
-    public void setKcalH(int kcalH) {
+    public void setKcalH(float kcalH) {
         this.kcalH = kcalH;
     }
 
