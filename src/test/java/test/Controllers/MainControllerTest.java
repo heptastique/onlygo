@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest (classes = Application.class)
-public class AuthControllerTest {
+public class MainControllerTest {
 
     private MockMvc mvc;
 
@@ -56,6 +56,14 @@ public class AuthControllerTest {
             .perform(get("/protected"))
             .andExpect(status().is2xxSuccessful())
             .andExpect(content().string("Greetings from admin protected method!"));
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void shouldGetOkWithUserRole() throws Exception{
+        this.mvc
+            .perform(get("/hello"))
+            .andExpect(status().is2xxSuccessful());
     }
 
 }
