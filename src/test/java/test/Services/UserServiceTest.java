@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -60,4 +61,18 @@ public class UserServiceTest {
         assertNotNull(users);
     }
 
+    @Test
+    public void UserAdded(){
+        //create a user object
+        UserDto userDto = new UserDto();
+        userDto.setEmail("hugo.martin@pi.com");
+        userDto.setFirstname("Hugo");
+        userDto.setLastname("Martin");
+        userDto.setUsername("hmartin");
+        userDto.setPassword("password");
+        //call adduser service
+        userService.addUser(userDto);
+        //test if user has been added
+        assertNotNull(jwtUserDetailsService.loadUserByUsername("hmartin"));
+    }
 }
