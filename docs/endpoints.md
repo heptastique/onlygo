@@ -159,7 +159,7 @@ Status: 200 OK
 ]
 ```
 
-### `GET /sport/all`
+### `GET /sport/all` :key:
 Renvoie la liste de tous les sports.
 
 #### Réponse
@@ -194,7 +194,7 @@ Status: 200 OK
 ]
 ```
 
-### `GET /ativity/add`
+### `POST /ativity/add` :key:
 Ajoute une activité.
 
 ### Requête
