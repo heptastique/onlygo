@@ -16,20 +16,24 @@ public class WeatherData {
     private long id;
     private long dt;
     @Embedded
-    private Weather main;
+    private MainInformation main;
     @Embedded
-    private  WeatherWind wind;
+    private WindInformation wind;
     @Column(name= "precipitation")
     private double precipitation;
 
     public WeatherData(){
     }
 
-    public WeatherData(long dt, Weather main, WeatherWind wind, double precipitation) {
+    public WeatherData(long dt, MainInformation main, WindInformation wind, double precipitation) {
         this.dt = dt;
         this.main = main;
         this.wind = wind;
         this.precipitation = precipitation;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public void setId(long id) {
@@ -41,7 +45,7 @@ public class WeatherData {
     }
 
 
-    public void setWind(WeatherWind wind) {
+    public void setWind(WindInformation wind) {
         this.wind = wind;
     }
 
@@ -49,35 +53,68 @@ public class WeatherData {
         this.precipitation = precipitation;
     }
 
-    public Weather getMain() {
+    public MainInformation getMain() {
         return main;
     }
 
-    public void setMain(Weather main) {
+    public void setMain(MainInformation main) {
         this.main = main;
     }
 
-    public String toString(){
-        return "dt = " +dt+ main+ wind;
+    @Override
+    public String toString() {
+        return "WeatherData{" +
+            "id=" + id +
+            ", dt=" + dt +
+            ", main=" + main +
+            ", wind=" + wind +
+            ", precipitation=" + precipitation +
+            '}';
+    }
+
+    //external reading for MainInformation attributes
+    public double getTemp() {
+        return main.getTemp();
+    }
+
+
+    public double getTemp_min() {
+        return main.getTemp_min();
+    }
+
+
+
+    public double getTemp_max() {
+        return main.getTemp_max();
+    }
+    //External reading for WindInformation
+    public double getSpeed() {
+        return wind.getSpeed();
+    }
+
+    public double getDeg() {
+        return wind.getDeg();
     }
 }
 
 @Embeddable
 @JsonIgnoreProperties(ignoreUnknown = true)
-class Weather{
+class MainInformation {
 
     private double temp;
     private double temp_min;
     private double temp_max;
 
-    public Weather(){
+    public MainInformation(){
     }
 
-    public Weather(double temp, double temp_min, double temp_max) {
+    public MainInformation(double temp, double temp_min, double temp_max) {
         this.temp = temp;
         this.temp_min = temp_min;
         this.temp_max = temp_max;
     }
+
+
 
     @Override
     public String toString() {
@@ -117,25 +154,33 @@ class Weather{
 
 @Embeddable
 @JsonIgnoreProperties(ignoreUnknown = true)
-class WeatherWind{
+class WindInformation {
 
     public double speed;
-    public double degree;
+    public double deg;
 
-    public WeatherWind(){
+    public WindInformation(){
     }
 
-    public WeatherWind(double speed, double degree) {
+    public WindInformation(double speed, double degree) {
         this.speed = speed;
-        this.degree = degree;
+        this.deg = degree;
     }
 
     @Override
     public String toString() {
         return "WeatherWind{" +
             ", speed=" + speed +
-            ", degree=" + degree +
+            ", deg=" + deg +
             '}';
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getDeg() {
+        return deg;
     }
 }
 
