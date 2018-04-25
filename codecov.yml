@@ -1,6 +1,7 @@
 ignore:
   - "src/main/java/smart/Entities"
   - "src/main/java/smart/Jwt"
+  - "src/main/java/smart/Controller/Security/AuthenticationController"
 
 coverage:
   status:
