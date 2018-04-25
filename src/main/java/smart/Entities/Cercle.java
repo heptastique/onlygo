@@ -4,7 +4,7 @@ package smart.Entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Cercle")
+@Table(name = "cercle")
 public class Cercle {
 
     @Id
