@@ -1,5 +1,7 @@
 package smart.Entities;
 
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -15,18 +17,24 @@ public class Sport {
     @Column(name = "NOM")
     private String nom;
 
-    @Column(name = "KMH")
-    private float kmH = 0;
+    @Column(name = "KCALKM")
+    private int kcalKm = 0;
 
     @Column(name = "KCALH")
-    private float kcalH = 0;
+    private int kcalH = 0;
+
+    @Formula("KCALH / KCALKM")
+    @Column(name = "KMH")
+    private int kmH;
 
     public Sport() {}
 
-    public Sport(@NotNull String nom, float kmH, float kcalH) {
+    public Sport(Long id, @NotNull String nom, int kcalKm, int kcalH) {
+        this.id = id;
         this.nom = nom;
-        this.kmH = kmH;
+        this.kcalKm = kcalKm;
         this.kcalH = kcalH;
+        this.updateKmH();
     }
 
     public Long getId() {
@@ -45,23 +53,30 @@ public class Sport {
         this.nom = nom;
     }
 
-    public float getKmH() {
-        return kmH;
+    public int getKcalKm() {
+        return kcalKm;
     }
 
-    public void setKmH(float kmH) {
-        this.kmH = kmH;
+    public void setKcalKm(int kcalKm) {
+        this.kcalKm = kcalKm;
+        this.updateKmH();
     }
 
-    public float getKcalH() {
+    public int getKcalH() {
         return kcalH;
     }
 
     public void setKcalH(int kcalH) {
         this.kcalH = kcalH;
+        this.updateKmH();
     }
 
-    public float getKcalKm() {
-        return this.kcalH / this.kmH;
+    public int getKmH() {
+        return kmH;
+    }
+
+    public void updateKmH()
+    {
+        this.kmH = this.kcalH / this.kcalKm;
     }
 }
