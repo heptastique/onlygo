@@ -70,3 +70,5 @@ INSERT INTO timeframe (ID, HEUREDEBUT, HEUREFIN, NOMJOUR) VALUES (56, 21, 24, 'D
 INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (1, 'Course', 12, 880);
 INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (2, 'Marche', 4, 245);
 INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (3, 'Cyclisme', 20, 690);
+
+INSERT INTO zone ( id, name) values ( 1, 'Lyon')
