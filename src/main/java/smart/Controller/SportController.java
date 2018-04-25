@@ -17,9 +17,6 @@ import java.text.ParseException;
 public class SportController {
 
     @Autowired
-    private SportRepository sportRepository;
-
-    @Autowired
     private SportService sportService;
 
     @RequestMapping(path="/sport/all", method = RequestMethod.GET)
