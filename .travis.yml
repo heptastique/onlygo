@@ -11,6 +11,12 @@ before_install:
   - mysql -e "create user 'spring'@'localhost' identified by 'password'"
   - mysql -e "grant all on db_example.* to 'spring'@'localhost' identified by 'password'"
 
+script:
+  - mvn clean package
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 cache:
   directories:
     - $HOME/.m2

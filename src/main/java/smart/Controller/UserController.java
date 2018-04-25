@@ -1,12 +1,20 @@
 package smart.Controller;
 
+import org.hibernate.TransactionException;
+import org.hibernate.exception.ConstraintViolationException;
+import org.hibernate.internal.ExceptionMapperStandardImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.*;
 import smart.DTO.UserDto;
 import smart.Entities.User;
+import smart.Exceptions.EmailExistsException;
+import smart.Exceptions.UsernameExistsException;
+import smart.Jwt.JwtAuthenticationResponse;
 import smart.Jwt.JwtTokenUtil;
 import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserFactory;
@@ -14,6 +22,7 @@ import smart.Repositories.UserRepository;
 import smart.Services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -43,27 +52,32 @@ public class UserController {
     private UserDetailsService userDetailsService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
+    public ResponseEntity<?> getAuthenticatedUser(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-        return user;
+        return ResponseEntity.ok().body(user);
     }
 
 
     @RequestMapping(path="/user/all", method = RequestMethod.GET)
-    public Iterable<JwtUser> getAllUsers() throws ParseException {
+    public ResponseEntity<?> getAllUsers() throws ParseException {
         // This returns a JSON or XML with the users
         List<JwtUser> jwtUsers = new ArrayList<JwtUser>();
         for(User user: userService.getAllUsers()){
             jwtUsers.add(JwtUserFactory.create(user));
         }
-        return jwtUsers;
+        return ResponseEntity.ok().body(jwtUsers);
     }
 
     @RequestMapping(path="/user/add", method = RequestMethod.POST)
-    public JwtUser addUser(@RequestBody @Valid UserDto userDto, HttpServletRequest request) {
-        User user = userService.addUser(userDto);
-        return JwtUserFactory.create(user);
+    public ResponseEntity<?> addUser(@RequestBody @Valid UserDto userDto, HttpServletRequest request) {
+        try{
+            User user = userService.addUser(userDto);
+            JwtUserFactory.create(user);
+            return ResponseEntity.ok().body(user);
+        }catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 }
