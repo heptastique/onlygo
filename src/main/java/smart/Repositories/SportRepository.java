@@ -9,5 +9,5 @@ import java.util.Optional;
 // CRUD refers Create, Read, Update, Delete
 
 public interface SportRepository extends CrudRepository<Sport, Long> {
-    Optional<Sport> findById(Long id);
+    Sport findById(long id);
 }
