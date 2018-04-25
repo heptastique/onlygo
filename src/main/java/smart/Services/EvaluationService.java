@@ -1,38 +1,75 @@
 package smart.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import smart.DTO.UserDto;
-import smart.Entities.User;
-import smart.Exceptions.EmailExistsException;
-import smart.Repositories.AuthoRepository;
-import smart.Repositories.UserRepository;
 
-import java.util.Arrays;
+import smart.Entities.Evaluation;
+import smart.Entities.Jour;
+import smart.Entities.TimeFrame;
+import smart.Repositories.EvaluationRepository;
+import smart.Repositories.TimeFrameRepository;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 @Service
 public class EvaluationService {
 
     @Autowired
-    private AuthoRepository authoRepository;
+    private EvaluationRepository evaluationRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private TimeFrameRepository timeFrameRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    public double getEvaluation() {
-        return 0.5;
+    public Iterable <Evaluation> getEvaluationAll() {
+        return evaluationRepository.findAll();
     }
 
-    public double getEvaluation(String date) {
-        if (date.equals("now")) {
-            return getEvaluation();
+    public Evaluation getEvaluation(String time) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+        int startHour;
+        if (time.equals("now")) {
+            date = new Date();
+            startHour = date.getHours();
+        } else {
+            String day = time.substring(0, 9);
+            try {
+                date = sdf.parse(day);
+            } catch (Exception e) {
+                date = null;
+            }
+            startHour = Integer.parseInt(time.substring(11, 12));
         }
-        return 0.3;
+        Jour jour;
+        switch(date.getDay())
+        {
+            case 0 :
+                jour = Jour.DIMANCHE;
+                break;
+            case 1 :
+                jour = Jour.LUNDI;
+                break;
+            case 2 :
+                jour = Jour.MARDI;
+                break;
+            case 3 :
+                jour = Jour.MERCREDI;
+                break;
+            case 4 :
+                jour = Jour.JEUDI;
+                break;
+            case 5 :
+                jour = Jour.VENDREDI;
+                break;
+            case 6 :
+                jour = Jour.SAMEDI;
+                break;
+            default :
+                jour = Jour.LUNDI;
+                break;
+        }
+        TimeFrame timeFrame = timeFrameRepository.findByJourHour(jour, startHour);
+        return evaluationRepository.findByTimeFrame(timeFrame.getId());
     }
 }
