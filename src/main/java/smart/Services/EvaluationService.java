@@ -25,7 +25,14 @@ public class EvaluationService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public double getEvaluationNow() {
+    public double getEvaluation() {
         return 0.5;
+    }
+
+    public double getEvaluation(String date) {
+        if (date.equals("now")) {
+            return getEvaluation();
+        }
+        return 0.3;
     }
 }
