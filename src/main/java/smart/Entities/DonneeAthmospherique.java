@@ -1,6 +1,7 @@
 package smart.Entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "donneeathmospherique")
@@ -13,9 +14,13 @@ public class DonneeAthmospherique {
 
     private Double indice;
 
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Evaluation evaluation;
+    public DonneeAthmospherique(Double indice, Date date) {
+        this.indice = indice;
+        this.date = date;
+    }
 
     public Long getId() {
         return id;
@@ -33,11 +38,12 @@ public class DonneeAthmospherique {
         this.indice = indice;
     }
 
-    public Evaluation getEvaluation() {
-        return evaluation;
+    public Date getDate() {
+        return date;
     }
 
-    public void setEvaluation(Evaluation evaluation) {
-        this.evaluation = evaluation;
+    public void setDate(Date date) {
+        this.date = date;
     }
+
 }
