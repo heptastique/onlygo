@@ -1,5 +1,6 @@
 package test.Services;
 
+import javassist.NotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +24,9 @@ import smart.Repositories.DonneeAthmospheriqueRepository;
 import smart.Services.DonneeAthmospheriqueService;
 import smart.Services.UserService;
 
+import javax.validation.*;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -64,21 +67,39 @@ public class UserServiceTest {
     }
 
     @Test
-    public void UserAdded(){
+    public void UserAdded() throws NotFoundException {
         //create a user object
         UserDto userDto = new UserDto();
-        userDto.setEmail("hugo.martin@pi.com");
+        userDto.setEmail("paul.martin@pi.com");
+        userDto.setFirstname("Hugo");
+        userDto.setLastname("Martin");
+        userDto.setUsername("pmartin");
+        userDto.setPassword("password");
+        //call adduser service
+        userService.addUser(userDto);
+        //test if user has been added
+        assertNotNull(jwtUserDetailsService.loadUserByUsername("pmartin"));
+        assertNotNull(userDto.toString());
+    }
+
+    @Test
+    public void UserWrongEmail() throws NotFoundException {
+        //create a user object
+        UserDto userDto = new UserDto();
+        userDto.setEmail("hugo.martinpi.com");
         userDto.setFirstname("Hugo");
         userDto.setLastname("Martin");
         userDto.setUsername("hmartin");
         userDto.setPassword("password");
         //call adduser service
-        userService.addUser(userDto);
-        //test if user has been added
-        assertNotNull(jwtUserDetailsService.loadUserByUsername("hmartin"));
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<UserDto>> constraintViolations = validator.validate(userDto);
+        assertFalse(constraintViolations.isEmpty());
     }
+
     @Test(expected = EmailExistsException.class)
-    public void UserEmail(){
+    public void UserEmail() throws NotFoundException {
         //create a user
         UserDto userDto = new UserDto();
         userDto.setEmail("h.martin@pi.com");
@@ -98,7 +119,7 @@ public class UserServiceTest {
     }
 
     @Test(expected = UsernameExistsException.class)
-    public void Username(){
+    public void Username()  throws NotFoundException {
         //create a user
         UserDto userDto = new UserDto();
         userDto.setEmail("hugomartin@pi.com");
