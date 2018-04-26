@@ -29,21 +29,47 @@ public class TimeFrameEvaluation
         double pollution = donneeAthmospherique.getIndice();
         pollution = 1 - pollution / 100.0;
 
-        double temperature = weatherData.getTemp();
-        temperature = exp(-1.0/2.0*(pow((temperature - muTemperature)/sigmaTemperature, 2)));
+        double temperature;
+        double weather;
+        double wind;
+        double rain;
 
-        // @TODO Acces au temps : Dégagé, Nuageux, Pluvieux, Orageux, ...
-        // double weather = weatherData.getWeatherLike();
-        double weather = 2;
-        weather = 1 - weather / 3.0;
+        if ( weatherData != null) {
+            temperature = weatherData.getTemp();
+            temperature = exp(-1.0/2.0*(pow((temperature - muTemperature)/sigmaTemperature, 2)));
 
-        double wind = weatherData.getSpeed();
-        wind = exp(-wind*kWind);
+            // @TODO Acces au temps : Dégagé, Nuageux, Pluvieux, Orageux, ...
+            // double weather = weatherData.getWeatherLike();
+            weather = 2;
+            weather = 1 - weather / 3.0;
 
-        double rain = weatherData.getPrecipitation();
-        rain = exp(-rain*kRain);
+            wind = weatherData.getSpeed();
+            wind = exp(-wind*kWind);
+
+            rain = weatherData.getPrecipitation();
+            rain = exp(-rain*kRain);
+        }
+        else
+        {
+            temperature = 0.5;
+            weather = 0.5;
+            wind = 0.5;
+            rain = 0.5;
+        }
+
 
         double evaluation = (cPollution*pollution + cTemperature*temperature + cWeather*weather + cWind*wind + cRain*rain) / 5.0;
         return evaluation;
+    }
+
+    private TimeFrameEvaluation()
+    {}
+
+    /** Instance unique pré-initialisée */
+    private static TimeFrameEvaluation INSTANCE = new TimeFrameEvaluation();
+
+    /** Point d'accès pour l'instance unique du singleton */
+    public static TimeFrameEvaluation getInstance()
+    {   return INSTANCE;
     }
 }
