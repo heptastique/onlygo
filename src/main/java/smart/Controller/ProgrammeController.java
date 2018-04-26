@@ -32,18 +32,6 @@ public class ProgrammeController {
     @Autowired
     private UserRepository userRepository;
 
-    /*@RequestMapping(path="/program/active", method = RequestMethod.GET)
-    public ResponseEntity<?> addActivity(@RequestBody @Valid ActivityDTO activityDTO, HttpServletRequest request) {
-        try{
-            Activity activity = activityService.addActivity(activityDTO);
-            return ResponseEntity.ok().body(activity);
-        }catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }*/
-
-
-
     @RequestMapping(path="/programme/active", method = RequestMethod.GET)
     public ResponseEntity<?> getActiveProgrammeOfUser(HttpServletRequest request) {
         // This returns a JSON or XML with the active program of the user (current week and all the activities it contains)
