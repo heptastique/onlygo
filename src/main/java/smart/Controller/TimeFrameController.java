@@ -41,12 +41,12 @@ public class TimeFrameController {
     @RequestMapping(path="/timeFrame/evaluation/now", method = RequestMethod.GET)
     public ResponseEntity<?> getEvaluationNow() {
         double evaluation = timeFrameService.getEvaluation("now");
-        return ResponseEntity.ok().body(evaluation);
+        return ResponseEntity.ok().body("{\"note\":"+evaluation+"}");
     }
 
     @RequestMapping(path="/timeFrame/evaluation/time", method = RequestMethod.GET)
     public ResponseEntity<?> getEvaluationDate(@RequestParam(value = "time", defaultValue = "now") String time) {
         double evaluation = timeFrameService.getEvaluation(time);
-        return ResponseEntity.ok().body(evaluation);
+        return ResponseEntity.ok().body("{\"note\":"+evaluation+"}");
     }
 }
