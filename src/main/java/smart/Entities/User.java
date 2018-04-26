@@ -66,6 +66,14 @@ public class User {
         mappedBy = "user")
         private List<Programme> programmes;
 
+    @OneToOne(fetch = FetchType.EAGER,
+                cascade =CascadeType.MERGE)
+    private Point location;
+
+    public Point getLocation() { return location; }
+
+    public void setLocation(Point location) { this.location = location; }
+
     public Long getId() {
         return id;
     }
