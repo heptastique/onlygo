@@ -202,7 +202,7 @@ Ajoute une activité.
 {
     "distance": 400,
     "date": "2018-04-22",
-    "sportId": 3
+    "sportName": "Course"
 }
 ```
 

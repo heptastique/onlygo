@@ -12,7 +12,7 @@ import smart.Repositories.WeatherDataRepository;
 @Service
 public class WeatherDataService {
     @Autowired
-    private WeatherDataRepository wdr;
+    private WeatherDataRepository weatherDataRepository;
     @Value("${weatherApiKey}")
     private String weatherApiKey;
 
@@ -24,8 +24,12 @@ public class WeatherDataService {
             WeatherDto.class);
         for(int i = 0 ; i<wdto.getList().size();i++){
             WeatherData wd = wdto.getList().get(i);
-            wdr.save(wd);
+            wd.generateDate();
+            weatherDataRepository.save(wd);
         }
         return wdto;
+    }
+    public Iterable <WeatherData> getWeatherDataAll() {
+        return weatherDataRepository.findAll();
     }
 }
