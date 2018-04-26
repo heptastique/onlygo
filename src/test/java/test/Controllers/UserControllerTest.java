@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
+import smart.DTO.PointDto;
 import smart.DTO.UserDto;
 import smart.Entities.Authority;
 import smart.Entities.AuthorityName;
@@ -33,6 +34,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -162,5 +164,24 @@ public class UserControllerTest {
 
         mvc.perform(post("/user/add").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    @WithMockUser(username = "user")
+    public void addUserLocation() throws Exception{
+        PointDto locationDto = new PointDto();
+        locationDto.setX(4.8467);
+        locationDto.setY(45.7485);
+        Gson gson = new Gson();
+        String json = gson.toJson(locationDto, PointDto.class);
+
+
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+
+        mvc.perform(put("/user/location/set").header("Authorization","Bearer anyToken")
+            .contentType(MediaType.APPLICATION_JSON).content(json)
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().is2xxSuccessful());
+        //still have to check the content of the returned user
     }
 }
