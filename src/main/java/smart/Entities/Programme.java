@@ -1,6 +1,7 @@
 package smart.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -8,6 +9,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -81,12 +83,19 @@ public class Programme {
         this.realisations = realisations;
     }
 
+    @JsonIgnore
+    public String getDateDebutString()
+    {
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormater.format(this.dateDebut);
+    }
+
     @Override
     public String toString() {
         return "Programme{" +
             "id=" + id +
             ", user=" + user +
-            ", dateDebut=" + dateDebut +
+            ", dateDebut=" + this.getDateDebutString() +
             ", activites=" + activites +
             ", realisations=" + realisations +
             '}';

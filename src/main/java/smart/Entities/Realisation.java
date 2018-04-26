@@ -1,10 +1,12 @@
 package smart.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -66,12 +68,19 @@ public class Realisation {
         this.activite = activite;
     }
 
+    @JsonIgnore
+    public String getDateString()
+    {
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormater.format(this.date);
+    }
+
     @Override
     public String toString() {
         return "Realisation{" +
             "id=" + id +
             ", distance=" + distance +
-            ", date=" + date +
+            ", date=" + this.getDateString() +
             ", activite=" + activite +
             '}';
     }
