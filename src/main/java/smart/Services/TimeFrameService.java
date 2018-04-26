@@ -62,9 +62,6 @@ public class TimeFrameService {
             }
         }
         for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ){
-            System.out.println(dateFiltered.getTime());
-            System.out.println(donneeAthmospherique.getDate().getTime());
-            System.out.println(dateFiltered.compareTo(donneeAthmospherique.getDate()));
             if ( dateFiltered.before(donneeAthmospherique.getDate()) )
             {
                 Jour jourAthmospherique = findDay(donneeAthmospherique.getDate());
@@ -84,7 +81,7 @@ public class TimeFrameService {
             }
         }
         for ( TimeFrame timeFrame : listTimeFrames){
-            //@TODO Algorithm.evaluate(timeFrame)
+            //@TODO Algorithm.evaluate(timeFrame) ( when algorithm's ready )
             double evaluation = 1;
             timeFrame.setEvaluation(evaluation);
             timeFrameRepository.save(timeFrame);
