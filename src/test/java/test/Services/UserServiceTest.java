@@ -78,7 +78,7 @@ public class UserServiceTest {
         //call adduser service
         userService.addUser(userDto);
         //test if user has been added
-        assertNotNull(jwtUserDetailsService.loadUserByUsername("hmartin"));
+        assertNotNull(jwtUserDetailsService.loadUserByUsername("pmartin"));
         assertNotNull(userDto.toString());
     }
 
