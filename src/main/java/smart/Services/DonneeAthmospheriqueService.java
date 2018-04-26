@@ -50,8 +50,7 @@ public class DonneeAthmospheriqueService {
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-        int curentDay = calendar.get(Calendar.DAY_OF_YEAR);
-
+        int currentDay = calendar.get(Calendar.DAY_OF_YEAR);
 
         calendar.setTime(lastDate);
         do
@@ -60,9 +59,7 @@ public class DonneeAthmospheriqueService {
             Date date = calendar.getTime();
             DonneeAthmospherique donnee = new DonneeAthmospherique(Math.random()*100, date);
             donneeAthmospheriqueRepository.save(donnee);
-        }while ( calendar.get(Calendar.DAY_OF_YEAR) != (curentDay + 6) );
-
-
+        }while ( calendar.get(Calendar.DAY_OF_YEAR) != (currentDay + 6) );
 
         return response;
     }
