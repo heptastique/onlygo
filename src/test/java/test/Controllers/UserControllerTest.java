@@ -1,5 +1,6 @@
 package test.Controllers;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
+import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
 import smart.Entities.Authority;
 import smart.Entities.AuthorityName;
@@ -26,13 +28,16 @@ import smart.Jwt.JwtTokenUtil;
 import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserDetailsService;
 import smart.Jwt.JwtUserFactory;
+import smart.Repositories.UserRepository;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -50,6 +55,9 @@ public class UserControllerTest {
 
     @MockBean
     private JwtUserDetailsService jwtUserDetailsService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Before
     public void setup() {
@@ -102,10 +110,10 @@ public class UserControllerTest {
     @Test
     public void addUserSuccessfully() throws  Exception{
         UserDto userDto = new UserDto();
-        userDto.setEmail("hugo.martin@pi.com");
-        userDto.setFirstname("Hugoll");
-        userDto.setLastname("Martin");
-        userDto.setUsername("hmartin");
+        userDto.setEmail("add.user@pi.com");
+        userDto.setFirstname("Addded");
+        userDto.setLastname("User");
+        userDto.setUsername("adduser");
         userDto.setPassword("password");
 
         Gson gson = new Gson();
@@ -113,7 +121,7 @@ public class UserControllerTest {
 
         mvc.perform(post("/user/add").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.username").value("hmartin"));
+            .andExpect(jsonPath("$.username").value("adduser"));
     }
 
     @Test
@@ -162,5 +170,22 @@ public class UserControllerTest {
 
         mvc.perform(post("/user/add").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    @WithMockUser(username = "admin")
+    public void correctlySetDistanceGoal() throws  Exception{
+        DistanceDto distanceDto = new DistanceDto();
+        distanceDto.setDistance((float)10);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(distanceDto, DistanceDto.class);
+
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("admin");
+
+        mvc.perform(put("/user/objectif").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+
+        assertEquals(10, userRepository.findByUsername("admin").getObjectifHebdo(), 0);
     }
 }
