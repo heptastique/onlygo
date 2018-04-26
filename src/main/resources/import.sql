@@ -71,7 +71,6 @@ INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (1, 'Course', 12, 880);
 INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (2, 'Marche', 4, 245);
 INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (3, 'Cyclisme', 20, 690);
 
--- DONNEES POUR LES TESTS
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (100, '2018-04-16', 100);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (200, '2018-04-23', 100);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (300, '2018-04-09', 100);
@@ -83,6 +82,5 @@ INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, spo
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (200, '2018-04-26', 200, 1, 200, 1);
 
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id) VALUES (100, '2018-04-23', 300, 200, 200);
--- DONNEES POUR LES TESTS
 
 INSERT INTO centreinteret ( id, name) values ( 1, 'Lyon');
