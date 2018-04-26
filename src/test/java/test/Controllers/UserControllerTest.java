@@ -188,4 +188,16 @@ public class UserControllerTest {
 
         assertEquals(10, userRepository.findByUsername("admin").getObjectifHebdo(), 0);
     }
+
+    @Test
+    @WithMockUser(username = "admin")
+    public void shouldGetActiveProgramOfUser() throws  Exception{
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("admin");
+
+        mvc.perform(get("/programme/active").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.activites[0].sport.nom").value("Course"))
+            .andExpect(jsonPath("$.realisations[0].date").value("2018-04-23"))
+            .andExpect(jsonPath("$.realisations[0].activite").value("3"));
+    }
 }
