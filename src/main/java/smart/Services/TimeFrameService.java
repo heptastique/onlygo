@@ -46,13 +46,12 @@ public class TimeFrameService {
 
     public void updateEvaluation(Iterable<WeatherData> listWeatherDatas, Iterable<DonneeAthmospherique> listDonneeAthmospheriques){
         Date currentDate = new Date();
-        currentDate.setHours(0);
-        currentDate.setMinutes(0);
-        currentDate.setSeconds(0);
+        Date dateFiltered = new Date ( currentDate.getYear(), currentDate.getMonth(), currentDate.getDate());
+
         Iterable<TimeFrame> listTimeFrames = getTimeFrameAll();
         for ( WeatherData weatherData : listWeatherDatas){
 
-            if ( currentDate.before(weatherData.getDate()) || currentDate.equals(weatherData.getDate()))
+            if ( dateFiltered.before(weatherData.getDate()) || dateFiltered.compareTo(weatherData.getDate()) == 0)
             {
                 Jour jourMeteo = findDay(weatherData.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
@@ -63,11 +62,14 @@ public class TimeFrameService {
             }
         }
         for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ){
-            if ( currentDate.before(donneeAthmospherique.getDate()) || currentDate.equals(donneeAthmospherique.getDate()))
+            System.out.println(dateFiltered.getTime());
+            System.out.println(donneeAthmospherique.getDate().getTime());
+            System.out.println(dateFiltered.compareTo(donneeAthmospherique.getDate()));
+            if ( dateFiltered.before(donneeAthmospherique.getDate()) || dateFiltered.compareTo(donneeAthmospherique.getDate()) == 0)
             {
                 Jour jourAthmospherique = findDay(donneeAthmospherique.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
-                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && timeFrame.getHeureDebut()== donneeAthmospherique.getDate().getHours()){
+                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()>= timeFrame.getHeureDebut() ){
                         timeFrame.setDonneeAthmospherique(donneeAthmospherique);
                     }
                 }
