@@ -61,7 +61,7 @@ public class User {
         mappedBy = "user")
         private List<Programme> programmes;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Point location;
 
     public Point getLocation() { return location; }
