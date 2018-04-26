@@ -48,9 +48,6 @@ public class UserServiceTest {
     UserService userService;
 
     @Autowired
-    JwtUserDetailsService jwtUserDetailsService;
-
-    @Autowired
     UserRepository userRepository;
 
     @Autowired
@@ -65,8 +62,8 @@ public class UserServiceTest {
     }
 
     @Test
-    public void AdminIsFound() {
-        JwtUser admin = (JwtUser) jwtUserDetailsService.loadUserByUsername("admin");
+    public void AdminIsFound() throws NotFoundException {
+        User admin = userService.getUserByUsername("admin");
         assertEquals("admin", admin.getUsername());
     }
 
@@ -88,7 +85,7 @@ public class UserServiceTest {
         //call adduser service
         userService.addUser(userDto);
         //test if user has been added
-        assertNotNull(jwtUserDetailsService.loadUserByUsername("pmartin"));
+        assertNotNull(userService.getUserByUsername("pmartin"));
         assertNotNull(userDto.toString());
     }
 
