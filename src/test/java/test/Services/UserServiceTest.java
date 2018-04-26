@@ -158,7 +158,7 @@ public class UserServiceTest {
         Point location = new Point();
         location.setX(4.8467);
         location.setY(45.7485);
-        userService.AddLocationToUser(user,location);
+        userService.addLocationToUser(user.getUsername(),location);
         User userInDB = userRepository.findByUsername(userDto.getUsername());
         Point userLocation = userInDB.getLocation();
         double delta = 0.01;
