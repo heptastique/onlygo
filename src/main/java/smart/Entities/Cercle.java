@@ -18,10 +18,6 @@ public class Cercle {
     @OneToOne(fetch = FetchType.EAGER)
     private Point centre;
 
-    @ManyToOne
-    @JoinColumn(name="ZONE_ID")
-    Zone zone;
-
     public Long getId() {
         return id;
     }

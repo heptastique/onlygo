@@ -1,5 +1,6 @@
 package test.Controllers;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
 import smart.DTO.PointDto;
+import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
 import smart.Entities.Authority;
 import smart.Entities.AuthorityName;
@@ -109,10 +111,10 @@ public class UserControllerTest {
     @Test
     public void addUserSuccessfully() throws  Exception{
         UserDto userDto = new UserDto();
-        userDto.setEmail("hugo.martin@pi.com");
-        userDto.setFirstname("Hugoll");
-        userDto.setLastname("Martin");
-        userDto.setUsername("hmartin");
+        userDto.setEmail("add.user@pi.com");
+        userDto.setFirstname("Addded");
+        userDto.setLastname("User");
+        userDto.setUsername("adduser");
         userDto.setPassword("password");
 
         Gson gson = new Gson();
@@ -120,7 +122,7 @@ public class UserControllerTest {
 
         mvc.perform(post("/user/add").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.username").value("hmartin"));
+            .andExpect(jsonPath("$.username").value("adduser"));
     }
 
     @Test
@@ -190,5 +192,20 @@ public class UserControllerTest {
 
         assertEquals(userRepository.findByUsername("user").getLocation().getX(),locationDto.getX(),0);
         assertEquals(userRepository.findByUsername("user").getLocation().getY(),locationDto.getY(),0);
+    }
+
+    public void correctlySetDistanceGoal() throws  Exception{
+        DistanceDto distanceDto = new DistanceDto();
+        distanceDto.setDistance((float)10);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(distanceDto, DistanceDto.class);
+
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("admin");
+
+        mvc.perform(put("/user/objectif").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+
+        assertEquals(10, userRepository.findByUsername("admin").getObjectifHebdo(), 0);
     }
 }

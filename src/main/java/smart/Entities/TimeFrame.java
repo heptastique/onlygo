@@ -25,6 +25,31 @@ public class TimeFrame {
     @Enumerated(EnumType.STRING)
     private Jour jour;
 
+    @Column(name = "EVALUATION")
+    private double evaluation;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private DonneeAthmospherique donneeAthmospherique;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private WeatherData weatherData;
+
+    public Jour getJour() {
+        return jour;
+    }
+
+    public void setJour(Jour jour) {
+        this.jour = jour;
+    }
+
+    public double getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(double evaluation) {
+        this.evaluation = evaluation;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,5 +82,20 @@ public class TimeFrame {
         this.jour = jour;
     }
 
+    public DonneeAthmospherique getDonneeAthmospherique() {
+        return donneeAthmospherique;
+    }
+
+    public void setDonneeAthmospherique(DonneeAthmospherique donneeAthmospherique) {
+        this.donneeAthmospherique = donneeAthmospherique;
+    }
+
+    public WeatherData getWeatherData() {
+        return weatherData;
+    }
+
+    public void setWeatherData(WeatherData weatherData) {
+        this.weatherData = weatherData;
+    }
 }
 
