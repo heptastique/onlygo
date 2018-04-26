@@ -1,9 +1,16 @@
 package smart.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@JSONNORECURSION_REALISATIONID")
 @Table(name = "realisation")
 public class Realisation {
 
@@ -23,9 +30,7 @@ public class Realisation {
     @JoinColumn(name="ACTIVITY_ID")
     private Activity activite;
 
-    public Realisation() {
-        this.activite = null;
-    }
+    public Realisation() {}
 
     public Realisation(Activity activite) {
         this.activite = activite;
@@ -61,5 +66,22 @@ public class Realisation {
 
     public void setActivite(Activity activite) {
         this.activite = activite;
+    }
+
+    @JsonIgnore
+    public String getDateString()
+    {
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormater.format(this.date);
+    }
+
+    @Override
+    public String toString() {
+        return "Realisation{" +
+            "id=" + id +
+            ", distance=" + distance +
+            ", date=" + this.getDateString() +
+            ", activite=" + activite +
+            '}';
     }
 }
