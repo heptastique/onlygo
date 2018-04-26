@@ -2,6 +2,7 @@ package smart.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import smart.Algorithms.TimeFrameEvaluation;
 import smart.Entities.*;
 import smart.Repositories.TimeFrameRepository;
 
@@ -81,8 +82,7 @@ public class TimeFrameService {
             }
         }
         for ( TimeFrame timeFrame : listTimeFrames){
-            //@TODO Algorithm.evaluate(timeFrame) ( when algorithm's ready )
-            double evaluation = 1;
+            double evaluation = TimeFrameEvaluation.getInstance().calculate(timeFrame);
             timeFrame.setEvaluation(evaluation);
             timeFrameRepository.save(timeFrame);
         }

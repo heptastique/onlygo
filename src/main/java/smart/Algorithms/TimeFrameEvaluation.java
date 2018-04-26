@@ -26,8 +26,13 @@ public class TimeFrameEvaluation
         DonneeAthmospherique donneeAthmospherique = timeFrame.getDonneeAthmospherique();
         WeatherData weatherData = timeFrame.getWeatherData();
 
-        double pollution = donneeAthmospherique.getIndice();
-        pollution = 1 - pollution / 100.0;
+        double pollution;
+        if ( donneeAthmospherique != null) {
+            pollution= donneeAthmospherique.getIndice();
+            pollution = 1 - pollution / 100.0;
+        } else {
+            pollution = 0.5;
+        }
 
         double temperature;
         double weather;
