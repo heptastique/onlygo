@@ -1,5 +1,7 @@
 package smart.Entities;
 
+import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Default;
+
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -39,6 +41,9 @@ public class User {
     @NotNull
     @Size(min = 4, max = 50)
     private String email;
+
+    @Column(name = "OBJECTIFHEBDO")
+    private Float objectifHebdo ;
 
     @Column(name = "ENABLED")
     @NotNull
@@ -108,6 +113,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Float getObjectifHebdo(){ return objectifHebdo; }
+
+    public void setObjectifHebdo(Float objectifHebdo){ this.objectifHebdo=objectifHebdo; }
 
     public Boolean getEnabled() {
         return enabled;

@@ -1,15 +1,18 @@
 package smart.Controller;
 
+
 import org.hibernate.TransactionException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.internal.ExceptionMapperStandardImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.*;
+import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
 import smart.Entities.User;
 import smart.Exceptions.EmailExistsException;
@@ -24,6 +27,8 @@ import smart.Services.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
+import java.lang.reflect.TypeVariable;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -79,5 +84,17 @@ public class UserController {
         }catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
         }
+    }
+
+    @RequestMapping(path="/user/objectifHebdo", method = RequestMethod.PUT)
+    public ResponseEntity<?> addObjectifHebdo(@RequestBody DistanceDto distance, HttpServletRequest request) {
+
+          String token = request.getHeader(tokenHeader).substring(7);
+          String username = jwtTokenUtil.getUsernameFromToken(token);
+          JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+          Float updateDistance = userService.putObjectifHebdo(username,distance.getDistance());
+          DistanceDto responce= new DistanceDto();
+          responce.setDistance(updateDistance);
+          return ResponseEntity.ok().body(responce) ;
     }
 }
