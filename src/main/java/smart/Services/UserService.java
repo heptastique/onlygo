@@ -59,6 +59,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User getUserByUsername(String username)throws NotFoundException{
+        return userRepository.findByUsername(username);
+    }
+
     public User addLocationToUser(String username, Point location) throws NotFoundException{
         User user = userRepository.findByUsername(username);
         user.setLocation(location);
