@@ -1,5 +1,6 @@
 package smart.Controller;
 
+import javassist.NotFoundException;
 import org.hibernate.TransactionException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.internal.ExceptionMapperStandardImpl;
@@ -10,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.*;
+import smart.DTO.PointDto;
 import smart.DTO.UserDto;
+import smart.Entities.Point;
 import smart.Entities.User;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
@@ -78,6 +81,20 @@ public class UserController {
             return ResponseEntity.ok().body(user);
         }catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    @RequestMapping(path="/user/location/set",method = RequestMethod.PUT)
+    public ResponseEntity<?> setLocation(@RequestBody @Valid UserDto userDto, @RequestBody @Valid PointDto pointDto, HttpServletRequest reques){
+        try{
+            User user = userRepository.findByUsername(userDto.getUsername());
+            Point location = new Point();
+            location.setY(pointDto.getY());
+            location.setX(pointDto.getX());
+            userService.AddLocationToUser(user,location);
+            return ResponseEntity.ok().body(user);
+        }catch (NotFoundException nfe){
+            return ResponseEntity.status(500).body(nfe.getMessage());
         }
     }
 }

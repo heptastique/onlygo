@@ -147,22 +147,23 @@ public class UserServiceTest {
 
     @Test
     public void AddLocation() throws NotFoundException{
-        PointDto pointdto = new PointDto();
-        pointdto.setX(4.8467);
-        pointdto.setY(45.7485);
+
         UserDto userDto = new UserDto();
         userDto.setEmail("rickastley@pi.com");
         userDto.setFirstname("Richard");
         userDto.setLastname("Astley");
         userDto.setUsername("roll");
         userDto.setPassword("password");
-        userService.addUser(userDto);
-        userService.AddLocationToUser(userDto,pointdto);
+        User user = userService.addUser(userDto);
+        Point location = new Point();
+        location.setX(4.8467);
+        location.setY(45.7485);
+        userService.AddLocationToUser(user,location);
         User userInDB = userRepository.findByUsername(userDto.getUsername());
         Point userLocation = userInDB.getLocation();
         double delta = 0.01;
-        assertEquals(userLocation.getX(),pointdto.getX(),delta);
-        assertEquals(userLocation.getY(),pointdto.getY(),delta);
+        assertEquals(userLocation.getX(),location.getX(),delta);
+        assertEquals(userLocation.getY(),location.getY(),delta);
 
     }
 }

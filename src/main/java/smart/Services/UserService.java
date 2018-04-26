@@ -58,15 +58,9 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User AddLocationToUser(UserDto userDto, PointDto pointDto) throws NotFoundException{
-        if(!userExist(userDto.getUsername())){
-            throw new NotFoundException("User not found");
-        }
-        User user = userRepository.findByUsername(userDto.getUsername());
-        Point point = new Point();
-        point.setX(pointDto.getX());
-        point.setY(pointDto.getY());
-        user.setLocation(point);
+    public User AddLocationToUser(User user, Point location) throws NotFoundException{
+        //check if user exists ?
+        user.setLocation(location);
         return userRepository.save(user);
     }
 
