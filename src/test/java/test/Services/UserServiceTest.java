@@ -12,15 +12,19 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
+import smart.DTO.PointDto;
 import smart.DTO.PollutionDataDto;
 import smart.DTO.UserDto;
 import smart.Entities.DonneeAthmospherique;
+import smart.Entities.Point;
 import smart.Entities.User;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserDetailsService;
 import smart.Repositories.DonneeAthmospheriqueRepository;
+import smart.Repositories.PointRepository;
+import smart.Repositories.UserRepository;
 import smart.Services.DonneeAthmospheriqueService;
 import smart.Services.UserService;
 
@@ -45,6 +49,9 @@ public class UserServiceTest {
 
     @Autowired
     JwtUserDetailsService jwtUserDetailsService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Before
     public void setup() {
@@ -136,5 +143,26 @@ public class UserServiceTest {
         copycat.setUsername("hmartin");
         copycat.setPassword("password");
         userService.addUser(copycat);
+    }
+
+    @Test
+    public void AddLocation() throws NotFoundException{
+        PointDto pointdto = new PointDto();
+        pointdto.setX(4.8467);
+        pointdto.setY(45.7485);
+        UserDto userDto = new UserDto();
+        userDto.setEmail("rickastley@pi.com");
+        userDto.setFirstname("Richard");
+        userDto.setLastname("Astley");
+        userDto.setUsername("roll");
+        userDto.setPassword("password");
+        userService.addUser(userDto);
+        userService.AddLocationToUser(userDto,pointdto);
+        User userInDB = userRepository.findByUsername(userDto.getUsername());
+        Point userLocation = userInDB.getLocation();
+        double delta = 0.01;
+        assertEquals(userLocation.getX(),pointdto.getX(),delta);
+        assertEquals(userLocation.getY(),pointdto.getY(),delta);
+
     }
 }
