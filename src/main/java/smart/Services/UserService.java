@@ -8,6 +8,7 @@ import smart.DTO.UserDto;
 import smart.Entities.User;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
+import smart.Jwt.JwtUser;
 import smart.Repositories.AuthoRepository;
 import smart.Repositories.UserRepository;
 
@@ -56,6 +57,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public double putObjectifHebdo(String username, double distance){
+        User user = userRepository.findByUsername(username) ;
+        user.setObjectifHebdo(distance);
+        userRepository.save(user);
+        return user.getObjectifHebdo();
+    }
     public Iterable<User> getAllUsers(){
         return userRepository.findAll();
     }
@@ -68,5 +75,10 @@ public class UserService {
     private boolean userExist(String username) {
         User user = userRepository.findByUsername(username);
         return user != null;
+    }
+
+    public double getObjectifHebdo(String username) {
+        User user = userRepository.findByUsername(username) ;
+        return user.getObjectifHebdo();
     }
 }

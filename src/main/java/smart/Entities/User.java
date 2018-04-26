@@ -2,6 +2,7 @@ package smart.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Default;
 
 import java.util.Date;
 import java.util.List;
@@ -43,6 +44,9 @@ public class User {
     @NotNull
     @Size(min = 4, max = 50)
     private String email;
+
+    @Column(name = "OBJECTIFHEBDO")
+    private double objectifHebdo;
 
     @Column(name = "ENABLED")
     @NotNull
@@ -112,6 +116,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public double getObjectifHebdo(){ return objectifHebdo; }
+
+    public void setObjectifHebdo(double objectifHebdo){ this.objectifHebdo=objectifHebdo; }
 
     public Boolean getEnabled() {
         return enabled;

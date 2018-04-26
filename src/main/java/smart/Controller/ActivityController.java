@@ -23,7 +23,7 @@ public class ActivityController {
             Activity activity = activityService.addActivityRealisee(activityDTO);
             return ResponseEntity.ok().body(activity);
         }catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
+            return ResponseEntity.status(400).body(e.getMessage());
         }
     }
 }

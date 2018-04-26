@@ -1,5 +1,7 @@
 package smart.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
