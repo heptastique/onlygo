@@ -1,11 +1,16 @@
 package smart.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@JSONNORECURSION_ACTIVITYID")
 @Table(name = "activity")
 public class Activity {
 
@@ -79,6 +84,7 @@ public class Activity {
         return date;
     }
 
+    @JsonIgnore
     public String getDateString()
     {
         SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");

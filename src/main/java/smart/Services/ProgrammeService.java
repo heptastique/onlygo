@@ -27,19 +27,16 @@ public class ProgrammeService {
             calendar.add(Calendar.DATE, -1);
         }
         Date dateFull = calendar.getTime();
-        //SimpleDateFormat dateFormatEntry = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateS = dateFormat.format(dateFull);
-        int day = dateFull.getDay();
-        int month = dateFull.getMonth();
-        int year = dateFull.getYear();
         Date dateDebut = null;
         try {
             dateDebut = dateFormat.parse(dateS);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        //return programmeRepository.findByUserAndDateDebut(user, dateFull);
-        return programmeRepository.findByDateDebut(dateDebut);
+        Programme programme = programmeRepository.findByUserAndDateDebut(user, dateDebut);
+        programme.setUser(null);
+        return programme;
     }
 }
