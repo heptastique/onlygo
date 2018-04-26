@@ -34,19 +34,40 @@ public class TimeFrameEvaluation
             pollution = 0.5;
         }
 
-        double temperature;
-        double weather;
-        double wind;
-        double rain;
+        double temperature = 0.5;
+        double weather = 0.5;
+        double wind = 0.5;
+        double rain = 0.5;
 
-        if ( weatherData != null) {
+        if ( weatherData != null)
+        {
             temperature = weatherData.getTemp();
             temperature = exp(-1.0/2.0*(pow((temperature - muTemperature)/sigmaTemperature, 2)));
 
-            // @TODO Acces au temps : Dégagé, Nuageux, Pluvieux, Orageux, ...
-            // double weather = weatherData.getWeatherLike();
-            weather = 2;
-            weather = 1 - weather / 3.0;
+            int weatherCode = weatherData.getWeatherConditionCode(0);
+            if (weatherCode >= 200 && weatherCode < 300) { // ThunderStorm
+                weather = 0.2;
+            } else if (weatherCode >= 300 && weatherCode < 400) { // Drizzle
+                weather = 0.3;
+            } else if (weatherCode >= 500 && weatherCode < 600) { // Rain
+                weather = 0.4;
+            } else if (weatherCode >= 600 && weatherCode < 700) { // Snow
+                weather = 0.3;
+            } else if (weatherCode >= 700 && weatherCode < 800) { // Atmosphere
+                weather = 0.5;
+            } else if (weatherCode == 800) { // Clear
+                weather = 1;
+            } else if (weatherCode == 801) { // Few Clouds
+                weather = 0.9;
+            } else if (weatherCode == 802) { // Scattered Clouds
+                weather = 0.8;
+            } else if (weatherCode == 803) { // Broken Clouds
+                weather = 0.7;
+            } else if (weatherCode == 804) { // Overcast Clouds
+                weather = 0.6;
+            } else {
+                weather = 0.5;
+            }
 
             wind = weatherData.getSpeed();
             wind = exp(-wind*kWind);
@@ -54,14 +75,6 @@ public class TimeFrameEvaluation
             rain = weatherData.getPrecipitation();
             rain = exp(-rain*kRain);
         }
-        else
-        {
-            temperature = 0.5;
-            weather = 0.5;
-            wind = 0.5;
-            rain = 0.5;
-        }
-
 
         double evaluation = (cPollution*pollution + cTemperature*temperature + cWeather*weather + cWind*wind + cRain*rain) / 5.0;
         return evaluation;
