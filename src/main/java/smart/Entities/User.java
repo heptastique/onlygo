@@ -1,5 +1,6 @@
 package smart.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Default;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ public class User {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @JsonIgnore
     private Long id;
 
     @Column(name = "USERNAME", length = 50, unique = true)
@@ -25,6 +27,7 @@ public class User {
     @Column(name = "PASSWORD", length = 100)
     @NotNull
     @Size(min = 4, max = 100)
+    @JsonIgnore
     private String password;
 
     @Column(name = "FIRSTNAME", length = 50)
@@ -47,14 +50,17 @@ public class User {
 
     @Column(name = "ENABLED")
     @NotNull
+    @JsonIgnore
     private Boolean enabled;
 
     @Column(name = "LASTPASSWORDRESETDATE")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
+    @JsonIgnore
     private Date lastPasswordResetDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(
             name = "USER_AUTHORITY",
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
