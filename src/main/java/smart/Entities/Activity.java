@@ -34,18 +34,20 @@ public class Activity {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
 
+    @Column(name = "ESTREALISEE")
+    private boolean estRealisee;
     //TODO
     //Parcours;
 
     public Activity() {
     }
 
-    public Activity(Long id, Sport sport, float distance, Programme programme, Date date) {
-        this.id = id;
+    public Activity(Sport sport, float distance, Programme programme, Date date) {
         this.sport = sport;
         this.distance = distance;
         this.programme = programme;
         this.date = date;
+        this.estRealisee = false;
     }
 
     public Long getId() {
@@ -84,6 +86,10 @@ public class Activity {
         return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @JsonIgnore
     public String getDateString()
     {
@@ -91,8 +97,12 @@ public class Activity {
         return dateFormater.format(this.date);
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public boolean isEstRealisee() {
+        return estRealisee;
+    }
+
+    public void setEstRealisee(boolean estRealisee) {
+        this.estRealisee = estRealisee;
     }
 
     @Override
@@ -102,7 +112,8 @@ public class Activity {
         mandatoryPart = "Activity{" +
             "sport=" + sport.toString() +
             ", distance=" + distance +
-            ", date=" + this.getDateString();
+            ", date=" + this.getDateString() +
+            ", estRealisee=" + estRealisee;
         if(programme!=null)
         {
             optionalPart = ", programme=" + programme.getId();

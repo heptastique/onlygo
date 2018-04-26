@@ -71,6 +71,7 @@ INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (1, 'Course', 12, 880);
 INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (2, 'Marche', 4, 245);
 INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (3, 'Cyclisme', 20, 690);
 
+###### DONNEES POUR LES TESTS
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (1, '2018-04-16', 100);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (2, '2018-04-23', 100);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (3, '2018-04-09', 100);
@@ -78,17 +79,17 @@ INSERT INTO programme(programme_id, date_debut, user_id) VALUES (4, '2018-04-02'
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (5, '2018-04-16', 200);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (6, '2018-04-23', 200);
 
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (1, '2018-04-23', 300, 2, 1);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (2, '2018-04-24', 500, 2, 2);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (3, '2018-04-25', 400, 2, 3);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (4, '2018-04-26', 200, 2, 1);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (5, '2018-04-23', 300, 3, 1);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (6, '2018-04-24', 500, 3, 2);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (7, '2018-04-25', 400, 3, 3);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (8, '2018-04-26', 200, 3, 1);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (9, '2018-04-23', 1000, 2, 3);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (10, '2018-04-24', 600, 2, 2);
-INSERT INTO activity(activity_id, date, distance, programme_id, sport_id) VALUES (11, '2018-04-25', 100, 2, 2);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (1, '2018-04-23', 300, 1, 2, 1);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (2, '2018-04-24', 500, 1, 2, 2);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (3, '2018-04-25', 400, 1, 2, 3);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (4, '2018-04-26', 200, 0, 2, 1);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (5, '2018-04-23', 300, 0, 3, 1);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (6, '2018-04-24', 500, 0, 3, 2);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (7, '2018-04-25', 400, 0, 3, 3);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (8, '2018-04-26', 200, 0, 3, 1);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (9, '2018-04-23', 1000, 1, 2, 3);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (10, '2018-04-24', 600, 1, 2, 2);
+INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id) VALUES (11, '2018-04-25', 100, 1, 2, 2);
 
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id) VALUES (1, '2018-04-23', 300, 9, 2);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id) VALUES (2, '2018-04-24', 1200, 10, 2);
@@ -96,6 +97,7 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id) VALUES (4, '2018-04-23', 350, 1, 2);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id) VALUES (5, '2018-04-25', 540, 2, 2);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id) VALUES (6, '2018-04-26', 380, 3, 2);
+###### DONNEES POUR LES TESTS
 
 INSERT INTO zone ( id, name) values ( 1, 'Lyon')
 
