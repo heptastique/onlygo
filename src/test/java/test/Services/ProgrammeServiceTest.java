@@ -42,7 +42,7 @@ public class ProgrammeServiceTest {
     }
 
     @Test
-    public void DataIsCorrectlyFetched() {
+    public void shouldGetActiveProgramOfUser() {
         User user = userRepository.findByUsername("admin");
         Programme programme = programmeService.getActiveProgrammeOfUser(user);
         assertEquals("Programme{id=200, user=null, dateDebut=2018-04-23, " +
