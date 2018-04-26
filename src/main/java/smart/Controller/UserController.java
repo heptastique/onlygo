@@ -7,11 +7,13 @@ import org.hibernate.internal.ExceptionMapperStandardImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.*;
 import smart.DTO.PointDto;
+import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
 import smart.Entities.Point;
 import smart.Entities.User;
@@ -27,6 +29,8 @@ import smart.Services.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
+import java.lang.reflect.TypeVariable;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -84,6 +88,7 @@ public class UserController {
         }
     }
 
+
     @RequestMapping(path="/user/location",method = RequestMethod.PUT)
     public ResponseEntity<?> setLocation(@RequestBody PointDto pointDto,
                                          HttpServletRequest request) throws NotFoundException{
@@ -94,5 +99,15 @@ public class UserController {
         location.setX(pointDto.getX());
         User user = userService.addLocationToUser(username,location);
         return ResponseEntity.ok().body(user);
+    }
+
+    @RequestMapping(path="/user/objectif", method = RequestMethod.PUT)
+    public ResponseEntity<?> addObjectifHebdo(@RequestBody DistanceDto distance, HttpServletRequest request) {
+          String token = request.getHeader(tokenHeader).substring(7);
+          String username = jwtTokenUtil.getUsernameFromToken(token);
+          userService.putObjectifHebdo(username,distance.getDistance());
+          DistanceDto updatedDistance = new DistanceDto();
+          updatedDistance.setDistance(userService.getObjectifHebdo(username));
+          return ResponseEntity.ok().body(updatedDistance);
     }
 }

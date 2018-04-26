@@ -4,10 +4,10 @@ package smart.Repositories;
 // CRUD refers Create, Read, Update, Delete
 
 import org.springframework.data.repository.CrudRepository;
-import smart.Entities.Zone;
+import smart.Entities.CentreInteret;
 
 
-public interface ZoneRepository extends CrudRepository<Zone, Long> {
-    Iterable<Zone> findAll();
+public interface CentreInteretRepository extends CrudRepository<CentreInteret, Long> {
+    Iterable<CentreInteret> findAll();
 }
 
