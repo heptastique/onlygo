@@ -227,3 +227,163 @@ Status: 200 OK
     "date": "2018-04-22T00:00:00.000+0000"
 }
 ```
+
+### `GET /programme/active` :key:
+Retourne le programme de la semaine actuelle.
+(Identifie l'utilisateur à partir de son token).
+#### Réponse
+
+```
+Status: 200 OK
+```
+
+```json
+{
+    "@JSONNORECURSION_PROGRAMMEID": 1,
+    "id": 2,
+    "user": null,
+    "activites": [
+        {
+            "@JSONNORECURSION_ACTIVITYID": 2,
+            "id": 1,
+            "sport": {
+                "id": 1,
+                "nom": "Course",
+                "kmH": 12,
+                "kcalH": 880,
+                "kcalKm": 73.333336
+            },
+            "distance": 300,
+            "programme": 1,
+            "date": "2018-04-23"
+        },
+        {
+            "@JSONNORECURSION_ACTIVITYID": 3,
+            "id": 4,
+            "sport": {
+                "id": 1,
+                "nom": "Course",
+                "kmH": 12,
+                "kcalH": 880,
+                "kcalKm": 73.333336
+            },
+            "distance": 200,
+            "programme": 1,
+            "date": "2018-04-26"
+        },
+        {
+            "@JSONNORECURSION_ACTIVITYID": 4,
+            "id": 2,
+            "sport": {
+                "id": 2,
+                "nom": "Marche",
+                "kmH": 4,
+                "kcalH": 245,
+                "kcalKm": 61.25
+            },
+            "distance": 500,
+            "programme": 1,
+            "date": "2018-04-24"
+        },
+        {
+            "@JSONNORECURSION_ACTIVITYID": 5,
+            "id": 10,
+            "sport": {
+                "id": 2,
+                "nom": "Marche",
+                "kmH": 4,
+                "kcalH": 245,
+                "kcalKm": 61.25
+            },
+            "distance": 600,
+            "programme": 1,
+            "date": "2018-04-24"
+        },
+        {
+            "@JSONNORECURSION_ACTIVITYID": 6,
+            "id": 11,
+            "sport": {
+                "id": 2,
+                "nom": "Marche",
+                "kmH": 4,
+                "kcalH": 245,
+                "kcalKm": 61.25
+            },
+            "distance": 100,
+            "programme": 1,
+            "date": "2018-04-25"
+        },
+        {
+            "@JSONNORECURSION_ACTIVITYID": 7,
+            "id": 3,
+            "sport": {
+                "id": 3,
+                "nom": "Cyclisme",
+                "kmH": 20,
+                "kcalH": 690,
+                "kcalKm": 34.5
+            },
+            "distance": 400,
+            "programme": 1,
+            "date": "2018-04-25"
+        },
+        {
+            "@JSONNORECURSION_ACTIVITYID": 8,
+            "id": 9,
+            "sport": {
+                "id": 3,
+                "nom": "Cyclisme",
+                "kmH": 20,
+                "kcalH": 690,
+                "kcalKm": 34.5
+            },
+            "distance": 1000,
+            "programme": 1,
+            "date": "2018-04-23"
+        }
+    ],
+    "realisations": [
+        {
+            "@JSONNORECURSION_REALISATIONIS": 9,
+            "id": 4,
+            "distance": 350,
+            "date": "2018-04-23",
+            "activite": 2
+        },
+        {
+            "@JSONNORECURSION_REALISATIONIS": 10,
+            "id": 2,
+            "distance": 1200,
+            "date": "2018-04-24",
+            "activite": 5
+        },
+        {
+            "@JSONNORECURSION_REALISATIONIS": 11,
+            "id": 3,
+            "distance": 300,
+            "date": "2018-04-25",
+            "activite": 6
+        },
+        {
+            "@JSONNORECURSION_REALISATIONIS": 12,
+            "id": 5,
+            "distance": 540,
+            "date": "2018-04-25",
+            "activite": 4
+        },
+        {
+            "@JSONNORECURSION_REALISATIONIS": 13,
+            "id": 1,
+            "distance": 300,
+            "date": "2018-04-23",
+            "activite": 8
+        },
+        {
+            "@JSONNORECURSION_REALISATIONIS": 14,
+            "id": 6,
+            "distance": 380,
+            "date": "2018-04-26",
+            "activite": 7
+        }
+    ]
+}
