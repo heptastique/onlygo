@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8100" )
+@CrossOrigin(origins = "http://localhost:8100"  )
 public class AuthenticationController {
 
     @Value("${jwt.header}")
