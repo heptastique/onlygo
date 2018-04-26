@@ -182,7 +182,6 @@ public class UserControllerTest {
         Gson gson = new Gson();
         String json = gson.toJson(locationDto, PointDto.class);
 
-
         when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
 
         mvc.perform(put("/user/location").header("Authorization","Bearer anyToken")
@@ -192,9 +191,16 @@ public class UserControllerTest {
 
         assertEquals(userRepository.findByUsername("user").getLocation().getX(),locationDto.getX(),0);
         assertEquals(userRepository.findByUsername("user").getLocation().getY(),locationDto.getY(),0);
+
+        mvc.perform(get("/user/location").header("Authorization","Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(jsonPath("$.x").value("4.8467"))
+            .andExpect(jsonPath("$.y").value("45.7485"));
     }
 
-    public void correctlySetDistanceGoal() throws  Exception{
+    @Test
+    @WithMockUser(username = "user")
+    public void correctlySetDistanceGoal() throws Exception{
         DistanceDto distanceDto = new DistanceDto();
         distanceDto.setDistance((float)10);
 
@@ -207,5 +213,9 @@ public class UserControllerTest {
             .andExpect(status().isOk());
 
         assertEquals(10, userRepository.findByUsername("admin").getObjectifHebdo(), 0);
+
+        mvc.perform(get("/user/objectif").header("Authorization","Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(jsonPath("$.objectif").value("10.0"));
     }
 }
