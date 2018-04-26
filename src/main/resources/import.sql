@@ -83,4 +83,40 @@ INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, spo
 
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id) VALUES (100, '2018-04-23', 300, 200, 200);
 
-INSERT INTO centreinteret ( id, name) values ( 1, 'Lyon');
+INSERT INTO points (ID, x, y) VALUES (1, 45.77846429629631, 4.852797629629627);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (1, "Parc de la Tête d'Or", 1);
+INSERT INTO points (ID, x, y) VALUES (2, 45.77868958333333, 4.853984940476191);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (2, "Tour Parc de la Tête d'Or", 2);
+INSERT INTO points (ID, x, y) VALUES (3, 45.76518764705882, 4.823596470588235);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (3, "Escaliers Nicolas de Lange", 3);
+INSERT INTO points (ID, x, y) VALUES (4, 45.77069710144926, 4.841091594202898);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (4, "Pt Lafayette-Tete or par les quais", 4);
+INSERT INTO points (ID, x, y) VALUES (5, 45.72979947368422, 4.812275789473685);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (5, "descente escalier mulatiere", 5);
+INSERT INTO points (ID, x, y) VALUES (6, 45.739675, 4.8260112903225805);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (6, "Pont a pont", 6);
+INSERT INTO points (ID, x, y) VALUES (7, 45.74327516129033, 4.829121612903227);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (7, "Gwen2kA", 7);
+INSERT INTO points (ID, x, y) VALUES (8, 45.704891739130424, 4.755103478260869);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (8, "Rue Favre Garin Climb", 8);
+INSERT INTO points (ID, x, y) VALUES (9, 45.789565, 4.754929117647059);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (9, "Chemin Du Petit Bois Climb", 9);
+INSERT INTO points (ID, x, y) VALUES (10, 45.71834150000001, 4.8964025);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (10, "Tour de Piste_1 Parilly", 10);
+INSERT INTO points (ID, x, y) VALUES (11, 45.772916756756764, 4.815414864864865);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (11, "Montée des Esses", 11);
+INSERT INTO points (ID, x, y) VALUES (12, 45.79343764044942, 4.912938314606743);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (12, "Piste cyclable vers Miribel-Jonage", 12);
+INSERT INTO points (ID, x, y) VALUES (13, 45.798205454545446, 4.841378909090911);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (13, "Montée Castellane", 13);
+INSERT INTO points (ID, x, y) VALUES (14, 45.76642445544555, 4.840650792079208);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (14, "Berge du Rhône (pont Wilson > Lattre)", 14);
+INSERT INTO points (ID, x, y) VALUES (15, 45.793744285714304, 4.912491071428572);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (15, "voie cyclable vers Parc M. Jonage", 15);
+INSERT INTO points (ID, x, y) VALUES (16, 45.723371875, 4.76817484375);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (16, "Route des Aqueducs", 16);
+INSERT INTO points (ID, x, y) VALUES (17, 45.751369999999994, 4.763712727272727);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (17, "Côte d'Alaï", 17);
+INSERT INTO points (ID, x, y) VALUES (18, 45.742725555555566, 4.813963703703704);
+INSERT INTO centreinteret (ID, NAME, POINT) VALUES (18, "Quai JJ Rousseau", 18);
+
