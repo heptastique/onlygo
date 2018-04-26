@@ -42,29 +42,16 @@ public class ActivityControllerTest {
             .build();
     }
 
-    /** Not working
     @Test
     @WithMockUser(roles = "USER")
     public void shouldAddActivity() throws Exception{
-        ActivityDTO activityDTO = new ActivityDTO();
-        activityDTO.setDistance(300);
-        Date date;
-        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = dateFormater.parse("2018-04-22");
-            activityDTO.setDate(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        activityDTO.setSportName("Course");
 
-        Gson gson = new Gson();
-        String json = gson.toJson(activityDTO, ActivityDTO.class);
+        String json ="{\"distance\": 300.0, \"date\": \"2018-04-22\",\"sportName\": \"Course\"}";
 
         this.mvc.perform(post("/activity/add").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.distance").value("300"));
-    }**/
+            .andExpect(jsonPath("$.distance").value("300.0"));
+    }
 
     @Test
     public void shouldGetUnauthorizedWithoutRole() throws Exception{
