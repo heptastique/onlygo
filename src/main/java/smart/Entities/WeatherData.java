@@ -3,7 +3,7 @@ package smart.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-
+import java.util.Date;
 
 
 @Entity
@@ -14,7 +14,7 @@ public class WeatherData {
     @Column(name="Weather_Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long dt;
+    private Date date;
     @Embedded
     private MainInformation main;
     @Embedded
@@ -26,7 +26,7 @@ public class WeatherData {
     }
 
     public WeatherData(long dt, MainInformation main, WindInformation wind, double precipitation) {
-        this.dt = dt;
+        this.date = new Date(dt);
         this.main = main;
         this.wind = wind;
         this.precipitation = precipitation;
@@ -40,8 +40,8 @@ public class WeatherData {
         this.id = id;
     }
 
-    public void setDt(long dt) {
-        this.dt = dt;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
 
@@ -65,7 +65,7 @@ public class WeatherData {
     public String toString() {
         return "WeatherData{" +
             "id=" + id +
-            ", dt=" + dt +
+            ", date=" + date +
             ", main=" + main +
             ", wind=" + wind +
             ", precipitation=" + precipitation +
@@ -82,7 +82,17 @@ public class WeatherData {
         return main.getTemp_min();
     }
 
+    public Date getDate() {
+        return date;
+    }
 
+    public WindInformation getWind() {
+        return wind;
+    }
+
+    public double getPrecipitation() {
+        return precipitation;
+    }
 
     public double getTemp_max() {
         return main.getTemp_max();
