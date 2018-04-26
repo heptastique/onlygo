@@ -85,4 +85,4 @@ INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, spo
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id) VALUES (100, '2018-04-23', 300, 200, 200);
 ###### DONNEES POUR LES TESTS
 
-INSERT INTO centreinteret ( id, name) values ( 1, 'Lyon')
+INSERT INTO centreinteret ( id, name) values ( 1, 'Lyon');

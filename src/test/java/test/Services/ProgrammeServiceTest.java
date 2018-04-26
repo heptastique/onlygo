@@ -10,18 +10,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
-import smart.DTO.ActivityDTO;
-import smart.DTO.ProgrammeDTO;
-import smart.Entities.Activity;
 import smart.Entities.Programme;
 import smart.Entities.User;
 import smart.Repositories.UserRepository;
-import smart.Services.ActivityService;
 import smart.Services.ProgrammeService;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
