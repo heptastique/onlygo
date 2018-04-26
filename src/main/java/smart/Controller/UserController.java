@@ -1,5 +1,6 @@
 package smart.Controller;
 
+import javassist.NotFoundException;
 import org.hibernate.TransactionException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.internal.ExceptionMapperStandardImpl;
@@ -11,8 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.*;
+import smart.DTO.PointDto;
 import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
+import smart.Entities.Point;
 import smart.Entities.User;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
@@ -83,6 +86,19 @@ public class UserController {
         }catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }
+    }
+
+
+    @RequestMapping(path="/user/location",method = RequestMethod.PUT)
+    public ResponseEntity<?> setLocation(@RequestBody PointDto pointDto,
+                                         HttpServletRequest request) throws NotFoundException{
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        Point location = new Point();
+        location.setY(pointDto.getY());
+        location.setX(pointDto.getX());
+        User user = userService.addLocationToUser(username,location);
+        return ResponseEntity.ok().body(user);
     }
 
     @RequestMapping(path="/user/objectif", method = RequestMethod.PUT)

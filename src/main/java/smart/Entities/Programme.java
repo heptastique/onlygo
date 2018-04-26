@@ -1,12 +1,20 @@
 package smart.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@JSONNORECURSION_PROGRAMMEID")
 @Table(name = "programme")
 public class Programme {
 
@@ -19,13 +27,17 @@ public class Programme {
     @JoinColumn(name="USER_ID", referencedColumnName="ID", nullable=false)
     private User user;
 
+    @JoinColumn(name = "DATE_DEBUT", unique = true)
+    @NotNull
+    private Date dateDebut;
+
     @OneToMany(cascade = CascadeType.ALL,
         fetch = FetchType.EAGER,
         mappedBy = "programme")
         @Fetch(value = FetchMode.SUBSELECT)
         private List<Activity> activites;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="PROGRAMME_ID", referencedColumnName="PROGRAMME_ID")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Realisation> realisations;
@@ -69,5 +81,23 @@ public class Programme {
 
     public void setRealisations(List<Realisation> realisations) {
         this.realisations = realisations;
+    }
+
+    @JsonIgnore
+    public String getDateDebutString()
+    {
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormater.format(this.dateDebut);
+    }
+
+    @Override
+    public String toString() {
+        return "Programme{" +
+            "id=" + id +
+            ", user=" + user +
+            ", dateDebut=" + this.getDateDebutString() +
+            ", activites=" + activites +
+            ", realisations=" + realisations +
+            '}';
     }
 }

@@ -1,11 +1,16 @@
 package smart.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@JSONNORECURSION_ACTIVITYID")
 @Table(name = "activity")
 public class Activity {
 
@@ -29,18 +34,20 @@ public class Activity {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
 
+    @Column(name = "ESTREALISEE")
+    private boolean estRealisee;
     //TODO
     //Parcours;
 
     public Activity() {
     }
 
-    public Activity(Long id, Sport sport, float distance, Programme programme, Date date) {
-        this.id = id;
+    public Activity(Sport sport, float distance, Programme programme, Date date) {
         this.sport = sport;
         this.distance = distance;
         this.programme = programme;
         this.date = date;
+        this.estRealisee = false;
     }
 
     public Long getId() {
@@ -79,14 +86,23 @@ public class Activity {
         return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @JsonIgnore
     public String getDateString()
     {
         SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormater.format(this.date);
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public boolean isEstRealisee() {
+        return estRealisee;
+    }
+
+    public void setEstRealisee(boolean estRealisee) {
+        this.estRealisee = estRealisee;
     }
 
     @Override
@@ -96,7 +112,8 @@ public class Activity {
         mandatoryPart = "Activity{" +
             "sport=" + sport.toString() +
             ", distance=" + distance +
-            ", date=" + this.getDateString();
+            ", date=" + this.getDateString() +
+            ", estRealisee=" + estRealisee;
         if(programme!=null)
         {
             optionalPart = ", programme=" + programme.getId();

@@ -1,5 +1,7 @@
 package smart.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Default;
 
 import java.util.Date;
@@ -9,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@JSONNORECURSION_ID")
 @Table(name = "users")
 public class User {
 
@@ -65,6 +68,14 @@ public class User {
         fetch = FetchType.LAZY,
         mappedBy = "user")
         private List<Programme> programmes;
+
+    @OneToOne(fetch = FetchType.EAGER,
+                cascade =CascadeType.MERGE)
+    private Point location;
+
+    public Point getLocation() { return location; }
+
+    public void setLocation(Point location) { this.location = location; }
 
     public Long getId() {
         return id;
