@@ -27,7 +27,9 @@ import smart.Jwt.JwtTokenUtil;
 import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserDetailsService;
 import smart.Jwt.JwtUserFactory;
+import smart.Repositories.UserRepository;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -52,6 +54,9 @@ public class UserControllerTest {
 
     @MockBean
     private JwtUserDetailsService jwtUserDetailsService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Before
     public void setup() {
@@ -178,10 +183,12 @@ public class UserControllerTest {
 
         when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
 
-        mvc.perform(put("/user/location/set").header("Authorization","Bearer anyToken")
+        mvc.perform(put("/user/location").header("Authorization","Bearer anyToken")
             .contentType(MediaType.APPLICATION_JSON).content(json)
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful());
-        //still have to check the content of the returned user
+
+        assertEquals(userRepository.findByUsername("user").getLocation().getX(),locationDto.getX(),0);
+        assertEquals(userRepository.findByUsername("user").getLocation().getY(),locationDto.getY(),0);
     }
 }
