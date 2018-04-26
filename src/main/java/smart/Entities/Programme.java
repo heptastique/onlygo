@@ -35,7 +35,7 @@ public class Programme {
         @Fetch(value = FetchMode.SUBSELECT)
         private List<Activity> activites;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="PROGRAMME_ID", referencedColumnName="PROGRAMME_ID")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Realisation> realisations;
@@ -79,5 +79,16 @@ public class Programme {
 
     public void setRealisations(List<Realisation> realisations) {
         this.realisations = realisations;
+    }
+
+    @Override
+    public String toString() {
+        return "Programme{" +
+            "id=" + id +
+            ", user=" + user +
+            ", dateDebut=" + dateDebut +
+            ", activites=" + activites +
+            ", realisations=" + realisations +
+            '}';
     }
 }
