@@ -84,9 +84,11 @@ public class WeatherData {
 
     @Override
     public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String strDate = dateFormat.format(this.date);
         return "WeatherData{" +
             "id=" + id +
-            ", date=" + date +
+            ", date=" + strDate +
             ", main=" + main +
             ", wind=" + wind +
             ", precipitation=" + precipitation +
