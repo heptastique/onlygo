@@ -1,6 +1,5 @@
 package smart.Controller;
 
-
 import org.hibernate.TransactionException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.internal.ExceptionMapperStandardImpl;
@@ -86,15 +85,13 @@ public class UserController {
         }
     }
 
-    @RequestMapping(path="/user/objectifHebdo", method = RequestMethod.PUT)
+    @RequestMapping(path="/user/objectif", method = RequestMethod.PUT)
     public ResponseEntity<?> addObjectifHebdo(@RequestBody DistanceDto distance, HttpServletRequest request) {
-
           String token = request.getHeader(tokenHeader).substring(7);
           String username = jwtTokenUtil.getUsernameFromToken(token);
-          JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-          double updateDistance = userService.putObjectifHebdo(username,distance.getDistance());
-          DistanceDto responce= new DistanceDto();
-          responce.setDistance(updateDistance);
-          return ResponseEntity.ok().body(responce) ;
+          userService.putObjectifHebdo(username,distance.getDistance());
+          DistanceDto updatedDistance = new DistanceDto();
+          updatedDistance.setDistance(userService.getObjectifHebdo(username));
+          return ResponseEntity.ok().body(updatedDistance);
     }
 }

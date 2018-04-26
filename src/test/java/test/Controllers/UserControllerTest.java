@@ -183,7 +183,7 @@ public class UserControllerTest {
 
         when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("admin");
 
-        mvc.perform(put("/user/objectifHebdo").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+        mvc.perform(put("/user/objectif").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
 
         assertEquals(10, userRepository.findByUsername("admin").getObjectifHebdo(), 0);

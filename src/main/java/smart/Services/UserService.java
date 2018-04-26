@@ -76,4 +76,9 @@ public class UserService {
         User user = userRepository.findByUsername(username);
         return user != null;
     }
+
+    public double getObjectifHebdo(String username) {
+        User user = userRepository.findByUsername(username) ;
+        return user.getObjectifHebdo();
+    }
 }
