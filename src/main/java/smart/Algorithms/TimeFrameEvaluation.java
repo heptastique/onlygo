@@ -32,7 +32,7 @@ public class TimeFrameEvaluation
         double temperature = weatherData.getTemp();
         temperature = exp(-1.0/2.0*(pow((temperature - muTemperature)/sigmaTemperature, 2)));
 
-        // @TODO
+        // @TODO Acces au temps : Dégagé, Nuageux, Pluvieux, Orageux, ...
         // double weather = weatherData.getWeatherLike();
         double weather = 2;
         weather = 1 - weather / 3.0;
