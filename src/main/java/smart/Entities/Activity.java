@@ -1,10 +1,12 @@
 package smart.Entities;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "ACTIVITY")
+@Table(name = "activity")
 public class Activity {
 
     @Id
@@ -77,7 +79,29 @@ public class Activity {
         return date;
     }
 
+    public String getDateString()
+    {
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormater.format(this.date);
+    }
+
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        String mandatoryPart;
+        String optionalPart;
+        mandatoryPart = "Activity{" +
+            "sport=" + sport.toString() +
+            ", distance=" + distance +
+            ", date=" + this.getDateString();
+        if(programme!=null)
+        {
+            optionalPart = ", programme=" + programme.getId();
+            return mandatoryPart + optionalPart + "}";
+        }
+        return mandatoryPart + "}";
     }
 }

@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Zone")
+@Table(name = "zone")
 public class Zone {
 
     @Id
@@ -42,5 +42,14 @@ public class Zone {
 
     public void setListCercles(List<Cercle> listCercles) {
         this.listCercles = listCercles;
+    }
+
+    public boolean isInsideZone ( Point p) {
+        for ( Cercle cercle : this.listCercles) {
+            if ( cercle.IsInsindeCercle(p)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

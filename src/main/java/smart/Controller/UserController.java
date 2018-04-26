@@ -82,7 +82,7 @@ public class UserController {
             JwtUserFactory.create(user);
             return ResponseEntity.ok().body(user);
         }catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
+            return ResponseEntity.status(400).body(e.getMessage());
         }
     }
 

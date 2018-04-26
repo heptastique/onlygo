@@ -4,7 +4,7 @@ package smart.Entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "EVALUATION")
+@Table(name = "evaluation")
 public class Evaluation {
 
     @Id
@@ -26,9 +26,8 @@ public class Evaluation {
     @OneToOne(fetch = FetchType.LAZY)
     private DonneeAthmospherique donneeAthmospherique;
 
-    //@TODO Donnee Meteo
-    // @OneToOne(fetch = FetchType.LAZY)
-    // private DonneeMeteo donneeMeteo
+    @OneToOne(fetch = FetchType.LAZY)
+    private WeatherData weatherData;
 
 
     public Long getId() {
@@ -69,5 +68,13 @@ public class Evaluation {
 
     public void setDonneeAthmospherique(DonneeAthmospherique donneeAthmospherique) {
         this.donneeAthmospherique = donneeAthmospherique;
+    }
+
+    public WeatherData getWeatherData() {
+        return weatherData;
+    }
+
+    public void setWeatherData(WeatherData weatherData) {
+        this.weatherData = weatherData;
     }
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "TimeFrame")
+@Table(name = "timeframe")
 public class TimeFrame {
 
     @Id
@@ -24,18 +24,6 @@ public class TimeFrame {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Jour jour;
-
-
-
-    /*@OneToOne(fetch = FetchType.EAGER)
-    @JoinTable(
-    name = "ATMOSPHERICDATA",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
-    - idZone
-    - idDonneeAtmospherique
-    - idDonneeMeteo
-    */
 
     public Long getId() {
         return id;

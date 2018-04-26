@@ -12,4 +12,7 @@ public class SportService {
     @Autowired
     private SportRepository sportRepository;
 
+    public Iterable<Sport> getAllSports(){
+        return sportRepository.findAll();
+    }
 }
