@@ -47,7 +47,6 @@ public class UserService {
         Date date = java.util.Calendar.getInstance().getTime();
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastPasswordResetDate(date);
-        user.setObjectifHebdo(null);
         user.setEnabled(true);
         try{
             user.setAuthorities(Arrays.asList(authorityService.getAuthority(1)));
@@ -58,7 +57,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Float putObjectifHebdo(String username, Float distance){
+    public double putObjectifHebdo(String username, double distance){
         User user = userRepository.findByUsername(username) ;
         user.setObjectifHebdo(distance);
         userRepository.save(user);

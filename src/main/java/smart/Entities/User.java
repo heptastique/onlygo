@@ -43,7 +43,7 @@ public class User {
     private String email;
 
     @Column(name = "OBJECTIFHEBDO")
-    private Float objectifHebdo ;
+    private double objectifHebdo;
 
     @Column(name = "ENABLED")
     @NotNull
@@ -114,9 +114,9 @@ public class User {
         this.email = email;
     }
 
-    public Float getObjectifHebdo(){ return objectifHebdo; }
+    public double getObjectifHebdo(){ return objectifHebdo; }
 
-    public void setObjectifHebdo(Float objectifHebdo){ this.objectifHebdo=objectifHebdo; }
+    public void setObjectifHebdo(double objectifHebdo){ this.objectifHebdo=objectifHebdo; }
 
     public Boolean getEnabled() {
         return enabled;

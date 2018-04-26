@@ -1,13 +1,13 @@
 package smart.DTO;
 
 public class DistanceDto {
-    private Float distance;
+    private double distance;
 
-    public Float getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 }

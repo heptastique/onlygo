@@ -92,7 +92,7 @@ public class UserController {
           String token = request.getHeader(tokenHeader).substring(7);
           String username = jwtTokenUtil.getUsernameFromToken(token);
           JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-          Float updateDistance = userService.putObjectifHebdo(username,distance.getDistance());
+          double updateDistance = userService.putObjectifHebdo(username,distance.getDistance());
           DistanceDto responce= new DistanceDto();
           responce.setDistance(updateDistance);
           return ResponseEntity.ok().body(responce) ;
