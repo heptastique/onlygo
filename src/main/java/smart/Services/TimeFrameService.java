@@ -65,12 +65,20 @@ public class TimeFrameService {
             System.out.println(dateFiltered.getTime());
             System.out.println(donneeAthmospherique.getDate().getTime());
             System.out.println(dateFiltered.compareTo(donneeAthmospherique.getDate()));
-            if ( dateFiltered.before(donneeAthmospherique.getDate()) || dateFiltered.compareTo(donneeAthmospherique.getDate()) == 0)
+            if ( dateFiltered.before(donneeAthmospherique.getDate()) )
             {
                 Jour jourAthmospherique = findDay(donneeAthmospherique.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
-                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()>= timeFrame.getHeureDebut() ){
+                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0){
                         timeFrame.setDonneeAthmospherique(donneeAthmospherique);
+                    }
+                }
+            }
+            if ( dateFiltered.compareTo(donneeAthmospherique.getDate()) == 0 ){
+                Jour jourAthmospherique = findDay(donneeAthmospherique.getDate());
+                for ( TimeFrame timeFrame : listTimeFrames){
+                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()<= timeFrame.getHeureDebut()){
+                            timeFrame.setDonneeAthmospherique(donneeAthmospherique);
                     }
                 }
             }
