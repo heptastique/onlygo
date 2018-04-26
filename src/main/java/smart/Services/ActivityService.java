@@ -17,7 +17,7 @@ public class ActivityService {
     @Autowired
     private SportRepository sportRepository;
 
-    public Activity addActivity(ActivityDTO activityDTO) {
+    public Activity addActivityRealisee(ActivityDTO activityDTO) {
         Activity activity = new Activity();
         activity.setDate(activityDTO.getDate());
         activity.setDistance(activityDTO.getDistance());
@@ -25,6 +25,7 @@ public class ActivityService {
         String sportName = activityDTO.getSportName();
         Sport sport = sportRepository.findByNom(sportName);
         activity.setSport(sport);
+        activity.setEstRealisee(true);
         return activityRepository.save(activity);
     }
 }
