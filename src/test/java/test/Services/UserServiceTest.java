@@ -77,15 +77,15 @@ public class UserServiceTest {
     public void UserAdded() throws NotFoundException {
         //create a user object
         UserDto userDto = new UserDto();
-        userDto.setEmail("hugo.martin@pi.com");
+        userDto.setEmail("paul.martin@pi.com");
         userDto.setFirstname("Hugo");
         userDto.setLastname("Martin");
-        userDto.setUsername("hmartin");
+        userDto.setUsername("pmartin");
         userDto.setPassword("password");
         //call adduser service
         userService.addUser(userDto);
         //test if user has been added
-        assertNotNull(jwtUserDetailsService.loadUserByUsername("hmartin"));
+        assertNotNull(jwtUserDetailsService.loadUserByUsername("pmartin"));
         assertNotNull(userDto.toString());
     }
 
