@@ -1,7 +1,10 @@
 package smart.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@PROGRAMME_ID")
 @Table(name = "programme")
 public class Programme {
 
@@ -21,7 +25,7 @@ public class Programme {
     @JoinColumn(name="USER_ID", referencedColumnName="ID", nullable=false)
     private User user;
 
-    @JoinColumn(name = "DATE_DEBUT")
+    @JoinColumn(name = "DATE_DEBUT", unique = true)
     @NotNull
     private Date dateDebut;
 
