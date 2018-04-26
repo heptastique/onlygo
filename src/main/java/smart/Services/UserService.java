@@ -4,7 +4,9 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import smart.DTO.PointDto;
 import smart.DTO.UserDto;
+import smart.Entities.Point;
 import smart.Entities.User;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
@@ -56,6 +58,18 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User AddLocationToUser(UserDto userDto, PointDto pointDto) throws NotFoundException{
+        if(!userExist(userDto.getUsername())){
+            throw new NotFoundException("User not found");
+        }
+        User user = userRepository.findByUsername(userDto.getUsername());
+        Point point = new Point();
+        point.setX(pointDto.getX());
+        point.setY(pointDto.getY());
+        user.setLocation(point);
+        return userRepository.save(user);
+    }
+
     public Iterable<User> getAllUsers(){
         return userRepository.findAll();
     }
@@ -69,4 +83,5 @@ public class UserService {
         User user = userRepository.findByUsername(username);
         return user != null;
     }
+
 }
