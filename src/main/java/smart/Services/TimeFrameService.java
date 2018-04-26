@@ -7,7 +7,6 @@ import smart.Repositories.TimeFrameRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class TimeFrameService {
@@ -45,7 +44,7 @@ public class TimeFrameService {
         return timeFrame.getEvaluation();
     }
 
-    public void updateEvaluation(List<WeatherData> listWeatherDatas, List<DonneeAthmospherique> listDonneeAthmospheriques){
+    public void updateEvaluation(Iterable<WeatherData> listWeatherDatas, Iterable<DonneeAthmospherique> listDonneeAthmospheriques){
         Date currentDate = new Date();
         currentDate.setHours(0);
         currentDate.setMinutes(0);
@@ -76,6 +75,8 @@ public class TimeFrameService {
         }
         for ( TimeFrame timeFrame : listTimeFrames){
             //@TODO Algorithm.evaluate(timeFrame)
+            double evaluation = 1;
+            timeFrame.setEvaluation(evaluation);
             timeFrameRepository.save(timeFrame);
         }
     }

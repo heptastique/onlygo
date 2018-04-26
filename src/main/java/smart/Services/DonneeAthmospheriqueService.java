@@ -38,5 +38,7 @@ public class DonneeAthmospheriqueService {
         }
         return response;
     }
-
+    public Iterable <DonneeAthmospherique> getDonneeAthmospheriqueAll() {
+        return donneeAthmospheriqueRepository.findAll();
+    }
 }

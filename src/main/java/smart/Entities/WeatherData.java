@@ -3,6 +3,8 @@ package smart.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -14,6 +16,7 @@ public class WeatherData {
     @Column(name="Weather_Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private String dt_txt;
     private Date date;
     @Embedded
     private MainInformation main;
@@ -25,8 +28,9 @@ public class WeatherData {
     public WeatherData(){
     }
 
-    public WeatherData(long dt, MainInformation main, WindInformation wind, double precipitation) {
-        this.date = new Date(dt);
+    public WeatherData(String dt_txt, MainInformation main, WindInformation wind, double precipitation) {
+        this.dt_txt = dt_txt;
+        this.generateDate();
         this.main = main;
         this.wind = wind;
         this.precipitation = precipitation;
@@ -40,10 +44,27 @@ public class WeatherData {
         this.id = id;
     }
 
+    public String getDt_txt() {
+        return dt_txt;
+    }
+
+    public void setDt_txt(String dt_txt) {
+        this.dt_txt = dt_txt;
+    }
+
     public void setDate(Date date) {
         this.date = date;
     }
 
+    public void generateDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            this.date=sdf.parse(dt_txt);
+
+        } catch (ParseException e) {
+            System.err.println("What have you done ???");
+        };
+    }
 
     public void setWind(WindInformation wind) {
         this.wind = wind;
