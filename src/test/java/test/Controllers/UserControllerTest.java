@@ -102,10 +102,10 @@ public class UserControllerTest {
     @Test
     public void addUserSuccessfully() throws  Exception{
         UserDto userDto = new UserDto();
-        userDto.setEmail("hugo.martin@pi.com");
-        userDto.setFirstname("Hugoll");
-        userDto.setLastname("Martin");
-        userDto.setUsername("hmartin");
+        userDto.setEmail("add.user@pi.com");
+        userDto.setFirstname("Addded");
+        userDto.setLastname("User");
+        userDto.setUsername("adduser");
         userDto.setPassword("password");
 
         Gson gson = new Gson();
@@ -113,7 +113,7 @@ public class UserControllerTest {
 
         mvc.perform(post("/user/add").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.username").value("hmartin"));
+            .andExpect(jsonPath("$.username").value("adduser"));
     }
 
     @Test
