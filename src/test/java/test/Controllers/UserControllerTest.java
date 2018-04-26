@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
+import smart.DTO.PointDto;
 import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
 import smart.Entities.Authority;
@@ -173,7 +174,26 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin")
+    @WithMockUser(username = "user")
+    public void addUserLocation() throws Exception{
+        PointDto locationDto = new PointDto();
+        locationDto.setX(4.8467);
+        locationDto.setY(45.7485);
+        Gson gson = new Gson();
+        String json = gson.toJson(locationDto, PointDto.class);
+
+
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+
+        mvc.perform(put("/user/location").header("Authorization","Bearer anyToken")
+            .contentType(MediaType.APPLICATION_JSON).content(json)
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().is2xxSuccessful());
+
+        assertEquals(userRepository.findByUsername("user").getLocation().getX(),locationDto.getX(),0);
+        assertEquals(userRepository.findByUsername("user").getLocation().getY(),locationDto.getY(),0);
+    }
+
     public void correctlySetDistanceGoal() throws  Exception{
         DistanceDto distanceDto = new DistanceDto();
         distanceDto.setDistance((float)10);
