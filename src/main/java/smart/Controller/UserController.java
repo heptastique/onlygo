@@ -84,18 +84,15 @@ public class UserController {
         }
     }
 
-    @RequestMapping(path="/user/location/set",method = RequestMethod.PUT)
-    public ResponseEntity<?> setLocation(@RequestBody PointDto pointDto, HttpServletRequest request){
-        try{
-            String token = request.getHeader(tokenHeader).substring(7);
-            String username = jwtTokenUtil.getUsernameFromToken(token);
-            Point location = new Point();
-            location.setY(pointDto.getY());
-            location.setX(pointDto.getX());
-            User user = userService.addLocationToUser(username,location);
-            return ResponseEntity.ok().body(user);
-        }catch (NotFoundException nfe){
-            return ResponseEntity.status(500).body(nfe.getMessage());
-        }
+    @RequestMapping(path="/user/location",method = RequestMethod.PUT)
+    public ResponseEntity<?> setLocation(@RequestBody PointDto pointDto,
+                                         HttpServletRequest request) throws NotFoundException{
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        Point location = new Point();
+        location.setY(pointDto.getY());
+        location.setX(pointDto.getX());
+        User user = userService.addLocationToUser(username,location);
+        return ResponseEntity.ok().body(user);
     }
 }
