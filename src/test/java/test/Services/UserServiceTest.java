@@ -53,6 +53,9 @@ public class UserServiceTest {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PointRepository pointRepository;
+
     @Before
     public void setup() {
         mvc = MockMvcBuilders
@@ -145,6 +148,7 @@ public class UserServiceTest {
         userService.addUser(copycat);
     }
 
+
     @Test
     public void AddLocation() throws NotFoundException{
 
@@ -164,6 +168,46 @@ public class UserServiceTest {
         double delta = 0.01;
         assertEquals(userLocation.getX(),location.getX(),delta);
         assertEquals(userLocation.getY(),location.getY(),delta);
+    }
 
+    @Test
+    public void UserLocationCascade() throws NotFoundException{
+        UserDto noLocation = new UserDto();
+        noLocation.setFirstname("Antisthenes");
+        noLocation.setLastname("TheDoge");
+        noLocation.setEmail("nolocation@test.com");
+        noLocation.setUsername("noLocationUser");
+        noLocation.setPassword("password");
+        long countBefore = pointRepository.count();
+        User user = userService.addUser(noLocation);
+        assertNull(user.getLocation());
+        assertEquals(countBefore,pointRepository.count());
+    }
+
+    @Test
+    public void AddSameLocation() throws NotFoundException{
+        UserDto fatherDto = new UserDto();
+        UserDto childDto = new UserDto();
+        fatherDto.setLastname("White");
+        childDto.setLastname("White");
+        fatherDto.setFirstname("Walter");
+        childDto.setFirstname("Holly");
+        fatherDto.setEmail("ww.samelocation@test.com");
+        childDto.setEmail("hw.samelocation@test.com");
+        childDto.setPassword("password");
+        fatherDto.setPassword("password");
+        fatherDto.setUsername("hwhiteloctest");
+        childDto.setUsername("wwhiteloctest");
+        long locationCountBefore = pointRepository.count();
+        userService.addUser(fatherDto);
+        userService.addUser(childDto);
+        assertEquals(locationCountBefore,pointRepository.count());
+        Point whiteResidence = new Point();
+        whiteResidence.setX(35.126127);
+        whiteResidence.setY(-106.536505);
+        userService.addLocationToUser(fatherDto.getUsername(),whiteResidence);
+        assertEquals(locationCountBefore+1,pointRepository.count());
+        userService.addLocationToUser(childDto.getUsername(),whiteResidence);
+        assertEquals(locationCountBefore+2,pointRepository.count());
     }
 }
