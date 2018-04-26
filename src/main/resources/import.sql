@@ -73,3 +73,6 @@ INSERT INTO sport(SPORT_ID, NOM, KMH, KCALH) VALUES (3, 'Cyclisme', 20, 690);
 
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (1, '2018-04-16', 100);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (2, '2018-04-23', 100);
+
+INSERT INTO zone ( id, name) values ( 1, 'Lyon')
+
