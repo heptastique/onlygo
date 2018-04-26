@@ -28,9 +28,6 @@ public class UserDto {
     @NotEmpty
     private String email;
 
-    @NotNull
-    private Long objectifHebdo;
-
     public String getUsername() {
         return username;
     }
@@ -69,13 +66,6 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Long getObjectifHebdo(){
-        return objectifHebdo;
-    }
-    public void setObjectifHebdo(Long objectifHebdo){
-        this.objectifHebdo= objectifHebdo;
     }
 
     public String toString(){

@@ -47,6 +47,7 @@ public class UserService {
         Date date = java.util.Calendar.getInstance().getTime();
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastPasswordResetDate(date);
+        user.setObjectifHebdo(null);
         user.setEnabled(true);
         try{
             user.setAuthorities(Arrays.asList(authorityService.getAuthority(1)));
