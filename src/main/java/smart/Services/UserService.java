@@ -1,5 +1,6 @@
 package smart.Services;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.Date;
 public class UserService {
 
     @Autowired
-    private AuthoRepository authoRepository;
+    private AuthorityService authorityService;
 
     @Autowired
     private UserRepository userRepository;
@@ -26,7 +27,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User addUser(UserDto userDto) throws EmailExistsException, UsernameExistsException {
+    public User addUser(UserDto userDto) throws EmailExistsException, UsernameExistsException, NotFoundException {
         if (emailExist(userDto.getEmail())) {
             throw new EmailExistsException(
                     "Cette adresse email est déjà utilisée par un autre compte");
@@ -46,7 +47,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastPasswordResetDate(date);
         user.setEnabled(true);
-        user.setAuthorities(Arrays.asList(authoRepository.findById(1)));
+        try{
+            user.setAuthorities(Arrays.asList(authorityService.getAuthority(1)));
+        }catch (Exception e){
+            throw new NotFoundException("Authority not found");
+        }
+
         return userRepository.save(user);
     }
 
