@@ -23,6 +23,12 @@ public class RealisationService {
     @Autowired
     RealisationRepository realisationRepository;
 
+    @Autowired
+    SportRepository sportRepository;
+
+    @Autowired
+    CentreInteretRepository centreInteretRepository;
+
     public Iterable<Realisation> getUserRealisations(User user){
         Iterable<Programme> programmes = programmeRepository.findByUser(user);
         List<Activity> activities;
@@ -48,7 +54,7 @@ public class RealisationService {
     public Realisation addRealisation(RealisationDTO realisationDTO, User user) throws RealisationException, SportException, ProgrammeException, ActivityException, CentreInteretException {
         Long sportId = realisationDTO.getSportId();
         Long activityId = realisationDTO.getActivityId();
-        Long centreinteretId = realisationDTO.getCentreinteretId();
+        Long centreinteretId = realisationDTO.getCiId();
         Date dateRealisation = realisationDTO.getDate();
         float distanceRealisation = realisationDTO.getDistance();
         Sport sport;

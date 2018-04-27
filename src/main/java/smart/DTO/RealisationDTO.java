@@ -1,6 +1,5 @@
 package smart.DTO;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -17,7 +16,7 @@ public class RealisationDTO {
     @NotNull
     private Date date;
 
-    private Long centreinteretId;
+    private Long ciId;
 
     public float getDistance() {
         return distance;
@@ -51,11 +50,11 @@ public class RealisationDTO {
         this.activityId = activityId;
     }
 
-    public Long getCentreinteretId() {
-        return centreinteretId;
+    public Long getCiId() {
+        return ciId;
     }
 
-    public void setCentreinteretId(Long centreinteretId) {
-        this.centreinteretId = centreinteretId;
+    public void setCiId(Long ciId) {
+        this.ciId = ciId;
     }
 }

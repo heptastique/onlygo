@@ -26,7 +26,6 @@ public class Activity {
     @Column(name = "DISTANCE")
     private float distance;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="PROGRAMME_ID")
     @JsonIgnore
