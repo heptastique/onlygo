@@ -199,7 +199,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user")
+    @WithMockUser(username = "admin")
     public void correctlySetDistanceGoal() throws Exception{
         DistanceDto distanceDto = new DistanceDto();
         distanceDto.setDistance((float)10);
@@ -217,5 +217,14 @@ public class UserControllerTest {
         mvc.perform(get("/user/objectif").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
             .andExpect(jsonPath("$.objectif").value("10.0"));
+    }
+
+    @Test
+    @WithMockUser(username = "user")
+    public void getUserRealisations() throws Exception{
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        mvc.perform(get("/user/realisation")
+            .header("Authorization", "Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful());
     }
 }

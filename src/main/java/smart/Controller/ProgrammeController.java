@@ -41,8 +41,7 @@ public class ProgrammeController {
         // This returns a JSON or XML with the active program of the user (current week and all the activities it contains)
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        User user = userRepository.findByUsername("admin");
-        Programme programme = programmeService.getActiveProgrammeOfUser(user);
+        Programme programme = programmeService.getActiveProgrammeOfUser(username);
         return ResponseEntity.ok().body(programme);
     }
 
@@ -53,7 +52,6 @@ public class ProgrammeController {
         String username = jwtTokenUtil.getUsernameFromToken(token);
         User user = userRepository.findByUsername(username);
         Programme programme = programActivities.calculate(user);
-        System.out.println(programme.toString());
         return ResponseEntity.ok().body(programme);
     }
 }

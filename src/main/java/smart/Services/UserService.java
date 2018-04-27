@@ -6,8 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import smart.DTO.PointDto;
 import smart.DTO.UserDto;
-import smart.Entities.Point;
-import smart.Entities.User;
+import smart.Entities.*;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
@@ -94,5 +93,14 @@ public class UserService {
         User user = userRepository.findByUsername(username) ;
         return user.getObjectifHebdo();
     }
+    public double getPourcentage(String username) {
+        User user = userRepository.findByUsername(username);
+        double realisations=0;
+        for(Programme p:user.getProgrammes()){
+            for(Realisation r: p.getRealisations())
+                realisations +=r.getDistance();
+        }
 
+        return 100*realisations/user.getObjectifHebdo();
+    }
 }

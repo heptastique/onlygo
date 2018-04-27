@@ -223,7 +223,6 @@ Status: 200 OK
         "kcalKm": 34.5
     },
     "distance": 400,
-    "programme": null,
     "date": "2018-04-22T00:00:00.000+0000"
 }
 ```
@@ -241,7 +240,6 @@ Status: 200 OK
 {
     "@JSONNORECURSION_PROGRAMMEID": 1,
     "id": 200,
-    "user": null,
     "activites": [
         {
             "@JSONNORECURSION_ACTIVITYID": 2,
@@ -283,5 +281,68 @@ Status: 200 OK
             "activite": 3
         }
     ]
+}
+```
+
+### `POST /realisation/add` :key:
+Ajoute une réalisation en la liant, ou non, à une activité existante
+du programme encore non réalisée.
+activityId et ciId (centre d'intérêt) sont facultatifs.
+
+### Requête
+```json
+{
+	"sportId": 1,
+	"distance": 2000,
+	"activityId": 300,
+	"date": "2018-04-24",
+	"ciId": 10001
+}
+```
+
+#### Réponse
+
+```
+Status: 200 OK
+```
+
+```json
+{
+    "@JSONNORECURSION_REALISATIONID": 1,
+    "id": 1,
+    "distance": 2000,
+    "date": "2018-04-24T00:00:00.000+0000",
+    "activite": {
+        "@JSONNORECURSION_ACTIVITYID": 2,
+        "id": 300,
+        "sport": {
+            "id": 2,
+            "nom": "Marche",
+            "kmH": 4,
+            "kcalH": 245,
+            "kcalKm": 61.25
+        },
+        "distance": 200,
+        "date": "2018-04-24",
+        "estRealisee": true,
+        "centreInteret": {
+            "id": 10000,
+            "name": "Parc de la Tête d'Or",
+            "point": {
+                "id": 10000,
+                "x": 0.6097772747903308,
+                "y": 0.06464012629501724
+            }
+        }
+    },
+    "centreInteret": {
+        "id": 10001,
+        "name": "Tour Parc de la Tête d'Or",
+        "point": {
+            "id": 10001,
+            "x": 0.7563748869000787,
+            "y": 0.08019959382376082
+        }
+    }
 }
 ```
