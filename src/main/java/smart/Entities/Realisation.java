@@ -34,6 +34,10 @@ public class Realisation {
     @JoinColumn(name="CENTREINTERET_ID")
     CentreInteret centreInteret;
 
+    @ManyToOne
+    @JoinColumn(name="TIMEFRAME_ID")
+    TimeFrame timeFrame;
+
     public Realisation() {}
 
     public Realisation(float distance, Date date, Activity activite, CentreInteret centreInteret)
@@ -89,6 +93,14 @@ public class Realisation {
     {
         SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormater.format(this.date);
+    }
+
+    public TimeFrame getTimeFrame() {
+        return timeFrame;
+    }
+
+    public void setTimeFrame(TimeFrame timeFrame) {
+        this.timeFrame = timeFrame;
     }
 
     @Override
