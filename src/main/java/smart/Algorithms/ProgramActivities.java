@@ -6,10 +6,7 @@ import smart.Services.CentreInteretService;
 import smart.Services.SportService;
 import smart.Services.TimeFrameService;
 
-import javax.swing.*;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static java.lang.Math.exp;
@@ -49,6 +46,7 @@ public class ProgramActivities
         double distanceUserToCentreInteretEvaluation;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
+        TimeFrameCentreInteret bestTimeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
 
         Iterable <Sport> sports = sportService.getAllSports();
@@ -58,8 +56,6 @@ public class ProgramActivities
             course = sport;
         }
 
-        TimeFrameCentreInteret bestTimeFrameCentreInteret;
-
         // For each TimeFrame
         Iterable <TimeFrame> timeFrames = timeFrameService.getTimeFrameAll();
         for (TimeFrame timeFrame : timeFrames)
@@ -68,6 +64,7 @@ public class ProgramActivities
             Iterable<CentreInteret> centreInterets = centreInteretService.getCentreInteretAll();
             for (CentreInteret centreInteret : centreInterets)
             {
+                // Create TimeFrameCentreInteret
                 timeFrameCentreInteret = new TimeFrameCentreInteret();
                 timeFrameCentreInteret.timeFrame = timeFrame;
                 timeFrameCentreInteret.centreInteret = centreInteret;
