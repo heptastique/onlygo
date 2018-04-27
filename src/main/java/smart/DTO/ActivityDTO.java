@@ -18,8 +18,7 @@ public class ActivityDTO {
     @NotNull
     private Date date;
 
-    //TODO
-    //Parcours;
+    private Long centreinteretId;
 
     public float getDistance() {
         return distance;
@@ -51,5 +50,13 @@ public class ActivityDTO {
 
     public void setProgrammeId(Long programmeId) {
         this.programmeId = programmeId;
+    }
+
+    public Long getCentreinteretId() {
+        return centreinteretId;
+    }
+
+    public void setCentreinteretId(Long centreinteretId) {
+        this.centreinteretId = centreinteretId;
     }
 }
