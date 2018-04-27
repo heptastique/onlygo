@@ -46,10 +46,7 @@ public class ProgramActivities
         // @TODO Split into multiple Activities
 
         double objectifHebdo = user.getObjectifHebdo();
-        // Point userLocation = user.getLocation();
-        Point userLocation = new Point();
-        userLocation.setX(1);
-        userLocation.setY(1);
+        Point userLocation = user.getLocation();
 
         double distanceUserToCentreInteret;
         double distanceUserToCentreInteretEvaluation;
@@ -119,6 +116,7 @@ public class ProgramActivities
         // Create Activity
         Activity activity = new Activity();
         activity.setDate(bestTimeFrameCentreInteret.timeFrame.getDate());
+        // activity set TimeFrame
         activity.setCentreInteret(bestTimeFrameCentreInteret.centreInteret);
         activity.setDistance((float)objectifHebdo);
         activity.setSport(course);
