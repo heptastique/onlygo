@@ -8,6 +8,7 @@ import smart.Entities.Sport;
 import smart.Repositories.ActivityRepository;
 import smart.Repositories.CentreInteretRepository;
 import smart.Repositories.SportRepository;
+import smart.Repositories.TimeFrameRepository;
 
 @Service
 public class ActivityService {
@@ -17,6 +18,9 @@ public class ActivityService {
 
     @Autowired
     CentreInteretRepository centreInteretRepository;
+
+    @Autowired
+    TimeFrameRepository timeFrameRepository;
 
     @Autowired
     private SportRepository sportRepository;
@@ -31,6 +35,7 @@ public class ActivityService {
         activity.setSport(sport);
         activity.setEstRealisee(realisee);
         activity.setCentreInteret(centreInteretRepository.findById(activityDTO.getCentreinteretId()).get());
+        activity.setTimeFrame(timeFrameRepository.findById(activityDTO.getTimeFrameId()).get());
         return activityRepository.save(activity);
     }
 }

@@ -1,5 +1,7 @@
 package smart.DTO;
 
+import smart.Entities.TimeFrame;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -17,6 +19,8 @@ public class ActivityDTO {
 
     @NotNull
     private Date date;
+
+    private Long timeFrameId;
 
     private Long centreinteretId;
 
@@ -50,6 +54,14 @@ public class ActivityDTO {
 
     public void setProgrammeId(Long programmeId) {
         this.programmeId = programmeId;
+    }
+
+    public Long getTimeFrameId() {
+        return timeFrameId;
+    }
+
+    public void setTimeFrameId(Long timeFrameId) {
+        this.timeFrameId = timeFrameId;
     }
 
     public Long getCentreinteretId() {

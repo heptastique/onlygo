@@ -121,7 +121,7 @@ public class ProgramActivities
         // Create Activity
         ActivityDTO activity = new ActivityDTO();
         activity.setDate(bestTimeFrameCentreInteret.timeFrame.getDate());
-        // activity.setTimeFrame(bestTimeFrameCentreInteret.timeFrame);
+        activity.setTimeFrameId(bestTimeFrameCentreInteret.timeFrame.getId());
         activity.setCentreinteretId(bestTimeFrameCentreInteret.centreInteret.getId());
         activity.setDistance((float)objectifHebdo);
         activity.setSportName(course.getNom());

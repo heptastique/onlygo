@@ -55,8 +55,9 @@ public class ActivityServiceTest {
         }
         activityDTO.setSportName("Course");
         activityDTO.setCentreinteretId((long)10000);
+        activityDTO.setTimeFrameId((long)46);
         Activity addedActivity = activityService.addActivity(activityDTO, true);
         assertEquals("Activity{sport=Sport{id=1, nom='Course', kmH=12.0, "
-            + "kcalH=880.0, kcalkm=73.333336}, distance=400.0, date=2018-04-22, estRealisee=true}", addedActivity.toString());
+            + "kcalH=880.0, kcalkm=73.333336}, distance=400.0, date=2018-04-22, estRealisee=true, timeframe=46}", addedActivity.toString());
     }
 }
