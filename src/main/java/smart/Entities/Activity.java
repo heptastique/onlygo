@@ -28,6 +28,7 @@ public class Activity {
 
     @ManyToOne
     @JoinColumn(name="PROGRAMME_ID")
+    @JsonIgnore
     private Programme programme;
 
     @Column(name = "DATE")
@@ -46,11 +47,12 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(Sport sport, float distance, Programme programme, Date date, boolean estRealisee) {
+    public Activity(Sport sport, float distance, Programme programme, Date date, CentreInteret centreInteret, boolean estRealisee) {
         this.sport = sport;
         this.distance = distance;
         this.programme = programme;
         this.date = date;
+        this.centreInteret = centreInteret;
         this.estRealisee = estRealisee;
     }
 
