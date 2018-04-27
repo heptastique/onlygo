@@ -95,7 +95,7 @@ public class TimeFrameService {
                 System.out.println(donneeAthmospherique.getDate());
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
-                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()<= timeFrame.getHeureDebut()){
+                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()>= timeFrame.getHeureFin()){
                         timeFrame.setDonneeAthmospherique(donneeAthmospherique);
                         timeFrame.generateDate(donneeAthmospherique.getDate());
                     }
