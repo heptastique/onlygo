@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import smart.DTO.PointDto;
 import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
-import smart.Entities.Point;
-import smart.Entities.User;
+import smart.Entities.*;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtAuthenticationResponse;
@@ -124,6 +123,23 @@ public class UserController {
             User user = userService.getUserByUsername(username);
             return ResponseEntity.ok().body("{\"objectif\":" +  user.getObjectifHebdo() + "}");
         }catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+    @RequestMapping(value = "/user/progression", method = RequestMethod.GET)
+    public ResponseEntity<?> getPourcentage(HttpServletRequest  request){
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        try{
+            User user = userService.getUserByUsername(username);
+            double realisations=0;
+            for(Programme p:user.getProgrammes()){
+                for(Realisation r: p.getRealisations())
+                    realisations +=r.getDistance();
+            }
+            double pourcentage = 100*realisations/user.getObjectifHebdo();
+            return ResponseEntity.ok().body("{\"progression\":" +  pourcentage + "}");
+        }catch (Exception e){
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
