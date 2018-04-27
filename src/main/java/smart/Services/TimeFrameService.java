@@ -18,7 +18,12 @@ public class TimeFrameService {
     @Autowired
     private TimeFrameRepository timeFrameRepository;
 
-    public Iterable <TimeFrame> getTimeFrameAll() {
+    public Iterable <TimeFrame> getTimeFrameAll()
+    {
+        if (timeFrameRepository == null)
+        {
+            System.out.println("timeFrameRepository is NULL");
+        }
         return timeFrameRepository.findAll();
     }
 

@@ -1,5 +1,6 @@
 package smart.Algorithms;
 
+import org.springframework.stereotype.Service;
 import smart.Entities.Jour;
 
 import java.text.ParseException;
@@ -7,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+@Service
 public class FindByJour {
 
     public static Jour findDay(Date date){

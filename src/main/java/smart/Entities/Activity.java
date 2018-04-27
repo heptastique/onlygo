@@ -42,6 +42,10 @@ public class Activity {
     @JoinColumn(name="CENTREINTERET_ID")
     CentreInteret centreInteret;
 
+    @ManyToOne
+    @JoinColumn(name="TIMEFRAME_ID")
+    TimeFrame timeFrame;
+
     public Activity() {
     }
 
@@ -132,5 +136,13 @@ public class Activity {
             return mandatoryPart + optionalPart + "}";
         }
         return mandatoryPart + "}";
+    }
+
+    public TimeFrame getTimeFrame() {
+        return timeFrame;
+    }
+
+    public void setTimeFrame(TimeFrame timeFrame) {
+        this.timeFrame = timeFrame;
     }
 }
