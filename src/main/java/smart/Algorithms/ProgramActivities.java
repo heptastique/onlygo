@@ -40,7 +40,7 @@ public class ProgramActivities
     public Programme calculate(User user)
     {
         // @TODO For each Sport
-        // @TODO Try to split
+        // @TODO Split into multiple Activities
 
         double objectifHebdo = user.getObjectifHebdo();
         Point userLocation = user.getLocation();
@@ -51,13 +51,14 @@ public class ProgramActivities
         TimeFrameCentreInteret timeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
 
-        // @TODO Generalize
         Iterable <Sport> sports = sportService.getAllSports();
         Sport course = new Sport();
         for (Sport sport : sports)
         {
             course = sport;
         }
+
+        TimeFrameCentreInteret bestTimeFrameCentreInteret;
 
         // For each TimeFrame
         Iterable <TimeFrame> timeFrames = timeFrameService.getTimeFrameAll();
@@ -94,24 +95,25 @@ public class ProgramActivities
             }
         }
 
-        
+        // Get best TimeFrameCentreInteret
+        bestTimeFrameCentreInteret = timeFrameCentreInterets.get(0);
 
         // Create Activity
-        activity = new Activity();
-        // @TODO
-        // activity.setDate(timeFrame.getDate());
-        activity.setDate(new Date());
+        Activity activity = new Activity();
+        activity.setDate(bestTimeFrameCentreInteret.timeFrame.getDate());
+        // @TODO set CentreInteret
+        // activity.setCentreInteret(bestTimeFrameCentreInteret.centreInteret);
         activity.setDistance((float)objectifHebdo);
         activity.setSport(course);
         activity.setEstRealisee(false);
         //activity.setProgramme();
 
         // Create Activities
-        activities = new ArrayList <Activity>();
+        List <Activity> activities = new ArrayList <Activity>();
         activities.add(activity);
 
         // Create Program
-        programme = new Programme();
+        Programme programme = new Programme();
         programme.setUser(user);
         programme.setActivites(activities);
         activity.setProgramme(programme);
