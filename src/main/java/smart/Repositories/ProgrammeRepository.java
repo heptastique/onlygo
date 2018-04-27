@@ -11,4 +11,5 @@ import java.util.Date;
 
 public interface ProgrammeRepository extends CrudRepository<Programme, Long> {
     Programme findByUserAndDateDebut(User user, Date dateDebut);
+    Iterable<Programme> findByUser(User user);
 }

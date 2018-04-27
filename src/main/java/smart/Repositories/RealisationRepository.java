@@ -1,6 +1,7 @@
 package smart.Repositories;
 
 import org.springframework.data.repository.CrudRepository;
+import smart.Entities.Activity;
 import smart.Entities.Realisation;
 
 import java.util.Optional;
@@ -9,4 +10,7 @@ import java.util.Optional;
 // CRUD refers Create, Read, Update, Delete
 
 public interface RealisationRepository extends CrudRepository<Realisation, Long> {
+    Iterable<Realisation> findAll();
+    Optional<Realisation> findById(Long id);
+    Iterable<Realisation> findByActivite(Activity activity);
 }

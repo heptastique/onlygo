@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import smart.DTO.PointDto;
 import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
-import smart.Entities.Point;
-import smart.Entities.User;
+import smart.Entities.*;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtAuthenticationResponse;
@@ -24,6 +23,7 @@ import smart.Jwt.JwtTokenUtil;
 import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserFactory;
 import smart.Repositories.UserRepository;
+import smart.Services.RealisationService;
 import smart.Services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +48,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RealisationService realisationService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseEntity<?> getAuthenticatedUser(HttpServletRequest request) {
@@ -116,7 +119,7 @@ public class UserController {
           return ResponseEntity.ok().body(updatedDistance);
     }
 
-    @RequestMapping(value = "/user/objectif", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/objectif", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getUserObjectif(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
@@ -124,6 +127,29 @@ public class UserController {
             User user = userService.getUserByUsername(username);
             return ResponseEntity.ok().body("{\"objectif\":" +  user.getObjectifHebdo() + "}");
         }catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/user/progression", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getPourcentage(HttpServletRequest  request) {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        try {
+            return ResponseEntity.ok().body("{\"progression\":" + userService.getPourcentage(username) + "}");
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/user/realisation", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserRealisations(HttpServletRequest request) {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        try{
+            User user = userService.getUserByUsername(username);
+            return ResponseEntity.ok().body(realisationService.getUserRealisations(user));
+        }catch (Exception e){
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
