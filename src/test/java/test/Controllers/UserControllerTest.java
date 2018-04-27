@@ -199,7 +199,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user")
+    @WithMockUser(username = "admin")
     public void correctlySetDistanceGoal() throws Exception{
         DistanceDto distanceDto = new DistanceDto();
         distanceDto.setDistance((float)10);
