@@ -68,7 +68,19 @@ public class TimeFrameService {
         Iterable<TimeFrame> listTimeFrames = getTimeFrameAll();
         for ( WeatherData weatherData : listWeatherDatas){
 
-            if ( dateFiltered.before(weatherData.getDate()) || dateFiltered.compareTo(weatherData.getDate()) == 0)
+            if ( dateFiltered.before(weatherData.getDate()) )
+            {
+                Jour jourMeteo = FindByJour.findDay(weatherData.getDate());
+                for ( TimeFrame timeFrame : listTimeFrames){
+                    if ( jourMeteo.compareTo(timeFrame.getJour()) == 0 && timeFrame.getHeureDebut()== weatherData.getDate().getHours()){
+                        timeFrame.setWeatherData(weatherData);
+                    }
+                }
+            }
+        }
+        for ( WeatherData weatherData : listWeatherDatas){
+
+            if (dateFiltered.compareTo(weatherData.getDate()) == 0)
             {
                 Jour jourMeteo = FindByJour.findDay(weatherData.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
