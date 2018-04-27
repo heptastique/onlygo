@@ -84,10 +84,15 @@ public class RealisationService {
         // Associating realisation to a planned and not realised yet activity
         if (activityId != null) {
             try {
-                activity = activityRepository.findByIdAndEstRealisee(activityId, false);
-
+                List<Activity> activities = programme.getActivites();
+                activity = activityRepository.findByIdAndEstRealisee(activityId, false).get();
             } catch (Exception e) {
-                throw new ActivityException("L'activité associée n'existe pas.", e);
+                throw new ActivityException("L'activité sélectionnée n'existe pas.", e);
+            }
+            if(activity.getProgramme().getUser().getId()!=user.getId())
+            {
+                activity = null;
+                throw new ActivityException("L'activité sélectionnée n'existe pas.", new Exception());
             }
             realisation = new Realisation(distanceRealisation, dateRealisation, activity, centreInteret);
             activity.setEstRealisee(true);
