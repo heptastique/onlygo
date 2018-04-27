@@ -2,10 +2,9 @@ package smart.Algorithms;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import smart.DTO.ActivityDTO;
 import smart.Entities.*;
-import smart.Services.CentreInteretService;
-import smart.Services.SportService;
-import smart.Services.TimeFrameService;
+import smart.Services.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,6 +25,12 @@ public class ProgramActivities
 
     @Autowired
     private CentreInteretService centreInteretService;
+
+    @Autowired
+    private ActivityService activityService;
+
+    @Autowired
+    private ProgrammeService programmeService;
 
     @Autowired
     private FindByJour findByJour;
@@ -114,25 +119,28 @@ public class ProgramActivities
         bestTimeFrameCentreInteret = timeFrameCentreInterets.get(0);
 
         // Create Activity
-        Activity activity = new Activity();
+        ActivityDTO activity = new ActivityDTO();
         activity.setDate(bestTimeFrameCentreInteret.timeFrame.getDate());
-        activity.setTimeFrame(bestTimeFrameCentreInteret.timeFrame);
-        activity.setCentreInteret(bestTimeFrameCentreInteret.centreInteret);
+        // activity.setTimeFrame(bestTimeFrameCentreInteret.timeFrame);
+        activity.setCentreinteretId(bestTimeFrameCentreInteret.centreInteret.getId());
         activity.setDistance((float)objectifHebdo);
-        activity.setSport(course);
-        activity.setEstRealisee(false);
+        activity.setSportName(course.getNom());
+
+        Activity savedActivity = activityService.addActivity(activity, false);
+
         //activity.setProgramme();
 
         // Create Activities
         List <Activity> activities = new ArrayList <Activity>();
-        activities.add(activity);
+        activities.add(savedActivity);
 
         // Create Program
         Programme programme = new Programme();
         programme.setUser(user);
         programme.setActivites(activities);
         programme.setDateDebut(currentMondayMidnight);
-        activity.setProgramme(programme);
+
+        programmeService.saveProgram(programme);
 
         return programme;
     }

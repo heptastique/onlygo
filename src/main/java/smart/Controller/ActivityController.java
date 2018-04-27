@@ -20,7 +20,7 @@ public class ActivityController {
     @RequestMapping(path="/activity/add", method = RequestMethod.POST)
     public ResponseEntity<?> addActivity(@RequestBody @Valid ActivityDTO activityDTO, HttpServletRequest request) {
         try{
-            Activity activity = activityService.addActivityRealisee(activityDTO);
+            Activity activity = activityService.addActivity(activityDTO, true);
             return ResponseEntity.ok().body(activity);
         }catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());

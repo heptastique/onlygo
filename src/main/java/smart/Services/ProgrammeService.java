@@ -34,4 +34,8 @@ public class ProgrammeService {
 
         return programme;
     }
+
+    public Programme saveProgram(Programme program) {
+        return programmeRepository.save(program);
+    }
 }
