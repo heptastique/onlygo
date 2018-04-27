@@ -119,7 +119,7 @@ public class UserController {
           return ResponseEntity.ok().body(updatedDistance);
     }
 
-    @RequestMapping(value = "/user/objectif", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/objectif", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getUserObjectif(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
@@ -131,7 +131,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/user/progression", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/progression", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPourcentage(HttpServletRequest  request) {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
