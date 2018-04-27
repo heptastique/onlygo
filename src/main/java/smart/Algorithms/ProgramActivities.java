@@ -1,6 +1,7 @@
 package smart.Algorithms;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import smart.Entities.*;
 import smart.Services.CentreInteretService;
 import smart.Services.TimeFrameService;
@@ -12,6 +13,7 @@ import static java.lang.Math.exp;
 import static java.lang.Math.pow;
 import static java.lang.StrictMath.sqrt;
 
+@Service
 public class ProgramActivities
 {
     @Autowired

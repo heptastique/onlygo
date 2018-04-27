@@ -33,7 +33,8 @@ public class ProgrammeController {
     @Autowired
     private UserRepository userRepository;
 
-    private ProgramActivities programActivities = ProgramActivities.getInstance();
+    @Autowired
+    private ProgramActivities programActivities;
 
     @RequestMapping(path="/programme/active", method = RequestMethod.GET)
     public ResponseEntity<?> getActiveProgrammeOfUser(HttpServletRequest request) {
