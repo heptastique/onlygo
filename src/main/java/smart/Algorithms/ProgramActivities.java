@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import smart.Entities.*;
 import smart.Services.CentreInteretService;
+import smart.Services.SportService;
 import smart.Services.TimeFrameService;
 
 import java.util.ArrayList;
@@ -18,10 +19,16 @@ import static java.lang.StrictMath.sqrt;
 public class ProgramActivities
 {
     @Autowired
+    private SportService sportService;
+
+    @Autowired
     private TimeFrameService timeFrameService;
 
     @Autowired
     private CentreInteretService centreInteretService;
+
+    @Autowired
+    private FindByJour findByJour;
 
     final double kDistanceUserToCentreInteretEvaluation = 0.0002;
     final double cDistanceUserToCentreInteretEvaluation = 1.0;
@@ -51,11 +58,24 @@ public class ProgramActivities
         TimeFrameCentreInteret bestTimeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
 
+        Iterable <Sport> sports = sportService.getAllSports();
         Sport course = new Sport();
-        course.setNom("Course");
-        course.setKmH(10);
-        course.setKcalH(10);
-        course.setId((long)87675);
+        for (Sport sport : sports)
+        {
+            if (sport.getNom().equals("Course"))
+            {
+                course = sport;
+            }
+        }
+
+        Date currentMondayMidnight = new Date();
+        while (findByJour.findDay(currentMondayMidnight) != Jour.LUNDI)
+        {
+            currentMondayMidnight.setDate(currentMondayMidnight.getDate() - 1);
+        }
+        currentMondayMidnight.setHours(0);
+        currentMondayMidnight.setMinutes(0);
+        currentMondayMidnight.setSeconds(0);
 
         // For each TimeFrame
         Iterable <TimeFrame> timeFrames = timeFrameService.getTimeFrameAll();
@@ -113,9 +133,7 @@ public class ProgramActivities
         Programme programme = new Programme();
         programme.setUser(user);
         programme.setActivites(activities);
-        // @TODO
-        // programme.setDateDebut(Date(Lundi de la semaine);
-        programme.setDateDebut(new Date());
+        programme.setDateDebut(currentMondayMidnight);
         activity.setProgramme(programme);
 
         return programme;
