@@ -132,11 +132,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/progression", method = RequestMethod.GET)
-    public ResponseEntity<?> getPourcentage(HttpServletRequest  request){
+    public ResponseEntity<?> getPourcentage(HttpServletRequest  request) {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        try{
+        try {
             return ResponseEntity.ok().body("{\"progression\":" + userService.getPourcentage(username) + "}");
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
 
     @RequestMapping(value = "/user/realisation", method = RequestMethod.GET)
     public ResponseEntity<?> getUserRealisations(HttpServletRequest request) {
