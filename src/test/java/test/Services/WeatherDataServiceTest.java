@@ -50,4 +50,11 @@ public class WeatherDataServiceTest {
         WeatherData readFromPersistence =  weatherDataRepository.findById(data.getList().get(0).getId()).get();
         assertEquals(readFromPersistence.toString(),data.getList().get(0).toString());
     }
+
+    @Test
+    public void DataContainsWeatherCondition(){
+        WeatherDto datadto = weatherDataService.UpdateWeatherData();
+        WeatherData data = datadto.getList().get(1);
+        assert(data.getWeatherConditionCode(0)>100);
+    }
 }

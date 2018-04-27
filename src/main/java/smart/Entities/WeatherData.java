@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.List;
 
 @Entity
 @Table(name="Weather")
@@ -22,6 +22,8 @@ public class WeatherData {
     private MainInformation main;
     @Embedded
     private WindInformation wind;
+    @Embedded
+    private List<WeatherCondition> weather;
     @Column(name= "precipitation")
     private double precipitation;
 
@@ -70,9 +72,7 @@ public class WeatherData {
         this.wind = wind;
     }
 
-    public void setPrecipitation(double precipitation) {
-        this.precipitation = precipitation;
-    }
+    public void setPrecipitation(double precipitation) { this.precipitation = precipitation; }
 
     public MainInformation getMain() {
         return main;
@@ -80,6 +80,10 @@ public class WeatherData {
 
     public void setMain(MainInformation main) {
         this.main = main;
+    }
+
+    public void setWeather(List<WeatherCondition> weather) {
+        this.weather = weather;
     }
 
     @Override
@@ -128,6 +132,12 @@ public class WeatherData {
     public double getDeg() {
         return wind.getDeg();
     }
+
+    //External reading for weather conditions
+    public int getWeatherConditionCode(int index){
+        return weather.get(index).getId();
+    }
+
 }
 
 @Embeddable
@@ -184,7 +194,32 @@ class MainInformation {
     }
 }
 
+@Embeddable
+@JsonIgnoreProperties(ignoreUnknown =true)
+class WeatherCondition{
+    private int id;
+    private String main;
+    private String description;
+    private String icon;
 
+    public WeatherCondition() { }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
+
+    public String getMain() { return main; }
+
+    public void setMain(String main) { this.main = main; }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
+
+    public String getIcon() { return icon; }
+
+    public void setIcon(String icon) { this.icon = icon; }
+}
 @Embeddable
 @JsonIgnoreProperties(ignoreUnknown = true)
 class WindInformation {
