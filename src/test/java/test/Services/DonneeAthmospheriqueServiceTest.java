@@ -46,7 +46,7 @@ public class DonneeAthmospheriqueServiceTest {
         PollutionDataDto data = donneeAthmospheriqueService.UpdateDonneeAthmospheriqueData();
         assertEquals("Lyon", data.getCommune());
         assertNotNull(data.getIndices());
-        assertTrue(donneeAthmospheriqueRepository.existsById((long)1));
+        assertTrue(donneeAthmospheriqueRepository.count()>0);
     }
 
 }
