@@ -39,6 +39,10 @@ public class Activity {
     //TODO
     //Parcours;
 
+    @ManyToOne
+    @JoinColumn(name="CENTREINTERET_ID")
+    CentreInteret centreInteret;
+
     public Activity() {
     }
 
@@ -103,6 +107,14 @@ public class Activity {
 
     public void setEstRealisee(boolean estRealisee) {
         this.estRealisee = estRealisee;
+    }
+
+    public CentreInteret getCentreInteret() {
+        return centreInteret;
+    }
+
+    public void setCentreInteret(CentreInteret centreInteret) {
+        this.centreInteret = centreInteret;
     }
 
     @Override
