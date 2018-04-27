@@ -3,7 +3,6 @@ package smart.Algorithms;
 import org.springframework.beans.factory.annotation.Autowired;
 import smart.Entities.*;
 import smart.Services.CentreInteretService;
-import smart.Services.SportService;
 import smart.Services.TimeFrameService;
 
 import java.util.ArrayList;
