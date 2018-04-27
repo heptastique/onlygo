@@ -42,6 +42,7 @@ public class TimeFrame {
 
     public void generateDate (Date date){
         Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
         calendar.set(Calendar.HOUR, this.heureDebut);
         this.date = calendar.getTime();
     }
