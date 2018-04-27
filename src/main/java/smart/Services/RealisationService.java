@@ -60,7 +60,7 @@ public class RealisationService {
         Sport sport;
         Programme programme;
         CentreInteret centreInteret = null;
-        Activity activity;
+        Activity activity = null;
         Realisation realisation;
         try {
             sport = sportRepository.findById(sportId).get();
@@ -83,16 +83,20 @@ public class RealisationService {
 
         // Associating realisation to a planned and not realised yet activity
         if (activityId != null) {
-            try {
-                List<Activity> activities = programme.getActivites();
-                activity = activityRepository.findByIdAndEstRealisee(activityId, false).get();
-            } catch (Exception e) {
-                throw new ActivityException("L'activité sélectionnée n'existe pas.", e);
-            }
-            if(activity.getProgramme().getUser().getId()!=user.getId())
+            List<Activity> progActivities = programme.getActivites();
+            for(Activity ac : progActivities)
             {
-                activity = null;
-                throw new ActivityException("L'activité sélectionnée n'existe pas.", new Exception());
+                if((long)ac.getId()==(long)activityId
+                    && (long)ac.getProgramme().getUser().getId()==(long)user.getId()
+                    && !ac.isEstRealisee())
+                    {
+                        activity = ac;
+                        break;
+                    }
+            }
+            if(activity==null)
+            {
+                throw new ActivityException("L'activité sélectionnée n'existe pas ou a déjà été réalisée.", new Exception());
             }
             realisation = new Realisation(distanceRealisation, dateRealisation, activity, centreInteret);
             activity.setEstRealisee(true);
