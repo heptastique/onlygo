@@ -29,16 +29,12 @@ public class ProgrammeController {
     @Autowired
     private ProgrammeService programmeService;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @RequestMapping(path="/programme/active", method = RequestMethod.GET)
     public ResponseEntity<?> getActiveProgrammeOfUser(HttpServletRequest request) {
         // This returns a JSON or XML with the active program of the user (current week and all the activities it contains)
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        User user = userRepository.findByUsername(username);
-        Programme programme = programmeService.getActiveProgrammeOfUser(user);
+        Programme programme = programmeService.getActiveProgrammeOfUser(username);
         return ResponseEntity.ok().body(programme);
     }
 }

@@ -29,6 +29,9 @@ public class RealisationService {
     @Autowired
     CentreInteretRepository centreInteretRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public Iterable<Realisation> getUserRealisations(User user){
         Iterable<Programme> programmes = programmeRepository.findByUser(user);
         List<Activity> activities;
@@ -51,7 +54,8 @@ public class RealisationService {
         return realisations;
     }
 
-    public Realisation addRealisation(RealisationDTO realisationDTO, User user) throws RealisationException, SportException, ProgrammeException, ActivityException, CentreInteretException {
+    public Realisation addRealisation(RealisationDTO realisationDTO, String username) throws RealisationException, SportException, ProgrammeException, ActivityException, CentreInteretException {
+        User user = userRepository.findByUsername(username);
         Long sportId = realisationDTO.getSportId();
         Long activityId = realisationDTO.getActivityId();
         Long centreinteretId = realisationDTO.getCiId();

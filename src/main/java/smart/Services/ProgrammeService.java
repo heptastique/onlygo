@@ -7,6 +7,7 @@ import smart.Entities.Programme;
 import smart.Entities.User;
 import smart.Exceptions.ProgrammeException;
 import smart.Repositories.ProgrammeRepository;
+import smart.Repositories.UserRepository;
 
 import java.util.Date;
 
@@ -16,7 +17,11 @@ public class ProgrammeService {
     @Autowired
     private ProgrammeRepository programmeRepository;
 
-    public Programme getActiveProgrammeOfUser(User user) throws ProgrammeException {
+    @Autowired
+    private UserRepository userRepository;
+
+    public Programme getActiveProgrammeOfUser(String username) throws ProgrammeException {
+        User user = userRepository.findByUsername(username);
         Date dateDebut = FindByJour.findFirstDayOfCurrentWeek();
         Programme programme;
 
