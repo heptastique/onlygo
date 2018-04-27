@@ -131,14 +131,7 @@ public class UserController {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         try{
-            User user = userService.getUserByUsername(username);
-            double realisations=0;
-            for(Programme p:user.getProgrammes()){
-                for(Realisation r: p.getRealisations())
-                    realisations +=r.getDistance();
-            }
-            double pourcentage = 100*realisations/user.getObjectifHebdo();
-            return ResponseEntity.ok().body("{\"progression\":" +  pourcentage + "}");
+            return ResponseEntity.ok().body("{\"progression\":" + userService.getPourcentage(username) + "}");
         }catch (Exception e){
             return ResponseEntity.status(400).body(e.getMessage());
         }
