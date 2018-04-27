@@ -116,7 +116,7 @@ public class ProgramActivities
         // Create Activity
         Activity activity = new Activity();
         activity.setDate(bestTimeFrameCentreInteret.timeFrame.getDate());
-        // activity set TimeFrame
+        activity.setTimeFrame(bestTimeFrameCentreInteret.timeFrame);
         activity.setCentreInteret(bestTimeFrameCentreInteret.centreInteret);
         activity.setDistance((float)objectifHebdo);
         activity.setSport(course);
