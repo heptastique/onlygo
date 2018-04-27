@@ -25,6 +25,7 @@ public class Programme {
 
     @ManyToOne
     @JoinColumn(name="USER_ID", referencedColumnName="ID", nullable=false)
+    @JsonIgnore
     private User user;
 
     @JoinColumn(name = "DATE_DEBUT", unique = true)
