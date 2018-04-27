@@ -30,6 +30,10 @@ public class Realisation {
     @JoinColumn(name="ACTIVITY_ID")
     private Activity activite;
 
+    @ManyToOne
+    @JoinColumn(name="CENTREINTERET_ID")
+    CentreInteret centreInteret;
+
     public Realisation() {}
 
     public Realisation(Activity activite) {
@@ -66,6 +70,14 @@ public class Realisation {
 
     public void setActivite(Activity activite) {
         this.activite = activite;
+    }
+
+    public CentreInteret getCentreInteret() {
+        return centreInteret;
+    }
+
+    public void setCentreInteret(CentreInteret centreInteret) {
+        this.centreInteret = centreInteret;
     }
 
     @JsonIgnore
