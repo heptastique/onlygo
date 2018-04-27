@@ -1,5 +1,6 @@
 package smart.Algorithms;
 
+import org.springframework.stereotype.Service;
 import smart.Entities.DonneeAthmospherique;
 import smart.Entities.TimeFrame;
 import smart.Entities.WeatherData;
@@ -7,6 +8,7 @@ import smart.Entities.WeatherData;
 import static java.lang.Math.exp;
 import static java.lang.Math.pow;
 
+@Service
 public class TimeFrameEvaluation
 {
     private final double muTemperature = 20;
