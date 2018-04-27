@@ -43,7 +43,7 @@ public class FindByJour {
             calendar.add(Calendar.DATE, -1);
         }
         Date dateFull = calendar.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateS = dateFormat.format(dateFull);
         Date dateDebut = null;
         try {

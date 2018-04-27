@@ -29,6 +29,7 @@ public class Programme {
 
     @JoinColumn(name = "DATE_DEBUT", unique = true)
     @NotNull
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDebut;
 
     @OneToMany(cascade = CascadeType.ALL,
@@ -99,5 +100,15 @@ public class Programme {
             ", activites=" + activites +
             ", realisations=" + realisations +
             '}';
+    }
+
+    public void addActivity(Activity activity)
+    {
+        this.activites.add(activity);
+    }
+
+    public void addRealisation(Realisation realisation)
+    {
+        this.realisations.add(realisation);
     }
 }
