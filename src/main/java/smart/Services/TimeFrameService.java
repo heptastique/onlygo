@@ -63,11 +63,8 @@ public class TimeFrameService {
         currentDateCalendar.set(Calendar.MILLISECOND,0);
         Date dateFiltered = currentDateCalendar.getTime();
 
-        System.out.println(dateFiltered);
-
         Iterable<TimeFrame> listTimeFrames = getTimeFrameAll();
         for ( WeatherData weatherData : listWeatherDatas){
-
             if ( dateFiltered.before(weatherData.getDate()) )
             {
                 Jour jourMeteo = FindByJour.findDay(weatherData.getDate());
@@ -79,8 +76,9 @@ public class TimeFrameService {
             }
         }
         for ( WeatherData weatherData : listWeatherDatas){
-
-            if (dateFiltered.compareTo(weatherData.getDate()) == 0)
+            Date weatherDate = weatherData.getDate();
+            weatherDate.setHours(0);
+            if (dateFiltered.compareTo(weatherDate) == 0)
             {
                 Jour jourMeteo = FindByJour.findDay(weatherData.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
@@ -93,7 +91,6 @@ public class TimeFrameService {
         // set the date too because all dataframes can be set here
         for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ) {
             if (dateFiltered.before(donneeAthmospherique.getDate())) {
-                System.out.println(donneeAthmospherique.getDate());
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
                 for (TimeFrame timeFrame : listTimeFrames) {
                     if (jourAthmospherique.compareTo(timeFrame.getJour()) == 0) {
@@ -105,7 +102,6 @@ public class TimeFrameService {
         }
         for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ) {
             if ( dateFiltered.compareTo(donneeAthmospherique.getDate()) == 0 ){
-                System.out.println(donneeAthmospherique.getDate());
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
                     if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()<= timeFrame.getHeureFin()){
