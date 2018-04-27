@@ -10,7 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
-import smart.DTO.PollutionDataDto;
 import smart.Entities.CentreInteret;
 import smart.Repositories.CentreInteretRepository;
 import smart.Services.CentreInteretService;
@@ -18,7 +17,6 @@ import smart.Services.CentreInteretService;
 import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
