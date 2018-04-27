@@ -79,18 +79,19 @@ public class TimeFrameService {
             }
         }
         // set the date too because all dataframes can be set here
-        for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ){
-            if ( dateFiltered.before(donneeAthmospherique.getDate()) )
-            {
+        for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ) {
+            if (dateFiltered.before(donneeAthmospherique.getDate())) {
                 System.out.println(donneeAthmospherique.getDate());
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
-                for ( TimeFrame timeFrame : listTimeFrames){
-                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0){
+                for (TimeFrame timeFrame : listTimeFrames) {
+                    if (jourAthmospherique.compareTo(timeFrame.getJour()) == 0) {
                         timeFrame.setDonneeAthmospherique(donneeAthmospherique);
                         timeFrame.generateDate(donneeAthmospherique.getDate());
                     }
                 }
             }
+        }
+        for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ) {
             if ( dateFiltered.compareTo(donneeAthmospherique.getDate()) == 0 ){
                 System.out.println(donneeAthmospherique.getDate());
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
