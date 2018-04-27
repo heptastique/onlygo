@@ -37,8 +37,6 @@ public class Activity {
 
     @Column(name = "ESTREALISEE")
     private boolean estRealisee;
-    //TODO
-    //Parcours;
 
     @ManyToOne
     @JoinColumn(name="CENTREINTERET_ID")

@@ -54,6 +54,24 @@ public class FindByJour {
         return dateDebut;
     }
 
+    public static Date findBeginningOfToday()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date dateFull = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateS = dateFormat.format(dateFull);
+        Date dateDebut = null;
+        try {
+            dateDebut = dateFormat.parse(dateS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateDebut;
+    }
+
     private FindByJour()
     {}
 
