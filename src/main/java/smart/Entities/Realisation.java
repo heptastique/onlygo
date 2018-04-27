@@ -32,7 +32,10 @@ public class Realisation {
 
     public Realisation() {}
 
-    public Realisation(Activity activite) {
+    public Realisation(float distance, Date date, Activity activite)
+    {
+        this.distance = distance;
+        this.date = date;
         this.activite = activite;
     }
 

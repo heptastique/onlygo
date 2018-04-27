@@ -42,12 +42,12 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(Sport sport, float distance, Programme programme, Date date) {
+    public Activity(Sport sport, float distance, Programme programme, Date date, boolean estRealisee) {
         this.sport = sport;
         this.distance = distance;
         this.programme = programme;
         this.date = date;
-        this.estRealisee = false;
+        this.estRealisee = estRealisee;
     }
 
     public Long getId() {

@@ -4,16 +4,16 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class ActivityDTO {
+public class RealisationDTO {
 
     @NotNull
     @NotEmpty
-    private String sportName;
+    private Long sportId;
 
     @NotNull
     private float distance;
 
-    private Long programmeId;
+    private Long activityId;
 
     @NotNull
     private Date date;
@@ -37,19 +37,19 @@ public class ActivityDTO {
         this.date = date;
     }
 
-    public String getSportName() {
-        return sportName;
+    public Long getSportId() {
+        return sportId;
     }
 
-    public void setSportName(String sportName) {
-        this.sportName = sportName;
+    public void setSportId(Long sportId) {
+        this.sportId = sportId;
     }
 
-    public Long getProgrammeId() {
-        return programmeId;
+    public Long getActivityId() {
+        return activityId;
     }
 
-    public void setProgrammeId(Long programmeId) {
-        this.programmeId = programmeId;
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
     }
 }

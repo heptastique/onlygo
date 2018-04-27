@@ -9,6 +9,4 @@ import java.util.Optional;
 // CRUD refers Create, Read, Update, Delete
 
 public interface RealisationRepository extends CrudRepository<Realisation, Long> {
-    Iterable<Realisation> findAll();
-    Optional<Realisation> findById(Long id);
 }
