@@ -218,4 +218,13 @@ public class UserControllerTest {
             .andExpect(status().is2xxSuccessful())
             .andExpect(jsonPath("$.objectif").value("10.0"));
     }
+
+    @Test
+    @WithMockUser(username = "user")
+    public void getUserRealisations() throws Exception{
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        mvc.perform(get("/user/realisation")
+            .header("Authorization", "Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful());
+    }
 }
