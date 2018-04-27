@@ -19,9 +19,6 @@ public class ProgramActivities
     private TimeFrameService timeFrameService;
 
     @Autowired
-    private SportService sportService;
-
-    @Autowired
     private CentreInteretService centreInteretService;
 
     final double kDistanceUserToCentreInteretEvaluation = 0.0002;
@@ -49,14 +46,17 @@ public class ProgramActivities
         TimeFrameCentreInteret bestTimeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
 
-        Iterable <Sport> sports = sportService.getAllSports();
         Sport course = new Sport();
-        for (Sport sport : sports)
-        {
-            course = sport;
-        }
+        course.setNom("Course");
+        course.setKmH(10);
+        course.setKcalH(10);
+        course.setId((long)87675);
 
         // For each TimeFrame
+        if (timeFrameService == null)
+        {
+            System.out.println("timeFrameService is NULL");
+        }
         Iterable <TimeFrame> timeFrames = timeFrameService.getTimeFrameAll();
         for (TimeFrame timeFrame : timeFrames)
         {
