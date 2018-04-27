@@ -24,6 +24,7 @@ import smart.Jwt.JwtTokenUtil;
 import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserFactory;
 import smart.Repositories.UserRepository;
+import smart.Services.RealisationService;
 import smart.Services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +49,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RealisationService realisationService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseEntity<?> getAuthenticatedUser(HttpServletRequest request) {
@@ -124,6 +128,17 @@ public class UserController {
             User user = userService.getUserByUsername(username);
             return ResponseEntity.ok().body("{\"objectif\":" +  user.getObjectifHebdo() + "}");
         }catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+    @RequestMapping(value = "/user/realisation", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserRealisations(HttpServletRequest request) {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        try{
+            User user = userService.getUserByUsername(username);
+            return ResponseEntity.ok().body(realisationService.getUserRealisations(user));
+        }catch (Exception e){
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
