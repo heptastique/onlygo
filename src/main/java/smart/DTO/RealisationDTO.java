@@ -7,7 +7,6 @@ import java.util.Date;
 public class RealisationDTO {
 
     @NotNull
-    @NotEmpty
     private Long sportId;
 
     @NotNull

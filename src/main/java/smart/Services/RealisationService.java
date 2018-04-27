@@ -46,10 +46,10 @@ public class RealisationService {
                 activity = activityRepository.findByIdAndEstRealisee(activityId, false);
                 realisation = new Realisation(distanceRealisation, dateRealisation, activity);
                 activity.setEstRealisee(true);
-                return realisationRepository.save(realisation);
+                programme.addRealisation(realisation);
             } catch(Exception e)
             {
-                throw new RealisationException("L'activité associée n'a pas été trouvée.", e);
+                throw new RealisationException("L'activité associée n'existe pas.", e);
             }
         }
         // Creating a new activity for the realisation
@@ -57,7 +57,11 @@ public class RealisationService {
         {
             activity = new Activity(sport, distanceRealisation, programme, dateRealisation, true);
             realisation = new Realisation(distanceRealisation, dateRealisation, activity);
-            return realisationRepository.save(realisation);
+            programme.addActivity(activity);
+            programme.addRealisation(realisation);
         }
+        realisationRepository.save(realisation);
+        realisation.getActivite().setProgramme(null);
+        return realisation;
     }
 }
