@@ -57,11 +57,13 @@ public class TimeFrameService {
         Date currentDate = new Date();
         Calendar currentDateCalendar = Calendar.getInstance();
         currentDateCalendar.setTime(currentDate);
-        currentDateCalendar.set(Calendar.HOUR,0);
+        currentDateCalendar.set(Calendar.HOUR_OF_DAY,0);
         currentDateCalendar.set(Calendar.MINUTE,0);
         currentDateCalendar.set(Calendar.SECOND,0);
         currentDateCalendar.set(Calendar.MILLISECOND,0);
         Date dateFiltered = currentDateCalendar.getTime();
+
+        System.out.println(dateFiltered);
 
         Iterable<TimeFrame> listTimeFrames = getTimeFrameAll();
         for ( WeatherData weatherData : listWeatherDatas){
@@ -80,6 +82,7 @@ public class TimeFrameService {
         for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ){
             if ( dateFiltered.before(donneeAthmospherique.getDate()) )
             {
+                System.out.println(donneeAthmospherique.getDate());
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
                     if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0){
@@ -89,6 +92,7 @@ public class TimeFrameService {
                 }
             }
             if ( dateFiltered.compareTo(donneeAthmospherique.getDate()) == 0 ){
+                System.out.println(donneeAthmospherique.getDate());
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
                     if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()<= timeFrame.getHeureDebut()){
