@@ -17,7 +17,7 @@ public class CentreInteret {
     private String name;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Cercle cercle;
+    private Point point;
 
     public Long getId() {
         return id;
@@ -35,11 +35,11 @@ public class CentreInteret {
         this.name = name;
     }
 
-    public Cercle getCercle() {
-        return cercle;
+    public Point getPoint() {
+        return point;
     }
 
-    public void setCercle(Cercle cercle) {
-        this.cercle = cercle;
+    public void setPoint(Point point) {
+        this.point = point;
     }
 }
