@@ -1,9 +1,7 @@
 package smart.DTO;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class ActivityDTO {
@@ -20,8 +18,7 @@ public class ActivityDTO {
     @NotNull
     private Date date;
 
-    //TODO
-    //Parcours;
+    private Long centreinteretId;
 
     public float getDistance() {
         return distance;
@@ -53,5 +50,13 @@ public class ActivityDTO {
 
     public void setProgrammeId(Long programmeId) {
         this.programmeId = programmeId;
+    }
+
+    public Long getCentreinteretId() {
+        return centreinteretId;
+    }
+
+    public void setCentreinteretId(Long centreinteretId) {
+        this.centreinteretId = centreinteretId;
     }
 }

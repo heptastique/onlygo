@@ -36,8 +36,12 @@ public class Realisation {
 
     public Realisation() {}
 
-    public Realisation(Activity activite) {
+    public Realisation(float distance, Date date, Activity activite, CentreInteret centreInteret)
+    {
+        this.distance = distance;
+        this.date = date;
         this.activite = activite;
+        this.centreInteret = centreInteret;
     }
 
     public Long getId() {
