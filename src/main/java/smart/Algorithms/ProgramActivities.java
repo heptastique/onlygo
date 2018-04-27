@@ -7,6 +7,7 @@ import smart.Services.CentreInteretService;
 import smart.Services.TimeFrameService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static java.lang.Math.exp;
@@ -38,7 +39,10 @@ public class ProgramActivities
         // @TODO Split into multiple Activities
 
         double objectifHebdo = user.getObjectifHebdo();
-        Point userLocation = user.getLocation();
+        // Point userLocation = user.getLocation();
+        Point userLocation = new Point();
+        userLocation.setX(1);
+        userLocation.setY(1);
 
         double distanceUserToCentreInteret;
         double distanceUserToCentreInteretEvaluation;
@@ -54,10 +58,6 @@ public class ProgramActivities
         course.setId((long)87675);
 
         // For each TimeFrame
-        if (timeFrameService == null)
-        {
-            System.out.println("timeFrameService is NULL");
-        }
         Iterable <TimeFrame> timeFrames = timeFrameService.getTimeFrameAll();
         for (TimeFrame timeFrame : timeFrames)
         {
@@ -113,6 +113,9 @@ public class ProgramActivities
         Programme programme = new Programme();
         programme.setUser(user);
         programme.setActivites(activities);
+        // @TODO
+        // programme.setDateDebut(Date(Lundi de la semaine);
+        programme.setDateDebut(new Date());
         activity.setProgramme(programme);
 
         return programme;

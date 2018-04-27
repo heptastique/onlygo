@@ -83,6 +83,11 @@ public class Programme {
         this.realisations = realisations;
     }
 
+    public void setDateDebut(Date dateDebut)
+    {
+        this.dateDebut = dateDebut;
+    }
+
     @JsonIgnore
     public String getDateDebutString()
     {

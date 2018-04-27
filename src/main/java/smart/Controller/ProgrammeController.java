@@ -52,16 +52,8 @@ public class ProgrammeController {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         User user = userRepository.findByUsername(username);
-        System.out.println(user.toString());
-        Programme programme = null;
-        if (user != null)
-        {
-            programme = programActivities.calculate(user);
-        }
-        if (programme != null)
-        {
-            System.out.println(programme.toString());
-        }
+        Programme programme = programActivities.calculate(user);
+        System.out.println(programme.toString());
         return ResponseEntity.ok().body(programme);
     }
 }
