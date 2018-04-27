@@ -46,7 +46,7 @@ public class ActivityControllerTest {
     @WithMockUser(roles = "USER")
     public void shouldAddActivity() throws Exception{
 
-        String json ="{\"distance\": 300.0, \"date\": \"2018-04-22\",\"sportName\": \"Course\"}";
+        String json ="{\"distance\": 300.0, \"date\": \"2018-04-22\",\"sportName\": \"Course\", \"centreinteretId\": \"10000\"}";
 
         this.mvc.perform(post("/activity/add").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful())
