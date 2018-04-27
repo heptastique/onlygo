@@ -2,6 +2,8 @@ package smart.Entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name = "timeframe")
@@ -28,11 +30,21 @@ public class TimeFrame {
     @Column(name = "EVALUATION")
     private double evaluation;
 
+    @Column(name="DATE")
+    @Temporal(TemporalType.DATE)
+    Date date;
+
     @OneToOne(fetch = FetchType.LAZY)
     private DonneeAthmospherique donneeAthmospherique;
 
     @OneToOne(fetch = FetchType.LAZY)
     private WeatherData weatherData;
+
+    public void generateDate (Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR, this.heureDebut);
+        this.date = calendar.getTime();
+    }
 
     public Jour getJour() {
         return jour;
@@ -96,6 +108,14 @@ public class TimeFrame {
 
     public void setWeatherData(WeatherData weatherData) {
         this.weatherData = weatherData;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
 
