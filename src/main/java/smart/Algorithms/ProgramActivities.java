@@ -101,8 +101,7 @@ public class ProgramActivities
         // Create Activity
         Activity activity = new Activity();
         activity.setDate(bestTimeFrameCentreInteret.timeFrame.getDate());
-        // @TODO set CentreInteret
-        // activity.setCentreInteret(bestTimeFrameCentreInteret.centreInteret);
+        activity.setCentreInteret(bestTimeFrameCentreInteret.centreInteret);
         activity.setDistance((float)objectifHebdo);
         activity.setSport(course);
         activity.setEstRealisee(false);
