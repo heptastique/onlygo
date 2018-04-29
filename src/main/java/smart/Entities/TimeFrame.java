@@ -34,14 +34,15 @@ public class TimeFrame {
     @Temporal(TemporalType.DATE)
     Date date;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private DonneeAthmospherique donneeAthmospherique;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private WeatherData weatherData;
 
     public void generateDate (Date date){
         Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
         calendar.set(Calendar.HOUR, this.heureDebut);
         this.date = calendar.getTime();
     }

@@ -1,5 +1,6 @@
 package smart.Algorithms;
 
+import org.springframework.stereotype.Service;
 import smart.Entities.Jour;
 
 import java.text.ParseException;
@@ -7,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+@Service
 public class FindByJour {
 
     public static Jour findDay(Date date){
@@ -36,6 +38,7 @@ public class FindByJour {
     public static Date findFirstDayOfCurrentWeek()
     {
         Calendar calendar = Calendar.getInstance();
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);

@@ -85,45 +85,46 @@ INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, spo
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, centreinteret_id) VALUES (100, '2018-04-23', 300, 200, 200, 10000);
 
 
-INSERT INTO point (ID, x, y) VALUES (10000, 0.6097772747903308, 0.06464012629501724);
+INSERT INTO point (ID, x, y) VALUES (10000, 45.77846429629631, 4.852797629629627);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10000, "Parc de la Tête d'Or", 10000);
-INSERT INTO point (ID, x, y) VALUES (10001, 0.7563748869000787, 0.08019959382376082);
+INSERT INTO point (ID, x, y) VALUES (10001, 45.77868958333333, 4.853984940476191);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10001, "Tour Parc de la Tête d'Or", 10001);
-INSERT INTO point (ID, x, y) VALUES (10002, 0.07766878207048018, 0.008186197464310672);
+INSERT INTO point (ID, x, y) VALUES (10002, 45.76518764705882, 4.823596470588235);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10002, "Escaliers Nicolas de Lange", 10002);
-INSERT INTO point (ID, x, y) VALUES (10003, 0.3136536001589034, 0.03317462707319495);
+INSERT INTO point (ID, x, y) VALUES (10003, 45.77069710144926, 4.841091594202898);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10003, "Pt Lafayette-Tete or par les quais", 10003);
-INSERT INTO point (ID, x, y) VALUES (10004, 0.08672184748976945, 0.009125984629204513);
+INSERT INTO point (ID, x, y) VALUES (10004, 45.72979947368422, 4.812275789473685);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10004, "descente escalier mulatiere", 10004);
-INSERT INTO point (ID, x, y) VALUES (10005, 0.2818385857682369, 0.029736901212482608);
+INSERT INTO point (ID, x, y) VALUES (10005, 45.739675, 4.8260112903225805);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10005, "Pont a pont", 10005);
-INSERT INTO point (ID, x, y) VALUES (10006, 0.28186076923076925, 0.029756066388391973);
+INSERT INTO point (ID, x, y) VALUES (10006, 45.74327516129033, 4.829121612903227);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10006, "Gwen2kA", 10006);
-INSERT INTO point (ID, x, y) VALUES (10007, 0.10488002693804249, 0.010911641225182081);
+INSERT INTO point (ID, x, y) VALUES (10007, 45.704891739130424, 4.755103478260869);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10007, "Rue Favre Garin Climb", 10007);
-INSERT INTO point (ID, x, y) VALUES (10008, 0.15515698724337254, 0.016111978273868843);
+INSERT INTO point (ID, x, y) VALUES (10008, 45.789565, 4.754929117647059);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10008, "Chemin Du Petit Bois Climb", 10008);
-INSERT INTO point (ID, x, y) VALUES (10009, 0.09125417465069861, 0.009773258483033932);
+INSERT INTO point (ID, x, y) VALUES (10009, 45.71834150000001, 4.8964025);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10009, "Tour de Piste_1 Parilly", 10009);
-INSERT INTO point (ID, x, y) VALUES (10010, 0.1687354707581947, 0.017751354986549766);
+INSERT INTO point (ID, x, y) VALUES (10010, 45.772916756756764, 4.815414864864865);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10010, "Montée des Esses", 10010);
-INSERT INTO point (ID, x, y) VALUES (10011, 0.40396629497472475, 0.04333943007235604);
+INSERT INTO point (ID, x, y) VALUES (10011, 45.79343764044942, 4.912938314606743);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10011, "Piste cyclable vers Miribel-Jonage", 10011);
-INSERT INTO point (ID, x, y) VALUES (10012, 0.2505123122824465, 0.026481933366484342);
+INSERT INTO point (ID, x, y) VALUES (10012, 45.798205454545446, 4.841378909090911);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10012, "Montée Castellane", 10012);
-INSERT INTO point (ID, x, y) VALUES (10013, 0.45761893574893586, 0.048401715671715674);
+INSERT INTO point (ID, x, y) VALUES (10013, 45.76642445544555, 4.840650792079208);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10013, "Berge du Rhône (pont Wilson > Lattre)", 10013);
-INSERT INTO point (ID, x, y) VALUES (10014, 0.25501687350835334, 0.02735675218774861);
+INSERT INTO point (ID, x, y) VALUES (10014, 45.793744285714304, 4.912491071428572);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10014, "voie cyclable vers Parc M. Jonage", 10014);
-INSERT INTO point (ID, x, y) VALUES (10015, 0.290768660572337, 0.030322256558028615);
+INSERT INTO point (ID, x, y) VALUES (10015, 45.723371875, 4.76817484375);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10015, "Route des Aqueducs", 10015);
-INSERT INTO point (ID, x, y) VALUES (10016, 0.05027120867046248, 0.005234326241134752);
+INSERT INTO point (ID, x, y) VALUES (10016, 45.751369999999994, 4.763712727272727);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10016, "Côte d'Alaï", 10016);
-INSERT INTO point (ID, x, y) VALUES (10017, 0.12317279246035706, 0.012962702702702703);
+INSERT INTO point (ID, x, y) VALUES (10017, 45.742725555555566, 4.813963703703704);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10017, "Quai JJ Rousseau", 10017);
 
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10000, "user0", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user0", "user0", "user0@user.com", 1, "2003/01/22", 9);
+INSERT INTO point (ID, x, y) VALUES (50000, 45.74000775165519, 4.891662948104629);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10000, "user0", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user0", "user0", "user0@user.com", 1, "2003/01/22", 19, 50000);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10000, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10000, '2018-04-23', 10000);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10000, '2018-04-24', 5, 0, 10000, 1, 10000);
@@ -139,7 +140,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10007, '2018-04-20', 5, 1, 10000, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10003, '2018-04-20', 4, 10007, 10000, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10001, "user1", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user1", "user1", "user1@user.com", 1, "2003/01/22", 18);
+INSERT INTO point (ID, x, y) VALUES (50001, 45.731892310416804, 4.80942727124262);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10001, "user1", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user1", "user1", "user1@user.com", 1, "2003/01/22", 12, 50001);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10001, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10001, '2018-04-23', 10001);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10008, '2018-04-24', 5, 0, 10001, 1, 10000);
@@ -155,7 +157,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10015, '2018-04-20', 5, 1, 10001, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10007, '2018-04-20', 4, 10015, 10001, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10002, "user2", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user2", "user2", "user2@user.com", 1, "2003/01/22", 19);
+INSERT INTO point (ID, x, y) VALUES (50002, 45.76491137265839, 4.866031180273904);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10002, "user2", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user2", "user2", "user2@user.com", 1, "2003/01/22", 10, 50002);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10002, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10002, '2018-04-23', 10002);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10016, '2018-04-24', 5, 0, 10002, 1, 10000);
@@ -171,7 +174,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10023, '2018-04-20', 5, 1, 10002, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10011, '2018-04-20', 4, 10023, 10002, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10003, "user3", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user3", "user3", "user3@user.com", 1, "2003/01/22", 6);
+INSERT INTO point (ID, x, y) VALUES (50003, 45.77821718462515, 4.82265111185334);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10003, "user3", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user3", "user3", "user3@user.com", 1, "2003/01/22", 10, 50003);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10003, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10003, '2018-04-23', 10003);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10024, '2018-04-24', 5, 0, 10003, 1, 10000);
@@ -187,7 +191,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10031, '2018-04-20', 5, 1, 10003, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10015, '2018-04-20', 4, 10031, 10003, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10004, "user4", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user4", "user4", "user4@user.com", 1, "2003/01/22", 8);
+INSERT INTO point (ID, x, y) VALUES (50004, 45.7691495436299, 4.824652955889741);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10004, "user4", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user4", "user4", "user4@user.com", 1, "2003/01/22", 12, 50004);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10004, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10004, '2018-04-23', 10004);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10032, '2018-04-24', 5, 0, 10004, 1, 10000);
@@ -203,7 +208,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10039, '2018-04-20', 5, 1, 10004, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10019, '2018-04-20', 4, 10039, 10004, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10005, "user5", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user5", "user5", "user5@user.com", 1, "2003/01/22", 18);
+INSERT INTO point (ID, x, y) VALUES (50005, 45.72061538980002, 4.889582255192304);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10005, "user5", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user5", "user5", "user5@user.com", 1, "2003/01/22", 17, 50005);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10005, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10005, '2018-04-23', 10005);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10040, '2018-04-24', 5, 0, 10005, 1, 10000);
@@ -219,7 +225,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10047, '2018-04-20', 5, 1, 10005, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10023, '2018-04-20', 4, 10047, 10005, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10006, "user6", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user6", "user6", "user6@user.com", 1, "2003/01/22", 16);
+INSERT INTO point (ID, x, y) VALUES (50006, 45.76345041070484, 4.86471895726708);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10006, "user6", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user6", "user6", "user6@user.com", 1, "2003/01/22", 13, 50006);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10006, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10006, '2018-04-23', 10006);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10048, '2018-04-24', 5, 0, 10006, 1, 10000);
@@ -235,7 +242,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10055, '2018-04-20', 5, 1, 10006, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10027, '2018-04-20', 4, 10055, 10006, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10007, "user7", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user7", "user7", "user7@user.com", 1, "2003/01/22", 16);
+INSERT INTO point (ID, x, y) VALUES (50007, 45.7532110418329, 4.849517353182592);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10007, "user7", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user7", "user7", "user7@user.com", 1, "2003/01/22", 16, 50007);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10007, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10007, '2018-04-23', 10007);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10056, '2018-04-24', 5, 0, 10007, 1, 10000);
@@ -251,7 +259,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10063, '2018-04-20', 5, 1, 10007, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10031, '2018-04-20', 4, 10063, 10007, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10008, "user8", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user8", "user8", "user8@user.com", 1, "2003/01/22", 19);
+INSERT INTO point (ID, x, y) VALUES (50008, 45.79462855000785, 4.874512240576646);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10008, "user8", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user8", "user8", "user8@user.com", 1, "2003/01/22", 10, 50008);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10008, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10008, '2018-04-23', 10008);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10064, '2018-04-24', 5, 0, 10008, 1, 10000);
@@ -267,7 +276,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10071, '2018-04-20', 5, 1, 10008, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10035, '2018-04-20', 4, 10071, 10008, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10009, "user9", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user9", "user9", "user9@user.com", 1, "2003/01/22", 7);
+INSERT INTO point (ID, x, y) VALUES (50009, 45.76943170331108, 4.834332766858557);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10009, "user9", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user9", "user9", "user9@user.com", 1, "2003/01/22", 17, 50009);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10009, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10009, '2018-04-23', 10009);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10072, '2018-04-24', 5, 0, 10009, 1, 10000);
@@ -283,7 +293,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10079, '2018-04-20', 5, 1, 10009, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10039, '2018-04-20', 4, 10079, 10009, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10010, "user10", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user10", "user10", "user10@user.com", 1, "2003/01/22", 18);
+INSERT INTO point (ID, x, y) VALUES (50010, 45.730748467221396, 4.867157590736091);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10010, "user10", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user10", "user10", "user10@user.com", 1, "2003/01/22", 6, 50010);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10010, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10010, '2018-04-23', 10010);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10080, '2018-04-24', 5, 0, 10010, 1, 10000);
@@ -299,7 +310,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10087, '2018-04-20', 5, 1, 10010, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10043, '2018-04-20', 4, 10087, 10010, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10011, "user11", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user11", "user11", "user11@user.com", 1, "2003/01/22", 18);
+INSERT INTO point (ID, x, y) VALUES (50011, 45.735930196087835, 4.854767518351893);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10011, "user11", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user11", "user11", "user11@user.com", 1, "2003/01/22", 7, 50011);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10011, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10011, '2018-04-23', 10011);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10088, '2018-04-24', 5, 0, 10011, 1, 10000);
@@ -315,7 +327,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10095, '2018-04-20', 5, 1, 10011, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10047, '2018-04-20', 4, 10095, 10011, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10012, "user12", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user12", "user12", "user12@user.com", 1, "2003/01/22", 11);
+INSERT INTO point (ID, x, y) VALUES (50012, 45.7188396973396, 4.874875753363304);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10012, "user12", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user12", "user12", "user12@user.com", 1, "2003/01/22", 14, 50012);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10012, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10012, '2018-04-23', 10012);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10096, '2018-04-24', 5, 0, 10012, 1, 10000);
@@ -331,7 +344,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10103, '2018-04-20', 5, 1, 10012, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10051, '2018-04-20', 4, 10103, 10012, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10013, "user13", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user13", "user13", "user13@user.com", 1, "2003/01/22", 14);
+INSERT INTO point (ID, x, y) VALUES (50013, 45.77224042342615, 4.877225365330139);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10013, "user13", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user13", "user13", "user13@user.com", 1, "2003/01/22", 10, 50013);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10013, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10013, '2018-04-23', 10013);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10104, '2018-04-24', 5, 0, 10013, 1, 10000);
@@ -347,7 +361,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10111, '2018-04-20', 5, 1, 10013, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10055, '2018-04-20', 4, 10111, 10013, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10014, "user14", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user14", "user14", "user14@user.com", 1, "2003/01/22", 12);
+INSERT INTO point (ID, x, y) VALUES (50014, 45.77679251344422, 4.84575225524289);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10014, "user14", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user14", "user14", "user14@user.com", 1, "2003/01/22", 16, 50014);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10014, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10014, '2018-04-23', 10014);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10112, '2018-04-24', 5, 0, 10014, 1, 10000);
@@ -363,7 +378,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10119, '2018-04-20', 5, 1, 10014, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10059, '2018-04-20', 4, 10119, 10014, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10015, "user15", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user15", "user15", "user15@user.com", 1, "2003/01/22", 17);
+INSERT INTO point (ID, x, y) VALUES (50015, 45.783885784335226, 4.818961126232956);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10015, "user15", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user15", "user15", "user15@user.com", 1, "2003/01/22", 10, 50015);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10015, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10015, '2018-04-23', 10015);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10120, '2018-04-24', 5, 0, 10015, 1, 10000);
@@ -379,7 +395,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10127, '2018-04-20', 5, 1, 10015, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10063, '2018-04-20', 4, 10127, 10015, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10016, "user16", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user16", "user16", "user16@user.com", 1, "2003/01/22", 14);
+INSERT INTO point (ID, x, y) VALUES (50016, 45.7536296036555, 4.849075552462354);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10016, "user16", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user16", "user16", "user16@user.com", 1, "2003/01/22", 10, 50016);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10016, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10016, '2018-04-23', 10016);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10128, '2018-04-24', 5, 0, 10016, 1, 10000);
@@ -395,7 +412,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10135, '2018-04-20', 5, 1, 10016, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10067, '2018-04-20', 4, 10135, 10016, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10017, "user17", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user17", "user17", "user17@user.com", 1, "2003/01/22", 16);
+INSERT INTO point (ID, x, y) VALUES (50017, 45.75882180300254, 4.824459796060573);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10017, "user17", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user17", "user17", "user17@user.com", 1, "2003/01/22", 14, 50017);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10017, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10017, '2018-04-23', 10017);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10136, '2018-04-24', 5, 0, 10017, 1, 10000);
@@ -411,7 +429,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10143, '2018-04-20', 5, 1, 10017, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10071, '2018-04-20', 4, 10143, 10017, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10018, "user18", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user18", "user18", "user18@user.com", 1, "2003/01/22", 10);
+INSERT INTO point (ID, x, y) VALUES (50018, 45.71512433396044, 4.829570392240644);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10018, "user18", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user18", "user18", "user18@user.com", 1, "2003/01/22", 19, 50018);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10018, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10018, '2018-04-23', 10018);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10144, '2018-04-24', 5, 0, 10018, 1, 10000);
@@ -427,7 +446,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10151, '2018-04-20', 5, 1, 10018, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10075, '2018-04-20', 4, 10151, 10018, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10019, "user19", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user19", "user19", "user19@user.com", 1, "2003/01/22", 8);
+INSERT INTO point (ID, x, y) VALUES (50019, 45.79474962957456, 4.81405640876529);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10019, "user19", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user19", "user19", "user19@user.com", 1, "2003/01/22", 13, 50019);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10019, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10019, '2018-04-23', 10019);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10152, '2018-04-24', 5, 0, 10019, 1, 10000);
@@ -443,7 +463,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10159, '2018-04-20', 5, 1, 10019, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10079, '2018-04-20', 4, 10159, 10019, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10020, "user20", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user20", "user20", "user20@user.com", 1, "2003/01/22", 8);
+INSERT INTO point (ID, x, y) VALUES (50020, 45.74987912775262, 4.8597706309937125);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10020, "user20", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user20", "user20", "user20@user.com", 1, "2003/01/22", 6, 50020);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10020, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10020, '2018-04-23', 10020);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10160, '2018-04-24', 5, 0, 10020, 1, 10000);
@@ -459,7 +480,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10167, '2018-04-20', 5, 1, 10020, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10083, '2018-04-20', 4, 10167, 10020, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10021, "user21", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user21", "user21", "user21@user.com", 1, "2003/01/22", 15);
+INSERT INTO point (ID, x, y) VALUES (50021, 45.791394811904965, 4.862277864485445);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10021, "user21", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user21", "user21", "user21@user.com", 1, "2003/01/22", 16, 50021);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10021, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10021, '2018-04-23', 10021);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10168, '2018-04-24', 5, 0, 10021, 1, 10000);
@@ -475,7 +497,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10175, '2018-04-20', 5, 1, 10021, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10087, '2018-04-20', 4, 10175, 10021, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10022, "user22", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user22", "user22", "user22@user.com", 1, "2003/01/22", 11);
+INSERT INTO point (ID, x, y) VALUES (50022, 45.71587691274628, 4.826318936836942);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10022, "user22", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user22", "user22", "user22@user.com", 1, "2003/01/22", 5, 50022);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10022, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10022, '2018-04-23', 10022);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10176, '2018-04-24', 5, 0, 10022, 1, 10000);
@@ -491,7 +514,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10183, '2018-04-20', 5, 1, 10022, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10091, '2018-04-20', 4, 10183, 10022, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10023, "user23", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user23", "user23", "user23@user.com", 1, "2003/01/22", 11);
+INSERT INTO point (ID, x, y) VALUES (50023, 45.713269993982436, 4.8384520018172505);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10023, "user23", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user23", "user23", "user23@user.com", 1, "2003/01/22", 15, 50023);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10023, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10023, '2018-04-23', 10023);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10184, '2018-04-24', 5, 0, 10023, 1, 10000);
@@ -507,7 +531,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10191, '2018-04-20', 5, 1, 10023, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10095, '2018-04-20', 4, 10191, 10023, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10024, "user24", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user24", "user24", "user24@user.com", 1, "2003/01/22", 10);
+INSERT INTO point (ID, x, y) VALUES (50024, 45.78099643876639, 4.8728687966866575);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10024, "user24", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user24", "user24", "user24@user.com", 1, "2003/01/22", 19, 50024);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10024, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10024, '2018-04-23', 10024);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10192, '2018-04-24', 5, 0, 10024, 1, 10000);
@@ -523,7 +548,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10199, '2018-04-20', 5, 1, 10024, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10099, '2018-04-20', 4, 10199, 10024, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10025, "user25", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user25", "user25", "user25@user.com", 1, "2003/01/22", 6);
+INSERT INTO point (ID, x, y) VALUES (50025, 45.77274159337941, 4.891595410089152);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10025, "user25", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user25", "user25", "user25@user.com", 1, "2003/01/22", 16, 50025);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10025, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10025, '2018-04-23', 10025);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10200, '2018-04-24', 5, 0, 10025, 1, 10000);
@@ -539,7 +565,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10207, '2018-04-20', 5, 1, 10025, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10103, '2018-04-20', 4, 10207, 10025, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10026, "user26", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user26", "user26", "user26@user.com", 1, "2003/01/22", 19);
+INSERT INTO point (ID, x, y) VALUES (50026, 45.72033544446692, 4.878773131413584);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10026, "user26", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user26", "user26", "user26@user.com", 1, "2003/01/22", 18, 50026);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10026, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10026, '2018-04-23', 10026);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10208, '2018-04-24', 5, 0, 10026, 1, 10000);
@@ -555,7 +582,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10215, '2018-04-20', 5, 1, 10026, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10107, '2018-04-20', 4, 10215, 10026, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10027, "user27", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user27", "user27", "user27@user.com", 1, "2003/01/22", 12);
+INSERT INTO point (ID, x, y) VALUES (50027, 45.766389627769826, 4.869745165665553);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10027, "user27", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user27", "user27", "user27@user.com", 1, "2003/01/22", 14, 50027);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10027, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10027, '2018-04-23', 10027);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10216, '2018-04-24', 5, 0, 10027, 1, 10000);
@@ -571,7 +599,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10223, '2018-04-20', 5, 1, 10027, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10111, '2018-04-20', 4, 10223, 10027, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10028, "user28", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user28", "user28", "user28@user.com", 1, "2003/01/22", 15);
+INSERT INTO point (ID, x, y) VALUES (50028, 45.77865931832582, 4.820446138392976);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10028, "user28", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user28", "user28", "user28@user.com", 1, "2003/01/22", 14, 50028);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10028, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10028, '2018-04-23', 10028);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10224, '2018-04-24', 5, 0, 10028, 1, 10000);
@@ -587,7 +616,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10231, '2018-04-20', 5, 1, 10028, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10115, '2018-04-20', 4, 10231, 10028, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10029, "user29", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user29", "user29", "user29@user.com", 1, "2003/01/22", 9);
+INSERT INTO point (ID, x, y) VALUES (50029, 45.76438757330257, 4.876742778670528);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10029, "user29", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user29", "user29", "user29@user.com", 1, "2003/01/22", 6, 50029);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10029, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10029, '2018-04-23', 10029);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10232, '2018-04-24', 5, 0, 10029, 1, 10000);
@@ -603,7 +633,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10239, '2018-04-20', 5, 1, 10029, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10119, '2018-04-20', 4, 10239, 10029, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10030, "user30", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user30", "user30", "user30@user.com", 1, "2003/01/22", 16);
+INSERT INTO point (ID, x, y) VALUES (50030, 45.75536908852368, 4.821523834574042);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10030, "user30", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user30", "user30", "user30@user.com", 1, "2003/01/22", 19, 50030);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10030, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10030, '2018-04-23', 10030);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10240, '2018-04-24', 5, 0, 10030, 1, 10000);
@@ -619,7 +650,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10247, '2018-04-20', 5, 1, 10030, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10123, '2018-04-20', 4, 10247, 10030, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10031, "user31", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user31", "user31", "user31@user.com", 1, "2003/01/22", 11);
+INSERT INTO point (ID, x, y) VALUES (50031, 45.73924317265253, 4.863305622573063);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10031, "user31", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user31", "user31", "user31@user.com", 1, "2003/01/22", 18, 50031);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10031, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10031, '2018-04-23', 10031);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10248, '2018-04-24', 5, 0, 10031, 1, 10000);
@@ -635,7 +667,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10255, '2018-04-20', 5, 1, 10031, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10127, '2018-04-20', 4, 10255, 10031, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10032, "user32", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user32", "user32", "user32@user.com", 1, "2003/01/22", 12);
+INSERT INTO point (ID, x, y) VALUES (50032, 45.74470499377924, 4.812747516180132);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10032, "user32", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user32", "user32", "user32@user.com", 1, "2003/01/22", 8, 50032);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10032, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10032, '2018-04-23', 10032);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10256, '2018-04-24', 5, 0, 10032, 1, 10000);
@@ -651,7 +684,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10263, '2018-04-20', 5, 1, 10032, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10131, '2018-04-20', 4, 10263, 10032, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10033, "user33", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user33", "user33", "user33@user.com", 1, "2003/01/22", 19);
+INSERT INTO point (ID, x, y) VALUES (50033, 45.73504557363429, 4.878803470283994);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10033, "user33", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user33", "user33", "user33@user.com", 1, "2003/01/22", 16, 50033);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10033, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10033, '2018-04-23', 10033);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10264, '2018-04-24', 5, 0, 10033, 1, 10000);
@@ -667,7 +701,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10271, '2018-04-20', 5, 1, 10033, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10135, '2018-04-20', 4, 10271, 10033, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10034, "user34", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user34", "user34", "user34@user.com", 1, "2003/01/22", 10);
+INSERT INTO point (ID, x, y) VALUES (50034, 45.73865048430413, 4.890206676121636);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10034, "user34", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user34", "user34", "user34@user.com", 1, "2003/01/22", 11, 50034);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10034, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10034, '2018-04-23', 10034);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10272, '2018-04-24', 5, 0, 10034, 1, 10000);
@@ -683,7 +718,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10279, '2018-04-20', 5, 1, 10034, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10139, '2018-04-20', 4, 10279, 10034, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10035, "user35", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user35", "user35", "user35@user.com", 1, "2003/01/22", 17);
+INSERT INTO point (ID, x, y) VALUES (50035, 45.735975184394896, 4.885627855580636);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10035, "user35", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user35", "user35", "user35@user.com", 1, "2003/01/22", 12, 50035);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10035, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10035, '2018-04-23', 10035);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10280, '2018-04-24', 5, 0, 10035, 1, 10000);
@@ -699,7 +735,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10287, '2018-04-20', 5, 1, 10035, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10143, '2018-04-20', 4, 10287, 10035, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10036, "user36", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user36", "user36", "user36@user.com", 1, "2003/01/22", 9);
+INSERT INTO point (ID, x, y) VALUES (50036, 45.74821062277626, 4.839047631309212);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10036, "user36", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user36", "user36", "user36@user.com", 1, "2003/01/22", 8, 50036);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10036, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10036, '2018-04-23', 10036);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10288, '2018-04-24', 5, 0, 10036, 1, 10000);
@@ -715,7 +752,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10295, '2018-04-20', 5, 1, 10036, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10147, '2018-04-20', 4, 10295, 10036, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10037, "user37", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user37", "user37", "user37@user.com", 1, "2003/01/22", 7);
+INSERT INTO point (ID, x, y) VALUES (50037, 45.74960664108136, 4.887086525586214);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10037, "user37", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user37", "user37", "user37@user.com", 1, "2003/01/22", 5, 50037);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10037, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10037, '2018-04-23', 10037);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10296, '2018-04-24', 5, 0, 10037, 1, 10000);
@@ -731,7 +769,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10303, '2018-04-20', 5, 1, 10037, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10151, '2018-04-20', 4, 10303, 10037, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10038, "user38", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user38", "user38", "user38@user.com", 1, "2003/01/22", 12);
+INSERT INTO point (ID, x, y) VALUES (50038, 45.795639358883115, 4.835630810148192);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10038, "user38", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user38", "user38", "user38@user.com", 1, "2003/01/22", 12, 50038);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10038, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10038, '2018-04-23', 10038);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10304, '2018-04-24', 5, 0, 10038, 1, 10000);
@@ -747,7 +786,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10311, '2018-04-20', 5, 1, 10038, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10155, '2018-04-20', 4, 10311, 10038, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10039, "user39", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user39", "user39", "user39@user.com", 1, "2003/01/22", 15);
+INSERT INTO point (ID, x, y) VALUES (50039, 45.758241752455646, 4.846629428730847);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10039, "user39", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user39", "user39", "user39@user.com", 1, "2003/01/22", 7, 50039);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10039, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10039, '2018-04-23', 10039);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10312, '2018-04-24', 5, 0, 10039, 1, 10000);
@@ -763,7 +803,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10319, '2018-04-20', 5, 1, 10039, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10159, '2018-04-20', 4, 10319, 10039, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10040, "user40", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user40", "user40", "user40@user.com", 1, "2003/01/22", 9);
+INSERT INTO point (ID, x, y) VALUES (50040, 45.738308864663246, 4.818167015695211);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10040, "user40", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user40", "user40", "user40@user.com", 1, "2003/01/22", 17, 50040);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10040, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10040, '2018-04-23', 10040);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10320, '2018-04-24', 5, 0, 10040, 1, 10000);
@@ -779,7 +820,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10327, '2018-04-20', 5, 1, 10040, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10163, '2018-04-20', 4, 10327, 10040, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10041, "user41", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user41", "user41", "user41@user.com", 1, "2003/01/22", 5);
+INSERT INTO point (ID, x, y) VALUES (50041, 45.74393485563099, 4.835937294823722);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10041, "user41", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user41", "user41", "user41@user.com", 1, "2003/01/22", 13, 50041);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10041, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10041, '2018-04-23', 10041);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10328, '2018-04-24', 5, 0, 10041, 1, 10000);
@@ -795,7 +837,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10335, '2018-04-20', 5, 1, 10041, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10167, '2018-04-20', 4, 10335, 10041, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10042, "user42", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user42", "user42", "user42@user.com", 1, "2003/01/22", 19);
+INSERT INTO point (ID, x, y) VALUES (50042, 45.73642893546921, 4.8134508379886105);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10042, "user42", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user42", "user42", "user42@user.com", 1, "2003/01/22", 13, 50042);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10042, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10042, '2018-04-23', 10042);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10336, '2018-04-24', 5, 0, 10042, 1, 10000);
@@ -811,7 +854,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10343, '2018-04-20', 5, 1, 10042, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10171, '2018-04-20', 4, 10343, 10042, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10043, "user43", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user43", "user43", "user43@user.com", 1, "2003/01/22", 10);
+INSERT INTO point (ID, x, y) VALUES (50043, 45.789583014026306, 4.858541981640273);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10043, "user43", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user43", "user43", "user43@user.com", 1, "2003/01/22", 12, 50043);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10043, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10043, '2018-04-23', 10043);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10344, '2018-04-24', 5, 0, 10043, 1, 10000);
@@ -827,7 +871,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10351, '2018-04-20', 5, 1, 10043, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10175, '2018-04-20', 4, 10351, 10043, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10044, "user44", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user44", "user44", "user44@user.com", 1, "2003/01/22", 9);
+INSERT INTO point (ID, x, y) VALUES (50044, 45.783167568689144, 4.865964942036017);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10044, "user44", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user44", "user44", "user44@user.com", 1, "2003/01/22", 12, 50044);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10044, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10044, '2018-04-23', 10044);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10352, '2018-04-24', 5, 0, 10044, 1, 10000);
@@ -843,7 +888,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10359, '2018-04-20', 5, 1, 10044, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10179, '2018-04-20', 4, 10359, 10044, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10045, "user45", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user45", "user45", "user45@user.com", 1, "2003/01/22", 18);
+INSERT INTO point (ID, x, y) VALUES (50045, 45.72745481972256, 4.810463779399167);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10045, "user45", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user45", "user45", "user45@user.com", 1, "2003/01/22", 5, 50045);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10045, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10045, '2018-04-23', 10045);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10360, '2018-04-24', 5, 0, 10045, 1, 10000);
@@ -859,7 +905,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10367, '2018-04-20', 5, 1, 10045, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10183, '2018-04-20', 4, 10367, 10045, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10046, "user46", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user46", "user46", "user46@user.com", 1, "2003/01/22", 6);
+INSERT INTO point (ID, x, y) VALUES (50046, 45.7771883454348, 4.851914644383131);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10046, "user46", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user46", "user46", "user46@user.com", 1, "2003/01/22", 16, 50046);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10046, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10046, '2018-04-23', 10046);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10368, '2018-04-24', 5, 0, 10046, 1, 10000);
@@ -875,7 +922,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10375, '2018-04-20', 5, 1, 10046, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10187, '2018-04-20', 4, 10375, 10046, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10047, "user47", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user47", "user47", "user47@user.com", 1, "2003/01/22", 8);
+INSERT INTO point (ID, x, y) VALUES (50047, 45.79012897464562, 4.892429538751931);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10047, "user47", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user47", "user47", "user47@user.com", 1, "2003/01/22", 18, 50047);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10047, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10047, '2018-04-23', 10047);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10376, '2018-04-24', 5, 0, 10047, 1, 10000);
@@ -891,7 +939,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10383, '2018-04-20', 5, 1, 10047, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10191, '2018-04-20', 4, 10383, 10047, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10048, "user48", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user48", "user48", "user48@user.com", 1, "2003/01/22", 6);
+INSERT INTO point (ID, x, y) VALUES (50048, 45.78941580846826, 4.861098974625677);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10048, "user48", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user48", "user48", "user48@user.com", 1, "2003/01/22", 7, 50048);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10048, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10048, '2018-04-23', 10048);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10384, '2018-04-24', 5, 0, 10048, 1, 10000);
@@ -907,7 +956,8 @@ INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_i
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10391, '2018-04-20', 5, 1, 10048, 1, 10000);
 INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, CENTREINTERET_ID) VALUES (10195, '2018-04-20', 4, 10391, 10048, 10000);
 
-INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO) VALUES (10049, "user49", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user49", "user49", "user49@user.com", 1, "2003/01/22", 19);
+INSERT INTO point (ID, x, y) VALUES (50049, 45.711222221407745, 4.838148886065486);
+INSERT INTO users (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE, OBJECTIFHEBDO, Location_id) VALUES (10049, "user49", "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "user49", "user49", "user49@user.com", 1, "2003/01/22", 8, 50049);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (10049, 2);
 INSERT INTO programme(programme_id, date_debut, user_id) VALUES (10049, '2018-04-23', 10049);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, CENTREINTERET_ID) VALUES (10392, '2018-04-24', 5, 0, 10049, 1, 10000);

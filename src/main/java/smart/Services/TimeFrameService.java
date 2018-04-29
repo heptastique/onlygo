@@ -18,7 +18,12 @@ public class TimeFrameService {
     @Autowired
     private TimeFrameRepository timeFrameRepository;
 
-    public Iterable <TimeFrame> getTimeFrameAll() {
+    public Iterable <TimeFrame> getTimeFrameAll()
+    {
+        if (timeFrameRepository == null)
+        {
+            System.out.println("timeFrameRepository is NULL");
+        }
         return timeFrameRepository.findAll();
     }
 
@@ -52,7 +57,7 @@ public class TimeFrameService {
         Date currentDate = new Date();
         Calendar currentDateCalendar = Calendar.getInstance();
         currentDateCalendar.setTime(currentDate);
-        currentDateCalendar.set(Calendar.HOUR,0);
+        currentDateCalendar.set(Calendar.HOUR_OF_DAY,0);
         currentDateCalendar.set(Calendar.MINUTE,0);
         currentDateCalendar.set(Calendar.SECOND,0);
         currentDateCalendar.set(Calendar.MILLISECOND,0);
@@ -60,8 +65,20 @@ public class TimeFrameService {
 
         Iterable<TimeFrame> listTimeFrames = getTimeFrameAll();
         for ( WeatherData weatherData : listWeatherDatas){
-
-            if ( dateFiltered.before(weatherData.getDate()) || dateFiltered.compareTo(weatherData.getDate()) == 0)
+            if ( dateFiltered.before(weatherData.getDate()) )
+            {
+                Jour jourMeteo = FindByJour.findDay(weatherData.getDate());
+                for ( TimeFrame timeFrame : listTimeFrames){
+                    if ( jourMeteo.compareTo(timeFrame.getJour()) == 0 && timeFrame.getHeureDebut()== weatherData.getDate().getHours()){
+                        timeFrame.setWeatherData(weatherData);
+                    }
+                }
+            }
+        }
+        for ( WeatherData weatherData : listWeatherDatas){
+            Date weatherDate = weatherData.getDate();
+            weatherDate.setHours(0);
+            if (dateFiltered.compareTo(weatherDate) == 0)
             {
                 Jour jourMeteo = FindByJour.findDay(weatherData.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
@@ -72,21 +89,22 @@ public class TimeFrameService {
             }
         }
         // set the date too because all dataframes can be set here
-        for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ){
-            if ( dateFiltered.before(donneeAthmospherique.getDate()) )
-            {
+        for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ) {
+            if (dateFiltered.before(donneeAthmospherique.getDate())) {
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
-                for ( TimeFrame timeFrame : listTimeFrames){
-                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0){
+                for (TimeFrame timeFrame : listTimeFrames) {
+                    if (jourAthmospherique.compareTo(timeFrame.getJour()) == 0) {
                         timeFrame.setDonneeAthmospherique(donneeAthmospherique);
                         timeFrame.generateDate(donneeAthmospherique.getDate());
                     }
                 }
             }
+        }
+        for ( DonneeAthmospherique donneeAthmospherique : listDonneeAthmospheriques ) {
             if ( dateFiltered.compareTo(donneeAthmospherique.getDate()) == 0 ){
                 Jour jourAthmospherique = FindByJour.findDay(donneeAthmospherique.getDate());
                 for ( TimeFrame timeFrame : listTimeFrames){
-                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()<= timeFrame.getHeureDebut()){
+                    if ( jourAthmospherique.compareTo(timeFrame.getJour()) == 0 && currentDate.getHours()<= timeFrame.getHeureFin()){
                         timeFrame.setDonneeAthmospherique(donneeAthmospherique);
                         timeFrame.generateDate(donneeAthmospherique.getDate());
                     }
