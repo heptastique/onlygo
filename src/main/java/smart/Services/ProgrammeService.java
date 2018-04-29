@@ -35,6 +35,20 @@ public class ProgrammeService {
         return programme;
     }
 
+    public Programme getProgramOfUserByDate(String username, Date dateDebut) throws ProgrammeException {
+        User user = userRepository.findByUsername(username);
+        Programme programme;
+
+        try {
+            programme = programmeRepository.findByUserAndDateDebut(user, dateDebut);
+        } catch(Exception e)
+        {
+            throw new ProgrammeException("Aucun programme n'a été trouvé pour cette date.", e);
+        }
+
+        return programme;
+    }
+
     public Programme saveProgram(Programme program) {
         return programmeRepository.save(program);
     }
