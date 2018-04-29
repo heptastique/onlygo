@@ -52,13 +52,14 @@ public class ActivityService {
         int todayHour = FindByJour.findCurrentHour();
         todayHour = todayHour - todayHour%3;
 
+        // Get actual timeframe
         TimeFrame timeFrame = timeFrameRepository.findByJourHour(jour,todayHour);
 
         for(Activity activity : activities)
         {
             if(activity.getDate().compareTo(todayDate)>=0
                 && !activity.isEstRealisee()
-                && (long)activity.getTimeFrame().getId()>(long)timeFrame.getId())
+                && (long)activity.getTimeFrame().getId()>=(long)timeFrame.getId())
                 {
                     return activity;
                 }
