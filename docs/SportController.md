@@ -1,3 +1,5 @@
+#Points d'accès REST
+#`Sport`
 ### `GET /sport/all` :key:
 Renvoie la liste de tous les sports.
 

@@ -1,5 +1,5 @@
-# `MainController`
-
+#Points d'accès REST
+#`MainController`
 ### `GET /protected` :key:
 Accessible uniquement pour les utilisateurs ayant le privilège admin
 
