@@ -25,9 +25,6 @@ public class ActivityService {
     CentreInteretRepository centreInteretRepository;
 
     @Autowired
-    TimeFrameRepository timeFrameRepository;
-
-    @Autowired
     private SportRepository sportRepository;
 
     @Autowired
