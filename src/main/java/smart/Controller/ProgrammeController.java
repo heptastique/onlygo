@@ -41,8 +41,12 @@ public class ProgrammeController {
         // This returns a JSON or XML with the active program of the user (current week and all the activities it contains)
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        Programme programme = programmeService.getActiveProgrammeOfUser(username);
-        return ResponseEntity.ok().body(programme);
+        try{
+            Programme programme = programmeService.getActiveProgrammeOfUser(username);
+            return ResponseEntity.ok().body(programme);
+        }catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
     }
 
     @RequestMapping(path="/programme/generate", method = RequestMethod.GET)
