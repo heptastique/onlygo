@@ -40,7 +40,7 @@ public class ProgrammeService {
         Programme programme;
 
         try {
-            programme = programmeRepository.findByUserAndDateDebut(user, dateDebut);
+            programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
         } catch(Exception e)
         {
             throw new ProgrammeException("Aucun programme n'a été trouvé pour cette date.", e);
