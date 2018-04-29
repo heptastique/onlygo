@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import smart.Algorithms.FindByJour;
 import smart.DTO.ActivityDTO;
-import smart.Entities.Activity;
-import smart.Entities.Programme;
-import smart.Entities.Sport;
+import smart.Entities.*;
 import smart.Repositories.ActivityRepository;
 import smart.Repositories.SportRepository;
+import smart.Repositories.TimeFrameRepository;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,6 +25,9 @@ public class ActivityService {
     @Autowired
     private SportRepository sportRepository;
 
+    @Autowired
+    private TimeFrameRepository timeFrameRepository;
+
     public Activity addActivityRealisee(ActivityDTO activityDTO) {
         Activity activity = new Activity();
         activity.setDate(activityDTO.getDate());
@@ -42,13 +44,24 @@ public class ActivityService {
     {
         List<Activity> activities = programme.getActivites();
         Collections.sort(activities, comparing(Activity::getDate));
-        Date today = FindByJour.findBeginningOfToday();
+
+        // Get today's date
+        Date todayDate = FindByJour.findCurrentDate();
+        Jour jour = FindByJour.findDay(todayDate);
+        // Get actual hour (by step of 3, from 0 to 24)
+        int todayHour = FindByJour.findCurrentHour();
+        todayHour = todayHour - todayHour%3;
+
+        TimeFrame timeFrame = timeFrameRepository.findByJourHour(jour,todayHour);
+
         for(Activity activity : activities)
         {
-            if(activity.getDate().compareTo(today)>=0 && !activity.isEstRealisee())
-            {
-                return activity;
-            }
+            if(activity.getDate().compareTo(todayDate)>=0
+                && !activity.isEstRealisee()
+                && (long)activity.getTimeFrame().getId()>(long)timeFrame.getId())
+                {
+                    return activity;
+                }
         }
         return null;
     }
