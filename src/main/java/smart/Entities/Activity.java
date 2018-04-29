@@ -137,6 +137,9 @@ public class Activity {
             optionalPart = ", programme=" + programme.getId();
             return mandatoryPart + optionalPart + "}";
         }
+
+        mandatoryPart += ", timeframe=" + timeFrame.getId();
+
         return mandatoryPart + "}";
     }
 
