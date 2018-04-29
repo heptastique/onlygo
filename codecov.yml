@@ -6,4 +6,3 @@ ignore:
 coverage:
   status:
     project: no
-    patch: no
