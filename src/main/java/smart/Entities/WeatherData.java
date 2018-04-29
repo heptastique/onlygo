@@ -33,9 +33,19 @@ public class WeatherData {
     public WeatherData(String dt_txt, MainInformation main, WindInformation wind, double precipitation) {
         this.dt_txt = dt_txt;
         this.generateDate();
-        this.main = main;
         this.wind = wind;
         this.precipitation = precipitation;
+        this.main = main;
+    }
+    public WeatherData( WeatherData weatherData, Date date){
+        this.date = date;
+        this.main = weatherData.getMain();
+        this.wind = weatherData.getWind();
+        this.precipitation = weatherData.getPrecipitation();
+        this.weather = weatherData.getWeather();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        this.dt_txt = sdf.format(date);
+
     }
 
     public long getId() {
@@ -138,6 +148,9 @@ public class WeatherData {
         return weather.get(index).getId();
     }
 
+    public List<WeatherCondition> getWeather() {
+        return weather;
+    }
 }
 
 @Embeddable
