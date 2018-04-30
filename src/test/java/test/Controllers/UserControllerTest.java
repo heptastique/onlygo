@@ -103,12 +103,6 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getUsersSuccessfully() throws Exception{
-        mvc.perform(get("/user/all"))
-            .andExpect(status().is2xxSuccessful());
-    }
-
-    @Test
     public void addUserSuccessfully() throws  Exception{
         UserDto userDto = new UserDto();
         userDto.setEmail("add.user@pi.com");
