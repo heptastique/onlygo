@@ -4,6 +4,7 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import smart.Algorithms.ProgramActivities;
 import smart.DTO.PointDto;
 import smart.DTO.UserDto;
 import smart.Entities.*;
@@ -25,6 +26,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProgrammeService programmeService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -93,12 +97,13 @@ public class UserService {
         User user = userRepository.findByUsername(username) ;
         return user.getObjectifHebdo();
     }
+
     public double getPourcentage(String username) {
         User user = userRepository.findByUsername(username);
         double realisations=0;
-        for(Programme p:user.getProgrammes()){
-            for(Realisation r: p.getRealisations())
-                realisations +=r.getDistance();
+        Programme activeProgram = programmeService.getActiveProgrammeOfUser(username);
+        for(Realisation r:activeProgram.getRealisations()){
+            realisations +=r.getDistance();
         }
 
         return 100*realisations/user.getObjectifHebdo();

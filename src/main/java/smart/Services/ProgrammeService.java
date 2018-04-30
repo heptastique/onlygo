@@ -26,10 +26,24 @@ public class ProgrammeService {
         Programme programme;
 
         try {
-            programme = programmeRepository.findByUserAndDateDebut(user, dateDebut);
+            programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
         } catch(Exception e)
         {
             throw new ProgrammeException("Aucun programme actif trouvé pour l'utilisateur.", e);
+        }
+
+        return programme;
+    }
+
+    public Programme getProgramOfUserByDate(String username, Date dateDebut) throws ProgrammeException {
+        User user = userRepository.findByUsername(username);
+        Programme programme;
+
+        try {
+            programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
+        } catch(Exception e)
+        {
+            throw new ProgrammeException("Aucun programme n'a été trouvé pour cette date.", e);
         }
 
         return programme;
