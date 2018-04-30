@@ -126,7 +126,7 @@ public class ProgramActivities
         // While Week Objective is not Completed
         int activityIndex = 0;
         int timeFrameCentreInteretIndex;
-        while (objectifRemaining > 0)
+        while (objectifRemaining > 0 && activityIndex < timeFrameCentreInterets.size())
         {
             timeFrameCentreInteret = timeFrameCentreInterets.get(activityIndex);
 

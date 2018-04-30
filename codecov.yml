@@ -6,3 +6,9 @@ ignore:
 coverage:
   status:
     project: no
+    patch:
+      default:
+        # basic
+        target: 20
+        threshold: 5
+        only_pulls: true
