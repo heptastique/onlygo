@@ -46,22 +46,20 @@ public class ProgrammeController {
             Programme programme = programmeService.getActiveProgrammeOfUser(username);
             return ResponseEntity.ok().body(programme);
         }catch (Exception e) {
-            return ResponseEntity.status(200).body(e.getMessage());
+            return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
     @RequestMapping(path="/programme/getbydate", method = RequestMethod.GET)
-    public ResponseEntity<?> getProgrammeByDate(@RequestParam("date") @Valid String dateString, HttpServletRequest request) throws ParseException {
+    public ResponseEntity<?> getProgrammeByDate(@RequestParam("date") @Valid Date date, HttpServletRequest request) throws ParseException {
         // This returns a JSON or XML with the program of the user for the date (monday) in parameter
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = format.parse(dateString);
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         try{
             Programme programme = programmeService.getProgramOfUserByDate(username, date);
             return ResponseEntity.ok().body(programme);
         }catch (Exception e) {
-            return ResponseEntity.status(200).body(e.getMessage());
+            return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 

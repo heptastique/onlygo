@@ -1,7 +1,7 @@
 # Programmes
 
 ## `GET /programme/active` :key:
-Retourne le programme de la semaine actuelle de l'utilisateur connecté
+Retourne le programme de la semaine actuelle de l'utilisateur connecté.
 
 ### Réponse
 
@@ -134,11 +134,11 @@ Status: 200 OK
 }
 ```
 
-## `GET /programme/getbydate?date=2018-04-23` :key:
+## `GET /programme/getbydate?date=?date=Mon%20Apr%2023%202018` :key:
 Retourne le programme de la semaine de la date passée en paramètre (correspondant à un lundi).
 
 ### Paramètres
-La date est au format yyyy-MM-dd.
+La date est au format DAYOFWEEK%20MONTH%20DAYOFMONTH%20YEAR.
 
 ### Réponse
 
