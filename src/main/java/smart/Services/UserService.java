@@ -79,6 +79,13 @@ public class UserService {
         return user.getObjectifHebdo();
     }
 
+    public double setDistanceMax(String username, double distance){
+        User user = userRepository.findByUsername(username) ;
+        user.setDistanceMax(distance);
+        userRepository.save(user);
+        return user.getDistanceMax();
+    }
+
     public Iterable<User> getAllUsers(){
         return userRepository.findAll();
     }
@@ -97,6 +104,11 @@ public class UserService {
         User user = userRepository.findByUsername(username) ;
         return user.getObjectifHebdo();
     }
+    public double getDistanceMax(String username) {
+        User user = userRepository.findByUsername(username) ;
+        return user.getDistanceMax();
+    }
+
 
     public double getPourcentage(String username) {
         User user = userRepository.findByUsername(username);

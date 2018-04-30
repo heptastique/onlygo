@@ -10,7 +10,6 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@JSONNORECURSION_ID")
 @Table(name = "users")
@@ -56,6 +55,9 @@ public class User {
     @JsonIgnore
     private Boolean enabled;
 
+    @Column(name = "DISTANCEMAX" )
+    @org.hibernate.annotations.ColumnDefault("5")
+    private double distanceMax ;
     @Column(name = "LASTPASSWORDRESETDATE")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
@@ -165,5 +167,12 @@ public class User {
 
     public void setProgrammes(List<Programme> programmes) {
         this.programmes = programmes;
+    }
+
+    public double getDistanceMax(){
+        return distanceMax;
+    }
+    public void setDistanceMax(double distanceMax){
+        this.distanceMax=distanceMax;
     }
 }

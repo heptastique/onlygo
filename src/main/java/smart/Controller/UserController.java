@@ -143,4 +143,24 @@ public class UserController {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
+    @RequestMapping(path="/user/maxDistance", method = RequestMethod.GET)
+    public ResponseEntity<?> getDistanceMax(HttpServletRequest request) {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        try {
+            User user = userService.getUserByUsername(username);
+            return ResponseEntity.ok().body("{\"distanceCourseMax\":" +  user.getDistanceMax() + "}");
+        }catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+    @RequestMapping(path="/user/maxDistance", method = RequestMethod.PUT)
+    public ResponseEntity<?> setDistanceMax(@RequestBody DistanceDto distance, HttpServletRequest request) {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        userService.setDistanceMax(username,distance.getDistance());
+        DistanceDto updatedDistance = new DistanceDto();
+        updatedDistance.setDistance(userService.getDistanceMax(username));
+        return ResponseEntity.ok().body(updatedDistance);
+    }
 }

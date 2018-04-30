@@ -48,7 +48,7 @@ public class ProgramActivities
     final double cDistanceUserToCentreInteretEvaluation = 1.0;
 
     // @TODO Max Distance/Duration of Activity for User
-    final int distanceCourseMax = 5;
+//    final int distanceCourseMax = 5;
 
     class TimeFrameCentreInteret
     {
@@ -61,6 +61,7 @@ public class ProgramActivities
     {
         double objectifHebdo = user.getObjectifHebdo();
         double objectifRemaining = objectifHebdo;
+        double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
 
         double distanceUserToCentreInteret;
