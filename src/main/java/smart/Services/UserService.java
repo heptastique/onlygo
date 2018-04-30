@@ -53,6 +53,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastPasswordResetDate(date);
         user.setEnabled(true);
+        user.setObjectifHebdo(userDto.getObjectifHebdo());
         try{
             user.setAuthorities(Arrays.asList(authorityService.getAuthority(1)));
         }catch (Exception e){
