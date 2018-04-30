@@ -15,4 +15,9 @@ public class SportService {
     public Iterable<Sport> getAllSports(){
         return sportRepository.findAll();
     }
+
+    public Sport getSport(String name)
+    {
+        return sportRepository.findByNom(name);
+    }
 }

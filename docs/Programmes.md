@@ -1,7 +1,7 @@
 # Programmes
 
 ## `GET /programme/active` :key:
-Retourne le programme de la semaine actuelle de l'utilisateur connecté
+Retourne le programme de la semaine actuelle de l'utilisateur connecté.
 
 ### Réponse
 
@@ -55,6 +55,10 @@ Status: 200 OK
         }
     ]
 }
+```
+```
+Status: 204 No Content
+(if no active program)
 ```
 
 ## `GET /programme/generate` :key:
@@ -131,4 +135,121 @@ Status: 200 OK
         }
     ],
     "realisations": null
-}```
+}
+```
+
+## `GET /programme/getbydate?date=?date=Mon%20Apr%2023%202018` :key:
+Retourne le programme de la semaine de la date passée en paramètre (correspondant à un lundi).
+
+### Paramètres
+La date est au format DAYOFWEEK%20MONTH%20DAYOFMONTH%20YEAR.
+
+### Réponse
+
+```
+Status: 200 OK
+```
+
+```json
+{
+    "@JSONNORECURSION_PROGRAMMEID": 1,
+    "id": 200,
+    "activites": [
+        {
+            "@JSONNORECURSION_ACTIVITYID": 2,
+            "id": 100,
+            "sport": {
+                "id": 1,
+                "nom": "Course",
+                "kmH": 12,
+                "kcalH": 880,
+                "kcalKm": 73.333336
+            },
+            "distance": 200,
+            "date": "2018-04-23",
+            "estRealisee": false,
+            "centreInteret": {
+                "id": 10000,
+                "name": "Parc de la Tête d'Or",
+                "point": {
+                    "id": 10000,
+                    "x": 45.77846429629631,
+                    "y": 4.852797629629627
+                }
+            },
+            "timeFrame": null
+        },
+        {
+            "@JSONNORECURSION_ACTIVITYID": 3,
+            "id": 300,
+            "sport": {
+                "id": 2,
+                "nom": "Marche",
+                "kmH": 4,
+                "kcalH": 245,
+                "kcalKm": 61.25
+            },
+            "distance": 200,
+            "date": "2018-04-24",
+            "estRealisee": false,
+            "centreInteret": {
+                "id": 10000,
+                "name": "Parc de la Tête d'Or",
+                "point": {
+                    "id": 10000,
+                    "x": 45.77846429629631,
+                    "y": 4.852797629629627
+                }
+            },
+            "timeFrame": null
+        },
+        {
+            "@JSONNORECURSION_ACTIVITYID": 4,
+            "id": 200,
+            "sport": {
+                "id": 1,
+                "nom": "Course",
+                "kmH": 12,
+                "kcalH": 880,
+                "kcalKm": 73.333336
+            },
+            "distance": 200,
+            "date": "2018-04-26",
+            "estRealisee": true,
+            "centreInteret": {
+                "id": 10000,
+                "name": "Parc de la Tête d'Or",
+                "point": {
+                    "id": 10000,
+                    "x": 45.77846429629631,
+                    "y": 4.852797629629627
+                }
+            },
+            "timeFrame": null
+        }
+    ],
+    "realisations": [
+        {
+            "@JSONNORECURSION_REALISATIONID": 5,
+            "id": 100,
+            "distance": 300,
+            "date": "2018-04-23",
+            "activite": 4,
+            "centreInteret": {
+                "id": 10000,
+                "name": "Parc de la Tête d'Or",
+                "point": {
+                    "id": 10000,
+                    "x": 45.77846429629631,
+                    "y": 4.852797629629627
+                }
+            },
+            "timeFrame": null
+        }
+    ]
+}
+```
+```
+Status: 204 No Content
+(if no program found for the date in parameter)
+```
