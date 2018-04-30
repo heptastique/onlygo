@@ -154,13 +154,8 @@ public class ProgramActivities
                 timeFrameCentreInteretIndex = 0;
                 while (timeFrameCentreInteretIndex < timeFrameCentreInterets.size())
                 {
-                    System.out.println(timeFrameCentreInterets.get(timeFrameCentreInteretIndex).timeFrame.getJour());
-                    System.out.println(timeFrameCentreInteret.timeFrame.getJour());
-
                     if (timeFrameCentreInterets.get(timeFrameCentreInteretIndex).timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
                     {
-                        System.out.println("remove\n");
-
                         timeFrameCentreInterets.remove(timeFrameCentreInteretIndex);
                     }
                     else
