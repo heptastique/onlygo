@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static java.lang.Math.cos;
 import static java.lang.Math.exp;
 import static java.lang.Math.pow;
 import static java.lang.StrictMath.sqrt;
@@ -93,8 +94,8 @@ public class ProgramActivities
                 timeFrameCentreInteret.centreInteret = centreInteret;
 
                 // Calculate Distance from User to CentreInteret
-                distanceUserToCentreInteret = sqrt(pow(userLocation.getX() - centreInteret.getPoint().getX(), 2) +
-                    pow(userLocation.getY() - centreInteret.getPoint().getY(), 2));
+                distanceUserToCentreInteret = sqrt(pow((userLocation.getX() - centreInteret.getPoint().getX()) * 111000, 2) +
+                    pow((userLocation.getY() - centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - centreInteret.getPoint().getX()), 2));
 
                 // Calculate Evaluation of Distance from User to CentreInteret
                 distanceUserToCentreInteretEvaluation = exp(-kDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteret);
