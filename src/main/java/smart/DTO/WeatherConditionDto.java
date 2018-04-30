@@ -8,6 +8,13 @@ public class WeatherConditionDto{
     private String description;
     private String icon;
 
+    public WeatherConditionDto(int id, String main, String description, String icon) {
+        this.id = id;
+        this.main = main;
+        this.description = description;
+        this.icon = icon;
+    }
+
     public WeatherConditionDto() { }
 
     public int getId() { return id; }

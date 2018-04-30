@@ -9,7 +9,19 @@ public class WeatherElementDto {
     private WeatherMainInformationDto main;
     private WeatherWindDto wind;
     private List<WeatherConditionDto> weather;
-    private double precipitation;
+    private WeatherRainDto rain;
+
+    public WeatherElementDto(String dt_txt, WeatherMainInformationDto main,
+                             WeatherWindDto wind, List<WeatherConditionDto> weather, WeatherRainDto rain) {
+        this.dt_txt = dt_txt;
+        this.main = main;
+        this.wind = wind;
+        this.weather = weather;
+        this.rain =rain;
+    }
+
+    public WeatherElementDto() {
+    }
 
     public String getDt_txt() {
         return dt_txt;
@@ -43,11 +55,11 @@ public class WeatherElementDto {
         this.weather = weather;
     }
 
-    public double getPrecipitation() {
-        return precipitation;
+    public WeatherRainDto getRain() {
+        return rain;
     }
 
-    public void setPrecipitation(double precipitation) {
-        this.precipitation = precipitation;
+    public void setRain(WeatherRainDto rain) {
+        this.rain = rain;
     }
 }
