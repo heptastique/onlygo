@@ -62,8 +62,7 @@ public class TimeFrameControllerTest {
     public void shouldGetEvaluationNow() throws Exception{
         this.mvc
             .perform(get("/timeFrame/evaluation/now").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("note").value("-1.0"));
+            .andExpect(status().is2xxSuccessful());
     }
     @Test
     @WithMockUser(roles = "USER")
