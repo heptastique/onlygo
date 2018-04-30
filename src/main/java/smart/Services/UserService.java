@@ -12,6 +12,7 @@ import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
 import smart.Repositories.AuthoRepository;
+import smart.Repositories.ProgrammeRepository;
 import smart.Repositories.UserRepository;
 
 import java.util.Arrays;
@@ -29,6 +30,9 @@ public class UserService {
 
     @Autowired
     private ProgrammeService programmeService;
+
+    @Autowired
+    private ProgrammeRepository programmeRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -76,6 +80,9 @@ public class UserService {
         User user = userRepository.findByUsername(username) ;
         user.setObjectifHebdo(distance);
         userRepository.save(user);
+        Programme activeProgramme = programmeService.getActiveProgrammeOfUser(username);
+        activeProgramme.setObjectifDistance(distance);
+        programmeRepository.save(activeProgramme);
         return user.getObjectifHebdo();
     }
 
