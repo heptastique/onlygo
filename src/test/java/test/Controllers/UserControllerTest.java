@@ -193,7 +193,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin")
+    @WithMockUser(username = "user10")
     public void correctlySetDistanceGoal() throws Exception{
         DistanceDto distanceDto = new DistanceDto();
         distanceDto.setDistance((float)10);
@@ -201,12 +201,12 @@ public class UserControllerTest {
         Gson gson = new Gson();
         String json = gson.toJson(distanceDto, DistanceDto.class);
 
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("admin");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
 
         mvc.perform(put("/user/objectif").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
 
-        assertEquals(10, userRepository.findByUsername("admin").getObjectifHebdo(), 0);
+        assertEquals(10, userRepository.findByUsername("user10").getObjectifHebdo(), 0);
 
         mvc.perform(get("/user/objectif").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())

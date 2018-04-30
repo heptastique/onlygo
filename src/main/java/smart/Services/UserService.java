@@ -78,11 +78,11 @@ public class UserService {
 
     public double putObjectifHebdo(String username, double distance){
         User user = userRepository.findByUsername(username) ;
-        user.setObjectifHebdo(distance);
-        userRepository.save(user);
         Programme activeProgramme = programmeService.getActiveProgrammeOfUser(username);
         activeProgramme.setObjectifDistance(distance);
         programmeRepository.save(activeProgramme);
+        user.setObjectifHebdo(distance);
+        userRepository.save(user);
         return user.getObjectifHebdo();
     }
 
