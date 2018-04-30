@@ -98,7 +98,7 @@ public class UserService {
         return user.getObjectifHebdo();
     }
 
-    public double getPourcentage(String username) {
+    public double getPourcentageCourant(String username) {
         User user = userRepository.findByUsername(username);
         double realisations=0;
         Programme activeProgram = programmeService.getActiveProgrammeOfUser(username);
@@ -106,6 +106,6 @@ public class UserService {
             realisations +=r.getDistance();
         }
 
-        return 100*realisations/user.getObjectifHebdo();
+        return 100*realisations/activeProgram.getObjectifDistance();
     }
 }

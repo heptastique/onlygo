@@ -22,7 +22,9 @@ import smart.Jwt.JwtAuthenticationResponse;
 import smart.Jwt.JwtTokenUtil;
 import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserFactory;
+import smart.Repositories.ProgrammeRepository;
 import smart.Repositories.UserRepository;
+import smart.Services.ProgrammeService;
 import smart.Services.RealisationService;
 import smart.Services.UserService;
 
@@ -51,6 +53,9 @@ public class UserController {
 
     @Autowired
     private RealisationService realisationService;
+
+    @Autowired
+    private ProgrammeService programmeService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseEntity<?> getAuthenticatedUser(HttpServletRequest request) {
@@ -126,7 +131,7 @@ public class UserController {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         try {
-            return ResponseEntity.ok().body("{\"progression\":" + userService.getPourcentage(username) + "}");
+            return ResponseEntity.ok().body("{\"progression\":" + userService.getPourcentageCourant(username) + "}");
         } catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }

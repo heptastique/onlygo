@@ -69,7 +69,7 @@ public class ProgramActivities
         TimeFrameCentreInteret timeFrameCentreInteret;
         TimeFrameCentreInteret bestTimeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
-        
+
         Sport course = sportService.getSport("Course");
 
         Date currentMondayMidnight = new Date();
@@ -174,6 +174,7 @@ public class ProgramActivities
         // Create Program
         Programme programme = new Programme();
         programme.setUser(user);
+        programme.setObjectifDistance(objectifHebdo);
         programme.setDateDebut(currentMondayMidnight);
 
         Programme exisitingProgramme = programmeRepository.findByUserAndDateDebut(user, currentMondayMidnight).get();
