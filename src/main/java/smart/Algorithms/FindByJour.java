@@ -42,7 +42,7 @@ public class FindByJour {
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
-        while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getFirstDayOfWeek()) {
+        while (calendar.get(Calendar.DAY_OF_WEEK)!=calendar.getFirstDayOfWeek()) {
             calendar.add(Calendar.DATE, -1);
         }
         Date dateFull = calendar.getTime();
@@ -55,6 +55,34 @@ public class FindByJour {
             e.printStackTrace();
         }
         return dateDebut;
+    }
+
+    public static Date findCurrentDate()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date dateFull = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateS = dateFormat.format(dateFull);
+        Date dateDebut = null;
+        try {
+            dateDebut = dateFormat.parse(dateS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateDebut;
+    }
+
+    public static int findCurrentHour()
+    {
+        Calendar calendar = Calendar.getInstance();
+        Date dateFull = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
+        String dateS = dateFormat.format(dateFull);
+        int actualHour = Integer.parseInt(dateS);
+        return actualHour;
     }
 
     private FindByJour()
