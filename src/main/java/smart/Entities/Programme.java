@@ -33,7 +33,7 @@ public class Programme {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDebut;
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(cascade = CascadeType.REMOVE,
         fetch = FetchType.EAGER,
         mappedBy = "programme")
         @Fetch(value = FetchMode.SUBSELECT)
