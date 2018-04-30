@@ -19,6 +19,9 @@ public class CentreInteret {
     @OneToOne(fetch = FetchType.EAGER)
     private Point point;
 
+    @ManyToOne
+    private List<Point> listPoint;
+
     public Long getId() {
         return id;
     }
@@ -41,5 +44,13 @@ public class CentreInteret {
 
     public void setPoint(Point point) {
         this.point = point;
+    }
+
+    public List<Point> getListPoint() {
+        return listPoint;
+    }
+
+    public void setListPoint(List<Point> listPoint) {
+        this.listPoint = listPoint;
     }
 }
