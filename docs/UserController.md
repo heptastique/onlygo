@@ -1,7 +1,6 @@
-# Points d'accès REST 
-#`Utilisateur`
+# Utilisateur
 
-### `POST /user/add` :key:
+## `POST /user/add` :key:
 Création d'un utilisateur
 
 ### Requête
@@ -15,7 +14,7 @@ Création d'un utilisateur
 }
 ```
 
-#### Réponse
+### Réponse
 
 ```
 Status: 201 Created
@@ -36,11 +35,10 @@ Status: 201 Created
 }
 ```
 
-
-### `GET /user` :key:
+## `GET /user` :key:
 Renvoie l'utilisateur actuellement connecté
 
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -64,10 +62,10 @@ Status: 200 OK
 }
 ```
 
-### `GET /user/all`
+## `GET /user/all`
 Renvoie la liste de tous les utilisateurs enregistrés
 
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -130,7 +128,7 @@ Status: 200 OK
 ]
 ```
 
-### `PUT /user/objectif` :key:
+## `PUT /user/objectif` :key:
 Ajout objectif pour l'utilisateur connecté.
 
 ### Requête
@@ -147,15 +145,15 @@ Status: 200 OK
 
 ```json
 {
-    "distance":10.0
+    "distance": 10.0
 }
 ```
 
 
-### `GET /user/objectif` :key:
-Renvoie l'objectif Hebdomadaire de l'utilisateur connecté.
+## `GET /user/objectif` :key:
+Renvoie l'objectif hebdomadaire de l'utilisateur connecté en km.
 
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -167,10 +165,10 @@ Status: 200 OK
 }
 ```
 
-### `GET /user/progression` :key:
-Renvoie le pourcentage de realisation de l'objectif d'utilisateur
+## `GET /user/progression` :key:
+Renvoie le pourcentage de réalisation de l'objectif de l'utilisateur connecté pour le programme de la semaine courante
 
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -182,11 +180,10 @@ Status: 200 OK
 }
 ```
 
+## `GET /user/realisation` :key:
+Renvoie la liste des réalisations de l'utilisateur
 
-### `GET /user/realisation` :key:
-Renvoie list des realisations  d'utilisateur
-
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -219,10 +216,11 @@ Status: 200 OK
     
 ]
 ```
-### `GET /user/location` :key:
-Renvoie la localisation de preference d'utilisateur
 
-#### Réponse
+## `GET /user/location` :key:
+Renvoie la préférence de localisation de départ de l'utilisateur connecté
+
+### Réponse
 
 ```
 Status: 200 OK
@@ -235,8 +233,10 @@ Status: 200 OK
     "y":3.487078
 }
 ```
-### `PUT /user/location` :key:
-Ajout de localisation de preference 
+
+## `PUT /user/location` :key:
+Réglage de la préférence de la localisation de départ de l'utilisateur connecté
+
 ### Requête
 ```json
 {
@@ -245,7 +245,7 @@ Ajout de localisation de preference
 } 
 ```
 
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -259,15 +259,18 @@ Status: 200 OK
     "lastname":"admin",
     "email":"admin@admin.com",
     "objectifHebdo":-1.0,
-    "programmes":[{
-                    "@JSONNORECURSION_PROGRAMMEID":2,
-                    "id":500,"activites":[]
-                    ,"realisations":[]
-                  }],
-    "location":   {
-                    "id":3,
-                    "x":45.78245193913647,
-                    "y":3.487078
-                  }
+    "programmes": 
+        [
+            {
+            "@JSONNORECURSION_PROGRAMMEID":2,
+            "id":500,"activites":[]
+            ,"realisations":[]
+            }
+        ],
+    "location": {
+        "id":3,
+        "x":45.78245193913647,
+        "y":3.487078
+    }
  }
 ```

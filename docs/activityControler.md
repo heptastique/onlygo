@@ -1,5 +1,6 @@
-# `ActivityController`
-### `POST /ativity/add` :key:
+# Activités
+
+## `POST /activity/add` :key:
 Ajoute une activité.
 
 ### Requête
@@ -11,7 +12,7 @@ Ajoute une activité.
 }
 ```
 
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK

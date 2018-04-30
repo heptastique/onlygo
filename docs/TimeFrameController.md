@@ -1,12 +1,9 @@
-# Points d'accès REST 
-#`Plages horaires`
+# Plage horaire
 
+## `GET /timeFrame/all` :key:
+Renvoie la liste de tous les plages horaires enregistrées
 
-
-### `GET /timeFrame/all` :key:
-Renvoie la liste de tous les plages horaires.
-
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -32,38 +29,16 @@ Status: 200 OK
         "jour":"LUNDI",
         "evaluation":-1.0,
         "date":null,
-        "donneeAthmospherique":null
-        ,"weatherData":null,
+        "donneeAthmospherique":null,
+        "weatherData":null,
         "nomJour":"LUNDI"
         }
 ]
 ```
-### `GET /timeFrame/now` :key:
+## `GET /timeFrame/now` :key:
 Renvoie la plage horaire actuelle.
 
-#### Réponse
-
-```
-Status: 200 OK
-```
-
-```json
-{
-    "id":54,
-    "heureDebut":15,
-    "heureFin":18,
-    "jour":"DIMANCHE",
-    "evaluation":-1.0,
-    "date":null,
-    "donneeAthmospherique":null,
-    "weatherData":null,
-    "nomJour":"DIMANCHE"
-}
-```
-### `GET /timeFrame/time` :key:
-Renvoie la plage horaire d'utilisateur.
-
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -83,10 +58,36 @@ Status: 200 OK
 }
 ```
 
-### `GET /timeFrame/evaluation/now` :key:
+## `GET /timeFrame/time` :key:
+Renvoie la plage horaire correspondant à la date donnée en paramètre de requête.
+
+### Paramètres
+
+
+### Réponse
+
+```
+Status: 200 OK
+```
+
+```json
+{
+    "id":54,
+    "heureDebut":15,
+    "heureFin":18,
+    "jour":"DIMANCHE",
+    "evaluation":-1.0,
+    "date":null,
+    "donneeAthmospherique":null,
+    "weatherData":null,
+    "nomJour":"DIMANCHE"
+}
+```
+
+## `GET /timeFrame/evaluation/now` :key:
 Renvoie evaluation de  la plage horaire actuelle.
 
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK
@@ -94,12 +95,12 @@ Status: 200 OK
 
 ```json
 {
- "note":-1.0   
+ "note": 0.8
 }
 ```
 
 ### `GET /timeFrame/evaluation/time` :key:
-Renvoie evaluation de  la plage horaire d'utilisateur.
+Renvoie l'évaluation de la plage horaire donnée en paramètre
 
 #### Réponse
 
@@ -109,6 +110,6 @@ Status: 200 OK
 
 ```json
 {
- "note":-1.0   
+ "note": 0.8
 }
 ```

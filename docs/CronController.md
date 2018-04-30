@@ -1,10 +1,9 @@
-#Points d'accès REST
-# `Mise a jour de donnees meteo`
-### `get /update` :key:
-mise a jour des donnees meteo
+# Cron
 
-#### Réponse
+## `GET /update` :key:
+Mise à jour des données météo et pollition
 
+### Réponse
 ```
 Status: 200 OK
 ```

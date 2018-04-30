@@ -1,9 +1,9 @@
-#Points d'accès REST
-#`Sport`
-### `GET /sport/all` :key:
+# Sports
+
+## `GET /sport/all` :key:
 Renvoie la liste de tous les sports.
 
-#### Réponse
+### Réponse
 
 ```
 Status: 200 OK

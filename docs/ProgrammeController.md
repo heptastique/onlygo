@@ -1,9 +1,8 @@
-#Points d'accès REST
-#`Programme`
+# Programmes
 
-### `GET /programme/active` :key:
-Retourne le programme de la semaine actuelle.
-(Identifie l'utilisateur à partir de son token).
+## `GET /programme/active` :key:
+Retourne le programme de la semaine actuelle de l'utilisateur connecté
+
 #### Réponse
 
 ```
