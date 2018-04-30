@@ -118,7 +118,7 @@ Status: 200 OK
 Renvoie l'évaluation de la plage horaire donnée en paramètre
 
 ### Paramètres
-time
+time au format yyyy-MM-dd-hh
 #### Réponse
 
 ```
