@@ -46,7 +46,7 @@ public class ProgrammeController {
             Programme programme = programmeService.getActiveProgrammeOfUser(username);
             return ResponseEntity.ok().body(programme);
         }catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
+            return ResponseEntity.status(204).body(e.getMessage());
         }
     }
 
@@ -59,7 +59,7 @@ public class ProgrammeController {
             Programme programme = programmeService.getProgramOfUserByDate(username, date);
             return ResponseEntity.ok().body(programme);
         }catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
+            return ResponseEntity.status(204).body(e.getMessage());
         }
     }
 
