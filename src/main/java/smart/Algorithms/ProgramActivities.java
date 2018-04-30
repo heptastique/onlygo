@@ -147,7 +147,7 @@ public class ProgramActivities
         programme.setUser(user);
         programme.setDateDebut(currentMondayMidnight);
 
-        Programme exisitingProgramme = programmeRepository.findByUserAndDateDebut(user, currentMondayMidnight);
+        Programme exisitingProgramme = programmeRepository.findByUserAndDateDebut(user, currentMondayMidnight).get();
 
         if(exisitingProgramme != null) {
             for(Activity existingActivity : exisitingProgramme.getActivites()) {
