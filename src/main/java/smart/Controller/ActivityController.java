@@ -56,7 +56,7 @@ public class ActivityController {
         Activity activity = activityService.getNextActivity(programme);
         if(activity==null)
         {
-            return ResponseEntity.status(400).body("Plus d'activité prévue.\nVous avez terminé votre programme de la semaine !");
+            return ResponseEntity.status(204).body("Plus d'activité prévue.\nVous avez terminé votre programme de la semaine !");
         }
         return ResponseEntity.ok().body(activity);
     }
