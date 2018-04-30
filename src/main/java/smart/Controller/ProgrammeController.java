@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import smart.Algorithms.ProgramActivities;
-import smart.DTO.ProgrammeDTO;
 import smart.Entities.Programme;
 import smart.Entities.User;
 import smart.Jwt.JwtTokenUtil;
@@ -14,8 +13,10 @@ import smart.Services.ProgrammeService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8100" )
@@ -45,21 +46,22 @@ public class ProgrammeController {
             Programme programme = programmeService.getActiveProgrammeOfUser(username);
             return ResponseEntity.ok().body(programme);
         }catch (Exception e) {
-            return ResponseEntity.status(400).body(e.getMessage());
+            return ResponseEntity.status(200).body(e.getMessage());
         }
     }
 
-    @RequestMapping(path="/programme/getbydate", method = RequestMethod.POST)
-    public ResponseEntity<?> getProgrammeByDate(@RequestBody @Valid ProgrammeDTO programmeDTO, HttpServletRequest request) {
-        Date dateDebut = programmeDTO.getDateDebut();
+    @RequestMapping(path="/programme/getbydate", method = RequestMethod.GET)
+    public ResponseEntity<?> getProgrammeByDate(@RequestParam("date") @Valid String dateString, HttpServletRequest request) throws ParseException {
         // This returns a JSON or XML with the program of the user for the date (monday) in parameter
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(dateString);
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         try{
-            Programme programme = programmeService.getProgramOfUserByDate(username, dateDebut);
+            Programme programme = programmeService.getProgramOfUserByDate(username, date);
             return ResponseEntity.ok().body(programme);
         }catch (Exception e) {
-            return ResponseEntity.status(400).body(e.getMessage());
+            return ResponseEntity.status(200).body(e.getMessage());
         }
     }
 
