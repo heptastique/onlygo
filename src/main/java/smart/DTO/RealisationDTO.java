@@ -6,12 +6,7 @@ import java.util.Date;
 public class RealisationDTO {
 
     @NotNull
-    private Long sportId;
-
-    @NotNull
     private float distance;
-
-    private Long activityId;
 
     @NotNull
     private Date date;
@@ -32,22 +27,6 @@ public class RealisationDTO {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Long getSportId() {
-        return sportId;
-    }
-
-    public void setSportId(Long sportId) {
-        this.sportId = sportId;
-    }
-
-    public Long getActivityId() {
-        return activityId;
-    }
-
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
     }
 
     public Long getCiId() {

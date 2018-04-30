@@ -24,10 +24,13 @@ public class RealisationService {
     RealisationRepository realisationRepository;
 
     @Autowired
-    SportRepository sportRepository;
+    CentreInteretRepository centreInteretRepository;
 
     @Autowired
-    CentreInteretRepository centreInteretRepository;
+    TimeFrameRepository timeFrameRepository;
+
+    @Autowired
+    ActivityService activityService;
 
     @Autowired
     private UserRepository userRepository;
@@ -54,26 +57,25 @@ public class RealisationService {
         return realisations;
     }
 
-    public Realisation addRealisation(RealisationDTO realisationDTO, String username) throws RealisationException, SportException, ProgrammeException, ActivityException, CentreInteretException {
+    public Realisation addRealisation(RealisationDTO realisationDTO, String username) throws RealisationException, SportException, ProgrammeException, ActivityException, CentreInteretException, TimeFrameException {
         User user = userRepository.findByUsername(username);
-        Long sportId = realisationDTO.getSportId();
-        Long activityId = realisationDTO.getActivityId();
         Long centreinteretId = realisationDTO.getCiId();
-        Date dateRealisation = realisationDTO.getDate();
         float distanceRealisation = realisationDTO.getDistance();
-        Sport sport;
+
+        // Date
+        Date dateRealisation = realisationDTO.getDate();
+        Jour day = FindByJour.findDay(dateRealisation);
+        int heureDebut = dateRealisation.getHours();
+
         Programme programme;
-        CentreInteret centreInteret = null;
-        Activity activity = null;
+        Activity activity;
         Realisation realisation;
+        CentreInteret centreInteret = null;
+        TimeFrame timeFrame;
+        Date dateDebutProgramme = FindByJour.findFirstDayOfCurrentWeek();
+
         try {
-            sport = sportRepository.findById(sportId).get();
-        } catch (Exception e) {
-            throw new SportException("Le sport sélectionné n'existe pas.", e);
-        }
-        Date dateDebut = FindByJour.findFirstDayOfCurrentWeek();
-        try {
-            programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
+            programme = programmeRepository.findByUserAndDateDebut(user, dateDebutProgramme).get();
         } catch (Exception e) {
             throw new ProgrammeException("Aucun programme actif trouvé pour l'utilisateur.", e);
         }
@@ -85,36 +87,24 @@ public class RealisationService {
             throw new CentreInteretException("Le centre d'intérêt n'existe pas.", e);
         }
 
-        // Associating realisation to a planned and not realised yet activity
-        if (activityId != null) {
-            List<Activity> progActivities = programme.getActivites();
-            for(Activity ac : progActivities)
-            {
-                if((long)ac.getId()==(long)activityId
-                    && (long)ac.getProgramme().getUser().getId()==(long)user.getId()
-                    && !ac.isEstRealisee())
-                    {
-                        activity = ac;
-                        break;
-                    }
-            }
-            if(activity==null)
-            {
-                throw new ActivityException("L'activité sélectionnée n'existe pas ou a déjà été réalisée.", new Exception());
-            }
-            realisation = new Realisation(distanceRealisation, dateRealisation, activity, centreInteret);
-            activity.setEstRealisee(true);
-            programme.addRealisation(realisation);
+        try {
+            timeFrame = timeFrameRepository.findByJourHour(day, heureDebut);
+        } catch (Exception e) {
+            throw new TimeFrameException("Aucune timeframe correspondant à la date n'a été trouvée.", e);
         }
 
-        // Creating a new activity for the realisation
-        else {
-            activity = new Activity(sport, distanceRealisation, programme, dateRealisation, centreInteret, true);
-            realisation = new Realisation(distanceRealisation, dateRealisation, activity, centreInteret);
-            programme.addActivity(activity);
-            programme.addRealisation(realisation);
+        // Associating realisation to the next (planned but not realised yet) activity
+        activity = activityService.getNextActivity(programme);
+        if(activity==null)
+        {
+            throw new ActivityException("Plus d'activité à terminer dans le programme de la semaine.");
         }
-        realisationRepository.save(realisation);
-        return realisation;
+        else
+        {
+            realisation = new Realisation(distanceRealisation, dateRealisation, activity, centreInteret, timeFrame);
+            activity.setEstRealisee(true);
+            programme.addRealisation(realisation);
+            return realisationRepository.save(realisation);
+        }
     }
 }
