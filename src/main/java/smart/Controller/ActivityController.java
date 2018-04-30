@@ -3,8 +3,10 @@ package smart.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import smart.DTO.ActivityDTO;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import smart.Entities.Activity;
 import smart.Entities.Programme;
 import smart.Jwt.JwtTokenUtil;
@@ -12,7 +14,6 @@ import smart.Services.ActivityService;
 import smart.Services.ProgrammeService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8100" )
@@ -29,16 +30,6 @@ public class ActivityController {
 
     @Autowired
     private ProgrammeService programmeService;
-
-    @RequestMapping(path="/activity/add", method = RequestMethod.POST)
-    public ResponseEntity<?> addActivity(@RequestBody @Valid ActivityDTO activityDTO, HttpServletRequest request) {
-        try{
-            Activity activity = activityService.addActivity(activityDTO, true);
-            return ResponseEntity.ok().body(activity);
-        }catch (Exception e) {
-            return ResponseEntity.status(400).body(e.getMessage());
-        }
-    }
 
     @RequestMapping(path="/activity/nextPlanned", method = RequestMethod.GET)
     public ResponseEntity<?> getNextPlannedActivity(HttpServletRequest request) {
