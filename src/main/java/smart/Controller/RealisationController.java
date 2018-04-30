@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import smart.DTO.RealisationDTO;
+import smart.Entities.Activity;
 import smart.Entities.Programme;
 import smart.Entities.Realisation;
 import smart.Entities.User;
 import smart.Jwt.JwtTokenUtil;
 import smart.Repositories.UserRepository;
+import smart.Services.ActivityService;
 import smart.Services.ProgrammeService;
 import smart.Services.RealisationService;
 
@@ -30,6 +32,12 @@ public class RealisationController {
     @Autowired
     private RealisationService realisationService;
 
+    @Autowired
+    private ActivityService activityService;
+
+    @Autowired
+    private ProgrammeService programmeService;
+
     @RequestMapping(path="/realisation/add", method = RequestMethod.POST)
     public ResponseEntity<?> addRealisation(@RequestBody @Valid RealisationDTO realisationDTO, HttpServletRequest request) {
         // This returns a JSON or XML with the active program of the user (current week and all the activities it contains)
@@ -37,7 +45,9 @@ public class RealisationController {
         String username = jwtTokenUtil.getUsernameFromToken(token);
 
         try{
-            Realisation realisation = realisationService.addRealisation(realisationDTO, username);
+            Programme programme = programmeService.getActiveProgrammeOfUser(username);
+            Activity activity = activityService.getNextActivity(programme);
+            Realisation realisation = realisationService.addRealisation(realisationDTO, programme, activity);
             return ResponseEntity.ok().body(realisation);
         }catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());

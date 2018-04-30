@@ -13,11 +13,14 @@ import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
 import smart.DTO.RealisationDTO;
 import smart.DTO.UserDto;
+import smart.Entities.Activity;
+import smart.Entities.Programme;
 import smart.Entities.Realisation;
 import smart.Entities.User;
-import smart.Exceptions.CentreInteretException;
 import smart.Exceptions.ProgrammeException;
 import smart.Repositories.UserRepository;
+import smart.Services.ActivityService;
+import smart.Services.ProgrammeService;
 import smart.Services.RealisationService;
 import smart.Services.UserService;
 
@@ -38,6 +41,12 @@ public class RealisationServiceTest {
 
     @Autowired
     private RealisationService realisationService;
+
+    @Autowired
+    private ActivityService activityService;
+
+    @Autowired
+    private ProgrammeService programmeService;
 
     @Autowired
     private UserRepository userRepository;
@@ -75,8 +84,9 @@ public class RealisationServiceTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        realisationDTO.setCiId(10000L);
-        Realisation realisationAdded = realisationService.addRealisation(realisationDTO,"user");
+        Programme programme = programmeService.getActiveProgrammeOfUser("user");
+        Activity activity = activityService.getNextActivity(programme);
+        Realisation realisationAdded = realisationService.addRealisation(realisationDTO,programme, activity);
         assertEquals((int)realisationAdded.getDistance(), 2);
         assertEquals((long)realisationAdded.getCentreInteret().getId(), (long)10000);
     }
@@ -91,21 +101,8 @@ public class RealisationServiceTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        realisationDTO.setCiId(10000L);
-        realisationService.addRealisation(realisationDTO,"admin");
-    }
-
-    @Test(expected = CentreInteretException.class)
-    public void realisationAddedCIException() throws CentreInteretException {
-        RealisationDTO realisationDTO = new RealisationDTO();
-        realisationDTO.setDistance(2);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            realisationDTO.setDate(dateFormat.parse("2018-05-01 16:04:12"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        realisationDTO.setCiId(999999L);
-        realisationService.addRealisation(realisationDTO,"user");
+        Programme programme = programmeService.getActiveProgrammeOfUser("admin");
+        Activity activity = activityService.getNextActivity(programme);
+        realisationService.addRealisation(realisationDTO, programme, activity);
     }
 }

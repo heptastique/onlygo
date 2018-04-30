@@ -54,7 +54,6 @@ public class RealisationControllerTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        realisationDTO.setCiId(10000L);
 
         Gson gson = new Gson();
         String json = gson.toJson(realisationDTO, RealisationDTO.class);

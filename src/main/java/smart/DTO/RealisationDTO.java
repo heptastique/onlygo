@@ -11,8 +11,6 @@ public class RealisationDTO {
     @NotNull
     private Date date;
 
-    private Long ciId;
-
     public float getDistance() {
         return distance;
     }
@@ -27,13 +25,5 @@ public class RealisationDTO {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Long getCiId() {
-        return ciId;
-    }
-
-    public void setCiId(Long ciId) {
-        this.ciId = ciId;
     }
 }

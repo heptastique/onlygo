@@ -7,8 +7,7 @@ Ajoute une réalisation et l'associe à la prochaine activité du programme.
 ```json
 {
 	"distance": 2000,
-	"date": "2018-04-24T16:04:12",
-	"ciId": 10001
+	"date": "2018-04-24T16:04:12"
 }
 ```
 

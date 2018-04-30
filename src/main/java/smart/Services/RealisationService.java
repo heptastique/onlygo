@@ -57,9 +57,7 @@ public class RealisationService {
         return realisations;
     }
 
-    public Realisation addRealisation(RealisationDTO realisationDTO, String username) throws RealisationException, SportException, ProgrammeException, ActivityException, CentreInteretException, TimeFrameException {
-        User user = userRepository.findByUsername(username);
-        Long centreinteretId = realisationDTO.getCiId();
+    public Realisation addRealisation(RealisationDTO realisationDTO, Programme programme, Activity activity) throws RealisationException, SportException, TimeFrameException {
         float distanceRealisation = realisationDTO.getDistance();
 
         // Date
@@ -67,25 +65,9 @@ public class RealisationService {
         Jour day = FindByJour.findDay(dateRealisation);
         int heureDebut = dateRealisation.getHours();
 
-        Programme programme;
-        Activity activity;
         Realisation realisation;
-        CentreInteret centreInteret = null;
         TimeFrame timeFrame;
-        Date dateDebutProgramme = FindByJour.findFirstDayOfCurrentWeek();
-
-        try {
-            programme = programmeRepository.findByUserAndDateDebut(user, dateDebutProgramme).get();
-        } catch (Exception e) {
-            throw new ProgrammeException("Aucun programme actif trouvé pour l'utilisateur.", e);
-        }
-        try {
-            if (centreinteretId != null) {
-                centreInteret = centreInteretRepository.findById(centreinteretId).get();
-            }
-        } catch (Exception e) {
-            throw new CentreInteretException("Le centre d'intérêt n'existe pas.", e);
-        }
+        CentreInteret centreInteret;
 
         try {
             timeFrame = timeFrameRepository.findByJourHour(day, heureDebut);
@@ -94,13 +76,13 @@ public class RealisationService {
         }
 
         // Associating realisation to the next (planned but not realised yet) activity
-        activity = activityService.getNextActivity(programme);
         if(activity==null)
         {
             throw new ActivityException("Plus d'activité à terminer dans le programme de la semaine.");
         }
         else
         {
+            centreInteret = activity.getCentreInteret();
             realisation = new Realisation(distanceRealisation, dateRealisation, activity, centreInteret, timeFrame);
             activity.setEstRealisee(true);
             programme.addRealisation(realisation);
