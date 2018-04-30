@@ -12,6 +12,7 @@ import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
 import smart.Repositories.AuthoRepository;
+import smart.Repositories.ProgrammeRepository;
 import smart.Repositories.UserRepository;
 
 import java.util.Arrays;
@@ -29,6 +30,9 @@ public class UserService {
 
     @Autowired
     private ProgrammeService programmeService;
+
+    @Autowired
+    private ProgrammeRepository programmeRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -75,6 +79,9 @@ public class UserService {
 
     public double putObjectifHebdo(String username, double distance){
         User user = userRepository.findByUsername(username) ;
+        Programme activeProgramme = programmeService.getActiveProgrammeOfUser(username);
+        activeProgramme.setObjectifDistance(distance);
+        programmeRepository.save(activeProgramme);
         user.setObjectifHebdo(distance);
         userRepository.save(user);
         return user.getObjectifHebdo();
@@ -99,7 +106,7 @@ public class UserService {
         return user.getObjectifHebdo();
     }
 
-    public double getPourcentage(String username) {
+    public double getPourcentageCourant(String username) {
         User user = userRepository.findByUsername(username);
         double realisations=0;
         Programme activeProgram = programmeService.getActiveProgrammeOfUser(username);
@@ -107,6 +114,6 @@ public class UserService {
             realisations +=r.getDistance();
         }
 
-        return 100*realisations/user.getObjectifHebdo();
+        return 100*realisations/activeProgram.getObjectifDistance();
     }
 }
