@@ -70,17 +70,7 @@ public class ProgramActivities
         TimeFrameCentreInteret bestTimeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
         
-        // @TODO sportService.getSport(nomSport)
-
-        Iterable <Sport> sports = sportService.getAllSports();
-        Sport course = new Sport();
-        for (Sport sport : sports)
-        {
-            if (sport.getNom().equals("Course"))
-            {
-                course = sport;
-            }
-        }
+        Sport course = sportService.getSport("Course");
 
         Date currentMondayMidnight = new Date();
         while (findByJour.findDay(currentMondayMidnight) != Jour.LUNDI)
