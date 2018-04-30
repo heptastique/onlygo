@@ -62,8 +62,7 @@ Status: 200 OK
 Renvoie la plage horaire correspondant à la date donnée en paramètre de requête.
 
 ### Paramètres
-
-
+time
 ### Réponse
 
 ```
@@ -81,6 +80,22 @@ Status: 200 OK
     "donneeAthmospherique":null,
     "weatherData":null,
     "nomJour":"DIMANCHE"
+}
+```
+
+### Exemple
+localhost:8080/timeFrame/time?time=2018-05-01-09
+```json
+{
+    "id": 12,
+    "heureDebut": 9,
+    "heureFin": 12,
+    "jour": "MARDI",
+    "evaluation": -1,
+    "date": null,
+    "donneeAthmospherique": null,
+    "weatherData": null,
+    "nomJour": "MARDI"
 }
 ```
 
@@ -102,6 +117,8 @@ Status: 200 OK
 ### `GET /timeFrame/evaluation/time` :key:
 Renvoie l'évaluation de la plage horaire donnée en paramètre
 
+### Paramètres
+time
 #### Réponse
 
 ```
@@ -112,4 +129,10 @@ Status: 200 OK
 {
  "note": 0.8
 }
+```
+
+### Exemple
+localhost:8080/timeFrame/evaluation/time?time=2018-05-01-09
+```json
+{"note":-1.0}
 ```
