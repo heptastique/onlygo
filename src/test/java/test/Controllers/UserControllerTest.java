@@ -221,4 +221,13 @@ public class UserControllerTest {
             .header("Authorization", "Bearer anyToken"))
             .andExpect(status().is2xxSuccessful());
     }
+
+    @Test
+    @WithMockUser(username = "user")
+    public void  getUserProgression() throws Exception{
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        mvc.perform(get("/user/progression")
+            .header("Authorization", "Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful());
+    }
 }

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import smart.DTO.ActivityDTO;
 import smart.Entities.*;
+import smart.Repositories.ActivityRepository;
+import smart.Repositories.ProgrammeRepository;
 import smart.Services.*;
 
 import java.util.ArrayList;
@@ -31,6 +33,12 @@ public class ProgramActivities
 
     @Autowired
     private ProgrammeService programmeService;
+
+    @Autowired
+    private ProgrammeRepository programmeRepository;
+
+    @Autowired
+    private ActivityRepository activityRepository;
 
     @Autowired
     private FindByJour findByJour;
@@ -129,10 +137,27 @@ public class ProgramActivities
         // Create Program
         Programme programme = new Programme();
         programme.setUser(user);
-        programme.setActivites(activities);
         programme.setDateDebut(currentMondayMidnight);
 
-        programmeService.saveProgram(programme);
+        Programme exisitingProgramme = programmeRepository.findByUserAndDateDebut(user, currentMondayMidnight).get();
+
+        if(exisitingProgramme != null) {
+            for(Activity existingActivity : exisitingProgramme.getActivites()) {
+                activityRepository.delete(existingActivity);
+            }
+            programme.setId(exisitingProgramme.getId());
+        }
+
+        programme = programmeService.saveProgram(programme);
+
+        for(Activity activityTemp : activities) {
+            activityTemp.setProgramme(programme);
+            activityRepository.save(activityTemp);
+        }
+
+        programme.setActivites(activities);
+
+        programme = programmeService.saveProgram(programme);
 
         return programme;
     }

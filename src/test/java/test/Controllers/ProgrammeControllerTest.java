@@ -5,14 +5,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
+import smart.Jwt.JwtTokenUtil;
 
+import java.text.SimpleDateFormat;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -20,9 +25,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class TimeFrameControllerTest {
+public class ProgrammeControllerTest {
 
     private MockMvc mvc;
+
+    @MockBean
+    private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
     private WebApplicationContext context;
@@ -37,40 +45,18 @@ public class TimeFrameControllerTest {
 
     @Test
     @WithMockUser(roles = "USER")
-    public void shouldGetAllTimeFrame() throws Exception{
-        this.mvc
-            .perform(get("/timeFrame/all").accept(MediaType.APPLICATION_JSON))
+    public void shouldGetActiveProgrammeOfUser() throws Exception{
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+
+        mvc.perform(get("/programme/active").header("Authorization", "Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$[0].id").value("1"));
-    }
-    @Test
-    @WithMockUser(roles = "USER")
-    public void shouldGetTimeFrameNow() throws Exception{
-        this.mvc
-            .perform(get("/timeFrame/now").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().is2xxSuccessful());
-    }
-    @Test
-    @WithMockUser(roles = "USER")
-    public void shouldGetTimeFrameTime() throws Exception{
-        this.mvc
-            .perform(get("/timeFrame/time?time=2018-04-28-09").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().is2xxSuccessful());
-    }
-    @Test
-    @WithMockUser(roles = "USER")
-    public void shouldGetEvaluationNow() throws Exception{
-        this.mvc
-            .perform(get("/timeFrame/evaluation/now").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().is2xxSuccessful());
-    }
-    @Test
-    @WithMockUser(roles = "USER")
-    public void shouldGetEvaluationTime() throws Exception{
-        this.mvc
-            .perform(get("/timeFrame/evaluation/time?time=2018-04-28-09").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().is2xxSuccessful());
+            .andExpect(jsonPath("$.id").value("200"));
     }
 
-
+    @Test
+    public void shouldGetUnauthorizedWithoutRole() throws Exception{
+        this.mvc
+            .perform(get("/programme/active"))
+            .andExpect(status().isUnauthorized());
+    }
 }
