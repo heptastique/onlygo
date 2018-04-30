@@ -137,7 +137,7 @@ public class ProgramActivities
         // While Week Objective is not Completed
         int activityIndex = 0;
         int timeFrameCentreInteretIndex;
-        while (objectifRemaining > 0)
+        while (objectifRemaining > 0 && activityIndex < timeFrameCentreInterets.size())
         {
             timeFrameCentreInteret = timeFrameCentreInterets.get(activityIndex);
 
@@ -185,6 +185,7 @@ public class ProgramActivities
         // Create Program
         Programme programme = new Programme();
         programme.setUser(user);
+        programme.setObjectifDistance(objectifHebdo);
         programme.setDateDebut(currentMondayMidnight);
 
         Programme exisitingProgramme = programmeRepository.findByUserAndDateDebut(user, currentMondayMidnight).get();
