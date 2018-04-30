@@ -174,6 +174,7 @@ public class ProgramActivities
         // Create Program
         Programme programme = new Programme();
         programme.setUser(user);
+        programme.setObjectifDistance(objectifHebdo);
         programme.setDateDebut(currentMondayMidnight);
 
         Programme exisitingProgramme = programmeRepository.findByUserAndDateDebut(user, currentMondayMidnight).get();
