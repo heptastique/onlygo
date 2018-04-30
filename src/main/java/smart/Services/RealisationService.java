@@ -90,7 +90,7 @@ public class RealisationService {
         try {
             timeFrame = timeFrameRepository.findByJourHour(day, heureDebut);
         } catch (Exception e) {
-            throw new TimeFrameException("Aucune timeframe correspondant à la date n'a été trouvée.", e);
+            throw new TimeFrameException("Aucune plage horaire correspondant à la date n'a été trouvée.", e);
         }
 
         // Associating realisation to the next (planned but not realised yet) activity
