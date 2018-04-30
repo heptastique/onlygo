@@ -28,6 +28,9 @@ public class Programme {
     @JsonIgnore
     private User user;
 
+    @Column(name = "OBJECTIF_DISTANCE")
+    private Double objectifDistance;
+
     @JoinColumn(name = "DATE_DEBUT", unique = true)
     @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -67,6 +70,14 @@ public class Programme {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Double getObjectifDistance() {
+        return objectifDistance;
+    }
+
+    public void setObjectifDistance(Double objectifDistance) {
+        this.objectifDistance = objectifDistance;
     }
 
     public List<Activity> getActivites() {
