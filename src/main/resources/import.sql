@@ -85,7 +85,7 @@ INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, spo
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, centreinteret_id, timeframe_id) VALUES (500, '2018-05-05', 12, 0, 200, 2, 10000, 23);
 INSERT INTO activity(activity_id, date, distance, estrealisee, programme_id, sport_id, centreinteret_id, timeframe_id) VALUES (600, '2018-05-06', 5, 1, 200, 1, 10000, 47);
 
-INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, centreinteret_id) VALUES (100, '2018-05-01', 11, 200, 200, 10000);
+INSERT INTO realisation(realisation_id, date, distance, activity_id, programme_id, centreinteret_id, timeframe_id) VALUES (100, '2018-05-01', 11, 200, 200, 10000, 11);
 
 
 INSERT INTO point (ID, x, y) VALUES (10000, 45.77846429629631, 4.852797629629627);

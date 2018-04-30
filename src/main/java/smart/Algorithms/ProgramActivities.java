@@ -70,7 +70,7 @@ public class ProgramActivities
         TimeFrameCentreInteret timeFrameCentreInteret;
         TimeFrameCentreInteret bestTimeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
-        
+
         Sport course = sportService.getSport("Course");
 
         Date currentMondayMidnight = new Date();
@@ -82,39 +82,50 @@ public class ProgramActivities
         currentMondayMidnight.setMinutes(0);
         currentMondayMidnight.setSeconds(0);
 
-        // For each TimeFrame
+        Date nextMonday = new Date();
+        nextMonday.setDate(nextMonday.getDate() + 1);
+        while (findByJour.findDay(nextMonday) != Jour.LUNDI)
+        {
+            nextMonday.setDate(nextMonday.getDate() + 1);
+        }
+
+        // For each TimeFrame of the current Week
         Iterable <TimeFrame> timeFrames = timeFrameService.getTimeFrameAll();
         for (TimeFrame timeFrame : timeFrames)
         {
-            // For each CentreInteret
-            Iterable<CentreInteret> centreInterets = centreInteretService.getCentreInteretAll();
-            for (CentreInteret centreInteret : centreInterets)
+            // If TimeFrame is in the current Week
+            if (timeFrame.getDate().getMonth() < nextMonday.getMonth() || timeFrame.getDate().getDate() < nextMonday.getDate())
             {
-                // Create TimeFrameCentreInteret
-                timeFrameCentreInteret = new TimeFrameCentreInteret();
-                timeFrameCentreInteret.timeFrame = timeFrame;
-                timeFrameCentreInteret.centreInteret = centreInteret;
-
-                // Calculate Distance from User to CentreInteret
-                distanceUserToCentreInteret = sqrt(pow((userLocation.getX() - centreInteret.getPoint().getX()) * 111000, 2) +
-                    pow((userLocation.getY() - centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - centreInteret.getPoint().getX()), 2));
-
-                // Calculate Evaluation of Distance from User to CentreInteret
-                distanceUserToCentreInteretEvaluation = exp(-kDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteret);
-
-                // Calculate CentreInteret Evaluation
-                centreInteretEvaluation = cDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteretEvaluation / 1.0;
-
-                // Calculate TimeFrameCentreInteret Evaluation
-                timeFrameCentreInteret.evaluation = timeFrame.getEvaluation() * centreInteretEvaluation;
-
-                // Insert TimeFrameCentreInteret in List, sorted by Evaluation
-                int index = 0;
-                while (index < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index).evaluation > timeFrameCentreInteret.evaluation)
+                // For each CentreInteret
+                Iterable<CentreInteret> centreInterets = centreInteretService.getCentreInteretAll();
+                for (CentreInteret centreInteret : centreInterets)
                 {
-                    index = index + 1;
+                    // Create TimeFrameCentreInteret
+                    timeFrameCentreInteret = new TimeFrameCentreInteret();
+                    timeFrameCentreInteret.timeFrame = timeFrame;
+                    timeFrameCentreInteret.centreInteret = centreInteret;
+
+                    // Calculate Distance from User to CentreInteret
+                    distanceUserToCentreInteret = sqrt(pow((userLocation.getX() - centreInteret.getPoint().getX()) * 111000, 2) +
+                        pow((userLocation.getY() - centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - centreInteret.getPoint().getX()), 2));
+
+                    // Calculate Evaluation of Distance from User to CentreInteret
+                    distanceUserToCentreInteretEvaluation = exp(-kDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteret);
+
+                    // Calculate CentreInteret Evaluation
+                    centreInteretEvaluation = cDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteretEvaluation / 1.0;
+
+                    // Calculate TimeFrameCentreInteret Evaluation
+                    timeFrameCentreInteret.evaluation = timeFrame.getEvaluation() * centreInteretEvaluation;
+
+                    // Insert TimeFrameCentreInteret in List, sorted by Evaluation
+                    int index = 0;
+                    while (index < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index).evaluation > timeFrameCentreInteret.evaluation)
+                    {
+                        index = index + 1;
+                    }
+                    timeFrameCentreInterets.add(index, timeFrameCentreInteret);
                 }
-                timeFrameCentreInterets.add(index, timeFrameCentreInteret);
             }
         }
 
@@ -127,7 +138,7 @@ public class ProgramActivities
         // While Week Objective is not Completed
         int activityIndex = 0;
         int timeFrameCentreInteretIndex;
-        while (objectifRemaining > 0)
+        while (objectifRemaining > 0 && activityIndex < timeFrameCentreInterets.size())
         {
             timeFrameCentreInteret = timeFrameCentreInterets.get(activityIndex);
 
@@ -175,6 +186,7 @@ public class ProgramActivities
         // Create Program
         Programme programme = new Programme();
         programme.setUser(user);
+        programme.setObjectifDistance(objectifHebdo);
         programme.setDateDebut(currentMondayMidnight);
 
         Programme exisitingProgramme = programmeRepository.findByUserAndDateDebut(user, currentMondayMidnight).get();
