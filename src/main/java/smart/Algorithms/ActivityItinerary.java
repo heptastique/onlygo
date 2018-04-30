@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Activity {
+public class ActivityItinerary {
 
     public static List<Point> findActivityItinerary (User user, CentreInteret centreInteret)
     {
