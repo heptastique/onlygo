@@ -68,11 +68,32 @@ public class Activity {
                 }
                 if ( found ){
                     objectif -= distanceMin;
+                    StatutPoints[pointActuel][pointChoisi] = 1;
+                    StatutPoints[pointChoisi][pointActuel] = 1;
                     pointActuel = pointChoisi;
                     itinerary.add(listCIPoints.get(pointActuel));
                     if ( objectif - distancesInterPoints[pointActuel][position] < 0)
                     {
                         break;
+                    }
+                }
+                else {
+                    for (int a =0; a < StatutPoints.length; a++){
+                        for ( int b =0; b< StatutPoints[0].length; b++){
+                            StatutPoints[a][b] = 0;
+                        }
+                    }
+                    found = false;
+                    distanceMin = Double.MAX_VALUE;
+                    pointChoisi = -1;
+                    for ( int j = 0; j < distancesInterPoints[pointActuel].length; j++){
+                        if ( StatutPoints[pointActuel][j] == 0){
+                            if ( distancesInterPoints[pointActuel][j]< distanceMin ){
+                                distanceMin = distancesInterPoints[pointActuel][j];
+                                found = true;
+                                pointChoisi = j;
+                            }
+                        }
                     }
                 }
             }
