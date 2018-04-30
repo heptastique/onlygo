@@ -64,16 +64,6 @@ public class UserController {
         }
     }
 
-    @RequestMapping(path="/user/all", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllUsers() throws ParseException {
-        // This returns a JSON or XML with the users
-        List<JwtUser> jwtUsers = new ArrayList<JwtUser>();
-        for(User user: userService.getAllUsers()){
-            jwtUsers.add(JwtUserFactory.create(user));
-        }
-        return ResponseEntity.ok().body(jwtUsers);
-    }
-
     @RequestMapping(path="/user/add", method = RequestMethod.POST)
     public ResponseEntity<?> addUser(@RequestBody @Valid UserDto userDto, HttpServletRequest request) {
         try{
