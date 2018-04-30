@@ -45,7 +45,14 @@ public class ActivityController {
         // This returns a JSON or XML with the next planned activity of the current program (week) from today onwards.
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        Programme programme = programmeService.getActiveProgrammeOfUser(username);
+        Programme programme;
+
+        try{
+            programme = programmeService.getActiveProgrammeOfUser(username);
+        }catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+
         Activity activity = activityService.getNextActivity(programme);
         if(activity==null)
         {
