@@ -81,21 +81,19 @@ public class ProgramActivities
         currentMondayMidnight.setMinutes(0);
         currentMondayMidnight.setSeconds(0);
 
-        Date nextMondayMidnight = new Date();
-        while (findByJour.findDay(nextMondayMidnight) != Jour.LUNDI)
+        Date nextMonday = new Date();
+        nextMonday.setDate(nextMonday.getDate() + 1);
+        while (findByJour.findDay(nextMonday) != Jour.LUNDI)
         {
-            nextMondayMidnight.setDate(nextMondayMidnight.getDate() + 1);
+            nextMonday.setDate(nextMonday.getDate() + 1);
         }
-        nextMondayMidnight.setHours(0);
-        nextMondayMidnight.setMinutes(0);
-        nextMondayMidnight.setSeconds(0);
 
         // For each TimeFrame of the current Week
         Iterable <TimeFrame> timeFrames = timeFrameService.getTimeFrameAll();
         for (TimeFrame timeFrame : timeFrames)
         {
             // If TimeFrame is in the current Week
-            if (timeFrame.getDate().compareTo(nextMondayMidnight) < 0)
+            if (timeFrame.getDate().getMonth() < nextMonday.getMonth() || timeFrame.getDate().getDate() < nextMonday.getDate())
             {
                 // For each CentreInteret
                 Iterable<CentreInteret> centreInterets = centreInteretService.getCentreInteretAll();
