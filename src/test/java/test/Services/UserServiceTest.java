@@ -227,7 +227,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void AddSameLocation() throws NotFoundException{
+    public void CheckIfLocationSaved() throws NotFoundException{
         UserDto fatherDto = new UserDto();
         UserDto childDto = new UserDto();
         fatherDto.setLastname("White");
@@ -240,16 +240,17 @@ public class UserServiceTest {
         fatherDto.setPassword("password");
         fatherDto.setUsername("hwhiteloctest");
         childDto.setUsername("wwhiteloctest");
+
+        PointDto whiteResidence = new PointDto();
+        whiteResidence.setX(35.126127);
+        whiteResidence.setY(-106.536505);
+
+        childDto.setLocalisation(whiteResidence);
+        fatherDto.setLocalisation(whiteResidence);
+
         long locationCountBefore = pointRepository.count();
         userService.addUser(fatherDto);
         userService.addUser(childDto);
-        assertEquals(locationCountBefore,pointRepository.count());
-        Point whiteResidence = new Point();
-        whiteResidence.setX(35.126127);
-        whiteResidence.setY(-106.536505);
-        userService.addLocationToUser(fatherDto.getUsername(),whiteResidence);
-        assertEquals(locationCountBefore+1,pointRepository.count());
-        userService.addLocationToUser(childDto.getUsername(),whiteResidence);
         assertEquals(locationCountBefore+2,pointRepository.count());
     }
 }
