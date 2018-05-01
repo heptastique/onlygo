@@ -126,6 +126,14 @@ public class ProgramActivities
             }
         }
 
+        // Already Realized Activities
+        Programme activeProgram = programmeService.getActiveProgrammeOfUser(user.getUsername());
+        List <Realisation> realisations = activeProgram.getRealisations();
+        for (Realisation realisation : realisations)
+        {
+            objectifRemaining = objectifRemaining - realisation.getDistance();
+        }
+
         // Create Activities List
         List <Activity> activities = new ArrayList <Activity>();
         Activity savedActivity;
