@@ -148,7 +148,7 @@ public class UserController {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
-    @RequestMapping(path="/user/maxDistance", method = RequestMethod.GET)
+    @RequestMapping(path="/user/maxDistance", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getDistanceMax(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
