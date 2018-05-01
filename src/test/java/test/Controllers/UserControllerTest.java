@@ -111,6 +111,13 @@ public class UserControllerTest {
         userDto.setUsername("adduser");
         userDto.setPassword("password");
 
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocalisation(localisation);
+
         Gson gson = new Gson();
         String json = gson.toJson(userDto, UserDto.class);
 

@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
+import smart.DTO.PointDto;
 import smart.DTO.RealisationDTO;
 import smart.DTO.UserDto;
 import smart.Entities.Activity;
@@ -71,6 +72,14 @@ public class RealisationServiceTest {
         sedentaryDto.setEmail("jf@subway.com");
         sedentaryDto.setUsername("subwayguy");
         sedentaryDto.setPassword("eatfood");
+
+        sedentaryDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        sedentaryDto.setLocalisation(localisation);
+
         User sedentary = userService.addUser(sedentaryDto);
         Iterable<Realisation> realisations = realisationService.getUserRealisations(sedentary);
     }

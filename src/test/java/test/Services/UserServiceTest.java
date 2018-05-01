@@ -82,6 +82,14 @@ public class UserServiceTest {
         userDto.setLastname("Martin");
         userDto.setUsername("pmartin");
         userDto.setPassword("password");
+
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocalisation(localisation);
+
         //call adduser service
         userService.addUser(userDto);
         //test if user has been added
@@ -114,6 +122,14 @@ public class UserServiceTest {
         userDto.setLastname("Martin");
         userDto.setUsername("martin");
         userDto.setPassword("password");
+
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocalisation(localisation);
+
         userService.addUser(userDto);
         //create a user with the same email and different username
         UserDto copycat = new UserDto();
@@ -122,6 +138,14 @@ public class UserServiceTest {
         copycat.setLastname("Martin");
         copycat.setUsername("hugomartin");
         copycat.setPassword("password");
+
+        copycat.setDistanceMax(5);
+
+        PointDto localisation2 = new PointDto();
+        localisation2.setX(1.0);
+        localisation2.setY(1.0);
+        copycat.setLocalisation(localisation2);
+
         userService.addUser(copycat);
     }
 
@@ -134,6 +158,12 @@ public class UserServiceTest {
         userDto.setLastname("Martin");
         userDto.setUsername("hmartin");
         userDto.setPassword("password");
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocalisation(localisation);
         userService.addUser(userDto);
         //create a user with the same username and different email
         UserDto copycat = new UserDto();
@@ -142,6 +172,12 @@ public class UserServiceTest {
         copycat.setLastname("Martin");
         copycat.setUsername("hmartin");
         copycat.setPassword("password");
+        copycat.setDistanceMax(5);
+
+        PointDto localisation2 = new PointDto();
+        localisation2.setX(1.0);
+        localisation2.setY(1.0);
+        copycat.setLocalisation(localisation);
         userService.addUser(copycat);
     }
 
@@ -155,6 +191,13 @@ public class UserServiceTest {
         userDto.setLastname("Astley");
         userDto.setUsername("roll");
         userDto.setPassword("password");
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocalisation(localisation);
+
         User user = userService.addUser(userDto);
         Point location = new Point();
         location.setX(4.8467);
@@ -175,6 +218,8 @@ public class UserServiceTest {
         noLocation.setEmail("nolocation@test.com");
         noLocation.setUsername("noLocationUser");
         noLocation.setPassword("password");
+        noLocation.setDistanceMax(5);
+
         long countBefore = pointRepository.count();
         User user = userService.addUser(noLocation);
         assertNull(user.getLocation());
