@@ -209,22 +209,7 @@ public class UserServiceTest {
         assertEquals(userLocation.getX(),location.getX(),delta);
         assertEquals(userLocation.getY(),location.getY(),delta);
     }
-
-    @Test
-    public void UserLocationCascade() throws NotFoundException{
-        UserDto noLocation = new UserDto();
-        noLocation.setFirstname("Antisthenes");
-        noLocation.setLastname("TheDoge");
-        noLocation.setEmail("nolocation@test.com");
-        noLocation.setUsername("noLocationUser");
-        noLocation.setPassword("password");
-        noLocation.setDistanceMax(5);
-
-        long countBefore = pointRepository.count();
-        User user = userService.addUser(noLocation);
-        assertNull(user.getLocation());
-        assertEquals(countBefore,pointRepository.count());
-    }
+    
 
     @Test
     public void CheckIfLocationSaved() throws NotFoundException{
