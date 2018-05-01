@@ -36,18 +36,9 @@ public class ProgramActivities
     private ProgrammeService programmeService;
 
     @Autowired
-    private ProgrammeRepository programmeRepository;
-
-    @Autowired
     private ActivityRepository activityRepository;
 
-    @Autowired
-    private FindByJour findByJour;
-
-    final double kDistanceUserToCentreInteretEvaluation = 0.0002;
-    final double cDistanceUserToCentreInteretEvaluation = 1.0;
-
-    class TimeFrameCentreInteret
+    private class TimeFrameCentreInteret
     {
         private TimeFrame timeFrame;
         private CentreInteret centreInteret;
@@ -63,15 +54,16 @@ public class ProgramActivities
 
         double distanceUserToCentreInteret;
         double distanceUserToCentreInteretEvaluation;
+        final double kDistanceUserToCentreInteretEvaluation = 0.0002;
+        final double cDistanceUserToCentreInteretEvaluation = 1.0;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
-        TimeFrameCentreInteret bestTimeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
 
         Sport course = sportService.getSport("Course");
 
         Date currentMondayMidnight = new Date();
-        while (findByJour.findDay(currentMondayMidnight) != Jour.LUNDI)
+        while (FindByJour.findDay(currentMondayMidnight) != Jour.LUNDI)
         {
             currentMondayMidnight.setDate(currentMondayMidnight.getDate() - 1);
         }
@@ -81,7 +73,7 @@ public class ProgramActivities
 
         Date nextMonday = new Date();
         nextMonday.setDate(nextMonday.getDate() + 1);
-        while (findByJour.findDay(nextMonday) != Jour.LUNDI)
+        while (FindByJour.findDay(nextMonday) != Jour.LUNDI)
         {
             nextMonday.setDate(nextMonday.getDate() + 1);
         }
@@ -125,7 +117,7 @@ public class ProgramActivities
         }
 
         // Create Activities List
-        List <Activity> activities = new ArrayList <Activity>();
+        List <Activity> activities = new ArrayList <Activity> ();
         Activity savedActivity;
 
         Programme programme = programmeService.getActiveProgrammeOfUser(user.getUsername());
@@ -148,10 +140,7 @@ public class ProgramActivities
             }
 
             // Add already realized Activities to Activities List
-            for (Activity activity : programme.getActivites())
-            {
-                activities.add(activity);
-            }
+            activities.addAll(programme.getActivites());
         }
 
         // @TODO For each Sport
