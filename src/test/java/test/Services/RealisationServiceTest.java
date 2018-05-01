@@ -28,6 +28,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @RunWith(SpringRunner.class)
@@ -84,14 +85,14 @@ public class RealisationServiceTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Programme programme = programmeService.getActiveProgrammeOfUser("user");
+        Programme programme = programmeService.getActiveProgrammeOfUser("user11");
         Activity activity = activityService.getNextActivity(programme);
         Realisation realisationAdded = realisationService.addRealisation(realisationDTO,programme, activity);
         assertEquals((int)realisationAdded.getDistance(), 2);
         assertEquals((long)realisationAdded.getCentreInteret().getId(), (long)10000);
     }
 
-    @Test(expected = ProgrammeException.class)
+    @Test
     public void realisationAddedProgException() throws ProgrammeException {
         RealisationDTO realisationDTO = new RealisationDTO();
         realisationDTO.setDistance(2);
@@ -101,8 +102,7 @@ public class RealisationServiceTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Programme programme = programmeService.getActiveProgrammeOfUser("admin");
-        Activity activity = activityService.getNextActivity(programme);
-        realisationService.addRealisation(realisationDTO, programme, activity);
+        Programme programme = programmeService.getActiveProgrammeOfUser("user");
+        assertNull(programme);
     }
 }

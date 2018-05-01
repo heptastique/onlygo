@@ -46,11 +46,11 @@ public class ProgrammeControllerTest {
     @Test
     @WithMockUser(roles = "USER")
     public void shouldGetActiveProgrammeOfUser() throws Exception{
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
 
         mvc.perform(get("/programme/active").header("Authorization", "Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.id").value("200"));
+            .andExpect(jsonPath("$.id").value("10020"));
     }
 
     @Test
