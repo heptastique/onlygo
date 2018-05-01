@@ -138,12 +138,16 @@ public class ProgramActivities
                 objectifRemaining = objectifRemaining - realisation.getDistance();
             }
 
-            // Add already realized Activities to Activities List
+            // Add already realized Activities to Activities List and remove non realized Activities
             for (Activity activity : programme.getActivites())
             {
                 if (activity.isEstRealisee())
                 {
                     activities.add(activity);
+                }
+                else
+                {
+                    activityRepository.delete(activity);
                 }
             }
         }
