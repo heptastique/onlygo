@@ -139,7 +139,13 @@ public class ProgramActivities
             }
 
             // Add already realized Activities to Activities List
-            activities.addAll(programme.getActivites());
+            for (Activity activity : programme.getActivites())
+            {
+                if (activity.isEstRealisee())
+                {
+                    activities.add(activity);
+                }
+            }
         }
 
         // @TODO For each Sport
