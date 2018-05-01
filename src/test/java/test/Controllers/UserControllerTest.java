@@ -214,9 +214,9 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user")
+    @WithMockUser(username = "user10")
     public void getUserRealisations() throws Exception{
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
         mvc.perform(get("/user/realisation")
             .header("Authorization", "Bearer anyToken"))
             .andExpect(status().is2xxSuccessful());
@@ -238,5 +238,33 @@ public class UserControllerTest {
         mvc.perform(get("/user/progression")
             .header("Authorization", "Bearer anyToken"))
             .andExpect(status().is2xxSuccessful());
+    }
+    @Test
+    @WithMockUser(username = "user10")
+    public void  getDistanceMax() throws Exception {
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
+        mvc.perform(get("/user/maxDistance")
+            .header("Authorization", "Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful());
+    }
+    @Test
+    @WithMockUser(username = "user10")
+    public void correctSetDistanceMax() throws Exception{
+        DistanceDto distanceDto = new DistanceDto();
+        distanceDto.setDistance(10);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(distanceDto, DistanceDto.class);
+
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
+
+        mvc.perform(put("/user/maxDistance").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+
+        assertEquals(10, userRepository.findByUsername("user10").getDistanceMax(), 0);
+
+        mvc.perform(get("/user/maxDistance").header("Authorization","Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(jsonPath("$.distance").value("10.0"));
     }
 }
