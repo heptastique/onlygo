@@ -31,6 +31,12 @@ public class UserDto {
     @NotNull
     private double objectifHebdo;
 
+    @NotNull
+    private double distanceMax;
+
+    @NotNull
+    private PointDto localisation;
+
     public String getUsername() {
         return username;
     }
@@ -77,6 +83,22 @@ public class UserDto {
 
     public void setObjectifHebdo(double objectifHebdo) {
         this.objectifHebdo = objectifHebdo;
+    }
+
+    public double getDistanceMax() {
+        return distanceMax;
+    }
+
+    public void setDistanceMax(double distanceMax) {
+        this.distanceMax = distanceMax;
+    }
+
+    public PointDto getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(PointDto localisation) {
+        this.localisation = localisation;
     }
 
     public String toString(){

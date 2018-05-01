@@ -12,6 +12,7 @@ import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
 import smart.Repositories.AuthoRepository;
+import smart.Repositories.PointRepository;
 import smart.Repositories.ProgrammeRepository;
 import smart.Repositories.UserRepository;
 
@@ -33,6 +34,9 @@ public class UserService {
 
     @Autowired
     private ProgrammeRepository programmeRepository;
+
+    @Autowired
+    private PointRepository pointRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -58,11 +62,21 @@ public class UserService {
         user.setLastPasswordResetDate(date);
         user.setEnabled(true);
         user.setObjectifHebdo(userDto.getObjectifHebdo());
+        user.setDistanceMax(userDto.getDistanceMax());
+
         try{
             user.setAuthorities(Arrays.asList(authorityService.getAuthority(1)));
         }catch (Exception e){
             throw new NotFoundException("Authority not found");
         }
+
+        Point localisation = new Point();
+        localisation.setX(userDto.getLocalisation().getX());
+        localisation.setY(userDto.getLocalisation().getY());
+
+        localisation = pointRepository.save(localisation);
+
+        user.setLocation(localisation);
 
         return userRepository.save(user);
     }
