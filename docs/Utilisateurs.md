@@ -208,3 +208,41 @@ Status: 200 OK
     }
  }
 ```
+
+## `GET /user/maxDistance` :key:
+Renvoie le nombre de km maximum par course accepté par l'utilisateur
+
+### Réponse
+
+```
+200 OK
+```
+
+```json
+{
+    "distance": 10
+}
+```
+
+## `PUT /user/maxDistance` :key:
+Met à jour la distance max par course en km pour l'utilisateur connecté
+
+### Requête
+
+```json
+{
+    "distance": 10.0
+}
+```
+
+### Réponse
+
+```
+200 OK
+```
+
+```json
+{
+    "distance": 10
+}
+```
