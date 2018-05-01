@@ -47,8 +47,7 @@ public class ProgramActivities
 
     public Programme calculate(User user)
     {
-        double objectifHebdo = user.getObjectifHebdo();
-        double objectifRemaining = objectifHebdo;
+        double objectifRemaining = user.getObjectifHebdo();
         double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
 
@@ -127,7 +126,7 @@ public class ProgramActivities
             // Create Program
             programme = new Programme();
             programme.setUser(user);
-            programme.setObjectifDistance(objectifHebdo);
+            programme.setObjectifDistance(objectifRemaining);
             programme.setDateDebut(currentMondayMidnight);
         }
         // If Active Program, some Activities already realized
