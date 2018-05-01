@@ -150,6 +150,8 @@ public class ProgramActivities
                     activityRepository.delete(activity);
                 }
             }
+            programme.setActivites(activities);
+            programme = programmeService.saveProgram(programme);
         }
 
         // @TODO For each Sport
