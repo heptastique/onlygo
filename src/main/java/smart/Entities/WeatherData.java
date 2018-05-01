@@ -1,6 +1,7 @@
 package smart.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -10,49 +11,75 @@ import java.util.List;
 
 @Entity
 @Table(name="Weather")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherData {
     @Id
     @Column(name="Weather_Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String dt_txt;
     private Date date;
     @Embedded
-    private MainInformation main;
+    private WeatherMainInformation mainStation;
     @Embedded
-    private WindInformation wind;
+    private WeatherWind wind;
     @Embedded
-    private List<WeatherCondition> weather;
+    private WeatherCondition weather;
     @Column(name= "precipitation")
     private double precipitation;
+
+    //was this data fetched
+    private boolean fetched;
 
     public WeatherData(){
     }
 
-    public WeatherData(String dt_txt, MainInformation main, WindInformation wind, double precipitation) {
+    public WeatherData(String dt_txt, WeatherMainInformation main,
+                       WeatherWind wind, double precipitation,boolean fetched) {
         this.dt_txt = dt_txt;
         this.generateDate();
         this.wind = wind;
         this.precipitation = precipitation;
-        this.main = main;
+        this.mainStation = main;
+        this.fetched = fetched;
+    }
+
+    public WeatherData(String dt_txt, WeatherMainInformation main,
+                       WeatherWind wind, double precipitation) {
+        this.dt_txt = dt_txt;
+        this.generateDate();
+        this.wind = wind;
+        this.precipitation = precipitation;
+        this.mainStation = main;
+        this.fetched=false;
     }
     public WeatherData( WeatherData weatherData, Date date){
         this.date = date;
-        this.main = weatherData.getMain();
+        this.mainStation = weatherData.getMain();
         this.wind = weatherData.getWind();
         this.precipitation = weatherData.getPrecipitation();
         this.weather = weatherData.getWeather();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.dt_txt = sdf.format(date);
+        this.fetched=false;
+
+    }
+    public WeatherData( WeatherData weatherData, Date date,boolean fetched){
+        this.date = date;
+        this.mainStation = weatherData.getMain();
+        this.wind = weatherData.getWind();
+        this.precipitation = weatherData.getPrecipitation();
+        this.weather = weatherData.getWeather();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        this.dt_txt = sdf.format(date);
+        this.fetched = fetched;
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,24 +102,24 @@ public class WeatherData {
 
         } catch (ParseException e) {
             System.err.println("What have you done ???");
-        };
+        }
     }
 
-    public void setWind(WindInformation wind) {
+    public void setWind(WeatherWind wind) {
         this.wind = wind;
     }
 
     public void setPrecipitation(double precipitation) { this.precipitation = precipitation; }
 
-    public MainInformation getMain() {
-        return main;
+    public WeatherMainInformation getMain() {
+        return mainStation;
     }
 
-    public void setMain(MainInformation main) {
-        this.main = main;
+    public void setMain(WeatherMainInformation main) {
+        this.mainStation = main;
     }
 
-    public void setWeather(List<WeatherCondition> weather) {
+    public void setWeather(WeatherCondition weather) {
         this.weather = weather;
     }
 
@@ -103,7 +130,7 @@ public class WeatherData {
         return "WeatherData{" +
             "id=" + id +
             ", date=" + strDate +
-            ", main=" + main +
+            ", main=" + mainStation +
             ", wind=" + wind +
             ", precipitation=" + precipitation +
             '}';
@@ -111,19 +138,19 @@ public class WeatherData {
 
     //external reading for MainInformation attributes
     public double getTemp() {
-        return main.getTemp();
+        return mainStation.getTemp();
     }
 
 
     public double getTemp_min() {
-        return main.getTemp_min();
+        return mainStation.getTemp_min();
     }
 
     public Date getDate() {
         return date;
     }
 
-    public WindInformation getWind() {
+    public WeatherWind getWind() {
         return wind;
     }
 
@@ -132,7 +159,7 @@ public class WeatherData {
     }
 
     public double getTemp_max() {
-        return main.getTemp_max();
+        return mainStation.getTemp_max();
     }
     //External reading for WindInformation
     public double getSpeed() {
@@ -145,123 +172,31 @@ public class WeatherData {
 
     //External reading for weather conditions
     public int getWeatherConditionCode(int index){
-        return weather.get(index).getId();
+        return weather.getId();
     }
 
-    public List<WeatherCondition> getWeather() {
+    public WeatherCondition getWeather() {
         return weather;
     }
-}
 
-@Embeddable
-@JsonIgnoreProperties(ignoreUnknown = true)
-class MainInformation {
-
-    private double temp;
-    private double temp_min;
-    private double temp_max;
-
-    public MainInformation(){
+    public WeatherMainInformation getMainStation() {
+        return mainStation;
     }
 
-    public MainInformation(double temp, double temp_min, double temp_max) {
-        this.temp = temp;
-        this.temp_min = temp_min;
-        this.temp_max = temp_max;
+    public void setMainStation(WeatherMainInformation mainStation) {
+        this.mainStation = mainStation;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Weather{" +
-            ", temp=" + temp +
-            ", temp_min=" + temp_min +
-            ", temp_max=" + temp_max +
-            '}';
+    public boolean isFetched() {
+        return fetched;
     }
 
-
-    public double getTemp() {
-        return temp;
-    }
-
-    public void setTemp(double temp) {
-        this.temp = temp;
-    }
-
-    public double getTemp_min() {
-        return temp_min;
-    }
-
-    public void setTemp_min(double temp_min) {
-        this.temp_min = temp_min;
-    }
-
-    public double getTemp_max() {
-        return temp_max;
-    }
-
-    public void setTemp_max(double temp_max) {
-        this.temp_max = temp_max;
+    public void setFetched(boolean fetched) {
+        this.fetched = fetched;
     }
 }
 
-@Embeddable
-@JsonIgnoreProperties(ignoreUnknown =true)
-class WeatherCondition{
-    private int id;
-    private String main;
-    private String description;
-    private String icon;
 
-    public WeatherCondition() { }
 
-    public int getId() { return id; }
 
-    public void setId(int id) { this.id = id; }
-
-    public String getMain() { return main; }
-
-    public void setMain(String main) { this.main = main; }
-
-    public String getDescription() { return description; }
-
-    public void setDescription(String description) { this.description = description; }
-
-    public String getIcon() { return icon; }
-
-    public void setIcon(String icon) { this.icon = icon; }
-}
-@Embeddable
-@JsonIgnoreProperties(ignoreUnknown = true)
-class WindInformation {
-
-    public double speed;
-    public double deg;
-
-    public WindInformation(){
-    }
-
-    public WindInformation(double speed, double degree) {
-        this.speed = speed;
-        this.deg = degree;
-    }
-
-    @Override
-    public String toString() {
-        return "WeatherWind{" +
-            ", speed=" + speed +
-            ", deg=" + deg +
-            '}';
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public double getDeg() {
-        return deg;
-    }
-}
 
