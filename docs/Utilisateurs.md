@@ -10,7 +10,13 @@ Création d'un utilisateur
 	"password": "pwd",
 	"firstname": "first",
 	"lastname": "last",
-	"email": "mail@domain.com"
+	"email": "mail@domain.com",
+	"objectifHebdo": 15,
+	"distanceMax": 5,
+	"localisation": {
+		"x": 1.0,
+		"y": 1.0
+	}
 }
 ```
 
@@ -22,16 +28,18 @@ Status: 201 Created
 
 ```json
 {
-	"username": "example",
-	"firstname": "first",
-	"lastname": "last",
-	"email": "mail@domain.com",
-    "autohorities": [
-        {
-            "authority": "ROLE_USER"
-        }
-    ],
-    "enabled": true
+    "username": "example",
+    "firstname": "first",
+    "lastname": "last",
+    "email": "mail@domain.com",
+    "objectifHebdo": 15,
+    "distanceMax": 5,
+    "programmes": null,
+    "location": {
+        "id": 1,
+        "x": 1,
+        "y": 1
+    }
 }
 ```
 
