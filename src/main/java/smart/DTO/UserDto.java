@@ -35,7 +35,7 @@ public class UserDto {
     private double distanceMax;
 
     @NotNull
-    private PointDto localisation;
+    private PointDto location;
 
     public String getUsername() {
         return username;
@@ -93,12 +93,12 @@ public class UserDto {
         this.distanceMax = distanceMax;
     }
 
-    public PointDto getLocalisation() {
-        return localisation;
+    public PointDto getLocation() {
+        return location;
     }
 
-    public void setLocalisation(PointDto localisation) {
-        this.localisation = localisation;
+    public void setLocation(PointDto location) {
+        this.location = location;
     }
 
     public String toString(){
