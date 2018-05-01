@@ -47,9 +47,6 @@ public class ProgramActivities
     final double kDistanceUserToCentreInteretEvaluation = 0.0002;
     final double cDistanceUserToCentreInteretEvaluation = 1.0;
 
-    // @TODO Max Distance/Duration of Activity for User
-//    final int distanceCourseMax = 5;
-
     class TimeFrameCentreInteret
     {
         private TimeFrame timeFrame;
