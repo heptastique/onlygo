@@ -116,7 +116,7 @@ public class UserControllerTest {
         PointDto localisation = new PointDto();
         localisation.setX(1.0);
         localisation.setY(1.0);
-        userDto.setLocalisation(localisation);
+        userDto.setLocation(localisation);
 
         Gson gson = new Gson();
         String json = gson.toJson(userDto, UserDto.class);

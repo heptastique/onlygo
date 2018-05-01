@@ -88,7 +88,7 @@ public class UserServiceTest {
         PointDto localisation = new PointDto();
         localisation.setX(1.0);
         localisation.setY(1.0);
-        userDto.setLocalisation(localisation);
+        userDto.setLocation(localisation);
 
         //call adduser service
         userService.addUser(userDto);
@@ -128,7 +128,7 @@ public class UserServiceTest {
         PointDto localisation = new PointDto();
         localisation.setX(1.0);
         localisation.setY(1.0);
-        userDto.setLocalisation(localisation);
+        userDto.setLocation(localisation);
 
         userService.addUser(userDto);
         //create a user with the same email and different username
@@ -144,7 +144,7 @@ public class UserServiceTest {
         PointDto localisation2 = new PointDto();
         localisation2.setX(1.0);
         localisation2.setY(1.0);
-        copycat.setLocalisation(localisation2);
+        copycat.setLocation(localisation2);
 
         userService.addUser(copycat);
     }
@@ -163,7 +163,7 @@ public class UserServiceTest {
         PointDto localisation = new PointDto();
         localisation.setX(1.0);
         localisation.setY(1.0);
-        userDto.setLocalisation(localisation);
+        userDto.setLocation(localisation);
         userService.addUser(userDto);
         //create a user with the same username and different email
         UserDto copycat = new UserDto();
@@ -177,7 +177,7 @@ public class UserServiceTest {
         PointDto localisation2 = new PointDto();
         localisation2.setX(1.0);
         localisation2.setY(1.0);
-        copycat.setLocalisation(localisation);
+        copycat.setLocation(localisation);
         userService.addUser(copycat);
     }
 
@@ -196,7 +196,7 @@ public class UserServiceTest {
         PointDto localisation = new PointDto();
         localisation.setX(1.0);
         localisation.setY(1.0);
-        userDto.setLocalisation(localisation);
+        userDto.setLocation(localisation);
 
         User user = userService.addUser(userDto);
         Point location = new Point();
@@ -209,7 +209,7 @@ public class UserServiceTest {
         assertEquals(userLocation.getX(),location.getX(),delta);
         assertEquals(userLocation.getY(),location.getY(),delta);
     }
-    
+
 
     @Test
     public void CheckIfLocationSaved() throws NotFoundException{
@@ -230,8 +230,8 @@ public class UserServiceTest {
         whiteResidence.setX(35.126127);
         whiteResidence.setY(-106.536505);
 
-        childDto.setLocalisation(whiteResidence);
-        fatherDto.setLocalisation(whiteResidence);
+        childDto.setLocation(whiteResidence);
+        fatherDto.setLocation(whiteResidence);
 
         long locationCountBefore = pointRepository.count();
         userService.addUser(fatherDto);

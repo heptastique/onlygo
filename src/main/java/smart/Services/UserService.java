@@ -71,8 +71,8 @@ public class UserService {
         }
 
         Point localisation = new Point();
-        localisation.setX(userDto.getLocalisation().getX());
-        localisation.setY(userDto.getLocalisation().getY());
+        localisation.setX(userDto.getLocation().getX());
+        localisation.setY(userDto.getLocation().getY());
 
         localisation = pointRepository.save(localisation);
 

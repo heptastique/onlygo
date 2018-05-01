@@ -78,7 +78,7 @@ public class RealisationServiceTest {
         PointDto localisation = new PointDto();
         localisation.setX(1.0);
         localisation.setY(1.0);
-        sedentaryDto.setLocalisation(localisation);
+        sedentaryDto.setLocation(localisation);
 
         User sedentary = userService.addUser(sedentaryDto);
         Iterable<Realisation> realisations = realisationService.getUserRealisations(sedentary);
