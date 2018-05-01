@@ -36,18 +36,9 @@ public class ProgramActivities
     private ProgrammeService programmeService;
 
     @Autowired
-    private ProgrammeRepository programmeRepository;
-
-    @Autowired
     private ActivityRepository activityRepository;
 
-    @Autowired
-    private FindByJour findByJour;
-
-    final double kDistanceUserToCentreInteretEvaluation = 0.0002;
-    final double cDistanceUserToCentreInteretEvaluation = 1.0;
-
-    class TimeFrameCentreInteret
+    private class TimeFrameCentreInteret
     {
         private TimeFrame timeFrame;
         private CentreInteret centreInteret;
@@ -56,22 +47,22 @@ public class ProgramActivities
 
     public Programme calculate(User user)
     {
-        double objectifHebdo = user.getObjectifHebdo();
-        double objectifRemaining = objectifHebdo;
+        double objectifRemaining = user.getObjectifHebdo();
         double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
 
         double distanceUserToCentreInteret;
         double distanceUserToCentreInteretEvaluation;
+        final double kDistanceUserToCentreInteretEvaluation = 0.0002;
+        final double cDistanceUserToCentreInteretEvaluation = 1.0;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
-        TimeFrameCentreInteret bestTimeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
 
         Sport course = sportService.getSport("Course");
 
         Date currentMondayMidnight = new Date();
-        while (findByJour.findDay(currentMondayMidnight) != Jour.LUNDI)
+        while (FindByJour.findDay(currentMondayMidnight) != Jour.LUNDI)
         {
             currentMondayMidnight.setDate(currentMondayMidnight.getDate() - 1);
         }
@@ -81,21 +72,19 @@ public class ProgramActivities
 
         Date nextMonday = new Date();
         nextMonday.setDate(nextMonday.getDate() + 1);
-        while (findByJour.findDay(nextMonday) != Jour.LUNDI)
+        while (FindByJour.findDay(nextMonday) != Jour.LUNDI)
         {
             nextMonday.setDate(nextMonday.getDate() + 1);
         }
 
         // For each TimeFrame of the current Week
-        Iterable <TimeFrame> timeFrames = timeFrameService.getTimeFrameAll();
-        for (TimeFrame timeFrame : timeFrames)
+        for (TimeFrame timeFrame : timeFrameService.getTimeFrameAll())
         {
             // If TimeFrame is in the current Week
             if (timeFrame.getDate().getMonth() < nextMonday.getMonth() || timeFrame.getDate().getDate() < nextMonday.getDate())
             {
                 // For each CentreInteret
-                Iterable<CentreInteret> centreInterets = centreInteretService.getCentreInteretAll();
-                for (CentreInteret centreInteret : centreInterets)
+                for (CentreInteret centreInteret : centreInteretService.getCentreInteretAll())
                 {
                     // Create TimeFrameCentreInteret
                     timeFrameCentreInteret = new TimeFrameCentreInteret();
@@ -127,8 +116,43 @@ public class ProgramActivities
         }
 
         // Create Activities List
-        List <Activity> activities = new ArrayList <Activity>();
+        List <Activity> activities = new ArrayList <Activity> ();
         Activity savedActivity;
+
+        Programme programme = programmeService.getActiveProgrammeOfUser(user.getUsername());
+        // If no Active Program, no activities realized
+        if (programme == null)
+        {
+            // Create Program
+            programme = new Programme();
+            programme.setUser(user);
+            programme.setObjectifDistance(objectifRemaining);
+            programme.setDateDebut(currentMondayMidnight);
+        }
+        // If Active Program, some Activities already realized
+        else
+        {
+            // Update remaining Objectif
+            for (Realisation realisation : programme.getRealisations())
+            {
+                objectifRemaining = objectifRemaining - realisation.getDistance();
+            }
+
+            // Add already realized Activities to Activities List and remove non realized Activities
+            for (Activity activity : programme.getActivites())
+            {
+                if (activity.isEstRealisee())
+                {
+                    activities.add(activity);
+                }
+                else
+                {
+                    activityRepository.delete(activity);
+                }
+            }
+            programme.setActivites(activities);
+            programme = programmeService.saveProgram(programme);
+        }
 
         // @TODO For each Sport
 
@@ -165,11 +189,9 @@ public class ProgramActivities
                     if (timeFrameCentreInterets.get(timeFrameCentreInteretIndex).timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
                     {
                         timeFrameCentreInterets.remove(timeFrameCentreInteretIndex);
+                        timeFrameCentreInteretIndex = timeFrameCentreInteretIndex - 1;
                     }
-                    else
-                    {
-                        timeFrameCentreInteretIndex = timeFrameCentreInteretIndex + 1;
-                    }
+                    timeFrameCentreInteretIndex = timeFrameCentreInteretIndex + 1;
                 }
             }
 
@@ -180,28 +202,16 @@ public class ProgramActivities
             activityIndex = activityIndex + 1;
         }
 
-        // Create Program
-        Programme programme = new Programme();
-        programme.setUser(user);
-        programme.setObjectifDistance(objectifHebdo);
-        programme.setDateDebut(currentMondayMidnight);
-
-        Programme exisitingProgramme = programmeRepository.findByUserAndDateDebut(user, currentMondayMidnight).get();
-
-        if(exisitingProgramme != null) {
-            for(Activity existingActivity : exisitingProgramme.getActivites()) {
-                activityRepository.delete(existingActivity);
-            }
-            programme.setId(exisitingProgramme.getId());
-        }
-
         programme = programmeService.saveProgram(programme);
 
-        for(Activity activityTemp : activities) {
+        // Set Activities Program
+        for (Activity activityTemp : activities)
+        {
             activityTemp.setProgramme(programme);
             activityRepository.save(activityTemp);
         }
 
+        // Set Program Activities
         programme.setActivites(activities);
 
         programme = programmeService.saveProgram(programme);

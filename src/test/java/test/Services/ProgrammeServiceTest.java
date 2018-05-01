@@ -42,7 +42,7 @@ public class ProgrammeServiceTest {
 
     @Test
     public void userHasActiveProgram() {
-        Programme programme = programmeService.getActiveProgrammeOfUser("user");
-        assertEquals((long)200, (long)programme.getId());
+        Programme programme = programmeService.getActiveProgrammeOfUser("user10");
+        assertEquals((long)10020, (long)programme.getId());
     }
 }

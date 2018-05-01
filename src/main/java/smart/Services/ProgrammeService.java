@@ -29,7 +29,7 @@ public class ProgrammeService {
             programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
         } catch(Exception e)
         {
-            throw new ProgrammeException("Aucun programme actif trouvé pour l'utilisateur.", e);
+            return null;
         }
 
         return programme;
