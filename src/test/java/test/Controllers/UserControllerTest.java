@@ -265,6 +265,6 @@ public class UserControllerTest {
 
         mvc.perform(get("/user/maxDistance").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.distanceCourseMax").value("10.0"));
+            .andExpect(jsonPath("$.distance").value("10.0"));
     }
 }

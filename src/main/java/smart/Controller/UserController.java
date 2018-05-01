@@ -154,7 +154,7 @@ public class UserController {
         String username = jwtTokenUtil.getUsernameFromToken(token);
         try {
             User user = userService.getUserByUsername(username);
-            return ResponseEntity.ok().body("{\"distanceCourseMax\":" +  user.getDistanceMax() + "}");
+            return ResponseEntity.ok().body("{\"distance\":" +  user.getDistanceMax() + "}");
         }catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }
