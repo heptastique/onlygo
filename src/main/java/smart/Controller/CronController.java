@@ -37,7 +37,7 @@ public class CronController {
 
     }
 
-    @RequestMapping(path="/importStravaPoints", method = RequestMethod.GET, , produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path="/importStravaPoints", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updatePoint(){
         pointService.generate();
         return ResponseEntity.ok("{\"status\": \"Ok\"}");
