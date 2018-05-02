@@ -16,7 +16,6 @@ import smart.DTO.RealisationDTO;
 import smart.DTO.UserDto;
 import smart.Entities.Activity;
 import smart.Entities.Programme;
-import smart.Entities.Realisation;
 import smart.Entities.User;
 import smart.Exceptions.ProgrammeException;
 import smart.Repositories.UserRepository;
@@ -81,7 +80,7 @@ public class RealisationServiceTest {
         sedentaryDto.setLocation(localisation);
 
         User sedentary = userService.addUser(sedentaryDto);
-        Iterable<Realisation> realisations = realisationService.getUserRealisations(sedentary);
+        Iterable<Activity> realisations = realisationService.getUserRealisations(sedentary);
     }
 
     @Test
@@ -96,9 +95,9 @@ public class RealisationServiceTest {
         }
         Programme programme = programmeService.getActiveProgrammeOfUser("user11");
         Activity activity = activityService.getNextActivity(programme);
-        Realisation realisationAdded = realisationService.addRealisation(realisationDTO,programme, activity);
-        assertEquals((int)realisationAdded.getDistance(), 2);
-        assertEquals((long)realisationAdded.getCentreInteret().getId(), (long)10000);
+        activity = realisationService.addRealisation(realisationDTO,programme, activity);
+        assertEquals((int)activity.getDistanceRealisee(), 2);
+        assertEquals((long)activity.getCentreInteret().getId(), (long)10000);
     }
 
     @Test
@@ -111,7 +110,7 @@ public class RealisationServiceTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Programme programme = programmeService.getActiveProgrammeOfUser("user");
+        Programme programme = programmeService.getActiveProgrammeOfUser("admin");
         assertNull(programme);
     }
 }
