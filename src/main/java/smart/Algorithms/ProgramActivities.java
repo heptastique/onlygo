@@ -195,9 +195,7 @@ public class ProgramActivities
             programme.setActivites(activities);
             programme = programmeService.saveProgram(programme);
         }
-
-        // @TODO For each Sport
-
+        
         // While Week Objective is not Completed
         int sportIndex = 0;
         index = 0;
