@@ -21,9 +21,6 @@ public class RealisationService {
     ActivityRepository activityRepository;
 
     @Autowired
-    RealisationRepository realisationRepository;
-
-    @Autowired
     CentreInteretRepository centreInteretRepository;
 
     @Autowired
@@ -35,23 +32,15 @@ public class RealisationService {
     @Autowired
     private UserRepository userRepository;
 
-    public Iterable<Realisation> getUserRealisations(User user){
+    public Iterable<Activity> getUserRealisations(User user){
         Iterable<Programme> programmes = programmeRepository.findByUser(user);
-        List<Activity> activities;
-        activities = new LinkedList<>();
+        List<Activity> realisations;
+        realisations = new LinkedList<>();
         for (Programme p:programmes) {
-            Iterable<Activity> activitiesFromRepo = activityRepository.findByProgramme(p);
+            Iterable<Activity> activitiesFromRepo = activityRepository.findByProgrammeAndEstRealisee(p, true);
             for (Activity a:activitiesFromRepo
                  ) {
-                activities.add(a);
-            }
-        }
-        List<Realisation> realisations = new LinkedList<>();
-        for (Activity a:activities) {
-            Iterable<Realisation> realisationsFromRepo = realisationRepository.findByActivite(a);
-            for (Realisation r:realisationsFromRepo
-                 ) {
-                realisations.add(r);
+                realisations.add(a);
             }
         }
         return realisations;
@@ -65,7 +54,6 @@ public class RealisationService {
         Jour day = FindByJour.findDay(dateRealisation);
         int heureDebut = dateRealisation.getHours();
 
-        Realisation realisation;
         TimeFrame timeFrame;
         CentreInteret centreInteret;
 

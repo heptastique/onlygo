@@ -12,4 +12,5 @@ import java.util.Optional;
 
 public interface ActivityRepository extends CrudRepository<Activity, Long> {
     Iterable<Activity> findByProgramme(Programme programme);
+    Iterable<Activity> findByProgrammeAndEstRealisee(Programme programme, boolean value);
 }

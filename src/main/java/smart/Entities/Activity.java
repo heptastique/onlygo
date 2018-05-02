@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@JSONNORECURSION_ACTIVITYID")
 @Table(name = "activity")
 public class Activity {
 
@@ -27,7 +26,7 @@ public class Activity {
     private float distancePrevue;
 
     @Column(name = "DISTANCE_REALISEE")
-    private float distanceRealisee;
+    private float distanceRealisee = 0f;
 
     @ManyToOne
     @JoinColumn(name="PROGRAMME_ID")
