@@ -5,16 +5,13 @@ import org.springframework.stereotype.Service;
 import smart.DTO.ActivityDTO;
 import smart.Entities.*;
 import smart.Repositories.ActivityRepository;
-import smart.Repositories.ProgrammeRepository;
 import smart.Services.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static java.lang.Math.cos;
-import static java.lang.Math.exp;
-import static java.lang.Math.pow;
+import static java.lang.Math.*;
 import static java.lang.StrictMath.sqrt;
 
 @Service
@@ -133,9 +130,10 @@ public class ProgramActivities
         else
         {
             // Update remaining Objectif
-            for (Realisation realisation : programme.getRealisations())
+            Iterable<Activity> progRealisations = activityRepository.findByProgrammeAndEstRealisee(programme, true);
+            for (Activity realisation : progRealisations)
             {
-                objectifRemaining = objectifRemaining - realisation.getDistance();
+                objectifRemaining = objectifRemaining - realisation.getDistanceRealisee();
             }
 
             // Add already realized Activities to Activities List and remove non realized Activities

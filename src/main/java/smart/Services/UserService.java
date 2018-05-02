@@ -131,7 +131,6 @@ public class UserService {
         return user.getDistanceMax();
     }
 
-
     public double getPourcentageCourant(String username) {
         User user = userRepository.findByUsername(username);
         double realisations=0;
