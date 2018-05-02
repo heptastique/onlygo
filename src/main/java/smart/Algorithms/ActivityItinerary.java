@@ -29,7 +29,6 @@ public class ActivityItinerary {
             }
             i++;
         }
-        // calcul avec Api google distance entre user et point centre interet
         double objectif = activivity.getDistancePrevue();
         System.out.println(min);
         objectif -= 2 * min;
