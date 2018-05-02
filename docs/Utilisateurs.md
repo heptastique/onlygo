@@ -79,7 +79,8 @@ Ajout objectif pour l'utilisateur connecté.
 ### Requête
 ```json
 {
-	"distance": "10"
+    "sportId" : 2,
+    "distance": 10
 }
 ```
 #### Réponse
@@ -89,9 +90,30 @@ Status: 200 OK
 ```
 
 ```json
-{
-    "distance": 10.0
-}
+[
+    {
+        "@JSONNORECURSION_ID": 1,
+        "objectif": 10,
+        "sport": {
+            "id": 1,
+            "nom": "Course",
+            "kmH": 12,
+            "kcalH": 880,
+            "kcalKm": 73.333336
+        }
+    },
+    {
+        "@JSONNORECURSION_ID": 2,
+        "objectif": 24,
+        "sport": {
+            "id": 2,
+            "nom": "Marche",
+            "kmH": 4,
+            "kcalH": 245,
+            "kcalKm": 61.25
+        }
+    }
+]
 ```
 
 
