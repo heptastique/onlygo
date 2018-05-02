@@ -240,4 +240,28 @@ public class UserServiceTest {
         userService.addUser(childDto);
         assertEquals(locationCountBefore+2,pointRepository.count());
     }
+
+    @Test
+    public  void ChangeUserEmail() throws Exception{
+        UserDto user = new UserDto();
+        user.setEmail("wrongEmail@insa.com");
+        user.setPassword("notsafe");
+        user.setUsername("kermit");
+        user.setFirstname("Kermit");
+        user.setLastname("Frog");
+
+        user.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        user.setLocation(localisation);
+
+        userService.addUser(user);
+
+        userService.changeEmail(user.getUsername(),"good@insa.fr");
+        User fetchedUser = userService.getUserByUsername(user.getUsername());
+        assertEquals(fetchedUser.getEmail(),"good@insa.fr");
+
+    }
 }
