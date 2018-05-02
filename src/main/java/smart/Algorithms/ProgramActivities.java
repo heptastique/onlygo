@@ -53,11 +53,14 @@ public class ProgramActivities
         objectifsDistance.add((float) objectifHebdo / 4);
         //double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
+        int userLevel = user.getLevel();
 
         double distanceUserToCentreInteret;
         double distanceUserToCentreInteretEvaluation;
         final double kDistanceUserToCentreInteretEvaluation = 0.0002;
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
+        double levelCentreInteretEvaluation;
+        final double cLevelCentreInteretEvaluation = 0.5;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
         TimeFrameCentreInteret timeFrameCentreInteret1;
@@ -104,8 +107,11 @@ public class ProgramActivities
                     // Calculate Evaluation of Distance from User to CentreInteret
                     distanceUserToCentreInteretEvaluation = exp(-kDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteret);
 
+                    // Calculate Evaluation of difference between User and CentreInteret Level
+                    levelCentreInteretEvaluation = abs(userLevel - centreInteret.getLevel()) / 2.0;
+
                     // Calculate CentreInteret Evaluation
-                    centreInteretEvaluation = cDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteretEvaluation / 1.0;
+                    centreInteretEvaluation = (cDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteretEvaluation + cLevelCentreInteretEvaluation * levelCentreInteretEvaluation) / 2.0;
 
                     // Calculate TimeFrameCentreInteret Evaluation
                     timeFrameCentreInteret.evaluation = timeFrame.getEvaluation() * centreInteretEvaluation;
