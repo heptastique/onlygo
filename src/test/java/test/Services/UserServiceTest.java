@@ -82,6 +82,14 @@ public class UserServiceTest {
         userDto.setLastname("Martin");
         userDto.setUsername("pmartin");
         userDto.setPassword("password");
+
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocation(localisation);
+
         //call adduser service
         userService.addUser(userDto);
         //test if user has been added
@@ -114,6 +122,14 @@ public class UserServiceTest {
         userDto.setLastname("Martin");
         userDto.setUsername("martin");
         userDto.setPassword("password");
+
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocation(localisation);
+
         userService.addUser(userDto);
         //create a user with the same email and different username
         UserDto copycat = new UserDto();
@@ -122,6 +138,14 @@ public class UserServiceTest {
         copycat.setLastname("Martin");
         copycat.setUsername("hugomartin");
         copycat.setPassword("password");
+
+        copycat.setDistanceMax(5);
+
+        PointDto localisation2 = new PointDto();
+        localisation2.setX(1.0);
+        localisation2.setY(1.0);
+        copycat.setLocation(localisation2);
+
         userService.addUser(copycat);
     }
 
@@ -134,6 +158,12 @@ public class UserServiceTest {
         userDto.setLastname("Martin");
         userDto.setUsername("hmartin");
         userDto.setPassword("password");
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocation(localisation);
         userService.addUser(userDto);
         //create a user with the same username and different email
         UserDto copycat = new UserDto();
@@ -142,6 +172,12 @@ public class UserServiceTest {
         copycat.setLastname("Martin");
         copycat.setUsername("hmartin");
         copycat.setPassword("password");
+        copycat.setDistanceMax(5);
+
+        PointDto localisation2 = new PointDto();
+        localisation2.setX(1.0);
+        localisation2.setY(1.0);
+        copycat.setLocation(localisation);
         userService.addUser(copycat);
     }
 
@@ -155,6 +191,13 @@ public class UserServiceTest {
         userDto.setLastname("Astley");
         userDto.setUsername("roll");
         userDto.setPassword("password");
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocation(localisation);
+
         User user = userService.addUser(userDto);
         Point location = new Point();
         location.setX(4.8467);
@@ -167,22 +210,9 @@ public class UserServiceTest {
         assertEquals(userLocation.getY(),location.getY(),delta);
     }
 
-    @Test
-    public void UserLocationCascade() throws NotFoundException{
-        UserDto noLocation = new UserDto();
-        noLocation.setFirstname("Antisthenes");
-        noLocation.setLastname("TheDoge");
-        noLocation.setEmail("nolocation@test.com");
-        noLocation.setUsername("noLocationUser");
-        noLocation.setPassword("password");
-        long countBefore = pointRepository.count();
-        User user = userService.addUser(noLocation);
-        assertNull(user.getLocation());
-        assertEquals(countBefore,pointRepository.count());
-    }
 
     @Test
-    public void AddSameLocation() throws NotFoundException{
+    public void CheckIfLocationSaved() throws NotFoundException{
         UserDto fatherDto = new UserDto();
         UserDto childDto = new UserDto();
         fatherDto.setLastname("White");
@@ -195,16 +225,17 @@ public class UserServiceTest {
         fatherDto.setPassword("password");
         fatherDto.setUsername("hwhiteloctest");
         childDto.setUsername("wwhiteloctest");
+
+        PointDto whiteResidence = new PointDto();
+        whiteResidence.setX(35.126127);
+        whiteResidence.setY(-106.536505);
+
+        childDto.setLocation(whiteResidence);
+        fatherDto.setLocation(whiteResidence);
+
         long locationCountBefore = pointRepository.count();
         userService.addUser(fatherDto);
         userService.addUser(childDto);
-        assertEquals(locationCountBefore,pointRepository.count());
-        Point whiteResidence = new Point();
-        whiteResidence.setX(35.126127);
-        whiteResidence.setY(-106.536505);
-        userService.addLocationToUser(fatherDto.getUsername(),whiteResidence);
-        assertEquals(locationCountBefore+1,pointRepository.count());
-        userService.addLocationToUser(childDto.getUsername(),whiteResidence);
         assertEquals(locationCountBefore+2,pointRepository.count());
     }
 }

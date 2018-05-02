@@ -12,6 +12,8 @@ import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
 import smart.Repositories.AuthoRepository;
+import smart.Repositories.PointRepository;
+import smart.Repositories.ProgrammeRepository;
 import smart.Repositories.UserRepository;
 
 import java.util.Arrays;
@@ -29,6 +31,12 @@ public class UserService {
 
     @Autowired
     private ProgrammeService programmeService;
+
+    @Autowired
+    private ProgrammeRepository programmeRepository;
+
+    @Autowired
+    private PointRepository pointRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -53,11 +61,22 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastPasswordResetDate(date);
         user.setEnabled(true);
+        user.setObjectifHebdo(userDto.getObjectifHebdo());
+        user.setDistanceMax(userDto.getDistanceMax());
+
         try{
             user.setAuthorities(Arrays.asList(authorityService.getAuthority(1)));
         }catch (Exception e){
             throw new NotFoundException("Authority not found");
         }
+
+        Point localisation = new Point();
+        localisation.setX(userDto.getLocation().getX());
+        localisation.setY(userDto.getLocation().getY());
+
+        localisation = pointRepository.save(localisation);
+
+        user.setLocation(localisation);
 
         return userRepository.save(user);
     }
@@ -74,9 +93,19 @@ public class UserService {
 
     public double putObjectifHebdo(String username, double distance){
         User user = userRepository.findByUsername(username) ;
+        Programme activeProgramme = programmeService.getActiveProgrammeOfUser(username);
+        activeProgramme.setObjectifDistance(distance);
+        programmeRepository.save(activeProgramme);
         user.setObjectifHebdo(distance);
         userRepository.save(user);
         return user.getObjectifHebdo();
+    }
+
+    public double setDistanceMax(String username, double distance){
+        User user = userRepository.findByUsername(username) ;
+        user.setDistanceMax(distance);
+        userRepository.save(user);
+        return user.getDistanceMax();
     }
 
     public Iterable<User> getAllUsers(){
@@ -97,8 +126,13 @@ public class UserService {
         User user = userRepository.findByUsername(username) ;
         return user.getObjectifHebdo();
     }
+    public double getDistanceMax(String username) {
+        User user = userRepository.findByUsername(username) ;
+        return user.getDistanceMax();
+    }
 
-    public double getPourcentage(String username) {
+
+    public double getPourcentageCourant(String username) {
         User user = userRepository.findByUsername(username);
         double realisations=0;
         Programme activeProgram = programmeService.getActiveProgrammeOfUser(username);
@@ -106,6 +140,6 @@ public class UserService {
             realisations +=r.getDistance();
         }
 
-        return 100*realisations/user.getObjectifHebdo();
+        return 100*realisations/activeProgram.getObjectifDistance();
     }
 }

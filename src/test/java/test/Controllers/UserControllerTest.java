@@ -111,6 +111,13 @@ public class UserControllerTest {
         userDto.setUsername("adduser");
         userDto.setPassword("password");
 
+        userDto.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        userDto.setLocation(localisation);
+
         Gson gson = new Gson();
         String json = gson.toJson(userDto, UserDto.class);
 
@@ -193,7 +200,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin")
+    @WithMockUser(username = "user10")
     public void correctlySetDistanceGoal() throws Exception{
         DistanceDto distanceDto = new DistanceDto();
         distanceDto.setDistance((float)10);
@@ -201,12 +208,12 @@ public class UserControllerTest {
         Gson gson = new Gson();
         String json = gson.toJson(distanceDto, DistanceDto.class);
 
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("admin");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
 
         mvc.perform(put("/user/objectif").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
 
-        assertEquals(10, userRepository.findByUsername("admin").getObjectifHebdo(), 0);
+        assertEquals(10, userRepository.findByUsername("user10").getObjectifHebdo(), 0);
 
         mvc.perform(get("/user/objectif").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
@@ -214,20 +221,57 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user")
+    @WithMockUser(username = "user10")
     public void getUserRealisations() throws Exception{
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
         mvc.perform(get("/user/realisation")
             .header("Authorization", "Bearer anyToken"))
             .andExpect(status().is2xxSuccessful());
     }
 
     @Test
-    @WithMockUser(username = "user")
+    @WithMockUser(username = "user10")
     public void  getUserProgression() throws Exception{
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
+
+        mvc.perform(get("/update")
+            .header("Authorization", "Bearer anyToken"))
+            .andExpect(status().isOk());
+
+        mvc.perform(get("/programme/generate")
+            .header("Authorization", "Bearer anyToken"))
+            .andExpect(status().isOk());
+
         mvc.perform(get("/user/progression")
             .header("Authorization", "Bearer anyToken"))
             .andExpect(status().is2xxSuccessful());
+    }
+    @Test
+    @WithMockUser(username = "user10")
+    public void  getDistanceMax() throws Exception {
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
+        mvc.perform(get("/user/maxDistance")
+            .header("Authorization", "Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful());
+    }
+    @Test
+    @WithMockUser(username = "user10")
+    public void correctSetDistanceMax() throws Exception{
+        DistanceDto distanceDto = new DistanceDto();
+        distanceDto.setDistance(10);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(distanceDto, DistanceDto.class);
+
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
+
+        mvc.perform(put("/user/maxDistance").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+
+        assertEquals(10, userRepository.findByUsername("user10").getDistanceMax(), 0);
+
+        mvc.perform(get("/user/maxDistance").header("Authorization","Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(jsonPath("$.distance").value("10.0"));
     }
 }

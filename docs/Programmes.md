@@ -56,6 +56,10 @@ Status: 200 OK
     ]
 }
 ```
+```
+Status: 204 No Content
+(if no active program)
+```
 
 ## `GET /programme/generate` :key:
 Génère le programme pour la semaine courante de l'utilisateur connecté uniquement
@@ -244,4 +248,8 @@ Status: 200 OK
         }
     ]
 }
+```
+```
+Status: 204 No Content
+(if no program found for the date in parameter)
 ```

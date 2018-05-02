@@ -1,6 +1,7 @@
 package smart.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,13 +26,13 @@ public class CronController {
     @Autowired
     JsonToSQL jsonToSQL;
 
-    @RequestMapping(path="/update", method = RequestMethod.GET)
+    @RequestMapping(path="/update", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateTimeFrame(){
         weatherDataService.UpdateWeatherData();
         donneeAthmospheriqueService.UpdateDonneeAthmospheriqueData();
         timeFrameService.updateEvaluation(weatherDataService.getWeatherDataAll(),
             donneeAthmospheriqueService.getDonneeAthmospheriqueAll());
-        return ResponseEntity.ok("Ok");
+        return ResponseEntity.ok("{\"status\": \"Ok\"}");
 
     }
 
