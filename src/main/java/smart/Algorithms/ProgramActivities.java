@@ -144,7 +144,7 @@ public class ProgramActivities
                 if (activity.isEstRealisee())
                 {
                     activities.add(activity);
-                    objectifsDistance.remove(activity.getDistance());
+                    objectifsDistance.remove(activity.getDistancePrevue());
                 }
                                                                                                                     else
                 {
