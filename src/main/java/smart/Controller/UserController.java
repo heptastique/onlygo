@@ -91,9 +91,7 @@ public class UserController {
           String token = request.getHeader(tokenHeader).substring(7);
           String username = jwtTokenUtil.getUsernameFromToken(token);
           userService.putObjectifHebdo(username,distance.getDistance());
-          DistanceDto updatedDistance = new DistanceDto();
-          updatedDistance.setDistance(userService.getObjectifHebdo(username));
-          return ResponseEntity.ok().body(updatedDistance);
+          return ResponseEntity.ok().body(userService.getObjectifHebdo(username));
     }
 
     @RequestMapping(value = "/user/objectif", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -102,7 +100,7 @@ public class UserController {
         String username = jwtTokenUtil.getUsernameFromToken(token);
         try {
             User user = userService.getUserByUsername(username);
-            return ResponseEntity.ok().body("{\"objectif\":" +  user.getObjectifHebdo() + "}");
+            return ResponseEntity.ok().body(user.getObjectifs());
         }catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }
