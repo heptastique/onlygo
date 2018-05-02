@@ -57,7 +57,7 @@ public class RealisationService {
         return realisations;
     }
 
-    public Realisation addRealisation(RealisationDTO realisationDTO, Programme programme, Activity activity) throws RealisationException, SportException, TimeFrameException {
+    public Activity addRealisation(RealisationDTO realisationDTO, Programme programme, Activity activity) throws RealisationException, SportException, TimeFrameException {
         float distanceRealisation = realisationDTO.getDistance();
 
         // Date
@@ -82,11 +82,11 @@ public class RealisationService {
         }
         else
         {
-            centreInteret = activity.getCentreInteret();
-            realisation = new Realisation(distanceRealisation, dateRealisation, activity, centreInteret, timeFrame);
             activity.setEstRealisee(true);
-            programme.addRealisation(realisation);
-            return realisationRepository.save(realisation);
+            activity.setDateRealisee(dateRealisation);
+            activity.setDistanceRealisee(distanceRealisation);
+
+            return activityRepository.save(activity);
         }
     }
 }

@@ -23,17 +23,24 @@ public class Activity {
     @JoinColumn(name="SPORT_ID", nullable=false)
     private Sport sport;
 
-    @Column(name = "DISTANCE")
-    private float distance;
+    @Column(name = "DISTANCE_PREVUE")
+    private float distancePrevue;
+
+    @Column(name = "DISTANCE_REALISEE")
+    private float distanceRealisee;
 
     @ManyToOne
     @JoinColumn(name="PROGRAMME_ID")
     @JsonIgnore
     private Programme programme;
 
-    @Column(name = "DATE")
+    @Column(name = "DATE_PREVUE")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date date;
+    private Date datePrevue;
+
+    @Column(name = "DATE_REALISEE")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateRealisee;
 
     @Column(name = "ESTREALISEE")
     private boolean estRealisee;
@@ -49,13 +56,25 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(Sport sport, float distance, Programme programme, Date date, CentreInteret centreInteret, boolean estRealisee) {
+    public Activity(Sport sport, float distancePrevue, Programme programme, Date datePrevue, CentreInteret centreInteret, boolean estRealisee) {
         this.sport = sport;
-        this.distance = distance;
+        this.distancePrevue = distancePrevue;
         this.programme = programme;
-        this.date = date;
+        this.datePrevue = datePrevue;
         this.centreInteret = centreInteret;
         this.estRealisee = estRealisee;
+    }
+
+    public Activity(Sport sport, float distancePrevue, float distanceRealisee, Programme programme, Date datePrevue, Date dateRealisee, boolean estRealisee, CentreInteret centreInteret, TimeFrame timeFrame) {
+        this.sport = sport;
+        this.distancePrevue = distancePrevue;
+        this.distanceRealisee = distanceRealisee;
+        this.programme = programme;
+        this.datePrevue = datePrevue;
+        this.dateRealisee = dateRealisee;
+        this.estRealisee = estRealisee;
+        this.centreInteret = centreInteret;
+        this.timeFrame = timeFrame;
     }
 
     public Long getId() {
@@ -74,14 +93,6 @@ public class Activity {
         this.sport = sport;
     }
 
-    public float getDistance() {
-        return distance;
-    }
-
-    public void setDistance(float distance) {
-        this.distance = distance;
-    }
-
     public Programme getProgramme() {
         return programme;
     }
@@ -90,19 +101,50 @@ public class Activity {
         this.programme = programme;
     }
 
-    public Date getDate() {
-        return date;
+    public float getDistancePrevue() {
+        return distancePrevue;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDistancePrevue(float distancePrevue) {
+        this.distancePrevue = distancePrevue;
+    }
+
+    public float getDistanceRealisee() {
+        return distanceRealisee;
+    }
+
+    public void setDistanceRealisee(float distanceRealisee) {
+        this.distanceRealisee = distanceRealisee;
+    }
+
+    public Date getDatePrevue() {
+        return datePrevue;
+    }
+
+    public void setDatePrevue(Date datePrevue) {
+        this.datePrevue = datePrevue;
+    }
+
+    public Date getDateRealisee() {
+        return dateRealisee;
+    }
+
+    public void setDateRealisee(Date dateRealisee) {
+        this.dateRealisee = dateRealisee;
     }
 
     @JsonIgnore
-    public String getDateString()
+    public String getDatePrevueString()
     {
         SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormater.format(this.date);
+        return dateFormater.format(this.datePrevue);
+    }
+
+    @JsonIgnore
+    public String getDateRealiseeString()
+    {
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormater.format(this.dateRealisee);
     }
 
     public boolean isEstRealisee() {
@@ -127,8 +169,8 @@ public class Activity {
         String optionalPart;
         mandatoryPart = "Activity{" +
             "sport=" + sport.toString() +
-            ", distance=" + distance +
-            ", date=" + this.getDateString() +
+            ", distance=" + distancePrevue +
+            ", date=" + this.getDatePrevueString() +
             ", estRealisee=" + estRealisee;
         if(programme!=null)
         {

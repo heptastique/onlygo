@@ -96,9 +96,9 @@ public class RealisationServiceTest {
         }
         Programme programme = programmeService.getActiveProgrammeOfUser("user11");
         Activity activity = activityService.getNextActivity(programme);
-        Realisation realisationAdded = realisationService.addRealisation(realisationDTO,programme, activity);
-        assertEquals((int)realisationAdded.getDistance(), 2);
-        assertEquals((long)realisationAdded.getCentreInteret().getId(), (long)10000);
+        activity = realisationService.addRealisation(realisationDTO,programme, activity);
+        assertEquals((int)activity.getDistanceRealisee(), 2);
+        assertEquals((long)activity.getCentreInteret().getId(), (long)10000);
     }
 
     @Test

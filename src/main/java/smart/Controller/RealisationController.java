@@ -47,8 +47,8 @@ public class RealisationController {
         try{
             Programme programme = programmeService.getActiveProgrammeOfUser(username);
             Activity activity = activityService.getNextActivity(programme);
-            Realisation realisation = realisationService.addRealisation(realisationDTO, programme, activity);
-            return ResponseEntity.ok().body(realisation);
+            activity = realisationService.addRealisation(realisationDTO, programme, activity);
+            return ResponseEntity.ok().body(activity);
         }catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }
