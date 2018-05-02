@@ -213,7 +213,7 @@ public class UserControllerTest {
         mvc.perform(put("/user/objectif").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
 
-        assertEquals(10, userRepository.findByUsername("user10").getObjectifHebdo(), 0);
+        assertEquals(10, userRepository.findByUsername("user10").getObjectifs().get(0).getObjectif(), 0);
 
         mvc.perform(get("/user/objectif").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
