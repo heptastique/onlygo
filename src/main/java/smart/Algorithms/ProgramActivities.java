@@ -50,7 +50,6 @@ public class ProgramActivities
         // @TODO HardCoded replaces distanceCourseMax
         // double objectifRemaining = user.getObjectifHebdo();
         double objectifHebdo = user.getObjectifHebdo();
-        int remainingSessions = 3;
         List <Float> objectifsDistance = new ArrayList <> ();
         objectifsDistance.add((float) objectifHebdo / 2);
         objectifsDistance.add((float) objectifHebdo / 4);
