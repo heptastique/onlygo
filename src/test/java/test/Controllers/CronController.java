@@ -53,7 +53,7 @@ public class CronController {
             .header("Authorization", "Bearer anyToken"))
             .andExpect(status().isOk());
 
-        mvc.perform(get("/activity/itinary?user=user10&activite=10008")
+        mvc.perform(get("/activity/itinary?activite=10245")
             .header("Authorization", "Bearer anyToken"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.pointCentreInteretList").isNotEmpty())

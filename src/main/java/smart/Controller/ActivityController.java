@@ -55,10 +55,12 @@ public class ActivityController {
     }
 
     @RequestMapping(path="/activity/itinary", method = RequestMethod.GET)
-    public ResponseEntity<?> getItinary(@RequestParam(value = "user", defaultValue = "user1") String userName, @RequestParam(value = "activite", defaultValue = "10008") long id) {
-        User user = null;
+    public ResponseEntity<?> getItinary(@RequestParam(value = "activite") long id, HttpServletRequest request) throws NotFoundException {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        User user = userService.getUserByUsername(username);
         try {
-            user = userService.getUserByUsername(userName);
+            user = userService.getUserByUsername(username);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
