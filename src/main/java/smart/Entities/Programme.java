@@ -78,6 +78,10 @@ public class Programme {
         this.activites = activites;
     }
 
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
     public void setDateDebut(Date dateDebut)
     {
         this.dateDebut = dateDebut;
