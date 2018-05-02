@@ -108,7 +108,7 @@ public class ProgramActivities
                     distanceUserToCentreInteretEvaluation = exp(-kDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteret);
 
                     // Calculate Evaluation of difference between User and CentreInteret Level
-                    levelCentreInteretEvaluation = abs(userLevel - centreInteret.getLevel()) / 2.0;
+                    levelCentreInteretEvaluation = 0.5 - abs(userLevel - centreInteret.getLevel()) / 2.0;
 
                     // Calculate CentreInteret Evaluation
                     centreInteretEvaluation = (cDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteretEvaluation + cLevelCentreInteretEvaluation * levelCentreInteretEvaluation) / 2.0;
