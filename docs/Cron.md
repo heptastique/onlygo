@@ -11,3 +11,15 @@ Status: 200 OK
 ```
 Ok
 ```
+
+## `GET /importStravaPoints` :key:
+Import de points obtenus via Strava
+
+### Réponse
+```
+Status: 200 OK
+```
+
+```
+Ok
+```
