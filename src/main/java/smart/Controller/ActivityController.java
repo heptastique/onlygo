@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import smart.Entities.Activity;
-import smart.Entities.Point;
-import smart.Entities.Programme;
-import smart.Entities.User;
+import smart.Entities.*;
 import smart.Jwt.JwtTokenUtil;
 import smart.Services.ActivityService;
 import smart.Services.ProgrammeService;
@@ -66,7 +63,7 @@ public class ActivityController {
             e.printStackTrace();
         }
         Activity activity = activityService.getActivity(id);
-        List<Point> itinerary = activityService.findItinary(user, activity, activity.getCentreInteret());
+        List<PointCentreInteret> itinerary = activityService.findItinary(user, activity, activity.getCentreInteret());
         return ResponseEntity.ok().body(itinerary);
     }
 }

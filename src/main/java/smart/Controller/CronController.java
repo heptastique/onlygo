@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import smart.Algorithms.JsonToSQL;
 import smart.Services.DonneeAthmospheriqueService;
+import smart.Services.PointService;
 import smart.Services.TimeFrameService;
 import smart.Services.WeatherDataService;
 
@@ -24,7 +25,7 @@ public class CronController {
     @Autowired
     DonneeAthmospheriqueService donneeAthmospheriqueService;
     @Autowired
-    JsonToSQL jsonToSQL;
+    PointService pointService;
 
     @RequestMapping(path="/update", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateTimeFrame(){
@@ -36,9 +37,9 @@ public class CronController {
 
     }
 
-    @RequestMapping(path="/pointToSQL", method = RequestMethod.GET)
+    @RequestMapping(path="/importStravaPoints", method = RequestMethod.GET)
     public ResponseEntity<?> updatePoint(){
-        jsonToSQL.generate();
+        pointService.generate();
         return ResponseEntity.ok("Ok");
     }
 

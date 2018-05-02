@@ -20,7 +20,7 @@ public class CentreInteret {
     private Point point;
 
     @OneToMany
-    private List<Point> listPoint;
+    private List<PointCentreInteret> listPoint;
 
     public Long getId() {
         return id;
@@ -46,11 +46,11 @@ public class CentreInteret {
         this.point = point;
     }
 
-    public List<Point> getListPoint() {
+    public List<PointCentreInteret> getListPoint() {
         return listPoint;
     }
 
-    public void setListPoint(List<Point> listPoint) {
+    public void setListPoint(List<PointCentreInteret> listPoint) {
         this.listPoint = listPoint;
     }
 }

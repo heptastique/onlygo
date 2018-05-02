@@ -825,5 +825,3 @@ INSERT INTO activity(activity_id, date_prevue, date_realisee, distance_prevue, d
 INSERT INTO activity(activity_id, date_prevue, date_realisee, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (10399, '2018-04-20', '2018-04-20', 9.775300479781212, 9.775300479781212, 1, 10099, 1, 10000, 17);
 
 
-
->>>>>>> master
