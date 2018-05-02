@@ -46,8 +46,14 @@ public class ProgramActivities
 
     public Programme calculate(User user)
     {
-        double objectifRemaining = user.getObjectifHebdo();
-        double distanceCourseMax= user.getDistanceMax();
+        // @TODO HardCoded replaces distanceCourseMax
+        // double objectifRemaining = user.getObjectifHebdo();
+        double objectifHebdo = user.getObjectifHebdo();
+        List <Float> objectifsDistance = new ArrayList <> ();
+        objectifsDistance.add((float) objectifHebdo / 2);
+        objectifsDistance.add((float) objectifHebdo / 4);
+        objectifsDistance.add((float) objectifHebdo / 4);
+        //double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
 
         double distanceUserToCentreInteret;
@@ -128,7 +134,7 @@ public class ProgramActivities
             // Create Program
             programme = new Programme();
             programme.setUser(user);
-            programme.setObjectifDistance(objectifRemaining);
+            programme.setObjectifDistance(objectifHebdo);
             programme.setDateDebut(currentMondayMidnight);
         }
         // If Active Program, some Activities already realized
@@ -137,7 +143,7 @@ public class ProgramActivities
             // Update remaining Objectif
             for (Realisation realisation : programme.getRealisations())
             {
-                objectifRemaining = objectifRemaining - realisation.getDistance();
+                objectifHebdo = objectifHebdo - realisation.getDistance();
             }
 
             // Add already realized Activities to Activities List and remove non realized Activities
@@ -146,6 +152,7 @@ public class ProgramActivities
                 if (activity.isEstRealisee())
                 {
                     activities.add(activity);
+                    objectifsDistance.remove(activity.getDistance());
                 }
                                                                                                                     else
                 {
@@ -160,7 +167,8 @@ public class ProgramActivities
 
         // While Week Objective is not Completed
         int index = 0;
-        while (objectifRemaining > 0 && index < timeFrameCentreInterets.size())
+        int timeFrameCentreInteretIndex;
+        while (objectifsDistance.size() > 0 && index < timeFrameCentreInterets.size())
         {
             timeFrameCentreInteret = timeFrameCentreInterets.get(index);
 
@@ -171,17 +179,9 @@ public class ProgramActivities
             activity.setCentreinteretId(timeFrameCentreInteret.centreInteret.getId());
             activity.setSportName(course.getNom());
 
-            // Last Activity of Program
-            if (objectifRemaining < distanceCourseMax)
-            {
-                activity.setDistance((float) objectifRemaining);
-                objectifRemaining = 0;
-            }
-            // Need to add new Activity to the Program
-            else
-            {
-                activity.setDistance((float) distanceCourseMax);
-                objectifRemaining = objectifRemaining - distanceCourseMax;
+
+                activity.setDistance(objectifsDistance.get(0));
+                objectifsDistance.remove(0);
 
                 tempTimeFrameCentreInterets = new ArrayList <> ();
 
@@ -235,7 +235,6 @@ public class ProgramActivities
                     }
                     timeFrameCentreInterets.add(index1, timeFrameCentreInteret2);
                 }
-            }
 
             // Add Activity to Activities List
             savedActivity = activityService.addActivity(activity, false);
