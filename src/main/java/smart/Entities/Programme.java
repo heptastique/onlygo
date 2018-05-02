@@ -87,6 +87,20 @@ public class Programme {
         this.dateDebut = dateDebut;
     }
 
+    public float getTauxCompletion()
+    {
+        float totalCompletion = 0;
+        int nbActivitiesRealisees = 0;
+        for(Activity activity : this.activites)
+        {
+            if(activity.isEstRealisee()) {
+                totalCompletion = totalCompletion + activity.getTauxCompletion();
+                nbActivitiesRealisees++;
+            }
+        }
+        return totalCompletion/nbActivitiesRealisees;
+    }
+
     @JsonIgnore
     public String getDateDebutString()
     {
