@@ -89,7 +89,7 @@ public class Programme {
 
     public float getTauxCompletion()
     {
-        float totalCompletion = 0;
+        float totalCompletion = 0f;
         int nbActivitiesRealisees = 0;
         for(Activity activity : this.activites)
         {
@@ -98,7 +98,11 @@ public class Programme {
                 nbActivitiesRealisees++;
             }
         }
-        return totalCompletion/nbActivitiesRealisees;
+        if(nbActivitiesRealisees!=0)
+        {
+            return totalCompletion/nbActivitiesRealisees;
+        }
+        return 0;
     }
 
     @JsonIgnore
