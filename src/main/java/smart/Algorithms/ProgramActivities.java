@@ -157,7 +157,7 @@ public class ProgramActivities
                     activities.add(activity);
                     objectifsDistance.remove(activity.getDistancePrevue());
                 }
-                                                                                                                    else
+                else
                 {
                     activityRepository.delete(activity);
                 }
