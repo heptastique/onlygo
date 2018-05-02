@@ -47,7 +47,7 @@ public class ActivityService {
     public Activity getNextActivity(Programme programme)
     {
         List<Activity> activities = programme.getActivites();
-        Collections.sort(activities, comparing(Activity::getDatePrevue));
+        Collections.sort(activities, comparing(Activity::getDatePrevue).thenComparingLong(Activity::getTimeFrameId));
 
         // Get today's date
         Date todayDate = FindByJour.findCurrentDate();

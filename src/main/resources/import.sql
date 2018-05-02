@@ -78,12 +78,12 @@ INSERT INTO programme(programme_id, date_debut, user_id, objectif_distance) VALU
 INSERT INTO programme(programme_id, date_debut, user_id, objectif_distance) VALUES (500, '2018-04-16', 100, 10);
 INSERT INTO programme(programme_id, date_debut, user_id, objectif_distance) VALUES (600, '2018-04-23', 100, 10);
 
-INSERT INTO activity(activity_id, date_prevue, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (100, '2018-05-02', 6, 0, 0, 200, 1, 10000, 51);
-INSERT INTO activity(activity_id, date_prevue, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (300, '2018-05-05', 8, 0, 0, 200, 2, 10000, 35);
-INSERT INTO activity(activity_id, date_prevue, date_realisee, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (200, '2018-05-01', '2018-05-01', 4, 4, 1, 200, 1, 10000, 44);
-INSERT INTO activity(activity_id, date_prevue, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (400, '2018-05-03', 5, 0, 0, 200, 1, 10000, 55);
-INSERT INTO activity(activity_id, date_prevue, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (500, '2018-05-04', 5, 0, 0, 200, 2, 10000, 23);
-INSERT INTO activity(activity_id, date_prevue, date_realisee, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (600, '2018-04-30', '2018-04-30', 5, 5, 1, 200, 1, 10000, 47);
+INSERT INTO activity(activity_id, date_prevue, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (100, '2018-05-02', 6, 0, 0, 200, 1, 10000, 22);
+INSERT INTO activity(activity_id, date_prevue, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (300, '2018-05-02', 8, 0, 0, 200, 2, 10000, 21);
+INSERT INTO activity(activity_id, date_prevue, date_realisee, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (200, '2018-05-01', '2018-05-01', 4, 4, 1, 200, 1, 10000, 11);
+INSERT INTO activity(activity_id, date_prevue, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (400, '2018-05-03', 5, 0, 0, 200, 1, 10000, 27);
+INSERT INTO activity(activity_id, date_prevue, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (500, '2018-05-04', 5, 0, 0, 200, 2, 10000, 39);
+INSERT INTO activity(activity_id, date_prevue, date_realisee, distance_prevue, distance_realisee, estrealisee, programme_id, sport_id, CENTREINTERET_ID, timeframe_id) VALUES (600, '2018-04-30', '2018-04-30', 5, 5, 1, 200, 1, 10000, 3);
 
 INSERT INTO point (ID, x, y) VALUES (10000, 45.77846429629631, 4.852797629629627);
 INSERT INTO centreinteret (ID, NAME, POINT_ID) VALUES (10000, "Parc de la Tête d'Or", 10000);

@@ -46,7 +46,7 @@ public class Activity {
     CentreInteret centreInteret;
 
     @ManyToOne
-    @JoinColumn(name="TIMEFRAME_ID")
+    @JoinColumn(name="TIMEFRAME_ID", nullable=false)
     TimeFrame timeFrame;
 
     public Activity() {
@@ -181,6 +181,10 @@ public class Activity {
 
     public TimeFrame getTimeFrame() {
         return timeFrame;
+    }
+
+    public Long getTimeFrameId() {
+        return timeFrame.getId();
     }
 
     public void setTimeFrame(TimeFrame timeFrame) {
