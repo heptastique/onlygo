@@ -95,10 +95,12 @@ public class ProgramActivities
 
     public Programme calculate(User user)
     {
+        List <Sport> sports = new ArrayList <> ();
         List <List <Float> > objectifsSportsDistance = new ArrayList <> ();
         int index = 0;
         for (Sport sport : sportService.getAllSports())
         {
+            sports.add(sport);
             objectifsSportsDistance.add(new ArrayList <> ());
             objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 2);
             objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
@@ -210,7 +212,7 @@ public class ProgramActivities
                 activity.setDate(timeFrameCentreInteret.timeFrame.getDate());
                 activity.setTimeFrameId(timeFrameCentreInteret.timeFrame.getId());
                 activity.setCentreinteretId(timeFrameCentreInteret.centreInteret.getId());
-                activity.setSportName(course.getNom());
+                activity.setSportName(sports.get(sportIndex).getNom());
 
                 activity.setDistance(objectifsSportsDistance.get(sportIndex).get(0));
                 objectifsSportsDistance.get(sportIndex).remove(0);
