@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -44,6 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest (classes = Application.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class UserControllerTest {
 
     private MockMvc mvc;
@@ -183,15 +185,15 @@ public class UserControllerTest {
         Gson gson = new Gson();
         String json = gson.toJson(locationDto, PointDto.class);
 
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
 
         mvc.perform(put("/user/location").header("Authorization","Bearer anyToken")
             .contentType(MediaType.APPLICATION_JSON).content(json)
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful());
 
-        assertEquals(userRepository.findByUsername("user").getLocation().getX(),locationDto.getX(),0);
-        assertEquals(userRepository.findByUsername("user").getLocation().getY(),locationDto.getY(),0);
+        assertEquals(userRepository.findByUsername("user10").getLocation().getX(),locationDto.getX(),0);
+        assertEquals(userRepository.findByUsername("user10").getLocation().getY(),locationDto.getY(),0);
 
         mvc.perform(get("/user/location").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
@@ -213,11 +215,11 @@ public class UserControllerTest {
         mvc.perform(put("/user/objectif").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
 
-        assertEquals(10, userRepository.findByUsername("user10").getObjectifHebdo(), 0);
+        assertEquals(10, userRepository.findByUsername("user10").getObjectifs().get(0).getObjectif(), 0);
 
         mvc.perform(get("/user/objectif").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.objectif").value("10.0"));
+            .andExpect(jsonPath("$.[0].objectif").value("10.0"));
     }
 
     @Test

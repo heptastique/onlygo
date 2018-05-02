@@ -25,7 +25,10 @@ public class Programme {
     private User user;
 
     @Column(name = "OBJECTIF_DISTANCE")
-    private Double objectifDistance;
+    @OneToMany(cascade = CascadeType.ALL,
+        fetch = FetchType.EAGER)
+        @Fetch(value = FetchMode.SUBSELECT)
+    private List<Objectif> objectifs;
 
     @Column(name = "DATE_DEBUT")
     @NotNull
@@ -62,12 +65,12 @@ public class Programme {
         this.user = user;
     }
 
-    public Double getObjectifDistance() {
-        return objectifDistance;
+    public List<Objectif> getObjectifs() {
+        return objectifs;
     }
 
-    public void setObjectifDistance(Double objectifDistance) {
-        this.objectifDistance = objectifDistance;
+    public void setObjectifs(List<Objectif> objectifs) {
+        this.objectifs = objectifs;
     }
 
     public List<Activity> getActivites() {

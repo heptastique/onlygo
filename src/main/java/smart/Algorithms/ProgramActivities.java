@@ -77,7 +77,8 @@ public class ProgramActivities
     {
         // @TODO HardCoded replaces distanceCourseMax
         // double objectifRemaining = user.getObjectifHebdo();
-        double objectifHebdo = user.getObjectifHebdo();
+        // @TODO Take goals per sport into account
+        double objectifHebdo = user.getObjectifs().get(0).getObjectif();
         List <Float> objectifsDistance = new ArrayList <> ();
         objectifsDistance.add((float) objectifHebdo / 2);
         objectifsDistance.add((float) objectifHebdo / 4);
@@ -148,7 +149,7 @@ public class ProgramActivities
             // Create Program
             programme = new Programme();
             programme.setUser(user);
-            programme.setObjectifDistance(objectifHebdo);
+            programme.setObjectifs(user.getObjectifs());
             programme.setDateDebut(prevMondayMidnight);
         }
         // If Active Program, some Activities already realized

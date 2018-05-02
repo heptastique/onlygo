@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -37,6 +38,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class UserServiceTest {
 
     private MockMvc mvc;
@@ -62,9 +64,9 @@ public class UserServiceTest {
     }
 
     @Test
-    public void AdminIsFound() throws NotFoundException {
-        User admin = userService.getUserByUsername("admin");
-        assertEquals("admin", admin.getUsername());
+    public void User10IsFound() throws NotFoundException {
+        User admin = userService.getUserByUsername("user10");
+        assertEquals("user10", admin.getUsername());
     }
 
     @Test
