@@ -80,8 +80,6 @@ public class ProgramActivities
 
         double distanceUserToCentreInteret;
         double distanceUserToCentreInteretEvaluation;
-        final double kDistanceUserToCentreInteretEvaluation = 0.0002;
-        final double cDistanceUserToCentreInteretEvaluation = 1.0;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
         TimeFrameCentreInteret timeFrameCentreInteret1;
@@ -89,10 +87,15 @@ public class ProgramActivities
         List <TimeFrameCentreInteret> tempTimeFrameCentreInterets;
         boolean timeFrameCentreInteretToUpdate;
 
-        Sport course = sportService.getSport("Course");
-
-        Date prevMondayMidnight = prevMondayMidnight();
-        Date nextMonday = nextMonday();
+        final double kDistanceUserToCentreInteretEvaluation = 0.0002;
+        final double cDistanceUserToCentreInteretEvaluation = 1.0;
+        final double cTimeFrameEvaluation = 1.0;
+        final double cCentreInteretEvaluation = 1.0;
+        final double cDecreaseSameTimeFrameDay = 0.9;
+        final double cDecreaseSameCentreInteret = 0.8;
+        final Sport course = sportService.getSport("Course");
+        final Date prevMondayMidnight = prevMondayMidnight();
+        final Date nextMonday = nextMonday();
 
         // For each TimeFrame of the current Week
         for (TimeFrame timeFrame : timeFrameService.getTimeFrameAll())
@@ -119,7 +122,7 @@ public class ProgramActivities
                     centreInteretEvaluation = cDistanceUserToCentreInteretEvaluation * distanceUserToCentreInteretEvaluation / 1.0;
 
                     // Calculate TimeFrameCentreInteret Evaluation
-                    timeFrameCentreInteret.evaluation = timeFrame.getEvaluation() * centreInteretEvaluation;
+                    timeFrameCentreInteret.evaluation = (cTimeFrameEvaluation * timeFrame.getEvaluation() + cCentreInteretEvaluation * centreInteretEvaluation) / 2.0;
 
                     // Insert TimeFrameCentreInteret in List, sorted by Evaluation
                     int index = 0;
@@ -197,14 +200,14 @@ public class ProgramActivities
                 // Decrease Evaluation if same TimeFrame Day
                 if (timeFrameCentreInteret1.timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
                 {
-                    timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
+                    timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * cDecreaseSameTimeFrameDay;
                     timeFrameCentreInteretToUpdate = true;
                 }
 
                 // Decrease Evaluation if same CentreInteret
                 if (timeFrameCentreInteret1.centreInteret == timeFrameCentreInteret.centreInteret)
                 {
-                    timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
+                    timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * cDecreaseSameCentreInteret;
                     timeFrameCentreInteretToUpdate = true;
                 }
 
