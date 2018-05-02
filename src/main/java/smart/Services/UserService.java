@@ -13,8 +13,10 @@ import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
 import smart.Repositories.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -39,6 +41,9 @@ public class UserService {
     private PointRepository pointRepository;
 
     @Autowired
+    private SportService sportService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public User addUser(UserDto userDto) throws EmailExistsException, UsernameExistsException, NotFoundException {
@@ -61,7 +66,16 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastPasswordResetDate(date);
         user.setEnabled(true);
-        user.setObjectifHebdo(userDto.getObjectifHebdo());
+
+        Objectif objectif = new Objectif();
+        objectif.setObjectif(userDto.getObjectifHebdo());
+        objectif.setSport(sportService.getSport("Course"));
+
+        List<Objectif> objectifList = new ArrayList<Objectif>();
+        objectifList.add(objectif);
+
+        user.setObjectifs(objectifList);
+
         user.setDistanceMax(userDto.getDistanceMax());
 
         try{
@@ -94,11 +108,20 @@ public class UserService {
     public double putObjectifHebdo(String username, double distance){
         User user = userRepository.findByUsername(username) ;
         Programme activeProgramme = programmeService.getActiveProgrammeOfUser(username);
-        activeProgramme.setObjectifDistance(distance);
+
+        // Updating active program goal
+        List<Objectif> objectifs = activeProgramme.getObjectifs();
+        objectifs.get(0).setObjectif(distance);
+
         programmeRepository.save(activeProgramme);
-        user.setObjectifHebdo(distance);
+
+        // Updating user goal
+        List<Objectif> objectifsUtilisateur = user.getObjectifs();
+        objectifsUtilisateur.get(0).setObjectif(distance);
+        user.setObjectifs(objectifsUtilisateur);
         userRepository.save(user);
-        return user.getObjectifHebdo();
+
+        return user.getObjectifs().get(0).getObjectif();
     }
 
     public double setDistanceMax(String username, double distance){
@@ -122,9 +145,9 @@ public class UserService {
         return user != null;
     }
 
-    public double getObjectifHebdo(String username) {
+    public List<Objectif> getObjectifHebdo(String username) {
         User user = userRepository.findByUsername(username) ;
-        return user.getObjectifHebdo();
+        return user.getObjectifs();
     }
     public double getDistanceMax(String username) {
         User user = userRepository.findByUsername(username) ;
@@ -141,6 +164,6 @@ public class UserService {
             realisations += activity.getDistanceRealisee();
         }
 
-        return 100*realisations/activeProgram.getObjectifDistance();
+        return 100*realisations/activeProgram.getObjectifs().get(0).getObjectif();
     }
 }

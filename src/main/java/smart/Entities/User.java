@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Default;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.Date;
 import java.util.List;
@@ -48,7 +50,10 @@ public class User {
     private String email;
 
     @Column(name = "OBJECTIFHEBDO")
-    private double objectifHebdo;
+    @OneToMany(cascade = CascadeType.ALL,
+        fetch = FetchType.EAGER)
+        @Fetch(value = FetchMode.SUBSELECT)
+    private List<Objectif> objectifs;
 
     @Column(name = "ENABLED")
     @NotNull
@@ -133,9 +138,13 @@ public class User {
         this.email = email;
     }
 
-    public double getObjectifHebdo(){ return objectifHebdo; }
+    public List<Objectif> getObjectifs() {
+        return objectifs;
+    }
 
-    public void setObjectifHebdo(double objectifHebdo){ this.objectifHebdo=objectifHebdo; }
+    public void setObjectifs(List<Objectif> objectifs) {
+        this.objectifs = objectifs;
+    }
 
     public Boolean getEnabled() {
         return enabled;

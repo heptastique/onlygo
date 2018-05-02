@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class Sport {
 
     @Id
-    @Column(name = "SPORT_ID")
+    @Column(name = "ID")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
