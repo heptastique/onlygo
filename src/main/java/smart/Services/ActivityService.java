@@ -2,17 +2,15 @@ package smart.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import smart.Algorithms.ActivityItinerary;
 import smart.Algorithms.FindByJour;
 import smart.DTO.ActivityDTO;
+import smart.DTO.PolylinePointsDTO;
 import smart.Entities.*;
-import smart.Repositories.ActivityRepository;
-import smart.Repositories.CentreInteretRepository;
-import smart.Repositories.SportRepository;
-import smart.Repositories.TimeFrameRepository;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import smart.Repositories.*;
+
+import java.util.*;
+
 import static java.util.Comparator.comparing;
 
 @Service
@@ -70,4 +68,14 @@ public class ActivityService {
         }
         return null;
     }
+    public Activity getActivity( long id){
+        Activity activity = activityRepository.findById(id).get();
+        return activity;
+    }
+    public PolylinePointsDTO findItinary (User user, Activity activity, CentreInteret centreInteret){
+        List<PointCentreInteret> itinerary = ActivityItinerary.findActivityItinerary(user, activity, centreInteret);
+        PolylinePointsDTO polylinePointsDTO = new PolylinePointsDTO(itinerary);
+        return polylinePointsDTO;
+    }
+
 }

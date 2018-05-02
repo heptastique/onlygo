@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "point")
-public class Point {
+@Table(name = "pointcentreinteret")
+public class PointCentreInteret {
 
     @Id
     @Column(name = "ID")
@@ -55,12 +55,12 @@ public class Point {
         this.centreInteret = centreInteret;
     }
 
-    public Point(double x, double y) {
+    public PointCentreInteret(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public Point() {
+    public PointCentreInteret() {
     }
 
     @Override
