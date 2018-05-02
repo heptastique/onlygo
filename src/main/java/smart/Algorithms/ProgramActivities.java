@@ -24,6 +24,26 @@ public class ProgramActivities
         private double evaluation;
     }
 
+    private int getSportIndex(String sportName)
+    {
+        if (sportName.equals("Course"))
+        {
+            return 0;
+        }
+        else if (sportName.equals("Marche"))
+        {
+            return 1;
+        }
+        else if (sportName.equals("Cyclisme"))
+        {
+            return 2;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     private void addTimeFrameCentreInteret(TimeFrameCentreInteret timeFrameCentreInteret)
     {
         int index = 0;
@@ -75,14 +95,18 @@ public class ProgramActivities
 
     public Programme calculate(User user)
     {
-        // @TODO HardCoded replaces distanceCourseMax
-        // double objectifRemaining = user.getObjectifHebdo();
-        // @TODO Take goals per sport into account
-        double objectifHebdo = user.getObjectifs().get(0).getObjectif();
-        List <Float> objectifsDistance = new ArrayList <> ();
-        objectifsDistance.add((float) objectifHebdo / 2);
-        objectifsDistance.add((float) objectifHebdo / 4);
-        objectifsDistance.add((float) objectifHebdo / 4);
+        List <Sport> sports = new ArrayList <> ();
+        List <List <Float> > objectifsSportsDistance = new ArrayList <> ();
+        int index = 0;
+        for (Sport sport : sportService.getAllSports())
+        {
+            sports.add(sport);
+            objectifsSportsDistance.add(new ArrayList <> ());
+            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 2);
+            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
+            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
+            index = index + 1;
+        }
         //double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
 
@@ -161,7 +185,7 @@ public class ProgramActivities
                 if (activity.isEstRealisee())
                 {
                     activities.add(activity);
-                    objectifsDistance.remove(activity.getDistancePrevue());
+                    objectifsSportsDistance.get(getSportIndex(activity.getSport().getNom())).remove(activity.getDistancePrevue());
                 }
                 else
                 {
@@ -171,72 +195,76 @@ public class ProgramActivities
             programme.setActivites(activities);
             programme = programmeService.saveProgram(programme);
         }
-
-        // @TODO For each Sport
-
+        
         // While Week Objective is not Completed
-        int index = 0;
-        while (objectifsDistance.size() > 0 && index < timeFrameCentreInterets.size())
+        int sportIndex = 0;
+        index = 0;
+        while (sportIndex < objectifsSportsDistance.size() && index < timeFrameCentreInterets.size())
         {
-            timeFrameCentreInteret = timeFrameCentreInterets.get(index);
-
-            // Create Activity
-            ActivityDTO activity = new ActivityDTO();
-            activity.setDate(timeFrameCentreInteret.timeFrame.getDate());
-            activity.setTimeFrameId(timeFrameCentreInteret.timeFrame.getId());
-            activity.setCentreinteretId(timeFrameCentreInteret.centreInteret.getId());
-            activity.setSportName(course.getNom());
-
-            activity.setDistance(objectifsDistance.get(0));
-            objectifsDistance.remove(0);
-
-            tempTimeFrameCentreInterets = new ArrayList <> ();
-
-            // For each TimeFrameCentreInteret
-            int index1 = 0;
-            while (index1 < timeFrameCentreInterets.size())
+            while (objectifsSportsDistance.get(sportIndex).size() > 0 && index < timeFrameCentreInterets.size())
             {
-                timeFrameCentreInteret1 = timeFrameCentreInterets.get(index1);
+                timeFrameCentreInteret = timeFrameCentreInterets.get(index);
 
-                timeFrameCentreInteretToUpdate = false;
+                // Create Activity
+                ActivityDTO activity = new ActivityDTO();
+                activity.setDate(timeFrameCentreInteret.timeFrame.getDate());
+                activity.setTimeFrameId(timeFrameCentreInteret.timeFrame.getId());
+                activity.setCentreinteretId(timeFrameCentreInteret.centreInteret.getId());
+                activity.setSportName(sports.get(sportIndex).getNom());
 
-                // Decrease Evaluation if same TimeFrame Day
-                if (timeFrameCentreInteret1.timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
+                activity.setDistance(objectifsSportsDistance.get(sportIndex).get(0));
+                objectifsSportsDistance.get(sportIndex).remove(0);
+
+                tempTimeFrameCentreInterets = new ArrayList <> ();
+
+                // For each TimeFrameCentreInteret
+                int index1 = 0;
+                while (index1 < timeFrameCentreInterets.size())
                 {
-                    timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * cDecreaseSameTimeFrameDay;
-                    timeFrameCentreInteretToUpdate = true;
+                    timeFrameCentreInteret1 = timeFrameCentreInterets.get(index1);
+
+                    timeFrameCentreInteretToUpdate = false;
+
+                    // Decrease Evaluation if same TimeFrame Day
+                    if (timeFrameCentreInteret1.timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
+                    {
+                        timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * cDecreaseSameTimeFrameDay;
+                        timeFrameCentreInteretToUpdate = true;
+                    }
+
+                    // Decrease Evaluation if same CentreInteret
+                    if (timeFrameCentreInteret1.centreInteret == timeFrameCentreInteret.centreInteret)
+                    {
+                        timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * cDecreaseSameCentreInteret;
+                        timeFrameCentreInteretToUpdate = true;
+                    }
+
+                    // If TimeFrameCentreInteret Evaluation updated
+                    if (timeFrameCentreInteretToUpdate)
+                    {
+                        // Add TimeFrameCentreInteret to update to temp List
+                        tempTimeFrameCentreInterets.add(timeFrameCentreInteret1);
+                        // Remove TimeFrameCentreInteret to update from List
+                        timeFrameCentreInterets.remove(timeFrameCentreInteret1);
+                    }
+
+                    index1 = index1 + 1;
                 }
 
-                // Decrease Evaluation if same CentreInteret
-                if (timeFrameCentreInteret1.centreInteret == timeFrameCentreInteret.centreInteret)
+                // Add all updated TimeFrameCentreInteret to List sorted by Evaluation
+                for (TimeFrameCentreInteret timeFrameCentreInteret2 : tempTimeFrameCentreInterets)
                 {
-                    timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * cDecreaseSameCentreInteret;
-                    timeFrameCentreInteretToUpdate = true;
+                    addTimeFrameCentreInteret(timeFrameCentreInteret2);
                 }
 
-                // If TimeFrameCentreInteret Evaluation updated
-                if (timeFrameCentreInteretToUpdate)
-                {
-                    // Add TimeFrameCentreInteret to update to temp List
-                    tempTimeFrameCentreInterets.add(timeFrameCentreInteret1);
-                    // Remove TimeFrameCentreInteret to update from List
-                    timeFrameCentreInterets.remove(timeFrameCentreInteret1);
-                }
+                // Add Activity to Activities List
+                savedActivity = activityService.addActivity(activity, false);
+                activities.add(savedActivity);
 
-                index1 = index1 + 1;
+                index = index + 1;
             }
 
-            // Add all updated TimeFrameCentreInteret to List sorted by Evaluation
-            for (TimeFrameCentreInteret timeFrameCentreInteret2 : tempTimeFrameCentreInterets)
-            {
-                addTimeFrameCentreInteret(timeFrameCentreInteret2);
-            }
-
-            // Add Activity to Activities List
-            savedActivity = activityService.addActivity(activity, false);
-            activities.add(savedActivity);
-
-            index = index + 1;
+            sportIndex = sportIndex + 1;
         }
 
         programme = programmeService.saveProgram(programme);
