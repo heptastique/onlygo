@@ -44,8 +44,14 @@ public class ProgramActivities
 
     public Programme calculate(User user)
     {
-        double objectifRemaining = user.getObjectifHebdo();
-        double distanceCourseMax= user.getDistanceMax();
+        // @TODO HardCoded replaces distanceCourseMax
+        // double objectifRemaining = user.getObjectifHebdo();
+        double objectifHebdo = user.getObjectifHebdo();
+        List <Float> objectifsDistance = new ArrayList <> ();
+        objectifsDistance.add((float) objectifHebdo / 2);
+        objectifsDistance.add((float) objectifHebdo / 4);
+        objectifsDistance.add((float) objectifHebdo / 4);
+        //double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
 
         double distanceUserToCentreInteret;
@@ -54,7 +60,10 @@ public class ProgramActivities
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
-        List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
+        TimeFrameCentreInteret timeFrameCentreInteret1;
+        List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <> ();
+        List <TimeFrameCentreInteret> tempTimeFrameCentreInterets;
+        boolean timeFrameCentreInteretToUpdate;
 
         Sport course = sportService.getSport("Course");
 
@@ -113,7 +122,7 @@ public class ProgramActivities
         }
 
         // Create Activities List
-        List <Activity> activities = new ArrayList <Activity> ();
+        List <Activity> activities = new ArrayList <> ();
         Activity savedActivity;
 
         Programme programme = programmeService.getActiveProgrammeOfUser(user.getUsername());
@@ -123,27 +132,21 @@ public class ProgramActivities
             // Create Program
             programme = new Programme();
             programme.setUser(user);
-            programme.setObjectifDistance(objectifRemaining);
+            programme.setObjectifDistance(objectifHebdo);
             programme.setDateDebut(currentMondayMidnight);
         }
         // If Active Program, some Activities already realized
         else
         {
-            // Update remaining Objectif
-            Iterable<Activity> progRealisations = activityRepository.findByProgrammeAndEstRealisee(programme, true);
-            for (Activity realisation : progRealisations)
-            {
-                objectifRemaining = objectifRemaining - realisation.getDistanceRealisee();
-            }
-
             // Add already realized Activities to Activities List and remove non realized Activities
             for (Activity activity : programme.getActivites())
             {
                 if (activity.isEstRealisee())
                 {
                     activities.add(activity);
+                    objectifsDistance.remove(activity.getDistance());
                 }
-                else
+                                                                                                                    else
                 {
                     activityRepository.delete(activity);
                 }
@@ -155,11 +158,11 @@ public class ProgramActivities
         // @TODO For each Sport
 
         // While Week Objective is not Completed
-        int activityIndex = 0;
+        int index = 0;
         int timeFrameCentreInteretIndex;
-        while (objectifRemaining > 0 && activityIndex < timeFrameCentreInterets.size())
+        while (objectifsDistance.size() > 0 && index < timeFrameCentreInterets.size())
         {
-            timeFrameCentreInteret = timeFrameCentreInterets.get(activityIndex);
+            timeFrameCentreInteret = timeFrameCentreInterets.get(index);
 
             // Create Activity
             ActivityDTO activity = new ActivityDTO();
@@ -168,36 +171,68 @@ public class ProgramActivities
             activity.setCentreinteretId(timeFrameCentreInteret.centreInteret.getId());
             activity.setSportName(course.getNom());
 
-            // Last Activity of Program
-            if (objectifRemaining < distanceCourseMax)
-            {
-                activity.setDistance((float) objectifRemaining);
-                objectifRemaining = 0;
-            }
-            // Need to add new Activity to the Program
-            else
-            {
-                activity.setDistance((float) distanceCourseMax);
-                objectifRemaining = objectifRemaining - distanceCourseMax;
 
-                // Remove all incompatible TimeFrameCentreInteret (Same Day)
-                timeFrameCentreInteretIndex = 0;
-                while (timeFrameCentreInteretIndex < timeFrameCentreInterets.size())
+                activity.setDistance(objectifsDistance.get(0));
+                objectifsDistance.remove(0);
+
+                tempTimeFrameCentreInterets = new ArrayList <> ();
+
+                // For each TimeFrameCentreInteret
+                int index1 = 0;
+                while (index1 < timeFrameCentreInterets.size())
                 {
-                    if (timeFrameCentreInterets.get(timeFrameCentreInteretIndex).timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
+                    timeFrameCentreInteret1 = timeFrameCentreInterets.get(index1);
+
+                    timeFrameCentreInteretToUpdate = false;
+
+                    // Decrease Evaluation if same TimeFrame Day
+                    if (timeFrameCentreInteret1.timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
                     {
-                        timeFrameCentreInterets.remove(timeFrameCentreInteretIndex);
-                        timeFrameCentreInteretIndex = timeFrameCentreInteretIndex - 1;
+                        timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
+                        timeFrameCentreInteretToUpdate = true;
                     }
-                    timeFrameCentreInteretIndex = timeFrameCentreInteretIndex + 1;
+
+                    // Decrease Evaluation if same CentreInteret
+                    if (timeFrameCentreInteret1.centreInteret == timeFrameCentreInteret.centreInteret)
+                    {
+                        timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
+                        timeFrameCentreInteretToUpdate = true;
+                    }
+
+                    // If TimeFrameCentreInteret Evaluation updated
+                    if (timeFrameCentreInteretToUpdate)
+                    {
+                        // Add TimeFrameCentreInteret to update to temp List
+                        int index2 = 0;
+                        while (index2 < tempTimeFrameCentreInterets.size() && tempTimeFrameCentreInterets.get(index2).evaluation > timeFrameCentreInteret1.evaluation)
+                        {
+                            index2 = index2 + 1;
+                        }
+                        tempTimeFrameCentreInterets.add(index2, timeFrameCentreInteret1);
+                        // Remove TimeFrameCentreInteret to update from List
+                        timeFrameCentreInterets.remove(timeFrameCentreInteret1);
+                        index1 = index1 - 1;
+                    }
+
+                    index1 = index1 + 1;
                 }
-            }
+
+                // Add all updated TimeFrameCentreInteret to List sorted by Evaluation
+                for (TimeFrameCentreInteret timeFrameCentreInteret2 : tempTimeFrameCentreInterets)
+                {
+                    index1 = 0;
+                    while (index1 < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index1).evaluation > timeFrameCentreInteret2.evaluation)
+                    {
+                        index1 = index1 + 1;
+                    }
+                    timeFrameCentreInterets.add(index1, timeFrameCentreInteret2);
+                }
 
             // Add Activity to Activities List
             savedActivity = activityService.addActivity(activity, false);
             activities.add(savedActivity);
 
-            activityIndex = activityIndex + 1;
+            index = index + 1;
         }
 
         programme = programmeService.saveProgram(programme);
