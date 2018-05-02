@@ -1,5 +1,7 @@
 package smart.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,7 @@ public class Point {
     @Column(name = "Y")
     private double y;
 
+    @JsonIgnore
     @ManyToOne
     private CentreInteret centreInteret;
 
