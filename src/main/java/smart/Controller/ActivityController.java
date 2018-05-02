@@ -4,10 +4,7 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import smart.Entities.Activity;
 import smart.Entities.Point;
 import smart.Entities.Programme;
@@ -61,14 +58,14 @@ public class ActivityController {
     }
 
     @RequestMapping(path="/activity/itinary", method = RequestMethod.GET)
-    public ResponseEntity<?> getItinary(HttpServletRequest request) {
+    public ResponseEntity<?> getItinary(@RequestParam(value = "user", defaultValue = "user1") String userName, @RequestParam(value = "activite", defaultValue = "10008") long id) {
         User user = null;
         try {
-            user = userService.getUserByUsername("user1");
+            user = userService.getUserByUsername(userName);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
-        Activity activity = activityService.getActivity(10008);
+        Activity activity = activityService.getActivity(id);
         List<Point> itinerary = activityService.findItinary(user, activity, activity.getCentreInteret());
         return ResponseEntity.ok().body(itinerary);
     }
