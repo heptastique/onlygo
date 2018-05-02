@@ -11,10 +11,7 @@ import smart.Entities.*;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
 import smart.Jwt.JwtUser;
-import smart.Repositories.AuthoRepository;
-import smart.Repositories.PointRepository;
-import smart.Repositories.ProgrammeRepository;
-import smart.Repositories.UserRepository;
+import smart.Repositories.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,6 +33,9 @@ public class UserService {
 
     @Autowired
     private ProgrammeRepository programmeRepository;
+
+    @Autowired
+    private ActivityRepository activityRepository;
 
     @Autowired
     private PointRepository pointRepository;
@@ -154,13 +154,14 @@ public class UserService {
         return user.getDistanceMax();
     }
 
-
     public double getPourcentageCourant(String username) {
         User user = userRepository.findByUsername(username);
         double realisations=0;
         Programme activeProgram = programmeService.getActiveProgrammeOfUser(username);
-        for(Realisation r:activeProgram.getRealisations()){
-            realisations +=r.getDistance();
+        Iterable<Activity> realList = activityRepository.findByProgrammeAndEstRealisee(activeProgram, true);
+        for(Activity activity : realList)
+        {
+            realisations += activity.getDistanceRealisee();
         }
 
         return 100*realisations/activeProgram.getObjectifs().get(0).getObjectif();
