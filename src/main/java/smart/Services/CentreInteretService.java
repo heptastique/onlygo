@@ -14,4 +14,8 @@ public class CentreInteretService {
     public Iterable <CentreInteret> getCentreInteretAll() {
         return centreInteretRepository.findAll();
     }
+
+    public void persist( CentreInteret centreInteret){
+        centreInteretRepository.save( centreInteret);
+    }
 }

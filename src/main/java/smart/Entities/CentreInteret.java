@@ -1,6 +1,8 @@
 package smart.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +20,10 @@ public class CentreInteret {
 
     @OneToOne(fetch = FetchType.EAGER)
     private Point point;
+
+    @JsonIgnore
+    @OneToMany
+    private List<PointCentreInteret> listPoint;
 
     public Long getId() {
         return id;
@@ -41,5 +47,13 @@ public class CentreInteret {
 
     public void setPoint(Point point) {
         this.point = point;
+    }
+
+    public List<PointCentreInteret> getListPoint() {
+        return listPoint;
+    }
+
+    public void setListPoint(List<PointCentreInteret> listPoint) {
+        this.listPoint = listPoint;
     }
 }

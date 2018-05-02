@@ -1,17 +1,16 @@
 package smart.Controller;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import smart.Entities.Activity;
-import smart.Entities.Programme;
+import org.springframework.web.bind.annotation.*;
+import smart.DTO.PolylinePointsDTO;
+import smart.Entities.*;
 import smart.Jwt.JwtTokenUtil;
 import smart.Services.ActivityService;
 import smart.Services.ProgrammeService;
+import smart.Services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,6 +29,9 @@ public class ActivityController {
 
     @Autowired
     private ProgrammeService programmeService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(path="/activity/nextPlanned", method = RequestMethod.GET)
     public ResponseEntity<?> getNextPlannedActivity(HttpServletRequest request) {
@@ -50,5 +52,20 @@ public class ActivityController {
             return ResponseEntity.status(204).body("Plus d'activité prévue.\nVous avez terminé votre programme de la semaine !");
         }
         return ResponseEntity.ok().body(activity);
+    }
+
+    @RequestMapping(path="/activity/itinary", method = RequestMethod.GET)
+    public ResponseEntity<?> getItinary(@RequestParam(value = "activite") long id, HttpServletRequest request) throws NotFoundException {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        User user = userService.getUserByUsername(username);
+        try {
+            user = userService.getUserByUsername(username);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+        Activity activity = activityService.getActivity(id);
+        PolylinePointsDTO itinerary = activityService.findItinary(user, activity, activity.getCentreInteret());
+        return ResponseEntity.ok().body(itinerary);
     }
 }

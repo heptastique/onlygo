@@ -1,0 +1,364 @@
+{
+    "segments": [
+        {
+            "id": 2845263,
+            "resource_state": 2,
+            "name": "Parc de la Tête d'Or",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": -0.1,
+            "start_latlng": [
+                45.776832250000005,
+                4.8452933499999995
+            ],
+            "end_latlng": [
+                45.77725126666666,
+                4.84482435
+            ],
+            "elev_difference": 12,
+            "distance": 3827.5,
+            "points": "exkvGajq\\H]Xu@\\c@ZaA@WBKXo@Zi@XaAt@gB^uBLa@^}@\\cAZaB^gAXk@x@}B^qAt@gAPE\\SPQ\\g@Tu@XiBbAoCJc@Ga@KWk@mAW[Ig@@]E]OcAO{Ac@qAMi@Kg@Eg@_@kBO_@Yg@Y[q@e@]Ma@Gu@UWCOBIDqAHs@N}@N_AB}@IcBSaASu@Y[CyAS{BSMDoAR_@?oAWi@AsAFuBGu@?_AN}@f@]H_@Bc@?KEmBqAw@Yg@[UGK@URK\\IjD@pAHhA`@tBJr@c@`DG|@Lv@CRHr@\\tDbA`EfAdDNv@Vl@Zf@NVLFl@t@d@z@d@~Av@bBPPtAr@d@x@|@dBPN|B|CR`@\\b@@JXb@rAbAJL`@VNXp@h@l@b@|@`@RNX^LJPXPLLDR@\\I\\B\\LP^",
+            "starred": false
+        },
+        {
+            "id": 998411,
+            "resource_state": 2,
+            "name": "Tour Parc de la Tête d'Or",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 0,
+            "start_latlng": [
+                45.779592264443636,
+                4.858748791739345
+            ],
+            "end_latlng": [
+                45.77956703491509,
+                4.858722975477576
+            ],
+            "elev_difference": 4.2,
+            "distance": 3797.9,
+            "points": "milvGc~s\\@A]FYAs@[a@?g@Kq@@i@E]DkAT_@Ck@BKEOYWOOAcADECc@AaANA@]AWLW@_@Ae@Sc@BYCM@c@KC@EDCNMfACp@Bx@Jp@d@~APdBTz@CL]n@U|@C^@z@Jx@VxALb@N`AF|@\\x@dAvDt@zAp@bB^t@XZJT^tA^~@N|@bApB`@b@^?LFVr@N~@DJlArAPTXr@RZ`@^vAdB\\XP\\b@b@d@\\Zj@v@j@f@VTd@jA`APFTBHBBAFDf@AbASb@Uh@_@Vw@pAoBj@aAZuAj@sAj@sCRo@RaARi@V_Ar@kAPo@Tg@j@eBPYFYr@uAJITId@EFCTSJSH[BSAOK_@Dg@Ne@TaBz@qBF]@WGk@IS_@i@Sg@MQOm@YYGMAYBsACuAIW[m@Ay@Ci@M]Ek@M_@Uk@c@k@IE}@g@[Ae@Mi@C_@IuABq@Ga@?QD_@NK@i@IYKu@Gm@Le@PQ@k@K[A{@MiB_@aCC",
+            "starred": false
+        },
+        {
+            "id": 3270636,
+            "resource_state": 2,
+            "name": "Escaliers Nicolas de Lange",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 22.5,
+            "start_latlng": [
+                45.7661716,
+                4.824594
+            ],
+            "end_latlng": [
+                45.7644199,
+                4.82284
+            ],
+            "elev_difference": 55.8,
+            "distance": 248.4,
+            "points": "quivGuhm\\\\AP|@f@ZNTd@b@VPv@RDPAVl@j@BHBVDLLLRL^B",
+            "starred": false
+        },
+        {
+            "id": 4181725,
+            "resource_state": 2,
+            "name": "Pt Lafayette-Tete or par les quais",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 0.3,
+            "start_latlng": [
+                45.763634,
+                4.84084
+            ],
+            "end_latlng": [
+                45.776592,
+                4.843335
+            ],
+            "elev_difference": 5.2,
+            "distance": 1507.1,
+            "points": "ueivGgnp\\{AAs@@o@EcADmAM{@AWFe@BkBX[@WA_ADoA?c@BQF]CeALWF]AM?GBWCcADi@IuALS@KEi@FG?KKa@I[@QDIC[@YFg@Sc@AKDm@DUCa@B[A[BwAEs@QQGSQKA_@Qq@c@y@u@YOIK{Au@s@k@s@[o@_@MAg@c@GA[Qi@QYSWYi@a@c@e@WK",
+            "starred": false
+        },
+        {
+            "id": 6185717,
+            "resource_state": 2,
+            "name": "descente escalier mulatiere",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": -10.5,
+            "start_latlng": [
+                45.728611,
+                4.810281
+            ],
+            "end_latlng": [
+                45.730655,
+                4.814179
+            ],
+            "elev_difference": 44.4,
+            "distance": 403.1,
+            "points": "yjbvGgoj\\k@Ga@UYU]k@q@wA[eAe@mBSo@?W@]OqAGs@KWMSUO]a@Sg@Qk@",
+            "starred": false
+        },
+        {
+            "id": 2960609,
+            "resource_state": 2,
+            "name": "Pont a pont",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 0.1,
+            "start_latlng": [
+                45.7340374,
+                4.82183643
+            ],
+            "end_latlng": [
+                45.74579759,
+                4.83150904
+            ],
+            "elev_difference": 3.3,
+            "distance": 1537.6,
+            "points": "ulcvGmwl\\GSo@Ey@Wc@Yw@Kc@WaA}@i@Ym@e@c@W_@g@KEQEi@YWISGa@Ce@YeAg@MKu@iA_@Qo@w@IW[QQ]OIO@OGc@a@UISMi@s@EQOOWKaAu@UKuAwAcAk@u@w@]Ow@s@qA}@qAkAME{@i@}BuB{@i@i@s@wAgAMQOKSGSKo@s@]o@][e@gAKQo@i@",
+            "starred": false
+        },
+        {
+            "id": 6860674,
+            "resource_state": 2,
+            "name": "Gwen2kA",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 0,
+            "start_latlng": [
+                45.751722,
+                4.836164
+            ],
+            "end_latlng": [
+                45.736463,
+                4.823472
+            ],
+            "elev_difference": 4.9,
+            "distance": 1978.3,
+            "points": "g{fvG_qo\\n@^jBrAbBvAv@Zn@^~AlAnBnAf@^j@l@bBjAv@`ANHLJxBzAx@d@RRb@Xl@d@RHZVXTf@l@l@v@T`@XTt@dAt@t@z@r@lAz@p@n@fAv@nAhA~@l@ZZx@p@JLd@ZxBjBr@d@|BrBbAp@z@z@l@^LJJPl@^PPbAt@r@r@VLNPTLbBrAh@\\f@b@^PTHf@\\VHL@NH",
+            "starred": false
+        },
+        {
+            "id": 2883985,
+            "resource_state": 2,
+            "name": "Rue Favre Garin Climb",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 10.7,
+            "start_latlng": [
+                45.7043729,
+                4.7537518
+            ],
+            "end_latlng": [
+                45.7059103,
+                4.7572807
+            ],
+            "elev_difference": 41.4,
+            "distance": 386.4,
+            "points": "is}uG}m_\\Nc@@MCq@Ia@BEAC?KO_@E[GMI_@ECYE}ACs@SKKWi@[}ACYAeAIeBO_A",
+            "starred": false
+        },
+        {
+            "id": 1850591,
+            "resource_state": 2,
+            "name": "Chemin Du Petit Bois Climb",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 7.4,
+            "start_latlng": [
+                45.78653,
+                4.7548921
+            ],
+            "end_latlng": [
+                45.792717,
+                4.7557127
+            ],
+            "elev_difference": 52.3,
+            "distance": 705,
+            "points": "ytmvGau_\\i@NSA{AVi@LQBYCWDW`@QDQOSEe@?m@CQCcBm@q@Cg@Fi@A[GQKcAGYIg@GWGi@Wo@U_@a@g@[_@Km@Ec@BQC{@G",
+            "starred": false
+        },
+        {
+            "id": 5511024,
+            "resource_state": 2,
+            "name": "Tour de Piste_1 Parilly",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 0,
+            "start_latlng": [
+                45.7179,
+                4.896129
+            ],
+            "end_latlng": [
+                45.717935,
+                4.896066
+            ],
+            "elev_difference": 1.9,
+            "distance": 409,
+            "points": "{g`vGwg{\\VOTe@BI?q@ES[_@YGk@Hy@Z_Bb@GDW`@AHAb@Lr@ZZ`@@fBi@x@M",
+            "starred": false
+        },
+        {
+            "id": 1212778,
+            "resource_state": 2,
+            "name": "Montée des Esses",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 5.5,
+            "start_latlng": [
+                45.7741551,
+                4.8133488
+            ],
+            "end_latlng": [
+                45.7721233,
+                4.8177359
+            ],
+            "elev_difference": 64.4,
+            "distance": 1164.4,
+            "points": "mgkvGkbk\\BeAHaAF[^m@^SpAe@pAm@v@U`@ClAR\\Lj@IBi@YYwAQqFYw@Jg@V]AE]NStDs@z@EbAD|@Lf@WAi@]K_@FmAEc@WEY@KHUT]vBmE",
+            "starred": false
+        },
+        {
+            "id": 3034947,
+            "resource_state": 2,
+            "name": "Piste cyclable vers Miribel-Jonage",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 0.1,
+            "start_latlng": [
+                45.787527,
+                4.89215
+            ],
+            "end_latlng": [
+                45.801897,
+                4.926454
+            ],
+            "elev_difference": 10.7,
+            "distance": 3632.8,
+            "points": "_{mvG}nz\\KqBKq@[gBs@wCWq@mAmCy@wAC]Pk@l@iC@aACmAMcAc@{B[oBg@sEKu@{@wCUs@Ym@Ua@kA{AaAaAa@i@Ym@o@kCOcBC}ARwAAwBB{@Dw@Hi@Ds@Aw@Jw@BsBEcAOaAEw@g@sDaB_JS}Co@uEmBkMg@eECm@]mBcAeGa@uCY{AI}AKq@_@kBwAuJS}@Wq@Ig@OqAKi@Ua@_@a@gAu@_@Sc@SkBi@kCm@iAe@cAu@Y[u@iAa@a@_@Yg@QoCk@eAKeAA_@BmCh@]P]b@Qr@Kr@[b@_@DUMMYKc@",
+            "starred": false
+        },
+        {
+            "id": 1468804,
+            "resource_state": 2,
+            "name": "Montée Castellane",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 6.1,
+            "start_latlng": [
+                45.796968871727586,
+                4.836155874654651
+            ],
+            "end_latlng": [
+                45.79902143217623,
+                4.845686433836818
+            ],
+            "elev_difference": 56.4,
+            "distance": 922.9,
+            "points": "_vovG}po\\E}@Mq@Ec@Mw@Uk@Ek@IQOQa@YOSKUUcAKkA[g@][Ia@QqAAYk@}AK{@Sm@S_A?UHQPK|@a@DEJSAKI[e@{@EUBUVg@H_@AUK}@@k@`@w@Li@?UEYIKYUW]CI@QAOK]ECCICUe@kA]g@",
+            "starred": false
+        },
+        {
+            "id": 6396038,
+            "resource_state": 2,
+            "name": "Berge du Rhône (pont Wilson > Lattre)",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 0,
+            "start_latlng": [
+                45.760075,
+                4.84068
+            ],
+            "end_latlng": [
+                45.772354,
+                4.84064
+            ],
+            "elev_difference": 3.6,
+            "distance": 1402.6,
+            "points": "mohvGgmp\\wAPMG_@Ci@JU@YCWEM@QKK@[E[FKFu@Ow@IWBMEq@AWCIBO@MAIB_@EWHM?MEO@SMWGM?_@IO?IB]Ii@@K@k@Go@BMBQCu@NYA]FOC[BKCK?MBOAMDE?I@MGS@]F[R]Fw@D]AMDi@@KF{@FGH_@Qa@Ae@Bu@NGFo@EGDOCSHGJWIQBIEM?IF_@OOCWDMAMF]I[B]Aa@GY@YEMHK?WKMA]G[HKGe@E]K",
+            "starred": false
+        },
+        {
+            "id": 931033,
+            "resource_state": 2,
+            "name": "voie cyclable vers Parc M. Jonage",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 0,
+            "start_latlng": [
+                45.802026,
+                4.926612
+            ],
+            "end_latlng": [
+                45.787529,
+                4.891925
+            ],
+            "elev_difference": 4.2,
+            "distance": 3678.8,
+            "points": "supvGifa]VzAl@p@h@EZi@Fe@b@}ATM~Ae@bB[|AEvARzBj@~@l@l@|@nAnAxAz@`Bb@`Dv@l@VdBjAr@vA^|B\\zAZ|CVdBpBbNnDhWbEpXrB`OL`BFlBElCm@lL@hCTtB~@lDt@jAvBbCp@lAx@dCh@lBdAnIh@pDFnAOzBY|AM^Gz@zA`Cz@fBl@rBn@zCTlBHzARl@",
+            "starred": false
+        },
+        {
+            "id": 1153565,
+            "resource_state": 2,
+            "name": "Route des Aqueducs",
+            "climb_category": 1,
+            "climb_category_desc": "4",
+            "avg_grade": 5.2,
+            "start_latlng": [
+                45.725907096639276,
+                4.772030208259821
+            ],
+            "end_latlng": [
+                45.72093218564987,
+                4.759861109778285
+            ],
+            "elev_difference": 88.8,
+            "distance": 1720,
+            "points": "{yavGe`c\\J`AJh@JRHDH@HCNO`@sAHUHEPEvAQ`B?v@EbAFZHr@VVPP\\Db@Ev@@XH`@^v@J^BXE`BEhEEdAD|@F`@NZZZd@XPTHTAb@OZOF{@B}@CYBgE~AURSXKl@@r@L^PJd@HjABPBPH`CfCt@`AZf@xBlFb@dBt@~Cv@~DTfDAJEH",
+            "starred": false
+        },
+        {
+            "id": 4284594,
+            "resource_state": 2,
+            "name": "Côte d'Alaï",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": 2.6,
+            "start_latlng": [
+                45.752014,
+                4.762129
+            ],
+            "end_latlng": [
+                45.750564,
+                4.765255
+            ],
+            "elev_difference": 8.6,
+            "distance": 326.6,
+            "points": "a}fvGgba\\My@Gq@JsAd@u@~@gAlC_CPWPWPs@@oA",
+            "starred": false
+        },
+        {
+            "id": 1428564,
+            "resource_state": 2,
+            "name": "Quai JJ Rousseau",
+            "climb_category": 0,
+            "climb_category_desc": "NC",
+            "avg_grade": -0.2,
+            "start_latlng": [
+                45.73238949291408,
+                4.813113519921899
+            ],
+            "end_latlng": [
+                45.75061007402837,
+                4.8193789925426245
+            ],
+            "elev_difference": 4.2,
+            "distance": 2215.2,
+            "points": "kbcvG}`k\\kEv@cEh@qCh@kIpAsAXgBJwBBaD?qBQ{AS_Ca@gL{AcHgA}Ac@o@UmAi@iBcAy@o@cB_ByGsFmAwAeDiEiAgBg@eAq@oBiAsC",
+            "starred": false
+        }
+    ]
+}
