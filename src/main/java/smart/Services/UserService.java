@@ -70,13 +70,16 @@ public class UserService {
         user.setLastPasswordResetDate(date);
         user.setEnabled(true);
 
-        Iterable<Sport> sports = sportRepository.findAll();
         List<Objectif> objectifList = new ArrayList<Objectif>();
-        for(Sport sport : sports)
-        {
-            Objectif objectif = new Objectif(userDto.getObjectifHebdo(), sport);
-            objectifList.add(objectif);
-        }
+        Sport course = sportRepository.findById(1);
+        Objectif objectifC = new Objectif(userDto.getObjectifHebdoCourse(), course);
+        objectifList.add(objectifC);
+        Sport marche = sportRepository.findById(2);
+        Objectif objectifM = new Objectif(userDto.getObjectifHebdoCourse(), marche);
+        objectifList.add(objectifM);
+        Sport velo = sportRepository.findById(1);
+        Objectif objectifV = new Objectif(userDto.getObjectifHebdoCourse(), velo);
+        objectifList.add(objectifV);
         user.setObjectifs(objectifList);
 
         user.setDistanceMax(userDto.getDistanceMax());
