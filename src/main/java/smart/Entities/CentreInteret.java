@@ -16,6 +16,9 @@ public class CentreInteret {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "DIFFICULTY")
+    private int difficulty;
+
     @OneToOne(fetch = FetchType.EAGER)
     private Point point;
 
