@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import smart.DTO.ActivityDTO;
 import smart.Entities.*;
 import smart.Repositories.ActivityRepository;
-import smart.Repositories.ProgrammeRepository;
 import smart.Services.*;
 
 import java.util.ArrayList;
@@ -57,7 +56,8 @@ public class ProgramActivities
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
-        List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
+        TimeFrameCentreInteret timeFrameCentreInteret1;
+        List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <> ();
         List <TimeFrameCentreInteret> tempTimeFrameCentreInterets;
         boolean timeFrameCentreInteretToUpdate;
 
@@ -118,7 +118,7 @@ public class ProgramActivities
         }
 
         // Create Activities List
-        List <Activity> activities = new ArrayList <Activity> ();
+        List <Activity> activities = new ArrayList <> ();
         Activity savedActivity;
 
         Programme programme = programmeService.getActiveProgrammeOfUser(user.getUsername());
@@ -159,11 +159,10 @@ public class ProgramActivities
         // @TODO For each Sport
 
         // While Week Objective is not Completed
-        int activityIndex = 0;
-        int timeFrameCentreInteretIndex;
-        while (objectifRemaining > 0 && activityIndex < timeFrameCentreInterets.size())
+        int index = 0;
+        while (objectifRemaining > 0 && index < timeFrameCentreInterets.size())
         {
-            timeFrameCentreInteret = timeFrameCentreInterets.get(activityIndex);
+            timeFrameCentreInteret = timeFrameCentreInterets.get(index);
 
             // Create Activity
             ActivityDTO activity = new ActivityDTO();
@@ -184,11 +183,14 @@ public class ProgramActivities
                 activity.setDistance((float) distanceCourseMax);
                 objectifRemaining = objectifRemaining - distanceCourseMax;
 
-                tempTimeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
+                tempTimeFrameCentreInterets = new ArrayList <> ();
 
                 // For each TimeFrameCentreInteret
-                for (TimeFrameCentreInteret timeFrameCentreInteret1 : timeFrameCentreInterets)
+                int index1 = 0;
+                while (index1 < timeFrameCentreInterets.size())
                 {
+                    timeFrameCentreInteret1 = timeFrameCentreInterets.get(index1);
+
                     timeFrameCentreInteretToUpdate = false;
 
                     // Decrease Evaluation if same TimeFrame Day
@@ -198,7 +200,7 @@ public class ProgramActivities
                         timeFrameCentreInteretToUpdate = true;
                     }
 
-                    // Decrease Evaluatino if same CentreInteret
+                    // Decrease Evaluation if same CentreInteret
                     if (timeFrameCentreInteret1.centreInteret == timeFrameCentreInteret.centreInteret)
                     {
                         timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
@@ -206,29 +208,32 @@ public class ProgramActivities
                     }
 
                     // If TimeFrameCentreInteret Evaluation updated
-                    if (timeFrameCentreInteretToUpdate == true)
+                    if (timeFrameCentreInteretToUpdate)
                     {
                         // Add TimeFrameCentreInteret to update to temp List
-                        int index = 0;
-                        while (index < tempTimeFrameCentreInterets.size() && tempTimeFrameCentreInterets.get(index).evaluation > timeFrameCentreInteret1.evaluation)
+                        int index2 = 0;
+                        while (index2 < tempTimeFrameCentreInterets.size() && tempTimeFrameCentreInterets.get(index2).evaluation > timeFrameCentreInteret1.evaluation)
                         {
-                            index = index + 1;
+                            index2 = index2 + 1;
                         }
-                        tempTimeFrameCentreInterets.add(index, timeFrameCentreInteret1);
+                        tempTimeFrameCentreInterets.add(index2, timeFrameCentreInteret1);
                         // Remove TimeFrameCentreInteret to update from List
                         timeFrameCentreInterets.remove(timeFrameCentreInteret1);
+                        index1 = index1 - 1;
                     }
+
+                    index1 = index1 + 1;
                 }
 
                 // Add all updated TimeFrameCentreInteret to List sorted by Evaluation
-                for (TimeFrameCentreInteret timeFrameCentreInteret1 : tempTimeFrameCentreInterets)
+                for (TimeFrameCentreInteret timeFrameCentreInteret2 : tempTimeFrameCentreInterets)
                 {
-                    int index = 0;
-                    while (index < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index).evaluation > timeFrameCentreInteret1.evaluation)
+                    index1 = 0;
+                    while (index1 < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index1).evaluation > timeFrameCentreInteret2.evaluation)
                     {
-                        index = index + 1;
+                        index1 = index1 + 1;
                     }
-                    timeFrameCentreInterets.add(index, timeFrameCentreInteret1);
+                    timeFrameCentreInterets.add(index1, timeFrameCentreInteret2);
                 }
             }
 
@@ -236,7 +241,7 @@ public class ProgramActivities
             savedActivity = activityService.addActivity(activity, false);
             activities.add(savedActivity);
 
-            activityIndex = activityIndex + 1;
+            index = index + 1;
         }
 
         programme = programmeService.saveProgram(programme);
