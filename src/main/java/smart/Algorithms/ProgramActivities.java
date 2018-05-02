@@ -58,6 +58,8 @@ public class ProgramActivities
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
         List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
+        List <TimeFrameCentreInteret> tempTimeFrameCentreInterets;
+        boolean timeFrameCentreInteretToUpdate;
 
         Sport course = sportService.getSport("Course");
 
@@ -145,7 +147,7 @@ public class ProgramActivities
                 {
                     activities.add(activity);
                 }
-                else
+                                                                                                                    else
                 {
                     activityRepository.delete(activity);
                 }
@@ -182,16 +184,51 @@ public class ProgramActivities
                 activity.setDistance((float) distanceCourseMax);
                 objectifRemaining = objectifRemaining - distanceCourseMax;
 
-                // Remove all incompatible TimeFrameCentreInteret (Same Day)
-                timeFrameCentreInteretIndex = 0;
-                while (timeFrameCentreInteretIndex < timeFrameCentreInterets.size())
+                tempTimeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
+
+                // For each TimeFrameCentreInteret
+                for (TimeFrameCentreInteret timeFrameCentreInteret1 : timeFrameCentreInterets)
                 {
-                    if (timeFrameCentreInterets.get(timeFrameCentreInteretIndex).timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
+                    timeFrameCentreInteretToUpdate = false;
+
+                    // Decrease Evaluation if same TimeFrame Day
+                    if (timeFrameCentreInteret1.timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
                     {
-                        timeFrameCentreInterets.remove(timeFrameCentreInteretIndex);
-                        timeFrameCentreInteretIndex = timeFrameCentreInteretIndex - 1;
+                        timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
+                        timeFrameCentreInteretToUpdate = true;
                     }
-                    timeFrameCentreInteretIndex = timeFrameCentreInteretIndex + 1;
+
+                    // Decrease Evaluatino if same CentreInteret
+                    if (timeFrameCentreInteret1.centreInteret == timeFrameCentreInteret.centreInteret)
+                    {
+                        timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
+                        timeFrameCentreInteretToUpdate = true;
+                    }
+
+                    // If TimeFrameCentreInteret Evaluation updated
+                    if (timeFrameCentreInteretToUpdate == true)
+                    {
+                        // Add TimeFrameCentreInteret to update to temp List
+                        int index = 0;
+                        while (index < tempTimeFrameCentreInterets.size() && tempTimeFrameCentreInterets.get(index).evaluation > timeFrameCentreInteret1.evaluation)
+                        {
+                            index = index + 1;
+                        }
+                        tempTimeFrameCentreInterets.add(index, timeFrameCentreInteret1);
+                        // Remove TimeFrameCentreInteret to update from List
+                        timeFrameCentreInterets.remove(timeFrameCentreInteret1);
+                    }
+                }
+
+                // Add all updated TimeFrameCentreInteret to List sorted by Evaluation
+                for (TimeFrameCentreInteret timeFrameCentreInteret1 : tempTimeFrameCentreInterets)
+                {
+                    int index = 0;
+                    while (index < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index).evaluation > timeFrameCentreInteret1.evaluation)
+                    {
+                        index = index + 1;
+                    }
+                    timeFrameCentreInterets.add(index, timeFrameCentreInteret1);
                 }
             }
 
