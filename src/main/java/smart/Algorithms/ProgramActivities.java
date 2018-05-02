@@ -17,29 +17,21 @@ import static java.lang.StrictMath.sqrt;
 @Service
 public class ProgramActivities
 {
-    @Autowired
-    private SportService sportService;
-
-    @Autowired
-    private TimeFrameService timeFrameService;
-
-    @Autowired
-    private CentreInteretService centreInteretService;
-
-    @Autowired
-    private ActivityService activityService;
-
-    @Autowired
-    private ProgrammeService programmeService;
-
-    @Autowired
-    private ActivityRepository activityRepository;
-
     private class TimeFrameCentreInteret
     {
         private TimeFrame timeFrame;
         private CentreInteret centreInteret;
         private double evaluation;
+    }
+
+    private void addTimeFrameCentreInteret(TimeFrameCentreInteret timeFrameCentreInteret)
+    {
+        int index = 0;
+        while (index < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index).evaluation > timeFrameCentreInteret.evaluation)
+        {
+            index = index + 1;
+        }
+        timeFrameCentreInterets.add(index, timeFrameCentreInteret);
     }
 
     private Date prevMondayMidnight()
@@ -66,6 +58,21 @@ public class ProgramActivities
         return nextMonday;
     }
 
+    @Autowired
+    private SportService sportService;
+    @Autowired
+    private TimeFrameService timeFrameService;
+    @Autowired
+    private CentreInteretService centreInteretService;
+    @Autowired
+    private ActivityService activityService;
+    @Autowired
+    private ProgrammeService programmeService;
+    @Autowired
+    private ActivityRepository activityRepository;
+
+    private List <TimeFrameCentreInteret> timeFrameCentreInterets;
+
     public Programme calculate(User user)
     {
         // @TODO HardCoded replaces distanceCourseMax
@@ -83,7 +90,7 @@ public class ProgramActivities
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
         TimeFrameCentreInteret timeFrameCentreInteret1;
-        List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <> ();
+        timeFrameCentreInterets = new ArrayList <> ();
         List <TimeFrameCentreInteret> tempTimeFrameCentreInterets;
         boolean timeFrameCentreInteretToUpdate;
 
@@ -125,12 +132,7 @@ public class ProgramActivities
                     timeFrameCentreInteret.evaluation = (cTimeFrameEvaluation * timeFrame.getEvaluation() + cCentreInteretEvaluation * centreInteretEvaluation) / 2.0;
 
                     // Insert TimeFrameCentreInteret in List, sorted by Evaluation
-                    int index = 0;
-                    while (index < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index).evaluation > timeFrameCentreInteret.evaluation)
-                    {
-                        index = index + 1;
-                    }
-                    timeFrameCentreInterets.add(index, timeFrameCentreInteret);
+                    addTimeFrameCentreInteret(timeFrameCentreInteret);
                 }
             }
         }
@@ -215,15 +217,9 @@ public class ProgramActivities
                 if (timeFrameCentreInteretToUpdate)
                 {
                     // Add TimeFrameCentreInteret to update to temp List
-                    int index2 = 0;
-                    while (index2 < tempTimeFrameCentreInterets.size() && tempTimeFrameCentreInterets.get(index2).evaluation > timeFrameCentreInteret1.evaluation)
-                    {
-                        index2 = index2 + 1;
-                    }
-                    tempTimeFrameCentreInterets.add(index2, timeFrameCentreInteret1);
+                    tempTimeFrameCentreInterets.add(timeFrameCentreInteret1);
                     // Remove TimeFrameCentreInteret to update from List
                     timeFrameCentreInterets.remove(timeFrameCentreInteret1);
-                    index1 = index1 - 1;
                 }
 
                 index1 = index1 + 1;
@@ -232,12 +228,7 @@ public class ProgramActivities
             // Add all updated TimeFrameCentreInteret to List sorted by Evaluation
             for (TimeFrameCentreInteret timeFrameCentreInteret2 : tempTimeFrameCentreInterets)
             {
-                index1 = 0;
-                while (index1 < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index1).evaluation > timeFrameCentreInteret2.evaluation)
-                {
-                    index1 = index1 + 1;
-                }
-                timeFrameCentreInterets.add(index1, timeFrameCentreInteret2);
+                addTimeFrameCentreInteret(timeFrameCentreInteret2);
             }
 
             // Add Activity to Activities List
