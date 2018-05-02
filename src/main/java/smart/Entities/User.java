@@ -50,6 +50,9 @@ public class User {
     @Column(name = "OBJECTIFHEBDO")
     private double objectifHebdo;
 
+    @Column(name = "DIFFICULTY")
+    private int difficulte;
+
     @Column(name = "ENABLED")
     @NotNull
     @JsonIgnore
@@ -131,6 +134,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getDifficulte() {
+        return difficulte;
+    }
+
+    public void setDifficulte(int difficulte) {
+        this.difficulte = difficulte;
     }
 
     public double getObjectifHebdo(){ return objectifHebdo; }
