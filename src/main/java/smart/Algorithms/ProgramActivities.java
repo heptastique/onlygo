@@ -170,7 +170,6 @@ public class ProgramActivities
 
         // While Week Objective is not Completed
         int index = 0;
-        int timeFrameCentreInteretIndex;
         while (objectifsDistance.size() > 0 && index < timeFrameCentreInterets.size())
         {
             timeFrameCentreInteret = timeFrameCentreInterets.get(index);
@@ -181,7 +180,7 @@ public class ProgramActivities
             activity.setTimeFrameId(timeFrameCentreInteret.timeFrame.getId());
             activity.setCentreinteretId(timeFrameCentreInteret.centreInteret.getId());
             activity.setSportName(course.getNom());
-            
+
             activity.setDistance(objectifsDistance.get(0));
             objectifsDistance.remove(0);
 
