@@ -1,42 +1,24 @@
 package smart.Controller;
 
 import javassist.NotFoundException;
-import org.hibernate.TransactionException;
-import org.hibernate.exception.ConstraintViolationException;
-import org.hibernate.internal.ExceptionMapperStandardImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.*;
-import smart.DTO.PointDto;
 import smart.DTO.DistanceDto;
+import smart.DTO.PointDto;
 import smart.DTO.UserDto;
-import smart.Entities.*;
-import smart.Exceptions.EmailExistsException;
-import smart.Exceptions.UsernameExistsException;
-import smart.Jwt.JwtAuthenticationResponse;
+import smart.Entities.Point;
+import smart.Entities.User;
 import smart.Jwt.JwtTokenUtil;
-import smart.Jwt.JwtUser;
 import smart.Jwt.JwtUserFactory;
-import smart.Repositories.ProgrammeRepository;
-import smart.Repositories.UserRepository;
 import smart.Services.ProgrammeService;
 import smart.Services.RealisationService;
 import smart.Services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
-import java.lang.reflect.TypeVariable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8100" )

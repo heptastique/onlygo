@@ -33,8 +33,8 @@ public class ActivityService {
 
     public Activity addActivity(ActivityDTO activityDTO, boolean realisee) {
         Activity activity = new Activity();
-        activity.setDate(activityDTO.getDate());
-        activity.setDistance(activityDTO.getDistance());
+        activity.setDatePrevue(activityDTO.getDate());
+        activity.setDistancePrevue(activityDTO.getDistance());
         // @TODO : support for program for activity creation
         String sportName = activityDTO.getSportName();
         Sport sport = sportRepository.findByNom(sportName);
@@ -48,7 +48,7 @@ public class ActivityService {
     public Activity getNextActivity(Programme programme)
     {
         List<Activity> activities = programme.getActivites();
-        Collections.sort(activities, comparing(Activity::getDate));
+        Collections.sort(activities, comparing(Activity::getDatePrevue).thenComparingLong(Activity::getTimeFrameId));
 
         // Get today's date
         Date todayDate = FindByJour.findCurrentDate();
@@ -62,7 +62,7 @@ public class ActivityService {
 
         for(Activity activity : activities)
         {
-            if(activity.getDate().compareTo(todayDate)>=0
+            if(activity.getDatePrevue().compareTo(todayDate)>=0
                 && !activity.isEstRealisee()
                 && (long)activity.getTimeFrame().getId()>=(long)timeFrame.getId())
                 {

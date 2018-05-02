@@ -3,13 +3,18 @@ package smart.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import smart.Algorithms.FindByJour;
+import smart.Entities.Activity;
 import smart.Entities.Programme;
 import smart.Entities.User;
 import smart.Exceptions.ProgrammeException;
 import smart.Repositories.ProgrammeRepository;
 import smart.Repositories.UserRepository;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+
+import static java.util.Comparator.comparing;
 
 @Service
 public class ProgrammeService {
@@ -27,6 +32,8 @@ public class ProgrammeService {
 
         try {
             programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
+            List<Activity> activities = programme.getActivites();
+            Collections.sort(activities, comparing(Activity::getDatePrevue).thenComparingLong(Activity::getTimeFrameId));
         } catch(Exception e)
         {
             return null;
@@ -41,6 +48,8 @@ public class ProgrammeService {
 
         try {
             programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
+            List<Activity> activities = programme.getActivites();
+            Collections.sort(activities, comparing(Activity::getDatePrevue).thenComparingLong(Activity::getTimeFrameId));
         } catch(Exception e)
         {
             throw new ProgrammeException("Aucun programme n'a été trouvé pour cette date.", e);
