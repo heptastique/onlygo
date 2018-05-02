@@ -77,7 +77,7 @@ public class UserService {
         Sport marche = sportRepository.findById(2);
         Objectif objectifM = new Objectif(userDto.getObjectifHebdoCourse(), marche);
         objectifList.add(objectifM);
-        Sport velo = sportRepository.findById(1);
+        Sport velo = sportRepository.findById(3);
         Objectif objectifV = new Objectif(userDto.getObjectifHebdoCourse(), velo);
         objectifList.add(objectifV);
         user.setObjectifs(objectifList);
