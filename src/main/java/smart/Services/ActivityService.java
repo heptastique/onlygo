@@ -75,12 +75,12 @@ public class ActivityService {
         Activity activity = activityRepository.findById(id).get();
         return activity;
     }
-    public Activity findItinary ( User user, Activity activity, CentreInteret centreInteret){
+    public List<Point> findItinary ( User user, Activity activity, CentreInteret centreInteret){
         List<Point> itinerary = ActivityItinerary.findActivityItinerary(user, activity, centreInteret);
 
         for ( Point point : itinerary){
             System.out.println("lat : "+point.getX() + " long : " + point.getY());
         }
-        return activity;
+        return itinerary;
     }
 }

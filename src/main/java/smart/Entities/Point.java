@@ -59,4 +59,12 @@ public class Point {
 
     public Point() {
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+            "x=" + x +
+            ", y=" + y +
+            '}';
+    }
 }

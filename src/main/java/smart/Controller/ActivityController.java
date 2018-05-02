@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import smart.Entities.Activity;
+import smart.Entities.Point;
 import smart.Entities.Programme;
 import smart.Entities.User;
 import smart.Jwt.JwtTokenUtil;
@@ -17,6 +18,7 @@ import smart.Services.ProgrammeService;
 import smart.Services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8100" )
@@ -62,12 +64,12 @@ public class ActivityController {
     public ResponseEntity<?> getItinary(HttpServletRequest request) {
         User user = null;
         try {
-            user = userService.getUserByUsername("test");
+            user = userService.getUserByUsername("user1");
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
-        Activity activity = activityService.getActivity(1);
-        activityService.findItinary(user, activity, activity.getCentreInteret());
-        return ResponseEntity.ok().body(activity);
+        Activity activity = activityService.getActivity(10008);
+        List<Point> itinerary = activityService.findItinary(user, activity, activity.getCentreInteret());
+        return ResponseEntity.ok().body(itinerary);
     }
 }
