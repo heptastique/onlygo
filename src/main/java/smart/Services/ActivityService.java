@@ -1,5 +1,6 @@
 package smart.Services;
 
+import javafx.scene.shape.Polyline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import smart.Algorithms.ActivityItinerary;
@@ -7,6 +8,7 @@ import smart.Algorithms.FindByJour;
 import smart.Algorithms.JsonToSQL;
 import smart.DTO.ActivityDTO;
 import smart.DTO.PointsDataDTO;
+import smart.DTO.PolylinePointsDTO;
 import smart.DTO.SegmentDTO;
 import smart.Entities.*;
 import smart.Repositories.*;
@@ -74,9 +76,10 @@ public class ActivityService {
         Activity activity = activityRepository.findById(id).get();
         return activity;
     }
-    public List<PointCentreInteret> findItinary ( User user, Activity activity, CentreInteret centreInteret){
+    public PolylinePointsDTO findItinary (User user, Activity activity, CentreInteret centreInteret){
         List<PointCentreInteret> itinerary = ActivityItinerary.findActivityItinerary(user, activity, centreInteret);
-        return itinerary;
+        PolylinePointsDTO polylinePointsDTO = new PolylinePointsDTO(itinerary);
+        return polylinePointsDTO;
     }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import smart.DTO.PolylinePointsDTO;
 import smart.Entities.*;
 import smart.Jwt.JwtTokenUtil;
 import smart.Services.ActivityService;
@@ -12,7 +13,6 @@ import smart.Services.ProgrammeService;
 import smart.Services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8100" )
@@ -63,7 +63,7 @@ public class ActivityController {
             e.printStackTrace();
         }
         Activity activity = activityService.getActivity(id);
-        List<PointCentreInteret> itinerary = activityService.findItinary(user, activity, activity.getCentreInteret());
+        PolylinePointsDTO itinerary = activityService.findItinary(user, activity, activity.getCentreInteret());
         return ResponseEntity.ok().body(itinerary);
     }
 }
