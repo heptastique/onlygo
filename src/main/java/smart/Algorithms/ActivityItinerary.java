@@ -1,5 +1,6 @@
 package smart.Algorithms;
 
+import smart.Entities.Activity;
 import smart.Entities.CentreInteret;
 import smart.Entities.Point;
 import smart.Entities.User;
@@ -11,7 +12,7 @@ import java.util.Map;
 
 public class ActivityItinerary {
 
-    public static List<Point> findActivityItinerary (User user, CentreInteret centreInteret)
+    public static List<Point> findActivityItinerary (User user, Activity activivity, CentreInteret centreInteret)
     {
         List<Point> itinerary = new ArrayList<>();
         Point userLocalisation = user.getLocation();
@@ -30,7 +31,7 @@ public class ActivityItinerary {
         }
         // calcul avec Api google distance entre user et point centre interet
         double distance = 100;
-        double objectif = user.getObjectifHebdo();
+        double objectif = activivity.getDistance();
         objectif -= 2 * distance;
         itinerary.add(listCIPoints.get(position));
 

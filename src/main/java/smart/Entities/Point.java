@@ -17,6 +17,9 @@ public class Point {
     @Column(name = "Y")
     private double y;
 
+    @ManyToOne
+    private CentreInteret centreInteret;
+
     public Long getId() {
         return id;
     }
@@ -41,8 +44,19 @@ public class Point {
         this.y = y;
     }
 
+    public CentreInteret getCentreInteret() {
+        return centreInteret;
+    }
+
+    public void setCentreInteret(CentreInteret centreInteret) {
+        this.centreInteret = centreInteret;
+    }
+
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Point() {
     }
 }

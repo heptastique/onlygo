@@ -1,15 +1,17 @@
 package smart.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 public class SegmentDTO {
-    private List<PointsDataDTO> pointsDataDTO;
+    private List<PointsDataDTO> segments;
 
-    public List<PointsDataDTO> getPointsDataDTO() {
-        return pointsDataDTO;
+    public List<PointsDataDTO> getSegments() {
+        return segments;
     }
 
-    public void setPointsDataDTO(List<PointsDataDTO> pointsDataDTO) {
-        this.pointsDataDTO = pointsDataDTO;
+    public void setSegments(List<PointsDataDTO> segments) {
+        this.segments = segments;
     }
 }

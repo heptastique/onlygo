@@ -1,15 +1,19 @@
 package smart.Controller;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import smart.DTO.ActivityDTO;
 import smart.Entities.Activity;
+import smart.Entities.CentreInteret;
 import smart.Entities.Programme;
+import smart.Entities.User;
 import smart.Jwt.JwtTokenUtil;
 import smart.Services.ActivityService;
 import smart.Services.ProgrammeService;
+import smart.Services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -29,6 +33,9 @@ public class ActivityController {
 
     @Autowired
     private ProgrammeService programmeService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(path="/activity/add", method = RequestMethod.POST)
     public ResponseEntity<?> addActivity(@RequestBody @Valid ActivityDTO activityDTO, HttpServletRequest request) {
@@ -58,6 +65,19 @@ public class ActivityController {
         {
             return ResponseEntity.status(204).body("Plus d'activité prévue.\nVous avez terminé votre programme de la semaine !");
         }
+        return ResponseEntity.ok().body(activity);
+    }
+
+    @RequestMapping(path="/activity/itinary", method = RequestMethod.GET)
+    public ResponseEntity<?> getItinary(HttpServletRequest request) {
+        User user = null;
+        try {
+            user = userService.getUserByUsername("test");
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+        Activity activity = activityService.getActivity(1);
+        activityService.findItinary(user, activity, activity.getCentreInteret());
         return ResponseEntity.ok().body(activity);
     }
 }

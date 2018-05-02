@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import smart.Algorithms.JsonToSQL;
 import smart.Services.DonneeAthmospheriqueService;
 import smart.Services.TimeFrameService;
 import smart.Services.WeatherDataService;
@@ -21,6 +22,8 @@ public class CronController {
     WeatherDataService weatherDataService;
     @Autowired
     DonneeAthmospheriqueService donneeAthmospheriqueService;
+    @Autowired
+    JsonToSQL jsonToSQL;
 
     @RequestMapping(path="/update", method = RequestMethod.GET)
     public ResponseEntity<?> updateTimeFrame(){
@@ -31,6 +34,18 @@ public class CronController {
         return ResponseEntity.ok("Ok");
 
     }
+
+    @RequestMapping(path="/pointToSQL", method = RequestMethod.GET)
+    public ResponseEntity<?> updatePoint(){
+        jsonToSQL.generate();
+        return ResponseEntity.ok("Ok");
+    }
+
+    @RequestMapping(path="/test", method = RequestMethod.GET)
+    public ResponseEntity<?> test(){
+        return ResponseEntity.ok("Ok");
+    }
+
 
 
 }

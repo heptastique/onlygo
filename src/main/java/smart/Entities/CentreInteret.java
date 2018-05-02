@@ -19,7 +19,7 @@ public class CentreInteret {
     @OneToOne(fetch = FetchType.EAGER)
     private Point point;
 
-    @ManyToOne
+    @OneToMany
     private List<Point> listPoint;
 
     public Long getId() {

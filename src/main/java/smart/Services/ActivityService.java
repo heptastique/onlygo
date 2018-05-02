@@ -2,6 +2,7 @@ package smart.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import smart.Algorithms.ActivityItinerary;
 import smart.Algorithms.FindByJour;
 import smart.DTO.ActivityDTO;
 import smart.Entities.*;
@@ -69,5 +70,17 @@ public class ActivityService {
                 }
         }
         return null;
+    }
+    public Activity getActivity( long id){
+        Activity activity = activityRepository.findById(id).get();
+        return activity;
+    }
+    public Activity findItinary ( User user, Activity activity, CentreInteret centreInteret){
+        List<Point> itinerary = ActivityItinerary.findActivityItinerary(user, activity, centreInteret);
+
+        for ( Point point : itinerary){
+            System.out.println("lat : "+point.getX() + " long : " + point.getY());
+        }
+        return activity;
     }
 }
