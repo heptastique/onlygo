@@ -4,20 +4,16 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import smart.Algorithms.ProgramActivities;
-import smart.DTO.PointDto;
 import smart.DTO.UserDto;
 import smart.Entities.*;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
-import smart.Jwt.JwtUser;
 import smart.Repositories.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 
 @Service
 public class UserService {
@@ -44,6 +40,9 @@ public class UserService {
     private SportService sportService;
 
     @Autowired
+    private SportRepository sportRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public User addUser(UserDto userDto) throws EmailExistsException, UsernameExistsException, NotFoundException {
@@ -67,13 +66,16 @@ public class UserService {
         user.setLastPasswordResetDate(date);
         user.setEnabled(true);
 
-        Objectif objectif = new Objectif();
-        objectif.setObjectif(userDto.getObjectifHebdo());
-        objectif.setSport(sportService.getSport("Course"));
-
         List<Objectif> objectifList = new ArrayList<Objectif>();
-        objectifList.add(objectif);
-
+        Sport course = sportRepository.findById(1);
+        Objectif objectifC = new Objectif(userDto.getObjectifHebdoCourse(), course);
+        objectifList.add(objectifC);
+        Sport marche = sportRepository.findById(2);
+        Objectif objectifM = new Objectif(userDto.getObjectifHebdoMarche(), marche);
+        objectifList.add(objectifM);
+        Sport velo = sportRepository.findById(3);
+        Objectif objectifV = new Objectif(userDto.getObjectifHebdoCyclisme(), velo);
+        objectifList.add(objectifV);
         user.setObjectifs(objectifList);
 
         user.setDistanceMax(userDto.getDistanceMax());
@@ -105,23 +107,50 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public double putObjectifHebdo(String username, double distance){
+    public double putObjectifHebdo(String username, Long sportId, double distance){
         User user = userRepository.findByUsername(username) ;
         Programme activeProgramme = programmeService.getActiveProgrammeOfUser(username);
+        Sport sport = sportRepository.findById(sportId).get();
+        double updatedObjectif = 0d;
+        boolean foundInProgram = false;
+        boolean foundInUser = false;
 
         // Updating active program goal
         List<Objectif> objectifs = activeProgramme.getObjectifs();
-        objectifs.get(0).setObjectif(distance);
-
+        for(Objectif objectif : objectifs)
+        {
+            if((long)objectif.getSport().getId()==(long)sport.getId())
+            {
+                objectif.setObjectif(distance);
+                foundInProgram = true;
+            }
+        }
+        if(!foundInProgram)
+        {
+            Objectif newObjectif = new Objectif(distance, sport);
+            activeProgramme.addObjectif(newObjectif);
+        }
         programmeRepository.save(activeProgramme);
 
         // Updating user goal
         List<Objectif> objectifsUtilisateur = user.getObjectifs();
-        objectifsUtilisateur.get(0).setObjectif(distance);
-        user.setObjectifs(objectifsUtilisateur);
+        for(Objectif objectifUser : objectifsUtilisateur)
+        {
+            if((long)objectifUser.getSport().getId()==(long)sport.getId())
+            {
+                objectifUser.setObjectif(distance);
+                updatedObjectif = objectifUser.getObjectif();
+                foundInUser = true;
+            }
+        }
+        if(!foundInUser)
+        {
+            Objectif newObjectif = new Objectif(distance, sport);
+            user.addObjectif(newObjectif);
+        }
         userRepository.save(user);
 
-        return user.getObjectifs().get(0).getObjectif();
+        return updatedObjectif;
     }
 
     public double setDistanceMax(String username, double distance){

@@ -206,6 +206,7 @@ public class UserControllerTest {
     public void correctlySetDistanceGoal() throws Exception{
         DistanceDto distanceDto = new DistanceDto();
         distanceDto.setDistance((float)10);
+        distanceDto.setSportId((long)1);
 
         Gson gson = new Gson();
         String json = gson.toJson(distanceDto, DistanceDto.class);
@@ -219,7 +220,7 @@ public class UserControllerTest {
 
         mvc.perform(get("/user/objectif").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.[0].objectif").value("10.0"));
+            .andExpect(jsonPath("$[0].objectif").value("10.0"));
     }
 
     @Test

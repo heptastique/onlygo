@@ -29,7 +29,13 @@ public class UserDto {
     private String email;
 
     @NotNull
-    private double objectifHebdo;
+    private double objectifHebdoCourse;
+
+    @NotNull
+    private double objectifHebdoCyclisme;
+
+    @NotNull
+    private double objectifHebdoMarche;
 
     @NotNull
     private double distanceMax;
@@ -77,12 +83,28 @@ public class UserDto {
         this.email = email;
     }
 
-    public double getObjectifHebdo() {
-        return objectifHebdo;
+    public double getObjectifHebdoCourse() {
+        return objectifHebdoCourse;
     }
 
-    public void setObjectifHebdo(double objectifHebdo) {
-        this.objectifHebdo = objectifHebdo;
+    public void setObjectifHebdoCourse(double objectifHebdoCourse) {
+        this.objectifHebdoCourse = objectifHebdoCourse;
+    }
+
+    public double getObjectifHebdoCyclisme() {
+        return objectifHebdoCyclisme;
+    }
+
+    public void setObjectifHebdoCyclisme(double objectifHebdoCyclisme) {
+        this.objectifHebdoCyclisme = objectifHebdoCyclisme;
+    }
+
+    public double getObjectifHebdoMarche() {
+        return objectifHebdoMarche;
+    }
+
+    public void setObjectifHebdoMarche(double objectifHebdoMarche) {
+        this.objectifHebdoMarche = objectifHebdoMarche;
     }
 
     public double getDistanceMax() {

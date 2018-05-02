@@ -90,7 +90,7 @@ public class UserController {
     public ResponseEntity<?> addObjectifHebdo(@RequestBody DistanceDto distance, HttpServletRequest request) {
           String token = request.getHeader(tokenHeader).substring(7);
           String username = jwtTokenUtil.getUsernameFromToken(token);
-          userService.putObjectifHebdo(username,distance.getDistance());
+          userService.putObjectifHebdo(username,distance.getSportId(),distance.getDistance());
           return ResponseEntity.ok().body(userService.getObjectifHebdo(username));
     }
 
