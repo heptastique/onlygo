@@ -58,7 +58,7 @@ public class WeatherData {
         this.wind = weatherData.getWind();
         this.precipitation = weatherData.getPrecipitation();
         this.weather = weatherData.getWeather();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.dt_txt = sdf.format(date);
         this.fetched=false;
 
@@ -69,7 +69,7 @@ public class WeatherData {
         this.wind = weatherData.getWind();
         this.precipitation = weatherData.getPrecipitation();
         this.weather = weatherData.getWeather();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.dt_txt = sdf.format(date);
         this.fetched = fetched;
 
