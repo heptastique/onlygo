@@ -150,7 +150,7 @@ public class ProgramActivities
             programme = new Programme();
             programme.setUser(user);
             programme.setObjectifs(user.getObjectifs());
-            programme.setDateDebut(currentMondayMidnight);
+            programme.setDateDebut(prevMondayMidnight);
         }
         // If Active Program, some Activities already realized
         else
