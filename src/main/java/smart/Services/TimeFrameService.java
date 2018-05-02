@@ -76,7 +76,7 @@ public class TimeFrameService {
             }
         }
         for ( WeatherData weatherData : listWeatherDatas){
-            Date weatherDate = weatherData.getDate();
+            Date weatherDate = new Date(weatherData.getDate().getTime());
             weatherDate.setHours(0);
             if (dateFiltered.compareTo(weatherDate) == 0)
             {
