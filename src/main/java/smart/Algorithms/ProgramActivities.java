@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import smart.DTO.ActivityDTO;
 import smart.Entities.*;
 import smart.Repositories.ActivityRepository;
-import smart.Repositories.ProgrammeRepository;
 import smart.Services.*;
 
 import java.util.ArrayList;
@@ -57,7 +56,10 @@ public class ProgramActivities
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
-        List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <TimeFrameCentreInteret> ();
+        TimeFrameCentreInteret timeFrameCentreInteret1;
+        List <TimeFrameCentreInteret> timeFrameCentreInterets = new ArrayList <> ();
+        List <TimeFrameCentreInteret> tempTimeFrameCentreInterets;
+        boolean timeFrameCentreInteretToUpdate;
 
         Sport course = sportService.getSport("Course");
 
@@ -116,7 +118,7 @@ public class ProgramActivities
         }
 
         // Create Activities List
-        List <Activity> activities = new ArrayList <Activity> ();
+        List <Activity> activities = new ArrayList <> ();
         Activity savedActivity;
 
         Programme programme = programmeService.getActiveProgrammeOfUser(user.getUsername());
@@ -145,7 +147,7 @@ public class ProgramActivities
                 {
                     activities.add(activity);
                 }
-                else
+                                                                                                                    else
                 {
                     activityRepository.delete(activity);
                 }
@@ -157,11 +159,10 @@ public class ProgramActivities
         // @TODO For each Sport
 
         // While Week Objective is not Completed
-        int activityIndex = 0;
-        int timeFrameCentreInteretIndex;
-        while (objectifRemaining > 0 && activityIndex < timeFrameCentreInterets.size())
+        int index = 0;
+        while (objectifRemaining > 0 && index < timeFrameCentreInterets.size())
         {
-            timeFrameCentreInteret = timeFrameCentreInterets.get(activityIndex);
+            timeFrameCentreInteret = timeFrameCentreInterets.get(index);
 
             // Create Activity
             ActivityDTO activity = new ActivityDTO();
@@ -182,16 +183,57 @@ public class ProgramActivities
                 activity.setDistance((float) distanceCourseMax);
                 objectifRemaining = objectifRemaining - distanceCourseMax;
 
-                // Remove all incompatible TimeFrameCentreInteret (Same Day)
-                timeFrameCentreInteretIndex = 0;
-                while (timeFrameCentreInteretIndex < timeFrameCentreInterets.size())
+                tempTimeFrameCentreInterets = new ArrayList <> ();
+
+                // For each TimeFrameCentreInteret
+                int index1 = 0;
+                while (index1 < timeFrameCentreInterets.size())
                 {
-                    if (timeFrameCentreInterets.get(timeFrameCentreInteretIndex).timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
+                    timeFrameCentreInteret1 = timeFrameCentreInterets.get(index1);
+
+                    timeFrameCentreInteretToUpdate = false;
+
+                    // Decrease Evaluation if same TimeFrame Day
+                    if (timeFrameCentreInteret1.timeFrame.getJour() == timeFrameCentreInteret.timeFrame.getJour())
                     {
-                        timeFrameCentreInterets.remove(timeFrameCentreInteretIndex);
-                        timeFrameCentreInteretIndex = timeFrameCentreInteretIndex - 1;
+                        timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
+                        timeFrameCentreInteretToUpdate = true;
                     }
-                    timeFrameCentreInteretIndex = timeFrameCentreInteretIndex + 1;
+
+                    // Decrease Evaluation if same CentreInteret
+                    if (timeFrameCentreInteret1.centreInteret == timeFrameCentreInteret.centreInteret)
+                    {
+                        timeFrameCentreInteret1.evaluation = timeFrameCentreInteret1.evaluation * 0.9;
+                        timeFrameCentreInteretToUpdate = true;
+                    }
+
+                    // If TimeFrameCentreInteret Evaluation updated
+                    if (timeFrameCentreInteretToUpdate)
+                    {
+                        // Add TimeFrameCentreInteret to update to temp List
+                        int index2 = 0;
+                        while (index2 < tempTimeFrameCentreInterets.size() && tempTimeFrameCentreInterets.get(index2).evaluation > timeFrameCentreInteret1.evaluation)
+                        {
+                            index2 = index2 + 1;
+                        }
+                        tempTimeFrameCentreInterets.add(index2, timeFrameCentreInteret1);
+                        // Remove TimeFrameCentreInteret to update from List
+                        timeFrameCentreInterets.remove(timeFrameCentreInteret1);
+                        index1 = index1 - 1;
+                    }
+
+                    index1 = index1 + 1;
+                }
+
+                // Add all updated TimeFrameCentreInteret to List sorted by Evaluation
+                for (TimeFrameCentreInteret timeFrameCentreInteret2 : tempTimeFrameCentreInterets)
+                {
+                    index1 = 0;
+                    while (index1 < timeFrameCentreInterets.size() && timeFrameCentreInterets.get(index1).evaluation > timeFrameCentreInteret2.evaluation)
+                    {
+                        index1 = index1 + 1;
+                    }
+                    timeFrameCentreInterets.add(index1, timeFrameCentreInteret2);
                 }
             }
 
@@ -199,7 +241,7 @@ public class ProgramActivities
             savedActivity = activityService.addActivity(activity, false);
             activities.add(savedActivity);
 
-            activityIndex = activityIndex + 1;
+            index = index + 1;
         }
 
         programme = programmeService.saveProgram(programme);
