@@ -217,7 +217,7 @@ public class UserControllerTest {
 
         mvc.perform(get("/user/objectif").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
-            .andExpect(jsonPath("$.objectif").value("10.0"));
+            .andExpect(jsonPath("$.[0].objectif").value("10.0"));
     }
 
     @Test

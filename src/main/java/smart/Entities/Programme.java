@@ -26,7 +26,8 @@ public class Programme {
 
     @Column(name = "OBJECTIF_DISTANCE")
     @OneToMany(cascade = CascadeType.ALL,
-        fetch = FetchType.LAZY)
+        fetch = FetchType.EAGER)
+        @Fetch(value = FetchMode.SUBSELECT)
     private List<Objectif> objectifs;
 
     @Column(name = "DATE_DEBUT")
