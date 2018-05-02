@@ -108,6 +108,11 @@ public class Programme {
         return 0;
     }
 
+    public void addObjectif(Objectif objectif)
+    {
+        this.objectifs.add(objectif);
+    }
+
     @JsonIgnore
     public String getDateDebutString()
     {

@@ -181,7 +181,13 @@ public class User {
     public double getDistanceMax(){
         return distanceMax;
     }
+
     public void setDistanceMax(double distanceMax){
         this.distanceMax=distanceMax;
+    }
+
+    public void addObjectif(Objectif objectif)
+    {
+        this.objectifs.add(objectif);
     }
 }

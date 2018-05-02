@@ -44,4 +44,12 @@ public class Objectif {
     public void setSport(Sport sport) {
         this.sport = sport;
     }
+
+    public Objectif() {
+    }
+
+    public Objectif(double objectif, Sport sport) {
+        this.objectif = objectif;
+        this.sport = sport;
+    }
 }
