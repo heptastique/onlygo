@@ -62,9 +62,9 @@ public class UserServiceTest {
     }
 
     @Test
-    public void AdminIsFound() throws NotFoundException {
-        User admin = userService.getUserByUsername("admin");
-        assertEquals("admin", admin.getUsername());
+    public void User10IsFound() throws NotFoundException {
+        User admin = userService.getUserByUsername("user10");
+        assertEquals("user10", admin.getUsername());
     }
 
     @Test

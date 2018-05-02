@@ -183,15 +183,15 @@ public class UserControllerTest {
         Gson gson = new Gson();
         String json = gson.toJson(locationDto, PointDto.class);
 
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
 
         mvc.perform(put("/user/location").header("Authorization","Bearer anyToken")
             .contentType(MediaType.APPLICATION_JSON).content(json)
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful());
 
-        assertEquals(userRepository.findByUsername("user").getLocation().getX(),locationDto.getX(),0);
-        assertEquals(userRepository.findByUsername("user").getLocation().getY(),locationDto.getY(),0);
+        assertEquals(userRepository.findByUsername("user10").getLocation().getX(),locationDto.getX(),0);
+        assertEquals(userRepository.findByUsername("user10").getLocation().getY(),locationDto.getY(),0);
 
         mvc.perform(get("/user/location").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
