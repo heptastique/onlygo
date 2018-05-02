@@ -18,6 +18,8 @@ import smart.Entities.WeatherData;
 import smart.Repositories.WeatherDataRepository;
 import smart.Services.WeatherDataService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -78,6 +80,7 @@ public class WeatherDataServiceTest {
         WeatherElementDto weatherElementDto = new WeatherElementDto("2018-04-30 21:00:00",wmid,wwd,weatherConditionDtos,wrd);
         WeatherData wd = weatherDataService.dtoToEntity(weatherElementDto);
         assertEquals(wd.getWeather().getId(),weatherElementDto.getWeather().get(0).getId());
+        assertEquals(wd.getDate().getHours(),21);
     }
 
     @Test
@@ -85,22 +88,21 @@ public class WeatherDataServiceTest {
         WeatherDto data = weatherDataService.fetchWeatherData();
         assertEquals(200, data.getCod());
         assertNotNull(data.getList());
-    }
-
-    @Test
-    public void DataContainsWeatherCondition(){
-        WeatherDto datadto = weatherDataService.fetchWeatherData();
-        WeatherElementDto data = datadto.getList().get(1);
-        assert(data.getWeather().get(0).getId()>100);
+        WeatherElementDto weatherElementDto = data.getList().get(1);
+        assert(weatherElementDto.getWeather().get(0).getId()>100);
     }
 
 
+
     @Test
-    public void DataIsUpdated(){
+    public void DataIsUpdated() throws ParseException {
         List<WeatherData> wds = weatherDataService.UpdateWeatherData();
-        WeatherData readFromPersistence;
-        readFromPersistence=  weatherDataRepository.findById(wds.get(0).getId()).get();
-        assertEquals(readFromPersistence.toString(),wds.get(0).toString());
+        Iterable<WeatherData> readFromPersistence;
+        readFromPersistence=  weatherDataRepository.findAll();
+        for (WeatherData wd:readFromPersistence) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            assertEquals(wd.getDate().getTime(),sdf.parse(wd.getDt_txt()).getTime());
+        }
     }
 
     @Test
