@@ -129,6 +129,11 @@ public class Activity {
         this.dateRealisee = dateRealisee;
     }
 
+    public float getTauxCompletion()
+    {
+        return this.distanceRealisee/this.distancePrevue*100;
+    }
+
     @JsonIgnore
     public String getDatePrevueString()
     {
