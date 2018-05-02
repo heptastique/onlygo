@@ -26,15 +26,15 @@ public class ProgramActivities
 
     private int getSportIndex(String sportName)
     {
-        if (sportName == "Course")
+        if (sportName.equals("Course"))
         {
             return 0;
         }
-        else if (sportName == "Vélo")
+        else if (sportName.equals("Marche"))
         {
             return 1;
         }
-        else if (sportName == "Marche")
+        else if (sportName.equals("Cyclisme"))
         {
             return 2;
         }
