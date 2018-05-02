@@ -24,26 +24,6 @@ public class ProgramActivities
         private double evaluation;
     }
 
-    private int getSportIndex(String sportName)
-    {
-        if (sportName.equals("Course"))
-        {
-            return 0;
-        }
-        else if (sportName.equals("Marche"))
-        {
-            return 1;
-        }
-        else if (sportName.equals("Cyclisme"))
-        {
-            return 2;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
     private void addTimeFrameCentreInteret(TimeFrameCentreInteret timeFrameCentreInteret)
     {
         int index = 0;
@@ -185,7 +165,7 @@ public class ProgramActivities
                 if (activity.isEstRealisee())
                 {
                     activities.add(activity);
-                    objectifsSportsDistance.get(getSportIndex(activity.getSport().getNom())).remove(activity.getDistancePrevue());
+                    objectifsSportsDistance.get((int) (long) activity.getSport().getId() - 1).remove(activity.getDistancePrevue());
                 }
                 else
                 {
@@ -195,7 +175,7 @@ public class ProgramActivities
             programme.setActivites(activities);
             programme = programmeService.saveProgram(programme);
         }
-        
+
         // While Week Objective is not Completed
         int sportIndex = 0;
         index = 0;
