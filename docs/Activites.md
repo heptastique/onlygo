@@ -31,6 +31,8 @@ Status: 200 OK
     "distance": 400,
     "date": "2018-04-22T00:00:00.000+0000"
 }
+```
+
 ## `GET /activity/itinary?user="nomUser"?activite="idActivite"` :key:
 Calcul l'itinéraire d'une activité d'un utilisateur.
 
@@ -41,50 +43,34 @@ Status: 200 OK
 ```
 
 ###Exemple
-
-localhost:8080/itinary?user=user1?activite=10008
-```json
-[
-    {
-        "id": 50001,
-        "x": 45.771984580583826,
-        "y": 4.81530101826631
-    },
-    {
-        "id": 12,
-        "x": 45.77566,
-        "y": 4.8477
-    },
-    {
-        "id": 4,
-        "x": 45.77665,
-        "y": 4.84571
-    },
-    {
-        "id": 136,
-        "x": 45.77725,
-        "y": 4.84482
-    },
-    {
-        "id": 116,
-        "x": 45.7801,
-        "y": 4.84702
-    },
-    {
-        "id": 125,
-        "x": 45.77844,
-        "y": 4.84556
-    ...
-    {
-        "id": 12,
-        "x": 45.77566,
-        "y": 4.8477
-    },
-    {
-        "id": 50001,
-        "x": 45.771984580583826,
-        "y": 4.81530101826631
-    }
-]
+```
+localhost:8080/itinary?activite=10008
 ```
 
+```json
+{
+    "pointCentreInteretList": [
+        {
+            "id": null,
+            "x": 45.72737742628175,
+            "y": 4.81175335359024
+        },
+        {
+            "id": 30,
+            "x": 45.77285,
+            "y": 4.8537
+        },
+        {
+            "id": 24,
+            "x": 45.77373,
+            "y": 4.85171
+        },
+        {
+            "id": 45,
+            "x": 45.7741,
+            "y": 4.85754
+        }
+    ],
+    "polyline": "ccbvGmxj\\e{GeeGoDlKiAmc@aM~dA_HfGkNsLhMjLv[g}@yFaRhAxi@kJhZiSvBo^}t@xAyWpDpBqDqB}@c@~bA~X_cA_Yh|@jr@i@kl@is@pk@b{@oXcBkJqWzhAk`@_e@`{@o\\gAhYoM`^xDiLnEaw@gv@qBK`l@ji@v\\vNk_AmQ~dAem@ar@EuOrBgNlZvmAxEjDdGExT}y@{Pnq@yp@qj@|n@fo@xHykAcAxy@x@eDwEdPjDofA_m@np@dKsr@no@x]qOx`@kLbSnSaoA}w@|d@r{@}[ca@n_A_FyFzm@qf@qPnd@nM{j@we@vr@e]cs@vYzo@|QodAka@do@Uqp@~e@p@}o@lH|G{Ih\\jpACeqAc@xoA~SwXem@y@bd@_r@l@hfA}NiiAzFfsAfDcCnFmmA|Abu@eMz\\uD}sABdqAdJwEqUwA~ApAiO{QlKxMaPkeAl_@pqAwi@ulAj{@bn@hHu]w{@hWzOpUzm@qf@d{GdeG"
+}
+```
