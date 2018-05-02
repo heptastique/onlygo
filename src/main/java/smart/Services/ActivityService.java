@@ -1,15 +1,11 @@
 package smart.Services;
 
-import javafx.scene.shape.Polyline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import smart.Algorithms.ActivityItinerary;
 import smart.Algorithms.FindByJour;
-import smart.Algorithms.JsonToSQL;
 import smart.DTO.ActivityDTO;
-import smart.DTO.PointsDataDTO;
 import smart.DTO.PolylinePointsDTO;
-import smart.DTO.SegmentDTO;
 import smart.Entities.*;
 import smart.Repositories.*;
 
