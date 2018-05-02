@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static java.lang.Math.cos;
-import static java.lang.Math.exp;
-import static java.lang.Math.pow;
+import static java.lang.Math.*;
 import static java.lang.StrictMath.sqrt;
 
 @Service
@@ -140,19 +138,13 @@ public class ProgramActivities
         // If Active Program, some Activities already realized
         else
         {
-            // Update remaining Objectif
-            for (Realisation realisation : programme.getRealisations())
-            {
-                objectifHebdo = objectifHebdo - realisation.getDistance();
-            }
-
             // Add already realized Activities to Activities List and remove non realized Activities
             for (Activity activity : programme.getActivites())
             {
                 if (activity.isEstRealisee())
                 {
                     activities.add(activity);
-                    objectifsDistance.remove(activity.getDistance());
+                    objectifsDistance.remove(activity.getDistancePrevue());
                 }
                                                                                                                     else
                 {
