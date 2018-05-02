@@ -1,7 +1,7 @@
 # Utilisateur
 
 ## `POST /user/add` :key:
-Création d'un utilisateur
+Création d'un utilisateur.
 
 ### Requête
 ```json
@@ -13,7 +13,10 @@ Création d'un utilisateur
 	"email": "mail@domain.com",
 	"objectifHebdo": 15,
 	"distanceMax": 5,
-	"localisation": {
+	"objectifHebdoCourse" : 5,
+	"objectifHebdoMarche" : 2,
+	"objectifHebdoCyclisme" : 3,
+	"location": {
 		"x": 1.0,
 		"y": 1.0
 	}

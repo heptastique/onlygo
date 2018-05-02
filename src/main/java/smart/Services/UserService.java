@@ -4,20 +4,16 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import smart.Algorithms.ProgramActivities;
-import smart.DTO.PointDto;
 import smart.DTO.UserDto;
 import smart.Entities.*;
 import smart.Exceptions.EmailExistsException;
 import smart.Exceptions.UsernameExistsException;
-import smart.Jwt.JwtUser;
 import smart.Repositories.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 
 @Service
 public class UserService {
@@ -75,10 +71,10 @@ public class UserService {
         Objectif objectifC = new Objectif(userDto.getObjectifHebdoCourse(), course);
         objectifList.add(objectifC);
         Sport marche = sportRepository.findById(2);
-        Objectif objectifM = new Objectif(userDto.getObjectifHebdoCourse(), marche);
+        Objectif objectifM = new Objectif(userDto.getObjectifHebdoMarche(), marche);
         objectifList.add(objectifM);
         Sport velo = sportRepository.findById(3);
-        Objectif objectifV = new Objectif(userDto.getObjectifHebdoCourse(), velo);
+        Objectif objectifV = new Objectif(userDto.getObjectifHebdoCyclisme(), velo);
         objectifList.add(objectifV);
         user.setObjectifs(objectifList);
 
