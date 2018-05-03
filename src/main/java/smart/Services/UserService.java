@@ -62,6 +62,7 @@ public class UserService {
         user.setPassword(userDto.getPassword());
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
+        user.setNbSessions(userDto.getNbSessions());
         Date date = java.util.Calendar.getInstance().getTime();
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastPasswordResetDate(date);
