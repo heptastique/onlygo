@@ -97,6 +97,8 @@ public class ProgramActivities
         double distanceUserToCentreInteretEvaluation;
         double distanceInCentreInteret;
         double distanceInCentreInteretEvaluation;
+        double distanceInCentreInteret1;
+        double distanceInCentreInteretEvaluation1;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
         TimeFrameCentreInteret timeFrameCentreInteret1;
@@ -191,25 +193,26 @@ public class ProgramActivities
             while (objectifsSportsDistance.get(sportIndex).size() > 0 && index < timeFrameCentreInterets.size())
             {
                 timeFrameCentreInteret = timeFrameCentreInterets.get(index);
-
-                distanceInCentreInteret = timeFrameCentreInteret.getLongueurCourse();
-                distanceInCentreInteretEvaluation = (1 - abs(timeFrameCentreInteret.getLongueurCourse() - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
+                distanceInCentreInteret = timeFrameCentreInteret.centreInteret.getLongueurCourse();
+                distanceInCentreInteretEvaluation = (1 - abs(distanceInCentreInteret - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
 
                 // For the 3 best TimeFrameCentreInteret
                 for (int i = 1; i < 3; i = i + 1)
                 {
+                    timeFrameCentreInteret1 = timeFrameCentreInterets.get(index + i);
+                    distanceInCentreInteret1 = timeFrameCentreInteret1.centreInteret.getLongueurCourse();
+                    distanceInCentreInteretEvaluation1 = (1 - abs(distanceInCentreInteret1 - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
+
                     // If Evaluation when adding Distance in CentreInteret is better
-                    if ((timeFrameCentreInterets.get(index + i).evaluation + (1 - abs(timeFrameCentreInteret.getLongueurCourse() - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0))
+                    if ((timeFrameCentreInteret1.evaluation + cDistanceInCentreInteretEvaluation * distanceInCentreInteretEvaluation1) >
                         (timeFrameCentreInteret.evaluation + cDistanceInCentreInteretEvaluation * distanceInCentreInteretEvaluation))
                     {
                         // New best TimeFrameCentreInteret
-                        timeFrameCentreInteret = timeFrameCentreInterets.get(index + 1);
-                        distanceInCentreInteret = timeFrameCentreInteret.getLongueurCourse();
-                        distanceInCentreInteretEvaluation = (1 - abs(timeFrameCentreInteret.getLongueurCourse() - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
+                        timeFrameCentreInteret = timeFrameCentreInteret1;
+                        distanceInCentreInteret = distanceInCentreInteret1;
+                        distanceInCentreInteretEvaluation = distanceInCentreInteretEvaluation1;
                     }
                 }
-
-
 
                 // Create Activity
                 ActivityDTO activity = new ActivityDTO();
