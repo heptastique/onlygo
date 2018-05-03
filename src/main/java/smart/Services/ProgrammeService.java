@@ -11,6 +11,7 @@ import smart.Repositories.ProgrammeRepository;
 import smart.Repositories.UserRepository;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class ProgrammeService {
         try {
             programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
             List<Activity> activities = programme.getActivites();
-            Collections.sort(activities, comparing(Activity::getDatePrevue).thenComparingLong(Activity::getTimeFrameId));
+            Collections.sort(activities, comparing(Activity::getDateRealisee, Comparator.nullsLast(Date::compareTo)).thenComparing(Activity::getDatePrevue).thenComparingLong(Activity::getTimeFrameId));
         } catch(Exception e)
         {
             return null;
@@ -49,7 +50,7 @@ public class ProgrammeService {
         try {
             programme = programmeRepository.findByUserAndDateDebut(user, dateDebut).get();
             List<Activity> activities = programme.getActivites();
-            Collections.sort(activities, comparing(Activity::getDatePrevue).thenComparingLong(Activity::getTimeFrameId));
+            Collections.sort(activities, comparing(Activity::getDateRealisee, Comparator.nullsLast(Date::compareTo)).thenComparing(Activity::getDatePrevue).thenComparingLong(Activity::getTimeFrameId));
         } catch(Exception e)
         {
             throw new ProgrammeException("Aucun programme n'a été trouvé pour cette date.", e);
