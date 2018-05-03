@@ -112,10 +112,10 @@ public class ProgramActivities
         final double kDistanceUserToCentreInteretEvaluation = 0.0002;
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
         final double cDistanceInCentreInteretEvaluation = 3.0;
-        final double cTimeFrameEvaluation = 1.0;
-        final double cCentreInteretEvaluation = 1.0;
+        final double cTimeFrameEvaluation = 1.2;
+        final double cCentreInteretEvaluation = 0.8;
         final double cDecreaseSameTimeFrameDay = 0.8;
-        final double cDecreaseSameCentreInteret = 0.8;
+        final double cDecreaseSameCentreInteret = 0.7;
         final Date prevMondayMidnight = prevMondayMidnight();
         final Date nextMonday = nextMonday();
 
