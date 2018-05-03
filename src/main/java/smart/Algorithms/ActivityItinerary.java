@@ -6,6 +6,10 @@ import smart.Entities.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.cos;
+import static java.lang.Math.pow;
+import static java.lang.StrictMath.sqrt;
+
 public class ActivityItinerary {
 
     public static List<PointCentreInteret> findActivityItinerary (User user, Activity activivity, CentreInteret centreInteret)
@@ -16,7 +20,7 @@ public class ActivityItinerary {
         userPoint.setY(userLocalisation.getY());
         userPoint.setX(userLocalisation.getX());
         itinerary.add(userPoint);
-        List<PointCentreInteret> listCIPoints = centreInteret.getListPoint(); // notImplementedYet
+        List<PointCentreInteret> listCIPoints = centreInteret.getListPoint();
         double min = Double.MAX_VALUE;
         int position = -1;
         int i = 0;
@@ -31,6 +35,7 @@ public class ActivityItinerary {
         }
         double objectif = activivity.getDistancePrevue();
         System.out.println(min);
+        System.out.println("objectif : " + objectif);
         objectif -= 2 * min;
         itinerary.add(listCIPoints.get(position));
 
@@ -126,15 +131,17 @@ public class ActivityItinerary {
             newItinerary.add(userPoint);
             return newItinerary;
         }
+        itinerary.add(listCIPoints.get(position));
+        itinerary.add(userPoint);
         return itinerary;
     }
 
     public static double distanceBetween (PointCentreInteret point1, PointCentreInteret point2){
-        System.out.println(point1.toString());
-        System.out.println(point2.toString());
-        double deltaY = point1.getX()-point2.getX();
-        double deltaX = (point1.getY()-point2.getY())*Math.cos( (point1.getX()+point2.getX()) /2);
+        /*double deltaY = point1.getX()-point2.getX();
+        double deltaX = (point1.getY()-point2.getY())*Math.cos( (deltaY) /2);
         double distance= Math.sqrt(deltaX*deltaX+deltaY*deltaY);
-        return (distance);
+        return (distance);*/
+        return sqrt(pow((point1.getX() - point2.getX()) * 111, 2) +
+            pow((point1.getY() - point2.getY()) * 111 * cos(point1.getX() - point2.getX()), 2));
     }
 }
