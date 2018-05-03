@@ -294,5 +294,9 @@ public class UserControllerTest {
             .contentType(MediaType.APPLICATION_JSON).header("Authorization","Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful())
             .andExpect((jsonPath("$.email").value(email)));
+
+        mvc.perform(put("/user/email")
+            .contentType(MediaType.APPLICATION_JSON).header("Authorization","Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().is4xxClientError());
     }
 }

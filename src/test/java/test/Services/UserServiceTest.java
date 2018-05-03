@@ -2,13 +2,16 @@ package test.Services;
 
 import javassist.NotFoundException;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -43,6 +46,8 @@ public class UserServiceTest {
 
     private MockMvc mvc;
 
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
     @Autowired
     private WebApplicationContext context;
 
@@ -262,6 +267,10 @@ public class UserServiceTest {
         userService.changeEmail(user.getUsername(),"good@insa.fr");
         User fetchedUser = userService.getUserByUsername(user.getUsername());
         assertEquals(fetchedUser.getEmail(),"good@insa.fr");
+
+        //existing email
+        exception.expect(EmailExistsException.class);
+        userService.changeEmail(user.getUsername(),"good@insa.fr");
 
     }
 }
