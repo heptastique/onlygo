@@ -34,9 +34,7 @@ public class ActivityItinerary {
             i++;
         }
         double objectif = activivity.getDistancePrevue();
-        System.out.println(min);
-        System.out.println("objectif : " + objectif);
-        objectif -= 2 * min;
+        objectif -= min;
         itinerary.add(listCIPoints.get(position));
 
         if ( objectif > 0){
@@ -76,7 +74,7 @@ public class ActivityItinerary {
                     StatutPoints[pointChoisi] = 1;
                     pointActuel = pointChoisi;
                     itinerary.add(listCIPoints.get(pointActuel));
-                    if ( objectif - distancesInterPoints[pointActuel][position] < 0)
+                    if ( objectif - distanceBetween( userPoint, listCIPoints.get(pointActuel)) < 0)
                     {
                         break;
                     }
@@ -115,20 +113,14 @@ public class ActivityItinerary {
                     newItinerary.add(itinerary.get(l));
                 }
             }
-            newItinerary.add(listCIPoints.get(position));
             newItinerary.add(userPoint);
             return newItinerary;
         }
-        itinerary.add(listCIPoints.get(position));
         itinerary.add(userPoint);
         return itinerary;
     }
 
     public static double distanceBetween (PointCentreInteret point1, PointCentreInteret point2){
-        /*double deltaY = point1.getX()-point2.getX();
-        double deltaX = (point1.getY()-point2.getY())*Math.cos( (deltaY) /2);
-        double distance= Math.sqrt(deltaX*deltaX+deltaY*deltaY);
-        return (distance);*/
         return sqrt(pow((point1.getX() - point2.getX()) * 111, 2) +
             pow((point1.getY() - point2.getY()) * 111 * cos(point1.getX() - point2.getX()), 2));
     }
