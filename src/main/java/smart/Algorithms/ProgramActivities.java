@@ -98,11 +98,15 @@ public class ProgramActivities
             }
             index = index + 1;
         }
-        //double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
 
         double distanceUserToCentreInteret;
+        double distanceUserToCentreInteret1;
         double distanceUserToCentreInteretEvaluation;
+        double distanceInCentreInteret;
+        double distanceInCentreInteretEvaluation;
+        double distanceInCentreInteret1;
+        double distanceInCentreInteretEvaluation1;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
         TimeFrameCentreInteret timeFrameCentreInteret1;
@@ -112,10 +116,11 @@ public class ProgramActivities
 
         final double kDistanceUserToCentreInteretEvaluation = 0.0002;
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
-        final double cTimeFrameEvaluation = 1.0;
-        final double cCentreInteretEvaluation = 1.0;
-        final double cDecreaseSameTimeFrameDay = 0.9;
-        final double cDecreaseSameCentreInteret = 0.8;
+        final double cDistanceInCentreInteretEvaluation = 3.0;
+        final double cTimeFrameEvaluation = 1.2;
+        final double cCentreInteretEvaluation = 0.8;
+        final double cDecreaseSameTimeFrameDay = 0.8;
+        final double cDecreaseSameCentreInteret = 0.7;
         final Date prevMondayMidnight = prevMondayMidnight();
         final Date nextMonday = nextMonday();
 
@@ -201,6 +206,30 @@ public class ProgramActivities
             while (objectifsSportsDistance.get(sportIndex).size() > 0 && index < timeFrameCentreInterets.size())
             {
                 timeFrameCentreInteret = timeFrameCentreInterets.get(index);
+                distanceUserToCentreInteret = sqrt(pow((userLocation.getX() - timeFrameCentreInteret.centreInteret.getPoint().getX()) * 111000, 2) +
+                    pow((userLocation.getY() - timeFrameCentreInteret.centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - timeFrameCentreInteret.centreInteret.getPoint().getX()), 2));
+                distanceInCentreInteret = 2*distanceUserToCentreInteret + timeFrameCentreInteret.centreInteret.getLongueurCourse()*1000;
+                distanceInCentreInteretEvaluation = (1 - abs(distanceInCentreInteret - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
+
+                // For the 3 best TimeFrameCentreInteret
+                for (int i = 1; i < 15; i = i + 1)
+                {
+                    timeFrameCentreInteret1 = timeFrameCentreInterets.get(index + i);
+                    distanceUserToCentreInteret1 = sqrt(pow((userLocation.getX() - timeFrameCentreInteret1.centreInteret.getPoint().getX()) * 111000, 2) +
+                        pow((userLocation.getY() - timeFrameCentreInteret1.centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - timeFrameCentreInteret1.centreInteret.getPoint().getX()), 2));
+                    distanceInCentreInteret1 = 2*distanceUserToCentreInteret1 + timeFrameCentreInteret1.centreInteret.getLongueurCourse()*1000;
+                    distanceInCentreInteretEvaluation1 = (1 - abs(distanceInCentreInteret1 - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
+
+                    // If Evaluation when adding Distance in CentreInteret is better
+                    if ((timeFrameCentreInteret1.evaluation + cDistanceInCentreInteretEvaluation * distanceInCentreInteretEvaluation1) >
+                        (timeFrameCentreInteret.evaluation + cDistanceInCentreInteretEvaluation * distanceInCentreInteretEvaluation))
+                    {
+                        // New best TimeFrameCentreInteret
+                        timeFrameCentreInteret = timeFrameCentreInteret1;
+                        distanceInCentreInteret = distanceInCentreInteret1;
+                        distanceInCentreInteretEvaluation = distanceInCentreInteretEvaluation1;
+                    }
+                }
 
                 // Create Activity
                 ActivityDTO activity = new ActivityDTO();
