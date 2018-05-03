@@ -63,6 +63,11 @@ public class User {
     @Column(name = "DISTANCEMAX" )
     @org.hibernate.annotations.ColumnDefault("5")
     private double distanceMax ;
+
+    @Column(name = "NBSESSIONS" )
+    @org.hibernate.annotations.ColumnDefault("2")
+    private int nbSessions;
+
     @Column(name = "LASTPASSWORDRESETDATE")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
@@ -184,6 +189,16 @@ public class User {
 
     public void setDistanceMax(double distanceMax){
         this.distanceMax=distanceMax;
+    }
+
+    public int getNbSessions()
+    {
+        return nbSessions;
+    }
+
+    public void setNbSessions(int nbSessions)
+    {
+        this.nbSessions = nbSessions;
     }
 
     public void addObjectif(Objectif objectif)

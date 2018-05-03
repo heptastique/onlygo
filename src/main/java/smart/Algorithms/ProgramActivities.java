@@ -76,6 +76,7 @@ public class ProgramActivities
     public Programme calculate(User user)
     {
         List <Sport> sports = new ArrayList <> ();
+        List <Objectif> objectifs = user.getObjectifs();
         List <List <Float> > objectifsSportsDistance = new ArrayList <> ();
         int index = 0;
         for (Sport sport : sportService.getAllSports())
@@ -83,13 +84,13 @@ public class ProgramActivities
             sports.add(sport);
             objectifsSportsDistance.add(new ArrayList <> ());
             int split = 2;
-            for (int seanceIndex = 0; seanceIndex < /*user.getNbSeances()*/ 4 - 1; seanceIndex = seanceIndex + 1)
+            for (int seanceIndex = 0; seanceIndex < user.getNbSessions() - 1; seanceIndex = seanceIndex + 1)
             {
-                objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / split);
+                objectifsSportsDistance.get(index).add((float) objectifs.get(index).getObjectif() / split);
                 split = split * 2;
             }
             split = split / 2;
-            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / split);
+            objectifsSportsDistance.get(index).add((float) objectifs.get(index).getObjectif() / split);
             index = index + 1;
         }
         //double distanceCourseMax= user.getDistanceMax();
@@ -157,7 +158,7 @@ public class ProgramActivities
             // Create Program
             programme = new Programme();
             programme.setUser(user);
-            programme.setObjectifs(user.getObjectifs());
+            programme.setObjectifs(objectifs);
             programme.setDateDebut(prevMondayMidnight);
         }
         // If Active Program, some Activities already realized
