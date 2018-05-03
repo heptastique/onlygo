@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.ExpectedCount;
@@ -59,6 +60,9 @@ public class UserServiceTest {
 
     @Autowired
     PointRepository pointRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Before
     public void setup() {
@@ -292,9 +296,11 @@ public class UserServiceTest {
 
         userService.addUser(user);
 
-        userService.changePassword(user.getUsername(),"newpassword");
+        String pw = "newpassword";
+
+        userService.changePassword(user.getUsername(),pw);
         User fetchedUser = userService.getUserByUsername(user.getUsername());
-        assertEquals(fetchedUser.getPassword(),"newpassword");
+        assert(passwordEncoder.matches(pw,fetchedUser.getPassword()));
 
     }
 }
