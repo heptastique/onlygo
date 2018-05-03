@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import smart.DTO.ActivityDTO;
 import smart.Entities.*;
 import smart.Repositories.ActivityRepository;
+import smart.Repositories.ObjectifRepository;
 import smart.Services.*;
 
 import java.util.ArrayList;
@@ -70,6 +71,8 @@ public class ProgramActivities
     private ProgrammeService programmeService;
     @Autowired
     private ActivityRepository activityRepository;
+    @Autowired
+    private ObjectifRepository objectifRepository;
 
     private List <TimeFrameCentreInteret> timeFrameCentreInterets;
 
@@ -156,7 +159,15 @@ public class ProgramActivities
             // Create Program
             programme = new Programme();
             programme.setUser(user);
-            programme.setObjectifs(user.getObjectifs());
+
+            List<Objectif> objectifsEnregistres = new ArrayList<>();
+
+            for(Objectif objectif : user.getObjectifs()) {
+                Objectif objectifProgramme = new Objectif(objectif.getObjectif(), objectif.getSport());
+                objectifsEnregistres.add(objectifProgramme);
+            }
+
+            programme.setObjectifs(objectifsEnregistres);
             programme.setDateDebut(prevMondayMidnight);
         }
         // If Active Program, some Activities already realized
@@ -176,8 +187,8 @@ public class ProgramActivities
                 }
             }
             programme.setActivites(activities);
-            programme = programmeService.saveProgram(programme);
         }
+        programme = programmeService.saveProgram(programme);
 
         // While Week Objective is not Completed
         int sportIndex = 0;
