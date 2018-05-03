@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
+import smart.DTO.NbSessionsDTO;
 import smart.DTO.PointDto;
 import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
@@ -282,21 +283,41 @@ public class UserControllerTest {
 
     @Test
     @WithMockUser(username = "user40")
-    public void changeUserEmail() throws Exception{
+    public void changeUserEmail() throws Exception {
         String email = "mynewemail@insa-lyon.fr";
-        UserDto userDto= new UserDto();
+        UserDto userDto = new UserDto();
         userDto.setEmail(email);
         Gson gson = new Gson();
-        String json = gson.toJson(userDto,UserDto.class);
+        String json = gson.toJson(userDto, UserDto.class);
         when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user40");
 
         mvc.perform(put("/user/email")
-            .contentType(MediaType.APPLICATION_JSON).header("Authorization","Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is2xxSuccessful())
             .andExpect((jsonPath("$.email").value(email)));
 
         mvc.perform(put("/user/email")
-            .contentType(MediaType.APPLICATION_JSON).header("Authorization","Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().is4xxClientError());
+    }
+    @Test
+    @WithMockUser(username = "user10")
+    public void correctlySetNbSessions() throws Exception{
+        NbSessionsDTO nbSessionsDto = new NbSessionsDTO();
+        nbSessionsDto.setNbSessions(4);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(nbSessionsDto, NbSessionsDTO.class);
+
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
+
+        mvc.perform(put("/user/nbSessions").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+
+        assertEquals(10, userRepository.findByUsername("user10").getObjectifs().get(0).getObjectif(), 0);
+
+        mvc.perform(get("/user/nbSessions").header("Authorization","Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(jsonPath("nbSessions").value("4"));
     }
 }

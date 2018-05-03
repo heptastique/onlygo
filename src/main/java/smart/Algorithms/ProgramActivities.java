@@ -79,17 +79,22 @@ public class ProgramActivities
     public Programme calculate(User user)
     {
         List <Sport> sports = new ArrayList <> ();
+        List <Objectif> objectifs = user.getObjectifs();
         List <List <Float> > objectifsSportsDistance = new ArrayList <> ();
         int index = 0;
         for (Sport sport : sportService.getAllSports())
         {
             sports.add(sport);
-            objectifsSportsDistance.add(new ArrayList<>());
+            objectifsSportsDistance.add(new ArrayList <> ());
             if (user.getObjectifs().get(index).getObjectif() > 0)
             {
-                objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 2);
-                objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
-                objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
+                int split = 2;
+                for (int seanceIndex = 0; seanceIndex < user.getNbSessions() - 1; seanceIndex = seanceIndex + 1) {
+                    objectifsSportsDistance.get(index).add((float) objectifs.get(index).getObjectif() / split);
+                    split = split * 2;
+                }
+                split = split / 2;
+                objectifsSportsDistance.get(index).add((float) objectifs.get(index).getObjectif() / split);
             }
             index = index + 1;
         }
@@ -111,7 +116,6 @@ public class ProgramActivities
         final double cCentreInteretEvaluation = 1.0;
         final double cDecreaseSameTimeFrameDay = 0.9;
         final double cDecreaseSameCentreInteret = 0.8;
-        final Sport course = sportService.getSport("Course");
         final Date prevMondayMidnight = prevMondayMidnight();
         final Date nextMonday = nextMonday();
 
@@ -159,7 +163,6 @@ public class ProgramActivities
             // Create Program
             programme = new Programme();
             programme.setUser(user);
-
             List<Objectif> objectifsEnregistres = new ArrayList<>();
 
             for(Objectif objectif : user.getObjectifs()) {

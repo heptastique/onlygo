@@ -312,14 +312,30 @@ Met à jour la distance max par course en km pour l'utilisateur connecté
 }
 ```
 
-## `PUT /user/email` :key:
-Met a jour l'e-mail de l'utilisateur
+## `GET /user/nbSessions` :key:
+Renvoie le nombre session par sport de l'utilisateur
+
+### Réponse
+
+```
+200 OK
+```
+
+```json
+{
+    "nbSessions": 2
+}
+```
+
+## `PUT /user/nbSessions` :key:
+Met à jour le nombre session par sport pour l'utilisateur connecté
 
 ### Requête
 
 ```json
 {
-    "email": "user@domain.com"
+
+    "nbSessions": 4
 }
 ```
 
@@ -329,4 +345,27 @@ Met a jour l'e-mail de l'utilisateur
 200 OK
 ```
 
+```json
+{
+    "nbSessions": 4
+}
+```
+
+## `PUT /user/email` :key:
+Met a jour l'e-mail de l'utilisateur
+
+### Requête
+
+```json
+{
+
+    "email": "user@domain.com"
+}
+
+### Réponse
+
+```
+200 OK
+```
 Répond avec un objet `User`
+

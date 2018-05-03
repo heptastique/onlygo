@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import smart.DTO.DistanceDto;
+import smart.DTO.NbSessionsDTO;
 import smart.DTO.PointDto;
 import smart.DTO.UserDto;
 import smart.Entities.Point;
@@ -160,5 +161,25 @@ public class UserController {
         DistanceDto updatedDistance = new DistanceDto();
         updatedDistance.setDistance(userService.getDistanceMax(username));
         return ResponseEntity.ok().body(updatedDistance);
+    }
+    @RequestMapping(path="/user/nbSessions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getNbSession(HttpServletRequest request) {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        NbSessionsDTO nbSessionsDTO = new NbSessionsDTO();
+        try {
+            int nbSessions = userService.getNbSession(username);
+            nbSessionsDTO.setNbSessions(nbSessions);
+            return ResponseEntity.ok().body(nbSessionsDTO);
+        }catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+    @RequestMapping(path="/user/nbSessions", method = RequestMethod.PUT)
+    public ResponseEntity<?> setNbSession(@RequestBody NbSessionsDTO nbSessionsDTO, HttpServletRequest request) {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        userService.setNbSession(username,nbSessionsDTO.getNbSessions());
+        return ResponseEntity.ok().body(nbSessionsDTO);
     }
 }
