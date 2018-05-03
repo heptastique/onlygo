@@ -7,7 +7,9 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -42,6 +44,8 @@ public class Programme {
         private List<Activity> activites;
 
     public Programme() {
+        this.activites = new ArrayList<>();
+        this.objectifs = new ArrayList<>();
     }
 
     public Programme(User user, List<Activity> activites) {
@@ -129,7 +133,7 @@ public class Programme {
             ", activites=" + activites +
             '}';
     }
-
+    
     public void addActivity(Activity activity)
     {
         this.activites.add(activity);
