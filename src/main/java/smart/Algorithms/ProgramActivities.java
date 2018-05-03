@@ -108,10 +108,10 @@ public class ProgramActivities
 
         final double kDistanceUserToCentreInteretEvaluation = 0.0002;
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
-        final double cDistanceInCentreInteretEvaluation = 1.0;
+        final double cDistanceInCentreInteretEvaluation = 3.0;
         final double cTimeFrameEvaluation = 1.0;
         final double cCentreInteretEvaluation = 1.0;
-        final double cDecreaseSameTimeFrameDay = 0.9;
+        final double cDecreaseSameTimeFrameDay = 0.8;
         final double cDecreaseSameCentreInteret = 0.8;
         final Date prevMondayMidnight = prevMondayMidnight();
         final Date nextMonday = nextMonday();
@@ -197,7 +197,7 @@ public class ProgramActivities
                 distanceInCentreInteretEvaluation = (1 - abs(distanceInCentreInteret - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
 
                 // For the 3 best TimeFrameCentreInteret
-                for (int i = 1; i < 3; i = i + 1)
+                for (int i = 1; i < 15; i = i + 1)
                 {
                     timeFrameCentreInteret1 = timeFrameCentreInterets.get(index + i);
                     distanceUserToCentreInteret1 = sqrt(pow((userLocation.getX() - timeFrameCentreInteret1.centreInteret.getPoint().getX()) * 111000, 2) +
