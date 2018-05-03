@@ -7,6 +7,7 @@ import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Defaul
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -83,7 +84,7 @@ public class User {
         private List<Programme> programmes;
 
     @OneToOne(fetch = FetchType.EAGER,
-                cascade =CascadeType.MERGE)
+                cascade = CascadeType.MERGE)
     private Point location;
 
     public Point getLocation() { return location; }
@@ -189,5 +190,15 @@ public class User {
     public void addObjectif(Objectif objectif)
     {
         this.objectifs.add(objectif);
+    }
+
+    public void addProgramme(Programme programme)
+    {
+        this.programmes.add(programme);
+    }
+
+    public User() {
+        this.programmes = new ArrayList<>();
+        this.objectifs = new ArrayList<>();
     }
 }

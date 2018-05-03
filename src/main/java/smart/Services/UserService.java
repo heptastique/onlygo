@@ -4,6 +4,7 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import smart.Algorithms.FindByJour;
 import smart.DTO.UserDto;
 import smart.Entities.*;
 import smart.Exceptions.EmailExistsException;
@@ -65,20 +66,25 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastPasswordResetDate(date);
         user.setEnabled(true);
-
-        List<Objectif> objectifList = new ArrayList<Objectif>();
-        Sport course = sportRepository.findById(1);
-        Objectif objectifC = new Objectif(userDto.getObjectifHebdoCourse(), course);
-        objectifList.add(objectifC);
-        Sport marche = sportRepository.findById(2);
-        Objectif objectifM = new Objectif(userDto.getObjectifHebdoMarche(), marche);
-        objectifList.add(objectifM);
-        Sport velo = sportRepository.findById(3);
-        Objectif objectifV = new Objectif(userDto.getObjectifHebdoCyclisme(), velo);
-        objectifList.add(objectifV);
-        user.setObjectifs(objectifList);
-
         user.setDistanceMax(userDto.getDistanceMax());
+
+        List<Objectif> objectifsUser = new ArrayList<>();
+        List<Objectif> objectifsProg = new ArrayList<>();
+        Sport course = sportRepository.findById(1);
+        Objectif objectifCUser = new Objectif(userDto.getObjectifHebdoCourse(), course);
+        Objectif objectifCProg = new Objectif(userDto.getObjectifHebdoCourse(), course);
+        objectifsUser.add(objectifCUser);
+        objectifsProg.add(objectifCProg);
+        Sport marche = sportRepository.findById(2);
+        Objectif objectifMUser = new Objectif(userDto.getObjectifHebdoMarche(), marche);
+        Objectif objectifMProg = new Objectif(userDto.getObjectifHebdoMarche(), marche);
+        objectifsUser.add(objectifMUser);
+        objectifsProg.add(objectifMProg);
+        Sport velo = sportRepository.findById(3);
+        Objectif objectifVUser = new Objectif(userDto.getObjectifHebdoCyclisme(), velo);
+        Objectif objectifVProg = new Objectif(userDto.getObjectifHebdoCyclisme(), velo);
+        objectifsUser.add(objectifVUser);
+        objectifsProg.add(objectifVProg);
 
         try{
             user.setAuthorities(Arrays.asList(authorityService.getAuthority(1)));
@@ -89,10 +95,16 @@ public class UserService {
         Point localisation = new Point();
         localisation.setX(userDto.getLocation().getX());
         localisation.setY(userDto.getLocation().getY());
-
         localisation = pointRepository.save(localisation);
-
         user.setLocation(localisation);
+        user.setObjectifs(objectifsUser);
+
+        Programme firstProgramme = new Programme();
+        firstProgramme.setUser(user);
+        firstProgramme.setDateDebut(FindByJour.findFirstDayOfCurrentWeek());
+        firstProgramme.setObjectifs(objectifsProg);
+
+        user.addProgramme(firstProgramme);
 
         return userRepository.save(user);
     }
