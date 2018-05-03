@@ -81,10 +81,13 @@ public class ProgramActivities
         for (Sport sport : sportService.getAllSports())
         {
             sports.add(sport);
-            objectifsSportsDistance.add(new ArrayList <> ());
-            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 2);
-            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
-            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
+            objectifsSportsDistance.add(new ArrayList<>());
+            if (user.getObjectifs().get(index).getObjectif() > 0)
+            {
+                objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 2);
+                objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
+                objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
+            }
             index = index + 1;
         }
         //double distanceCourseMax= user.getDistanceMax();
