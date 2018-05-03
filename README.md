@@ -24,6 +24,15 @@ password: password
 atmoApiKey=<cle>
 weatherApiKey=<cle>
 ```
+5. Lancer le serveur
+6. S'authentifier avec les identifiants suivants, XX étant un nombre compris entre `01` et `50` :
+```
+username: userXX
+password: password
+```
+7. Récupérer les données de Strava en effectuant un `GET /importStravaPoints` en étant authentifié
+
+Après ces 7 étapes, il est possible d'utiliser l'application en utilisant les mêmes identifiants.
 
 ## Tests
 Les tests peuvent être exécutés via IntelliJ ou avec
