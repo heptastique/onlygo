@@ -7,6 +7,7 @@ import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Defaul
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -63,6 +64,11 @@ public class User {
     @Column(name = "DISTANCEMAX" )
     @org.hibernate.annotations.ColumnDefault("5")
     private double distanceMax ;
+
+    @Column(name = "NBSESSIONS" )
+    @org.hibernate.annotations.ColumnDefault("2")
+    private int nbSessions;
+
     @Column(name = "LASTPASSWORDRESETDATE")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
@@ -83,7 +89,7 @@ public class User {
         private List<Programme> programmes;
 
     @OneToOne(fetch = FetchType.EAGER,
-                cascade =CascadeType.MERGE)
+                cascade = CascadeType.MERGE)
     private Point location;
 
     public Point getLocation() { return location; }
@@ -186,8 +192,28 @@ public class User {
         this.distanceMax=distanceMax;
     }
 
+    public int getNbSessions()
+    {
+        return nbSessions;
+    }
+
+    public void setNbSessions(int nbSessions)
+    {
+        this.nbSessions = nbSessions;
+    }
+
     public void addObjectif(Objectif objectif)
     {
         this.objectifs.add(objectif);
+    }
+
+    public void addProgramme(Programme programme)
+    {
+        this.programmes.add(programme);
+    }
+
+    public User() {
+        this.programmes = new ArrayList<>();
+        this.objectifs = new ArrayList<>();
     }
 }

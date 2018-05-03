@@ -14,6 +14,8 @@ import smart.Repositories.PointRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import static smart.Algorithms.ActivityItinerary.distanceBetween;
+
 @Service
 public class PointService {
 
@@ -39,9 +41,54 @@ public class PointService {
             }
             for ( CentreInteret centreInteret : listCentreInterets){
                 if ( pointsDataDTO.getName().compareTo(centreInteret.getName()) == 0){
+
                     List<PointCentreInteret> listAllPoint = centreInteret.getListPoint();
                     listAllPoint.addAll(pointList);
                     centreInteret.setListPoint(listAllPoint);
+
+                    double distance = 0;
+                    double [][] distancesInterPoints = new double[pointList.size()][pointList.size()];
+                    int [] statutPoints = new int[pointList.size()];
+                    int i = 0;
+                    for ( PointCentreInteret point : pointList ){
+                        int j = 0;
+                        for ( PointCentreInteret point2 : pointList) {
+                            distancesInterPoints[i][j] = distanceBetween(point,point2);
+                            j++;
+                        }
+                        i++;
+                    }
+                    for (int a = 1; a < statutPoints.length; a++){
+                        statutPoints[a] = 0;
+                    }
+                    statutPoints[0] = 1;
+                    int position = 0;
+                    boolean done = false;
+                    while ( !done ){
+                        double distanceMin = Double.MAX_VALUE;
+                        int pointChoisi = -1;
+                        boolean found = false;
+                        for ( int j = 0; j < distancesInterPoints[position].length; j++){
+                            if ( statutPoints[j] == 0){
+                                if ( distancesInterPoints[position][j]< distanceMin ){
+                                    distanceMin = distancesInterPoints[position][j];
+                                    found = true;
+                                    pointChoisi = j;
+                                }
+                            }
+                        }
+                        if ( found ){
+                            distance+= distanceMin;
+                            position = pointChoisi;
+                            statutPoints[position]=1;
+                        }else{
+                            distance+=distancesInterPoints[0][position];
+                        }
+                        done = !found;
+                    }
+
+                    centreInteret.setLongueurCourse(distance);
+
                     for ( PointCentreInteret point : listAllPoint){
                         point.setCentreInteret(centreInteret);
                         pointCentreInteretRepository.save(point);

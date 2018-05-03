@@ -18,6 +18,9 @@ public class CentreInteret {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "LONGUEURCOURSE")
+    private double longueurCourse = -1;
+
     @OneToOne(fetch = FetchType.EAGER)
     private Point point;
 
@@ -55,5 +58,13 @@ public class CentreInteret {
 
     public void setListPoint(List<PointCentreInteret> listPoint) {
         this.listPoint = listPoint;
+    }
+
+    public double getLongueurCourse() {
+        return longueurCourse;
+    }
+
+    public void setLongueurCourse(double longueurCourse) {
+        this.longueurCourse = longueurCourse;
     }
 }
