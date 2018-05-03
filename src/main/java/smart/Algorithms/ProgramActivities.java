@@ -90,7 +90,6 @@ public class ProgramActivities
             }
             index = index + 1;
         }
-        //double distanceCourseMax= user.getDistanceMax();
         Point userLocation = user.getLocation();
 
         double distanceUserToCentreInteret;
@@ -108,13 +107,11 @@ public class ProgramActivities
 
         final double kDistanceUserToCentreInteretEvaluation = 0.0002;
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
-        final double kDistanceInCentreInteretEvaluation = 0.8;
         final double cDistanceInCentreInteretEvaluation = 1.0;
         final double cTimeFrameEvaluation = 1.0;
         final double cCentreInteretEvaluation = 1.0;
         final double cDecreaseSameTimeFrameDay = 0.9;
         final double cDecreaseSameCentreInteret = 0.8;
-        final Sport course = sportService.getSport("Course");
         final Date prevMondayMidnight = prevMondayMidnight();
         final Date nextMonday = nextMonday();
 
