@@ -193,7 +193,7 @@ public class ProgramActivities
                 timeFrameCentreInteret = timeFrameCentreInterets.get(index);
                 distanceUserToCentreInteret = sqrt(pow((userLocation.getX() - timeFrameCentreInteret.centreInteret.getPoint().getX()) * 111000, 2) +
                     pow((userLocation.getY() - timeFrameCentreInteret.centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - timeFrameCentreInteret.centreInteret.getPoint().getX()), 2));
-                distanceInCentreInteret = 2*distanceUserToCentreInteret + timeFrameCentreInteret.centreInteret.getLongueurCourse();
+                distanceInCentreInteret = 2*distanceUserToCentreInteret + timeFrameCentreInteret.centreInteret.getLongueurCourse()*1000;
                 distanceInCentreInteretEvaluation = (1 - abs(distanceInCentreInteret - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
 
                 // For the 3 best TimeFrameCentreInteret
@@ -202,7 +202,7 @@ public class ProgramActivities
                     timeFrameCentreInteret1 = timeFrameCentreInterets.get(index + i);
                     distanceUserToCentreInteret1 = sqrt(pow((userLocation.getX() - timeFrameCentreInteret1.centreInteret.getPoint().getX()) * 111000, 2) +
                         pow((userLocation.getY() - timeFrameCentreInteret1.centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - timeFrameCentreInteret1.centreInteret.getPoint().getX()), 2));
-                    distanceInCentreInteret1 = 2*distanceUserToCentreInteret1 + timeFrameCentreInteret1.centreInteret.getLongueurCourse();
+                    distanceInCentreInteret1 = 2*distanceUserToCentreInteret1 + timeFrameCentreInteret1.centreInteret.getLongueurCourse()*1000;
                     distanceInCentreInteretEvaluation1 = (1 - abs(distanceInCentreInteret1 - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
 
                     // If Evaluation when adding Distance in CentreInteret is better
