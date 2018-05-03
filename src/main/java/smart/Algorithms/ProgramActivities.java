@@ -93,6 +93,7 @@ public class ProgramActivities
         Point userLocation = user.getLocation();
 
         double distanceUserToCentreInteret;
+        double distanceUserToCentreInteret1;
         double distanceUserToCentreInteretEvaluation;
         double distanceInCentreInteret;
         double distanceInCentreInteretEvaluation;
@@ -190,14 +191,18 @@ public class ProgramActivities
             while (objectifsSportsDistance.get(sportIndex).size() > 0 && index < timeFrameCentreInterets.size())
             {
                 timeFrameCentreInteret = timeFrameCentreInterets.get(index);
-                distanceInCentreInteret = timeFrameCentreInteret.centreInteret.getLongueurCourse();
+                distanceUserToCentreInteret = sqrt(pow((userLocation.getX() - timeFrameCentreInteret.centreInteret.getPoint().getX()) * 111000, 2) +
+                    pow((userLocation.getY() - timeFrameCentreInteret.centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - timeFrameCentreInteret.centreInteret.getPoint().getX()), 2));
+                distanceInCentreInteret = 2*distanceUserToCentreInteret + timeFrameCentreInteret.centreInteret.getLongueurCourse();
                 distanceInCentreInteretEvaluation = (1 - abs(distanceInCentreInteret - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
 
                 // For the 3 best TimeFrameCentreInteret
                 for (int i = 1; i < 3; i = i + 1)
                 {
                     timeFrameCentreInteret1 = timeFrameCentreInterets.get(index + i);
-                    distanceInCentreInteret1 = timeFrameCentreInteret1.centreInteret.getLongueurCourse();
+                    distanceUserToCentreInteret1 = sqrt(pow((userLocation.getX() - timeFrameCentreInteret1.centreInteret.getPoint().getX()) * 111000, 2) +
+                        pow((userLocation.getY() - timeFrameCentreInteret1.centreInteret.getPoint().getY()) * 111000 * cos(userLocation.getX() - timeFrameCentreInteret1.centreInteret.getPoint().getX()), 2));
+                    distanceInCentreInteret1 = 2*distanceUserToCentreInteret1 + timeFrameCentreInteret1.centreInteret.getLongueurCourse();
                     distanceInCentreInteretEvaluation1 = (1 - abs(distanceInCentreInteret1 - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
 
                     // If Evaluation when adding Distance in CentreInteret is better
