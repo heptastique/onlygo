@@ -179,14 +179,14 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user40")
+    @WithMockUser(username = "user41")
     public void changeUserPassword() throws Exception{
         String password = "newpassword";
         UserDto userDto= new UserDto();
         userDto.setPassword(password);
         Gson gson = new Gson();
         String json = gson.toJson(userDto,UserDto.class);
-        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user40");
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user41");
 
         mvc.perform(put("/user/password")
             .contentType(MediaType.APPLICATION_JSON).header("Authorization","Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
