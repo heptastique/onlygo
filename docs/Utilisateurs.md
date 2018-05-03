@@ -311,3 +311,22 @@ Met à jour la distance max par course en km pour l'utilisateur connecté
     "distance": 10
 }
 ```
+
+## `PUT /user/email` :key:
+Met a jour l'e-mail de l'utilisateur
+
+### Requête
+
+```json
+{
+    "email": "user@domain.com"
+}
+```
+
+### Réponse
+
+```
+200 OK
+```
+
+Répond avec un objet `User`

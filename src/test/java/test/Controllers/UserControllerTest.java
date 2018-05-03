@@ -32,6 +32,8 @@ import smart.Jwt.JwtUserDetailsService;
 import smart.Jwt.JwtUserFactory;
 import smart.Repositories.UserRepository;
 
+import javax.print.attribute.standard.Media;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -292,5 +294,25 @@ public class UserControllerTest {
         mvc.perform(get("/user/maxDistance").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
             .andExpect(jsonPath("$.distance").value("10.0"));
+    }
+
+    @Test
+    @WithMockUser(username = "user40")
+    public void changeUserEmail() throws Exception{
+        String email = "mynewemail@insa-lyon.fr";
+        UserDto userDto= new UserDto();
+        userDto.setEmail(email);
+        Gson gson = new Gson();
+        String json = gson.toJson(userDto,UserDto.class);
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user40");
+
+        mvc.perform(put("/user/email")
+            .contentType(MediaType.APPLICATION_JSON).header("Authorization","Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect((jsonPath("$.email").value(email)));
+
+        mvc.perform(put("/user/email")
+            .contentType(MediaType.APPLICATION_JSON).header("Authorization","Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().is4xxClientError());
     }
 }
