@@ -82,9 +82,14 @@ public class ProgramActivities
         {
             sports.add(sport);
             objectifsSportsDistance.add(new ArrayList <> ());
-            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 2);
-            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
-            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / 4);
+            int split = 2;
+            for (int seanceIndex = 0; seanceIndex < /*user.getNbSeances()*/ 4 - 1; seanceIndex = seanceIndex + 1)
+            {
+                objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / split);
+                split = split * 2;
+            }
+            split = split / 2;
+            objectifsSportsDistance.get(index).add((float) user.getObjectifs().get(index).getObjectif() / split);
             index = index + 1;
         }
         //double distanceCourseMax= user.getDistanceMax();
@@ -105,7 +110,6 @@ public class ProgramActivities
         final double cCentreInteretEvaluation = 1.0;
         final double cDecreaseSameTimeFrameDay = 0.9;
         final double cDecreaseSameCentreInteret = 0.8;
-        final Sport course = sportService.getSport("Course");
         final Date prevMondayMidnight = prevMondayMidnight();
         final Date nextMonday = nextMonday();
 
