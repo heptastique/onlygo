@@ -95,6 +95,8 @@ public class ProgramActivities
 
         double distanceUserToCentreInteret;
         double distanceUserToCentreInteretEvaluation;
+        double distanceInCentreInteret;
+        double distanceInCentreInteretEvaluation;
         double centreInteretEvaluation;
         TimeFrameCentreInteret timeFrameCentreInteret;
         TimeFrameCentreInteret timeFrameCentreInteret1;
@@ -104,6 +106,8 @@ public class ProgramActivities
 
         final double kDistanceUserToCentreInteretEvaluation = 0.0002;
         final double cDistanceUserToCentreInteretEvaluation = 1.0;
+        final double kDistanceInCentreInteretEvaluation = 0.8;
+        final double cDistanceInCentreInteretEvaluation = 1.0;
         final double cTimeFrameEvaluation = 1.0;
         final double cCentreInteretEvaluation = 1.0;
         final double cDecreaseSameTimeFrameDay = 0.9;
@@ -187,6 +191,25 @@ public class ProgramActivities
             while (objectifsSportsDistance.get(sportIndex).size() > 0 && index < timeFrameCentreInterets.size())
             {
                 timeFrameCentreInteret = timeFrameCentreInterets.get(index);
+
+                distanceInCentreInteret = timeFrameCentreInteret.getLongueurCourse();
+                distanceInCentreInteretEvaluation = (1 - abs(timeFrameCentreInteret.getLongueurCourse() - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
+
+                // For the 3 best TimeFrameCentreInteret
+                for (int i = 1; i < 3; i = i + 1)
+                {
+                    // If Evaluation when adding Distance in CentreInteret is better
+                    if ((timeFrameCentreInterets.get(index + i).evaluation + (1 - abs(timeFrameCentreInteret.getLongueurCourse() - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0))
+                        (timeFrameCentreInteret.evaluation + cDistanceInCentreInteretEvaluation * distanceInCentreInteretEvaluation))
+                    {
+                        // New best TimeFrameCentreInteret
+                        timeFrameCentreInteret = timeFrameCentreInterets.get(index + 1);
+                        distanceInCentreInteret = timeFrameCentreInteret.getLongueurCourse();
+                        distanceInCentreInteretEvaluation = (1 - abs(timeFrameCentreInteret.getLongueurCourse() - objectifsSportsDistance.get(sportIndex).get(0))/objectifsSportsDistance.get(sportIndex).get(0));
+                    }
+                }
+
+
 
                 // Create Activity
                 ActivityDTO activity = new ActivityDTO();
