@@ -75,6 +75,18 @@ public class UserController {
         }
     }
 
+    @RequestMapping(path="/user/password", method = RequestMethod.PUT)
+    public  ResponseEntity<?> changePassword(@RequestBody UserDto userDto, HttpServletRequest request){
+        try{
+            String username = jwtTokenUtil.getUsernameFromToken(
+                request.getHeader(tokenHeader).substring(7));
+            User user = userService.changePassword(username,userDto.getPassword());
+            return ResponseEntity.ok().body("{\"status\": \"Ok\"}");
+        }catch(EmailExistsException e){
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+
     @RequestMapping(path="/user/location",method = RequestMethod.PUT)
     public ResponseEntity<?> setLocation(@RequestBody PointDto pointDto,
                                          HttpServletRequest request) throws NotFoundException{
