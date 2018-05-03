@@ -41,6 +41,9 @@ public class UserDto {
     private double distanceMax;
 
     @NotNull
+    private int nbSessions;
+
+    @NotNull
     private PointDto location;
 
     public String getUsername() {
@@ -113,6 +116,16 @@ public class UserDto {
 
     public void setDistanceMax(double distanceMax) {
         this.distanceMax = distanceMax;
+    }
+
+    public int getNbSessions()
+    {
+        return nbSessions;
+    }
+
+    public void setNbSessions(int nbSessions)
+    {
+        this.nbSessions = nbSessions;
     }
 
     public PointDto getLocation() {
