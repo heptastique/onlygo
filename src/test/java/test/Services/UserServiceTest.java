@@ -273,4 +273,28 @@ public class UserServiceTest {
         userService.changeEmail(user.getUsername(),"good@insa.fr");
 
     }
+
+    @Test
+    public  void ChangeUserPassword() throws Exception{
+        UserDto user = new UserDto();
+        user.setEmail("jared@snowflake.com");
+        user.setPassword("oldpassword");
+        user.setUsername("uniqueusername");
+        user.setFirstname("Jared");
+        user.setLastname("Leto");
+
+        user.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        user.setLocation(localisation);
+
+        userService.addUser(user);
+
+        userService.changePassword(user.getUsername(),"newpassword");
+        User fetchedUser = userService.getUserByUsername(user.getUsername());
+        assertEquals(fetchedUser.getPassword(),"newpassword");
+
+    }
 }
