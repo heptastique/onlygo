@@ -118,7 +118,7 @@ Status: 200 OK
 
 
 ## `GET /user/objectif` :key:
-Renvoie l'objectif hebdomadaire de l'utilisateur connecté en km.
+Renvoie les objectifs hebdomadaires (par sport) de l'utilisateur connecté.
 
 ### Réponse
 
@@ -127,9 +127,41 @@ Status: 200 OK
 ```
 
 ```json
-{
-    "distance":10.0
-}
+[
+    {
+        "@JSONNORECURSION_ID": 1,
+        "objectif": 12,
+        "sport": {
+            "id": 1,
+            "nom": "Course",
+            "kmH": 12,
+            "kcalH": 880,
+            "kcalKm": 73.333336
+        }
+    },
+    {
+        "@JSONNORECURSION_ID": 2,
+        "objectif": 16,
+        "sport": {
+            "id": 2,
+            "nom": "Marche",
+            "kmH": 4,
+            "kcalH": 245,
+            "kcalKm": 61.25
+        }
+    },
+    {
+        "@JSONNORECURSION_ID": 3,
+        "objectif": 13,
+        "sport": {
+            "id": 3,
+            "nom": "Cyclisme",
+            "kmH": 20,
+            "kcalH": 690,
+            "kcalKm": 34.5
+        }
+    }
+]
 ```
 
 ## `GET /user/progression` :key:
