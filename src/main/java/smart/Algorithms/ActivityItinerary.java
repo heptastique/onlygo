@@ -83,7 +83,7 @@ public class ActivityItinerary {
                     for (int a =0; a < StatutPoints.length; a++){
                         StatutPoints[a] = 0;
                     }
-                    StatutPoints[pointChoisi] = 1;
+                    StatutPoints[pointActuel] = 1;
                     found = false;
                     distanceMin = Double.MAX_VALUE;
                     pointChoisi = -1;
