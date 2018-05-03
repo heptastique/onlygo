@@ -39,7 +39,7 @@ public class ActivityItinerary {
 
         if ( objectif > 0){
             double [][] distancesInterPoints = new double[listCIPoints.size()][listCIPoints.size()];
-            int [] StatutPoints = new int[listCIPoints.size()];
+            int [] statutPoints = new int[listCIPoints.size()];
             // generate distance
             i = 0;
             for ( PointCentreInteret point : listCIPoints ){
@@ -50,10 +50,10 @@ public class ActivityItinerary {
                 }
                 i++;
             }
-            for (int a = 0; a < StatutPoints.length; a++){
-                    StatutPoints[a] = 0;
+            for (int a = 0; a < statutPoints.length; a++){
+                    statutPoints[a] = 0;
             }
-            StatutPoints[position] = 1;
+            statutPoints[position] = 1;
 
             int pointActuel = position;
             while ( objectif > 0){
@@ -61,7 +61,7 @@ public class ActivityItinerary {
                 double distanceMin = Double.MAX_VALUE;
                 int pointChoisi = -1;
                 for ( int j = 0; j < distancesInterPoints[pointActuel].length; j++){
-                    if ( StatutPoints[j] == 0){
+                    if ( statutPoints[j] == 0){
                         if ( distancesInterPoints[pointActuel][j]< distanceMin ){
                             distanceMin = distancesInterPoints[pointActuel][j];
                             found = true;
@@ -71,7 +71,7 @@ public class ActivityItinerary {
                 }
                 if ( found ){
                     objectif -= distanceMin;
-                    StatutPoints[pointChoisi] = 1;
+                    statutPoints[pointChoisi] = 1;
                     pointActuel = pointChoisi;
                     itinerary.add(listCIPoints.get(pointActuel));
                     if ( objectif - distanceBetween( userPoint, listCIPoints.get(pointActuel)) < 0)
@@ -80,15 +80,15 @@ public class ActivityItinerary {
                     }
                 }
                 else {
-                    for (int a =0; a < StatutPoints.length; a++){
-                        StatutPoints[a] = 0;
+                    for (int a =0; a < statutPoints.length; a++){
+                        statutPoints[a] = 0;
                     }
-                    StatutPoints[pointActuel] = 1;
+                    statutPoints[pointActuel] = 1;
                     found = false;
                     distanceMin = Double.MAX_VALUE;
                     pointChoisi = -1;
                     for ( int j = 0; j < distancesInterPoints[pointActuel].length; j++){
-                        if ( StatutPoints[j] == 0){
+                        if ( statutPoints[j] == 0){
                             if ( distancesInterPoints[pointActuel][j]< distanceMin ){
                                 distanceMin = distancesInterPoints[pointActuel][j];
                                 found = true;
