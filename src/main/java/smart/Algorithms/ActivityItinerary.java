@@ -6,6 +6,10 @@ import smart.Entities.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.cos;
+import static java.lang.Math.pow;
+import static java.lang.StrictMath.sqrt;
+
 public class ActivityItinerary {
 
     public static List<PointCentreInteret> findActivityItinerary (User user, Activity activivity, CentreInteret centreInteret)
@@ -16,7 +20,7 @@ public class ActivityItinerary {
         userPoint.setY(userLocalisation.getY());
         userPoint.setX(userLocalisation.getX());
         itinerary.add(userPoint);
-        List<PointCentreInteret> listCIPoints = centreInteret.getListPoint(); // notImplementedYet
+        List<PointCentreInteret> listCIPoints = centreInteret.getListPoint();
         double min = Double.MAX_VALUE;
         int position = -1;
         int i = 0;
@@ -30,40 +34,34 @@ public class ActivityItinerary {
             i++;
         }
         double objectif = activivity.getDistancePrevue();
-        System.out.println(min);
-        objectif -= 2 * min;
+        objectif -= min;
         itinerary.add(listCIPoints.get(position));
 
         if ( objectif > 0){
             double [][] distancesInterPoints = new double[listCIPoints.size()][listCIPoints.size()];
-            int [][] StatutPoints = new int[listCIPoints.size()][listCIPoints.size()];
+            int [] StatutPoints = new int[listCIPoints.size()];
             // generate distance
             i = 0;
             for ( PointCentreInteret point : listCIPoints ){
-                int j =0;
+                int j = 0;
                 for ( PointCentreInteret point2 : listCIPoints) {
                     distancesInterPoints[i][j] = distanceBetween(point,point2);
                     j++;
                 }
                 i++;
             }
-            for (int a =0; a < StatutPoints.length; a++){
-                for ( int b =0; b< StatutPoints[0].length; b++){
-                    if ( a == b){
-                        StatutPoints[a][b] = 1;
-                    }
-                    else{
-                        StatutPoints[a][b] = 0;
-                    }
-                }
+            for (int a = 0; a < StatutPoints.length; a++){
+                    StatutPoints[a] = 0;
             }
+            StatutPoints[position] = 1;
+
             int pointActuel = position;
             while ( objectif > 0){
                 boolean found = false;
                 double distanceMin = Double.MAX_VALUE;
                 int pointChoisi = -1;
                 for ( int j = 0; j < distancesInterPoints[pointActuel].length; j++){
-                    if ( StatutPoints[pointActuel][j] == 0){
+                    if ( StatutPoints[j] == 0){
                         if ( distancesInterPoints[pointActuel][j]< distanceMin ){
                             distanceMin = distancesInterPoints[pointActuel][j];
                             found = true;
@@ -73,31 +71,24 @@ public class ActivityItinerary {
                 }
                 if ( found ){
                     objectif -= distanceMin;
-                    StatutPoints[pointActuel][pointChoisi] = 1;
-                    StatutPoints[pointChoisi][pointActuel] = 1;
+                    StatutPoints[pointChoisi] = 1;
                     pointActuel = pointChoisi;
                     itinerary.add(listCIPoints.get(pointActuel));
-                    if ( objectif - distancesInterPoints[pointActuel][position] < 0)
+                    if ( objectif - distanceBetween( userPoint, listCIPoints.get(pointActuel)) < 0)
                     {
                         break;
                     }
                 }
                 else {
                     for (int a =0; a < StatutPoints.length; a++){
-                        for ( int b =0; b< StatutPoints[0].length; b++){
-                            if ( a == b){
-                                StatutPoints[a][b] = 1;
-                            }
-                            else{
-                                StatutPoints[a][b] = 0;
-                            }
-                        }
+                        StatutPoints[a] = 0;
                     }
+                    StatutPoints[pointChoisi] = 1;
                     found = false;
                     distanceMin = Double.MAX_VALUE;
                     pointChoisi = -1;
                     for ( int j = 0; j < distancesInterPoints[pointActuel].length; j++){
-                        if ( StatutPoints[pointActuel][j] == 0){
+                        if ( StatutPoints[j] == 0){
                             if ( distancesInterPoints[pointActuel][j]< distanceMin ){
                                 distanceMin = distancesInterPoints[pointActuel][j];
                                 found = true;
@@ -122,19 +113,15 @@ public class ActivityItinerary {
                     newItinerary.add(itinerary.get(l));
                 }
             }
-            newItinerary.add(listCIPoints.get(position));
             newItinerary.add(userPoint);
             return newItinerary;
         }
+        itinerary.add(userPoint);
         return itinerary;
     }
 
     public static double distanceBetween (PointCentreInteret point1, PointCentreInteret point2){
-        System.out.println(point1.toString());
-        System.out.println(point2.toString());
-        double deltaY = point1.getX()-point2.getX();
-        double deltaX = (point1.getY()-point2.getY())*Math.cos( (point1.getX()+point2.getX()) /2);
-        double distance= Math.sqrt(deltaX*deltaX+deltaY*deltaY);
-        return (distance);
+        return sqrt(pow((point1.getX() - point2.getX()) * 111, 2) +
+            pow((point1.getY() - point2.getY()) * 111 * cos(point1.getX() - point2.getX()), 2));
     }
 }
