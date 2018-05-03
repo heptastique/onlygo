@@ -164,6 +164,17 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User changeEmail(String username, String email) throws EmailExistsException{
+        User user = userRepository.findByUsername(username);
+        if(emailExist(email)){
+            throw new EmailExistsException(
+                "Cette adresse email est déjà utilisée par un autre compte");
+        }else{
+            user.setEmail(email);
+            return userRepository.save(user);
+        }
+    }
+
     private boolean emailExist(String email) {
         User user = userRepository.findByEmail(email);
         return user != null;

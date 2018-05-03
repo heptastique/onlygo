@@ -83,14 +83,16 @@ public class ProgramActivities
         {
             sports.add(sport);
             objectifsSportsDistance.add(new ArrayList <> ());
-            int split = 2;
-            for (int seanceIndex = 0; seanceIndex < user.getNbSessions() - 1; seanceIndex = seanceIndex + 1)
+            if (user.getObjectifs().get(index).getObjectif() > 0)
             {
+                int split = 2;
+                for (int seanceIndex = 0; seanceIndex < user.getNbSessions() - 1; seanceIndex = seanceIndex + 1) {
+                    objectifsSportsDistance.get(index).add((float) objectifs.get(index).getObjectif() / split);
+                    split = split * 2;
+                }
+                split = split / 2;
                 objectifsSportsDistance.get(index).add((float) objectifs.get(index).getObjectif() / split);
-                split = split * 2;
             }
-            split = split / 2;
-            objectifsSportsDistance.get(index).add((float) objectifs.get(index).getObjectif() / split);
             index = index + 1;
         }
         //double distanceCourseMax= user.getDistanceMax();

@@ -21,7 +21,17 @@ public class DonneeAthmospherique {
     }
 
     public DonneeAthmospherique(Double indice, Date date) {
-        this.indice = indice;
+        if ( indice > 100){
+            this.indice = 100.0;
+        }
+        else{
+            if ( indice < 0){
+                this.indice= 0.0;
+            }
+            else{
+                this.indice = indice;
+            }
+        }
         this.date = date;
     }
 

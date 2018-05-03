@@ -12,6 +12,7 @@ import smart.DTO.PointDto;
 import smart.DTO.UserDto;
 import smart.Entities.Point;
 import smart.Entities.User;
+import smart.Exceptions.EmailExistsException;
 import smart.Jwt.JwtTokenUtil;
 import smart.Jwt.JwtUserFactory;
 import smart.Services.ProgrammeService;
@@ -59,6 +60,18 @@ public class UserController {
             JwtUserFactory.create(user);
             return ResponseEntity.ok().body(user);
         }catch (Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+
+    @RequestMapping(path="/user/email", method = RequestMethod.PUT)
+    public  ResponseEntity<?> changeEmail(@RequestBody UserDto userDto, HttpServletRequest request){
+        try{
+            String username = jwtTokenUtil.getUsernameFromToken(
+                request.getHeader(tokenHeader).substring(7));
+            User user = userService.changeEmail(username,userDto.getEmail());
+            return ResponseEntity.ok().body(user);
+        }catch(EmailExistsException e){
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
