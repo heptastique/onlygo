@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.ExpectedCount;
@@ -59,6 +60,9 @@ public class UserServiceTest {
 
     @Autowired
     PointRepository pointRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Before
     public void setup() {
@@ -271,6 +275,32 @@ public class UserServiceTest {
         //existing email
         exception.expect(EmailExistsException.class);
         userService.changeEmail(user.getUsername(),"good@insa.fr");
+
+    }
+
+    @Test
+    public  void ChangeUserPassword() throws Exception{
+        UserDto user = new UserDto();
+        user.setEmail("jared@snowflake.com");
+        user.setPassword("oldpassword");
+        user.setUsername("uniqueusername");
+        user.setFirstname("Jared");
+        user.setLastname("Leto");
+
+        user.setDistanceMax(5);
+
+        PointDto localisation = new PointDto();
+        localisation.setX(1.0);
+        localisation.setY(1.0);
+        user.setLocation(localisation);
+
+        userService.addUser(user);
+
+        String pw = "newpassword";
+
+        userService.changePassword(user.getUsername(),pw);
+        User fetchedUser = userService.getUserByUsername(user.getUsername());
+        assert(passwordEncoder.matches(pw,fetchedUser.getPassword()));
 
     }
 }

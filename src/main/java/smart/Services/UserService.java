@@ -178,6 +178,7 @@ public class UserService {
 
     public User changeEmail(String username, String email) throws EmailExistsException{
         User user = userRepository.findByUsername(username);
+        //notify the user about the change...
         if(emailExist(email)){
             throw new EmailExistsException(
                 "Cette adresse email est déjà utilisée par un autre compte");
@@ -185,6 +186,13 @@ public class UserService {
             user.setEmail(email);
             return userRepository.save(user);
         }
+    }
+
+    public User changePassword(String username, String password){
+        User user = userRepository.findByUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        //notify the user about the change...
+        return userRepository.save(user);
     }
 
     private boolean emailExist(String email) {
