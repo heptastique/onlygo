@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 import smart.Application;
+import smart.DTO.NbSessionsDTO;
 import smart.DTO.PointDto;
 import smart.DTO.DistanceDto;
 import smart.DTO.UserDto;
@@ -276,5 +277,26 @@ public class UserControllerTest {
         mvc.perform(get("/user/maxDistance").header("Authorization","Bearer anyToken"))
             .andExpect(status().is2xxSuccessful())
             .andExpect(jsonPath("$.distance").value("10.0"));
+    }
+
+    @Test
+    @WithMockUser(username = "user10")
+    public void correctlySetNbSessions() throws Exception{
+        NbSessionsDTO nbSessionsDto = new NbSessionsDTO();
+        nbSessionsDto.setNbSessions(4);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(nbSessionsDto, NbSessionsDTO.class);
+
+        when(jwtTokenUtil.getUsernameFromToken(any())).thenReturn("user10");
+
+        mvc.perform(put("/user/nbSessions").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer anyToken").content(json).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+
+        assertEquals(10, userRepository.findByUsername("user10").getObjectifs().get(0).getObjectif(), 0);
+
+        mvc.perform(get("/user/nbSessions").header("Authorization","Bearer anyToken"))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(jsonPath("nbSessions").value("4"));
     }
 }

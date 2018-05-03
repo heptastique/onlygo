@@ -195,4 +195,13 @@ public class UserService {
 
         return 100*realisations/activeProgram.getObjectifs().get(0).getObjectif();
     }
+    public  int getNbSession( String username) {
+        User user = userRepository.findByUsername(username);
+        return user.getNbSessions();
+    }
+    public void setNbSession( String username, int nbSessions) {
+        User user = userRepository.findByUsername(username);
+        user.setNbSessions(nbSessions);
+        userRepository.save(user);
+    }
 }
