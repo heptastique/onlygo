@@ -311,7 +311,7 @@ Met à jour la distance max par course en km pour l'utilisateur connecté
     "distance": 10
 }
 ```
-<<<<<<< HEAD
+
 ## `GET /user/nbSessions` :key:
 Renvoie le nombre session par sport de l'utilisateur
 
